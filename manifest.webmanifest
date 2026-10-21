@@ -34,5 +34,61 @@
   "display_override": [
     "fullscreen",
     "standalone"
+  ],
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.dokodemo.japanese"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": [
+      "navigate-existing",
+      "auto"
+    ]
+  },
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 420
+  },
+  "shortcuts": [
+    {
+      "name": "Discovery – ဝေါဟာရ",
+      "short_name": "Discovery",
+      "url": "./index.html?tab=words",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Dialog – စကားပြော",
+      "short_name": "Dialog",
+      "url": "./index.html?tab=talk",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Pro – လေ့ကျင့်ခန်း",
+      "short_name": "Pro",
+      "url": "./index.html?tab=practice",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
