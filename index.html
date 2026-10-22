@@ -150,6 +150,10 @@ body.dark #app svg.owl{filter:hue-rotate(180deg) invert(1)}
 @media (prefers-reduced-motion:reduce){#fest{display:none}}
 .htitle.thd b,.htitle.thd>span{display:flex;align-items:center;gap:6px}.htitle.thd b>span{font-size:inherit;color:inherit;display:inline}.htitle.thd>span{gap:5px}
 .thi{position:relative;display:block}.thi>svg{display:block;width:22px;height:22px}.thi .sq{margin:0}.thb{position:absolute;right:-12px;top:-9px;pointer-events:none;line-height:0}
+.grid.thd .tile{padding-top:30px;padding-bottom:22px}.grid.thd .crown{top:30px}
+.tgar{position:absolute;left:6px;right:6px;top:1px;pointer-events:none;line-height:0}.tgar svg{display:block;width:100%;height:auto}
+.tlmp{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center;gap:5px;pointer-events:none;line-height:0}
+@media (min-width:640px){.grid.thd .tile{padding-top:62px;padding-bottom:40px}.grid.thd .crown{top:60px}.tgar{left:12px;right:12px;top:2px}.tlmp{gap:12px;bottom:8px}.tlmp svg{width:20px;height:20px}}
 .thf{transform-box:fill-box;transform-origin:50% 100%;animation:fFl .4s ease-in-out infinite alternate}
 .thn{transform-box:fill-box;transform-origin:50% 0;animation:thSw 2.6s ease-in-out infinite alternate}
 @keyframes thSw{from{rotate:-6deg}to{rotate:6deg}}
@@ -216,6 +220,11 @@ function THD(){if(_thd!==null)return _thd;let v=false;try{const o=localStorage.g
   try{const d=new Date(),x=mmDay(d.getFullYear(),d.getMonth()+1,d.getDate());if(!x)return false;v=x.mm===7&&x.md>=10&&x.md<=20}catch(e){return false}_thd=v;return v}
 const thLamp=w=>`<svg class="thl" width="${w}" height="${w}" viewBox="0 0 24 24" aria-hidden="true">${TH_LAMP}</svg>`;
 const thLan=w=>`<svg class="thl" width="${w}" height="${(w*1.33).toFixed(1)}" viewBox="0 0 24 32" aria-hidden="true"><g class="thn">${TH_LAN}</g></svg>`;
+/* Thadingyut tile decoration: a string of 5 paper lanterns on top, a row of oil lamps at the bottom */
+let _thTile=null;
+function thTile(){if(_thTile)return _thTile;const xs=[14,37,60,83,106],cols=['#E8463A','#F5A623','#E8463A','#F5A623','#E8463A'];
+ const lan=xs.map((x,i)=>{const t=(x-2)/116,y=3+18*t*(1-t);return `<g transform="translate(${x-6} ${(y-.6).toFixed(2)}) scale(.5)"><g class="thn" style="animation-delay:-${(i*.55).toFixed(2)}s">${TH_LAN.replace(/#E8463A/g,cols[i])}</g></g>`}).join('');
+ _thTile=`<span class="tgar" aria-hidden="true"><svg viewBox="0 0 120 26"><path d="M2 3Q60 12 118 3" stroke="#C9A24A" stroke-width="1" fill="none"/>${lan}</svg></span><span class="tlmp" aria-hidden="true">${thLamp(12).repeat(5)}</span>`;return _thTile}
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function homeTop(){try{if(typeof monthCard==='function'){const h=monthCard(S.mcm||0);if(h)return h}}catch(e){}return '<div class="pimg" role="img" aria-label="Buddha"></div>'}
@@ -305,7 +314,7 @@ function body(){
     h+=r.length?`<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
   }else{
     const r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q));
-    h+=r.length?`<div class="grid${anim?' anim':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" style="--i:${Math.min(n,14)}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='PDF'?' data-a="pdf"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${i}</span><span class="jp"${TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span><span class="mmt mm">${tileSub(j,m)}</span>${S.tab==='practice'&&!PRO_OK?'<span class="crown">👑</span>':''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
+    h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" style="--i:${Math.min(n,14)}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='PDF'?' data-a="pdf"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${i}</span><span class="jp"${TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span><span class="mmt mm">${tileSub(j,m)}</span>${S.tab==='practice'&&!PRO_OK?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
   }
   return h;
 }
@@ -13903,7 +13912,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.120',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.121',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function renderAbout(){
   const sec=(id,icon,title,body)=>`<section id="${id}" style="background:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">${icon}</span><b style="font-size:18px">${title}</b></div>${body}</section>`;
   const p=t=>`<p class="mm" style="margin:0;font-size:14px;line-height:1.9;color:#2B3446">${t}</p>`;
