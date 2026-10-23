@@ -1,5 +1,6 @@
 {
   "share": true,
   "website": true,
-  "copyright": true
+  "copyright": true,
+  "tester": true
 }
