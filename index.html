@@ -154,6 +154,7 @@ body.dark #app svg.owl{filter:hue-rotate(180deg) invert(1)}
 .tgar{position:absolute;left:6px;right:6px;top:1px;pointer-events:none;line-height:0}.tgar svg{display:block;width:100%;height:auto}
 .tlmp{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:center;gap:5px;pointer-events:none;line-height:0}
 @media (min-width:640px){.grid.thd .tile{padding-top:62px;padding-bottom:40px}.grid.thd .crown{top:60px}.tgar{left:12px;right:12px;top:2px}.tlmp{gap:12px;bottom:8px}.tlmp svg{width:20px;height:20px}}
+.marq .moon{display:inline-block;vertical-align:-5px;margin:0 2px}
 .thf{transform-box:fill-box;transform-origin:50% 100%;animation:fFl .4s ease-in-out infinite alternate}
 .thn{transform-box:fill-box;transform-origin:50% 0;animation:thSw 2.6s ease-in-out infinite alternate}
 @keyframes thSw{from{rotate:-6deg}to{rotate:6deg}}
@@ -282,6 +283,17 @@ document.addEventListener('click',e=>{
 },true);
 function timeIcon(){try{if(typeof mmDay==='function'){const d=new Date(),x=mmDay(d.getFullYear(),d.getMonth()+1,d.getDate());if(x&&x.sb===1)return '🙏'}}catch(e){}
   const h=new Date().getHours();return h>=5&&h<7?'🌅':h>=7&&h<12?'☀️':h>=12&&h<17?'🌤️':h>=17&&h<19?'🌇':h>=19&&h<21?'🌆':'🌙'}
+/* ---------- Moon phase picture (Myanmar calendar day → 30 shapes) ---------- */
+function moonP(x){if(!x)return -1;if(x.mp===1)return .5;if(x.mp===3)return 0;if(x.mp===0)return Math.min(14,x.mf)/30;return .5+Math.min(14.5,x.mf)/30}
+function moonSVG(p,sz){sz=sz||20;const R=10,c=12;let lit='';
+  if(p>.485&&p<.515)lit=`<circle cx="${c}" cy="${c}" r="${R}" fill="url(#mlg)"/>`;
+  else if(p>.02&&p<.98){const rx=(R*Math.abs(Math.cos(2*Math.PI*p))).toFixed(2),wax=p<.5,cres=wax?p<.25:p>.75;
+    const outer=wax?1:0,term=wax?(cres?0:1):(cres?1:0);
+    lit=`<path d="M${c} ${c-R}A${R} ${R} 0 0 ${outer} ${c} ${c+R}A${rx} ${R} 0 0 ${term} ${c} ${c-R}Z" fill="url(#mlg)"/>`}
+  return `<svg class="moon" width="${sz}" height="${sz}" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="mlg" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#FFF6D2"/><stop offset="1" stop-color="#F3CF6A"/></radialGradient></defs><circle cx="${c}" cy="${c}" r="${R+1.3}" fill="#F5C036" opacity="${p>.15&&p<.85?.22:.08}"/><circle cx="${c}" cy="${c}" r="${R}" fill="#2B3754" stroke="#55627F" stroke-width=".6"/>${lit}</svg>`}
+/* Home marquee: greeting · moon picture + Myanmar date · sabbath note */
+function homeMarq(){const g=greetMsg(),m=sbMsg();let mo='';try{const d=new Date(),x=mmDay(d.getFullYear(),d.getMonth()+1,d.getDate());if(x){const t=mmText(x);mo=`　${moonSVG(moonP(x),22)} ${T(t[0],t[1],t[2])}`}}catch(e){}
+  return g+mo+(m?'　　'+m:'')}
 function greetMsg(){const h=new Date().getHours();
   if(h>=5&&h<12)return T('Good Morning ☀️ မင်္ဂလာရှိသော နေ့လေးဖြစ်ပါစေ ❤️','おはようございます ☀️ 素敵な一日になりますように ❤️','Good Morning ☀️ Have a blessed day ❤️');
   if(h>=12&&h<17)return T('Good Afternoon 🌤️ မင်္ဂလာရှိသော နေ့လေးဖြစ်ပါစေ ❤️','こんにちは 🌤️ 素敵な一日になりますように ❤️','Good Afternoon 🌤️ Have a blessed day ❤️');
@@ -308,7 +320,7 @@ function betaTxt(){return T('သတိပြုရန် — ဒီ App သည�
 function body(){
   const q=S.q.trim().toLowerCase();const anim=S.tab!==LAST_ANIM_TAB&&!q;LAST_ANIM_TAB=S.tab;
   const bOn=betaOn();
-  let h=`<label class="search${(S.tab==='home'&&!S.q)||bOn?' tm':''}"><span class="sv" style="display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14223D" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>${S.tab==='home'&&!S.q?`<span class="te" aria-hidden="true">${timeIcon()}</span>`:''}${bOn?'<span class="te" aria-hidden="true">⚠️</span>':''}<input id="q" aria-label="Search" placeholder="${S.tab==='home'||bOn?'':PHF()[S.tab]}" value="${esc(S.q)}">${S.tab==='home'&&!S.q?`<span class="marq mm" aria-hidden="true"><span style="animation-duration:${Math.max(10,Math.round(PHF().home.length*0.2))}s">${PHF().home}</span></span>`:''}${bOn?`<span class="marq mm" aria-hidden="true" style="right:46px;color:#D93A2E;font-weight:700"><span style="animation-duration:${Math.max(16,Math.round(betaTxt().length*0.17))}s">${betaTxt()}</span></span><button type="button" class="bx" onpointerdown="event.preventDefault()" onclick="event.preventDefault();event.stopPropagation();betaHide()" aria-label="Hide notice" style="position:absolute;right:8px;top:50%;margin-top:-16px;width:32px;height:32px;border:none;border-radius:16px;background:#EEF1F6;color:#4A5468;font-size:14px;z-index:1">✕</button>`:''}</label>`;
+  let h=`<label class="search${(S.tab==='home'&&!S.q)||bOn?' tm':''}"><span class="sv" style="display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14223D" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>${S.tab==='home'&&!S.q?`<span class="te" aria-hidden="true">${timeIcon()}</span>`:''}${bOn?'<span class="te" aria-hidden="true">⚠️</span>':''}<input id="q" aria-label="Search" placeholder="${S.tab==='home'||bOn?'':PHF()[S.tab]}" value="${esc(S.q)}">${S.tab==='home'&&!S.q?`<span class="marq mm" aria-hidden="true"><span style="animation-duration:${Math.max(12,Math.round((PHF().home.length+30)*0.2))}s">${homeMarq()}</span></span>`:''}${bOn?`<span class="marq mm" aria-hidden="true" style="right:46px;color:#D93A2E;font-weight:700"><span style="animation-duration:${Math.max(16,Math.round(betaTxt().length*0.17))}s">${betaTxt()}</span></span><button type="button" class="bx" onpointerdown="event.preventDefault()" onclick="event.preventDefault();event.stopPropagation();betaHide()" aria-label="Hide notice" style="position:absolute;right:8px;top:50%;margin-top:-16px;width:32px;height:32px;border:none;border-radius:16px;background:#EEF1F6;color:#4A5468;font-size:14px;z-index:1">✕</button>`:''}</label>`;
   if(S.tab==='home'){
     const r=HOME.filter(t=>!q||t.includes(q));
     h+=r.length?`<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
@@ -977,9 +989,41 @@ const KV_RAW=`会う|あう|1|တွေ့သည်|5
 用意する|よういする|3|ပြင်ဆင်ထားသည်|4
 世話する|せわする|3|ပြုစုစောင့်ရှောက်သည်|3
 安心する|あんしんする|3|စိတ်အေးသည်|4
-我慢する|がまんする|3|သည်းခံသည်|3`;
+我慢する|がまんする|3|သည်းခံသည်|3
+差す|さす|1|(ထီး) ဆောင်းသည်|5|to hold up (an umbrella)
+勤める|つとめる|2|အလုပ်လုပ်သည်|5|to work for
+鳴く|なく|1|(တိရစ္ဆာန်) အော်မြည်သည်|5|to cry (animal), to chirp
+温める|あたためる|2|နွေးအောင်လုပ်သည်|4|to warm up
+生きる|いきる|2|အသက်ရှင်သည်|4|to live
+祈る|いのる|1|ဆုတောင်းသည်|4|to pray
+下りる|おりる|2|ဆင်းသည်|4|to go down
+下がる|さがる|1|ကျဆင်းသည်|4|to go down, to fall
+空く|すく|1|လွတ်သည် / ဗိုက်ဆာသည်|4|to become empty; to get hungry
+訪ねる|たずねる|2|အလည်သွားသည်|4|to visit
+捕まえる|つかまえる|2|ဖမ်းသည်|4|to catch
+続く|つづく|1|ဆက်လက်သည်|4|to continue
+連れる|つれる|2|ခေါ်သွားသည်|4|to take along
+届ける|とどける|2|ပို့ပေးသည်|4|to deliver
+跳ぶ|とぶ|1|ခုန်သည်|4|to jump
+似る|にる|2|တူသည်|4|to resemble
+冷やす|ひやす|1|အေးအောင်လုပ်သည်|4|to chill
+拭く|ふく|1|သုတ်သည်|4|to wipe
+見付かる|みつかる|1|တွေ့ရှိသည်|4|to be found
+焼ける|やける|2|ကျက်သည် / လောင်သည်|4|to be cooked, to burn
+止む|やむ|1|(မိုး) တိတ်သည်|4|to stop (rain)
+茹でる|ゆでる|2|ပြုတ်သည်|4|to boil
+沸かす|わかす|1|ရေနွေးတည်သည်|4|to boil (water)
+割れる|われる|2|ကွဲသည်|4|to break
+挨拶する|あいさつする|3|နှုတ်ဆက်သည်|4|to greet
+遠慮する|えんりょする|3|အားနာသည် / ရှောင်ကြဉ်သည်|4|to hold back
+喧嘩する|けんかする|3|ရန်ဖြစ်သည်|4|to quarrel
+故障する|こしょうする|3|(စက်) ပျက်သည်|4|to break down
+注射する|ちゅうしゃする|3|ဆေးထိုးသည်|4|to inject
+寝坊する|ねぼうする|3|အိပ်ရာထ နောက်ကျသည်|4|to oversleep
+反対する|はんたいする|3|ဆန့်ကျင်သည်|4|to oppose
+放送する|ほうそうする|3|ထုတ်လွှင့်သည်|4|to broadcast`;
 const KV_EN={"会う": "meet", "買う": "buy", "言う": "say", "歌う": "sing", "使う": "use", "手伝う": "help", "習う": "learn", "洗う": "wash", "思う": "think", "払う": "pay", "笑う": "laugh", "待つ": "wait", "持つ": "hold / carry", "立つ": "stand", "勝つ": "win", "帰る": "go home", "入る": "enter", "走る": "run", "知る": "know", "切る": "cut", "売る": "sell", "作る": "make / cook", "取る": "take", "座る": "sit", "分かる": "understand", "終わる": "end", "乗る": "ride / get on", "送る": "send", "降る": "fall (rain)", "始まる": "begin", "頑張る": "do one's best", "困る": "be in trouble", "書く": "write", "聞く": "listen / ask", "行く": "go", "歩く": "walk", "働く": "work", "置く": "put", "着く": "arrive", "開く": "open (by itself)", "泣く": "cry", "急ぐ": "hurry", "泳ぐ": "swim", "脱ぐ": "take off (clothes)", "話す": "speak", "貸す": "lend", "返す": "return (give back)", "消す": "turn off / erase", "押す": "push / press", "出す": "take out / submit", "探す": "look for", "死ぬ": "die", "飲む": "drink", "読む": "read", "住む": "live (reside)", "休む": "rest", "頼む": "ask a favor", "遊ぶ": "play", "呼ぶ": "call", "飛ぶ": "fly", "選ぶ": "choose", "並ぶ": "line up", "食べる": "eat", "見る": "see / watch", "起きる": "wake up", "寝る": "sleep", "着る": "wear", "教える": "teach", "覚える": "remember", "忘れる": "forget", "開ける": "open", "閉める": "close", "始める": "start", "出る": "go out / leave", "降りる": "get off", "借りる": "borrow", "浴びる": "take (a shower)", "いる": "be (living things)", "見せる": "show", "入れる": "put in", "考える": "think about", "答える": "answer", "続ける": "continue", "調べる": "look up / check", "決める": "decide", "遅れる": "be late", "疲れる": "get tired", "止める": "stop", "集める": "collect", "信じる": "believe", "する": "do", "来る": "come", "持って来る": "bring", "勉強する": "study", "結婚する": "marry", "入学する": "enter a school", "卒業する": "graduate", "運動する": "exercise", "成功する": "succeed", "合格する": "pass (an exam)", "無理をする": "overdo it", "出席する": "attend", "欠席する": "be absent", "注意する": "warn / be careful", "リサイクルする": "recycle", "質問する": "ask a question", "説明する": "explain", "掃除する": "clean", "洗濯する": "do laundry", "料理する": "cook", "散歩する": "take a walk", "練習する": "practice", "旅行する": "travel", "予約する": "reserve", "連絡する": "contact", "心配する": "worry", "残業する": "work overtime", "ある": "be / exist (things)", "要る": "need", "動く": "move / run (machine)", "思い出す": "recall", "下ろす": "withdraw / take down", "かかる": "take (time) / cost", "かぶる": "put on (a hat)", "触る": "touch", "吸う": "smoke / breathe in", "連れて行く": "take (someone)", "泊まる": "stay (overnight)", "撮る": "take (a photo)", "年を取る": "get old", "直す": "fix / correct", "なくす": "lose", "なる": "become", "登る": "climb", "はく": "put on (shoes, pants)", "引く": "pull / catch (a cold)", "弾く": "play (an instrument)", "曲がる": "turn", "回す": "turn (something)", "持って行く": "take (something)", "もらう": "receive", "役に立つ": "be useful", "渡る": "cross", "あげる": "give", "生まれる": "be born", "換える": "exchange", "変える": "change", "かける": "make (a call) / wear (glasses)", "気をつける": "be careful", "くれる": "give (to me)", "捨てる": "throw away", "足りる": "be enough", "付ける": "turn on / attach", "出かける": "go out", "できる": "can / be done", "乗り換える": "transfer (trains)", "負ける": "lose (a game)", "迎える": "meet / welcome", "やめる": "quit / stop", "案内する": "guide", "運転する": "drive", "買い物する": "shop", "見学する": "visit to learn", "研究する": "research", "コピーする": "copy", "ネクタイをする": "wear (a tie)", "修理する": "repair", "出張する": "go on a business trip", "紹介する": "introduce", "食事する": "have a meal", "連れて来る": "bring (someone)", "電話する": "phone", "留学する": "study abroad", "上がる": "go up / rise", "集まる": "gather", "謝る": "apologize", "祝う": "celebrate", "打つ": "hit / type", "写す": "copy (by hand)", "移る": "move (to)", "起こす": "wake (someone) up", "怒る": "get angry", "落とす": "drop", "踊る": "dance", "驚く": "be surprised", "折る": "break / fold", "飾る": "decorate", "通う": "commute", "乾く": "get dry", "決まる": "be decided", "曇る": "become cloudy", "暮らす": "live (one's life)", "込む": "be crowded", "転ぶ": "fall down", "壊す": "break (something)", "咲く": "bloom", "誘う": "invite", "騒ぐ": "make noise", "叱る": "scold", "沈む": "sink / set", "閉まる": "close (by itself)", "過ごす": "spend (time)", "進む": "advance", "済む": "be finished", "滑る": "slip / ski", "育つ": "grow up", "倒す": "knock down", "足す": "add", "戦う": "fight", "楽しむ": "enjoy", "違う": "differ / be wrong", "捕まる": "be caught", "付く": "stick / come on", "包む": "wrap", "釣る": "fish", "通る": "pass through", "届く": "be delivered", "止まる": "stop (by itself)", "直る": "be fixed", "治る": "recover", "鳴る": "ring", "塗る": "paint / apply", "盗む": "steal", "残る": "remain", "運ぶ": "carry", "外す": "remove", "貼る": "stick / paste", "光る": "shine", "拾う": "pick up", "吹く": "blow", "太る": "gain weight", "踏む": "step on", "減る": "decrease", "戻る": "return", "焼く": "grill / bake", "破る": "tear / break (a rule)", "やる": "do / give", "許す": "forgive", "寄る": "drop by", "喜ぶ": "be glad", "沸く": "boil", "渡す": "hand over", "割る": "break / divide", "間に合う": "be in time", "向かう": "head for", "申し込む": "apply", "回る": "turn round", "磨く": "brush / polish", "守る": "protect / keep (rules)", "迷う": "get lost / hesitate", "願う": "wish", "眠る": "fall asleep", "上げる": "raise", "預ける": "deposit / leave", "植える": "plant", "受ける": "take (an exam)", "売れる": "sell well", "落ちる": "fall / fail", "数える": "count", "片付ける": "tidy up", "感じる": "feel", "消える": "disappear / go out", "聞こえる": "be heard", "比べる": "compare", "加える": "add", "壊れる": "break (by itself)", "下げる": "lower", "締める": "fasten / tie", "知らせる": "inform", "過ぎる": "pass / exceed", "育てる": "raise / bring up", "助ける": "help / save", "建てる": "build", "立てる": "make (a plan) / set up", "倒れる": "fall down", "伝える": "convey", "慣れる": "get used to", "逃げる": "run away", "濡れる": "get wet", "晴れる": "clear up (weather)", "冷える": "get cold", "増える": "increase", "見える": "be visible", "見つける": "find", "燃える": "burn", "やせる": "lose weight", "揺れる": "shake", "汚れる": "get dirty", "別れる": "part / break up", "分ける": "divide / share", "並べる": "line up (things)", "投げる": "throw", "間違える": "make a mistake", "褒める": "praise", "着替える": "change clothes", "準備する": "prepare", "相談する": "consult", "約束する": "promise", "招待する": "invite", "返事する": "reply", "失敗する": "fail", "感謝する": "thank", "復習する": "review", "予習する": "prepare (lessons)", "入院する": "be hospitalized", "退院する": "leave hospital", "遅刻する": "be late", "引っ越しする": "move house", "到着する": "arrive", "出発する": "depart", "会議する": "hold a meeting", "発表する": "present / announce", "努力する": "make an effort", "経験する": "experience", "利用する": "use", "注文する": "order", "計算する": "calculate", "確認する": "confirm", "参加する": "participate", "就職する": "get a job", "びっくりする": "be surprised", "キャンセルする": "cancel", "チェックする": "check", "メモする": "take notes", "アルバイトする": "work part-time", "ジョギングする": "jog", "報告する": "report", "翻訳する": "translate", "見物する": "sightsee", "用意する": "get ready", "世話する": "take care of", "安心する": "feel relieved", "我慢する": "endure"};
-const KV=KV_RAW.split('\n').map(l=>{const [k,r,g,m,lv]=l.split('|');return {k,r,g:+g,m,en:KV_EN[k]||'',lv:+lv}});
+const KV=KV_RAW.split('\n').map(l=>{const [k,r,g,m,lv,en]=l.split('|');return {k,r,g:+g,m,en:KV_EN[k]||en||'',lv:+lv}});
 function kvM(v,c){return v.m+(v.en?`<span style="display:block;font-size:12px;font-weight:500;color:${c||'#6B7486'};font-family:system-ui,sans-serif">${v.en}</span>`:'')}
 const KF=[ // key, JP name, Burmese, English, Japanese note
 ['dict','辞書形','အဘိဓာန်ပုံစံ','Dictionary form','基本の形'],
@@ -1007,7 +1051,7 @@ const KV_KEIGO={'いく':['いらっしゃる','いらっしゃる','参る','�
 'きる#2':['お召しになる','おめしになる','',''],'しぬ':['お亡くなりになる','おなくなりになる','',''],'おもう':['お思いになる','おおもいになる','存じる','ぞんじる'],
 'みせる':['お見せになる','おみせになる','お目にかける','おめにかける'],'かりる':['お借りになる','おかりになる','拝借する','はいしゃくする'],
 'ふる':['','','',''],'はじまる':['','','',''],'おわる':['','','',''],'あく':['','','',''],'がんばる':['頑張られる','がんばられる','','']};
-const KEN_NA='なおる やる あがる あつまる おこる おどろく おどる ころぶ さわぐ しずむ すべる そだつ たたかう たのしむ つかまる ふとる もどる よる よろこぶ まわる まよう ねむる なれる にげる ぬれる たおれる おちる やせる わかれる きがえる すすむ うつる かよう すごす くらす とおる のこる むかう まちがえる うごく かぶる すう なる のぼる はく まがる わたる たりる まける でかける のりかえる とまる おもいだす なくす しぬ ふる なく わらう こまる つかれる おくれる はしる およぐ とぶ あそぶ ねる おきる すわる たつ かつ はじまる おわる わかる あく つく いそぐ ぬぐ あびる しんじる うまれる がんばる すむ やすむ ならぶ あるく はたらく うたう かえる はいる かう でる おりる のる きる なおす'.split(' ');
+const KEN_NA='いきる さがる すく つづく にる みつかる やける やむ われる こしょうする なおる やる あがる あつまる おこる おどろく おどる ころぶ さわぐ しずむ すべる そだつ たたかう たのしむ つかまる ふとる もどる よる よろこぶ まわる まよう ねむる なれる にげる ぬれる たおれる おちる やせる わかれる きがえる すすむ うつる かよう すごす くらす とおる のこる むかう まちがえる うごく かぶる すう なる のぼる はく まがる わたる たりる まける でかける のりかえる とまる おもいだす なくす しぬ ふる なく わらう こまる つかれる おくれる はしる およぐ とぶ あそぶ ねる おきる すわる たつ かつ はじまる おわる わかる あく つく いそぐ ぬぐ あびる しんじる うまれる がんばる すむ やすむ ならぶ あるく はたらく うたう かえる はいる かう でる おりる のる きる なおす'.split(' ');
 const KROW={'う':'わいうえお','く':'かきくけこ','ぐ':'がぎぐげご','す':'さしすせそ','つ':'たちつてと','ぬ':'なにぬねの','ぶ':'ばびぶべぼ','む':'まみむめも','る':'らりるれろ'};
 function kvSuffix(v){ // returns {key:[kanaSuffix]} applied to stem; and stems
   const out={};
@@ -1228,9 +1272,12 @@ function utMark(){document.querySelectorAll('[data-utl]').forEach(b=>{const on=+
 const PDFS=[
  {t:'N5 Conversation',my:'စကားပြော',ja:'会話',en:'Conversation',lv:'N5',u:'https://t.me/DokodemoJapanese/4'},
 ];
+function pdfRows(list){return list.map(p=>`<a href="${p.u}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;text-decoration:none;color:#14223D;box-shadow:0 2px 8px rgba(20,34,61,.05)"><span style="width:44px;height:52px;border-radius:10px;background:#FDECEA;color:#E8463A;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:11px;flex-shrink:0"><span style="font-size:20px;line-height:1">📄</span>PDF</span><span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:15.5px">${esc(p.t)}</b><span class="mm" style="font-size:12.5px;color:#6B7486">${p.lv?p.lv+' · ':''}${T(p.my,p.ja,p.en)}</span></span><span style="font-size:12px;font-weight:700;color:#2AA3E0;white-space:nowrap">Telegram ›</span></a>`).join('')}
+/* PDF lessons shown at the top of JLPT N5 Kotoba */
+function pdfN5(){return PDFS.length?`<div style="display:flex;flex-direction:column;gap:8px"><span class="mm" style="font-size:13px;font-weight:700;color:#1F3A68">📄 PDF · ${T('သင်ခန်းစာ','教材','Lessons')} (${PDFS.length})</span>${pdfRows(PDFS)}</div>`:''}
 function renderPdf(){
   const app=document.getElementById('app');
-  const rows=PDFS.map((p,n)=>`<a href="${p.u}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;text-decoration:none;color:#14223D;box-shadow:0 2px 8px rgba(20,34,61,.05)"><span style="width:44px;height:52px;border-radius:10px;background:#FDECEA;color:#E8463A;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:11px;flex-shrink:0"><span style="font-size:20px;line-height:1">📄</span>PDF</span><span style="flex:1;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:15.5px">${esc(p.t)}</b><span class="mm" style="font-size:12.5px;color:#6B7486">${p.lv?p.lv+' · ':''}${T(p.my,p.ja,p.en)}</span></span><span style="font-size:12px;font-weight:700;color:#2AA3E0;white-space:nowrap">Telegram ›</span></a>`).join('');
+  const rows=pdfRows(PDFS);
   app.innerHTML=`<header><button class="hbtn" data-a="kback" aria-label="Back">${BACK}</button><div class="htitle"><b>PDF · ${T('သင်ခန်းစာ','教材','Lessons')}</b><span class="mm">${PDFS.length} ${T('ဖိုင်','件','files')}</span></div><span style="width:44px"></span></header>
 <main id="pdfm" style="display:flex;flex-direction:column;gap:10px">
 <div class="mm" style="font-size:12.5px;color:#4A5468;line-height:1.7;background:#EAF6FD;border:1px solid #CBE7F7;border-radius:14px;padding:10px 14px">✈️ ${T('နှိပ်လိုက်ရင် Telegram မှာ PDF ပွင့်ပါမယ်။ Telegram ထဲမှာ download လုပ်ထားရင် internet မရှိလည်း ဖတ်လို့ရပါတယ်။','タップするとTelegramでPDFが開きます。ダウンロードしておけばオフラインでも読めます。','Tap to open the PDF in Telegram. Download it there to read offline.')}</div>
@@ -1886,7 +1933,7 @@ Vさせて いただけませんか|V ခွင့်ပြုပေးနို
 #50
 お V(ます) / ご N します|(နှိမ့်ချ) V ပါမည်|humble o-V shimasu|ます ဖြုတ်၊ ရှေ့မှာ お (N します ဆိုရင် ご)၊ နောက်မှာ します / いたします။ ကိုယ့်လုပ်ရပ်ကို နှိမ့်ချပြော|わたしが えきまで おおくり します。=ကျွန်တော် ဘူတာအထိ လိုက်ပို့ပေးပါမယ်။;わたしが きょうの よていを ごせつめい します。=ကျွန်တော် ဒီနေ့ အစီအစဉ်ကို ရှင်းပြပါမယ်။;にもつを おもち します。=ပစ္စည်းကို ကူသယ်ပေးပါမယ်။`;
 JGD[5]=[];JGD[4]=gParse(G4_RAW);
-const JHIDE={5:['grammar'],3:['kotoba']}; // sections removed: N5 grammar, N3 kotoba (N3 words live in the Dictionary)
+const JHIDE={5:['grammar']}; // sections removed: N5 grammar
 const jHid=(L,k)=>(JHIDE[L]||[]).includes(k);
 const JTABS=[['kotoba','語彙','Kotoba'],['kanji','漢字','Kanji'],['grammar','文法','Grammar'],['reading','読解','Reading'],['listening','聴解','Listening']];
 const JLVMM={5:'အခြေခံ',4:'အခြေခံ အဆင့်မြင့်',3:'အလယ်အလတ်',2:'အဆင့်မြင့်',1:'အဆင့်မြင့်ဆုံး'};
@@ -2476,7 +2523,7 @@ function renderJlpt(){
     if(L===3){const extra=IGM3.flatMap(c=>c.w).filter(w=>{if(have.has(w.r))return false;have.add(w.r);return true});ws=ws.concat(extra);
       const cur=S.jch||'';if(cur){const c=IGM3.find(c=>c.t===cur);if(c)ws=c.w}
       chHTML=`<div style="display:flex;flex-direction:column;gap:6px"><span class="mm" style="font-size:13px;font-weight:700;color:#1F3A68">📚 ${T('Chapter အလိုက်','チャプター別','By chapter')}</span><div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px">${[''].concat(IGM3.map(c=>c.t)).map(t=>{const on=cur===t;return `<button data-jch="${t}" style="flex:0 0 auto;min-height:38px;padding:0 12px;border-radius:19px;border:1.5px solid ${on?c:'#D5DCE8'};background:${on?c:'#fff'};color:${on?'#fff':'#1F3A68'};font-size:13.5px;font-weight:700;white-space:nowrap">${t||T('အားလုံး','すべて','All')}</button>`}).join('')}</div></div>`}
-    body=myWordsPanel(L)+chHTML+`<div class="mm" style="font-size:13px;color:#4A5468;text-align:center">${T(`N${L} စကားလုံး ${ws.length} လုံး · နှိပ်ရင် အသံထွက်ပါတယ်`,`N${L} 語彙 ${ws.length}語 · タップで発音`,`N${L} · ${ws.length} words · tap to hear`)}</div>`+lim(ws).map(w=>{const say=w.kata?w.k:w.r,top=w.kata?w.k:(w.k||w.r),sub=w.kata?'カタカナ':(w.k&&S.furi?w.r:'');
+    body=(L===5?pdfN5():'')+myWordsPanel(L)+chHTML+`<div class="mm" style="font-size:13px;color:#4A5468;text-align:center">${T(`N${L} စကားလုံး ${ws.length} လုံး · နှိပ်ရင် အသံထွက်ပါတယ်`,`N${L} 語彙 ${ws.length}語 · タップで発音`,`N${L} · ${ws.length} words · tap to hear`)}</div>`+lim(ws).map(w=>{const say=w.kata?w.k:w.r,top=w.kata?w.k:(w.k||w.r),sub=w.kata?'カタカナ':(w.k&&S.furi?w.r:'');
       return `<button data-sp="${say}" style="content-visibility:auto;contain-intrinsic-size:auto 64px;width:100%;border:none;background:#fff;border-radius:16px;padding:10px 14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center;text-align:left;box-shadow:0 3px 10px rgba(20,34,61,.05);min-height:56px;${S.kSay===say?'outline:2px solid #E8463A;':''}"><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:800;line-height:1.3">${top}</span>${sub?`<span style="font-size:12px;color:#6B7486">${sub}</span>`:''}</span><span style="display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);padding-left:10px"><span class="mm" style="font-size:14px;font-weight:600;color:#1F3A68">${w.m}</span>${w.en?`<span style="font-size:13px;color:#4A5468">${w.en}</span>`:''}</span></button>`}).join('')+lockCard(ws.length-FREE.kotoba,'လုံး');
   }else if(tab==='kanji'&&(L===5||L===4)){
     body=kanjiLessons(c);
@@ -35147,7 +35194,7 @@ JL[1].push(
 {l:[['女','新しい システム、導入して 3か月ですが、現場の 反応は いかがですか。'],['男','慣れるまでは 戸惑いも ありましたが、今では 作業時間が 2割ほど 短縮されました。'],['女','それは 何よりです。']],m:'အမျိုးသမီး — စနစ်အသစ် စသုံးတာ ၃ လ ရှိပြီ၊ လုပ်ငန်းခွင်က တုံ့ပြန်မှု ဘယ်လိုလဲ။ / အမျိုးသား — မကျင့်သားရခင်တော့ ရှုပ်ထွေးတာတွေ ရှိခဲ့ပေမဲ့ အခုတော့ အလုပ်ချိန် ၂၀% လောက် တိုသွားပါပြီ။ / အမျိုးသမီး — အဲဒါ အကောင်းဆုံးပါပဲ။',q:'新しい システムを 導入して どう なりましたか。',c:['作業時間が 2割 長く なった','作業時間が 2割ほど 短く なった','まだ 誰も 使って いない','現場が 反対して いる'],a:1});
 
 const JX_SEC=[['kotoba','語彙','Kotoba',5],['kanji','漢字','Kanji',5],['grammar','文法','Grammar',5],['reading','読解','Reading',3],['listening','聴解','Listening',2]];
-const JXN={5:{kotoba:8,kanji:7},3:{kanji:7,grammar:8}}; // keep 20 questions when a section is removed
+const JXN={5:{kotoba:8,kanji:7}}; // keep 20 questions when a section is removed
 const jxSecs=L=>JX_SEC.filter(x=>!jHid(L,x[0])).map(x=>JXN[L]&&JXN[L][x[0]]?[x[0],x[1],x[2],JXN[L][x[0]]]:x);
 const jxN=(L,k)=>(jxSecs(L).find(x=>x[0]===k)||[0,0,0,0])[3];
 const JX_KEY='myaing.jexam';
