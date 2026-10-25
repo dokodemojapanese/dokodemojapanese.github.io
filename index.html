@@ -121,16 +121,14 @@ body.dark #app{filter:invert(.92) hue-rotate(180deg)}
 body.dark #app svg.owl{filter:hue-rotate(180deg) invert(1)}
 
 @keyframes kdraw{to{stroke-dashoffset:0}}@keyframes kfade{to{opacity:1}}
-#splash{position:fixed;inset:0;z-index:999;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .3s ease}
+#splash{position:fixed;inset:0;z-index:999;background:#fff;display:flex;align-items:center;justify-content:center;transition:opacity .3s ease}
 #splash.out{opacity:0;pointer-events:none}
-#splash .lg{width:132px;height:132px;border-radius:36px;box-shadow:0 14px 34px rgba(31,58,104,.35);animation:spPop .5s cubic-bezier(.2,1.5,.4,1) both}
-#splash .lg svg{width:132px;height:132px}
-#splash .lg svg{display:block}
-#splash .bk{transform-box:view-box;transform-origin:75px 100px;animation:spBook .55s cubic-bezier(.3,1.3,.5,1) .25s both}
-#splash .sun{transform-box:view-box;transform-origin:75px 44px;animation:spSun .5s cubic-bezier(.2,1.4,.4,1) .7s both,spGlow .8s ease-in-out 1.2s 1}
-@keyframes spBook{0%{transform:scale(0,.2);opacity:0}60%{transform:scale(1.08,1.04);opacity:1}100%{transform:none;opacity:1}}
-@keyframes spSun{0%{transform:translateY(40px) scale(.4);opacity:0}100%{transform:none;opacity:1}}
-@keyframes spGlow{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+#splash .dmk{width:130px;height:130px;transform-origin:50% 60%;animation:dmkIn .7s cubic-bezier(.2,1.4,.4,1) both}
+#splash .d1{animation:dmkDot .35s cubic-bezier(.2,1.6,.4,1) .45s both;transform-box:fill-box;transform-origin:center}
+#splash .d2{animation:dmkDot .35s cubic-bezier(.2,1.6,.4,1) .55s both;transform-box:fill-box;transform-origin:center}
+@keyframes dmkIn{0%{transform:scale(.35);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes dmkDot{0%{transform:scale(0)}100%{transform:scale(1)}}
+body.dark #splash{background:#0B0F17}
 #splash .nm{font:800 22px 'M PLUS Rounded 1c',sans-serif;letter-spacing:3px;color:#1F3A68;animation:spUp .35s ease-out 1s both}
 #splash .sb{font:500 14px 'M PLUS Rounded 1c',sans-serif;color:#6B7486;animation:spUp .35s ease-out 1.12s both}
 #splash .dots{display:flex;gap:6px;margin-top:10px;animation:spUp .3s ease-out 1.25s both}
@@ -179,7 +177,7 @@ main{padding:20px 24px 120px}}
 <meta name="theme-color" content="#1F3A68">
 </head>
 <body>
-<div id="splash" role="img" aria-label="Dokodemo"><div class="lg"><svg width="120" height="120" viewBox="0 0 150 150" aria-hidden="true"><rect width="150" height="150" rx="36" fill="#14223D"/><path d="M20 120 V92 L75 110 L130 92 V120 C108 114 90 116 75 128 C60 116 42 114 20 120 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M75 112 V124" stroke="#14223D" stroke-width="3.5" stroke-linecap="round"/><g transform="translate(75 62)"><path d="M-52 0a52 15 0 0 1 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle r="36" fill="#1F3A68"/><path d="M-36 0h72M0-36c-14 12-14 60 0 72M0-36c14 12 14 60 0 72" stroke="#4469A8" stroke-width="2.6" fill="none"/><text x="-3" y="6" font-size="36" font-weight="900" fill="#fff" text-anchor="middle" font-family="Hiragino Sans,Noto Sans JP,sans-serif">ど</text><path d="M-52 0a52 15 0 0 0 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle cx="44" cy="-26" r="10" fill="#E8463A" stroke="#14223D" stroke-width="3"/></g></svg></div><b class="nm">Dok<span class="dko">o</span>demo</b><span class="sb">どこでも日本語</span><span class="sb" style="font-size:12px;opacity:.85">Learn Japanese Anywhere</span><div class="dots"><i></i><i></i><i></i></div></div>
+<div id="splash" role="img" aria-label="Dokodemo"><svg class="dmk" viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#1F3A68" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M42 16 L48 52"/><path d="M84 36 C66 42 48 50 40 64 C33 76 38 90 54 94 C66 97 80 96 92 93"/></g><g stroke="#E8463A" stroke-width="8.5" stroke-linecap="round"><path class="d1" d="M84 12 L89 25"/><path class="d2" d="M99 8 L104 21"/></g></svg></div>
 
 <div id="app"></div>
 <script>
@@ -366,7 +364,7 @@ ${(ADMUI()||CFG().copyright)?`<button class="row" data-about="ab-credits"><svg w
 <button class="row" data-a="suggest"><span style="width:22px;text-align:center;font-size:17px">💡</span><span class="lb">${T('အကြံပြုချက် ပေးမယ်','ご提案','Suggestions')}</span>${CH}</button>
 </div>
 <div class="box">
-${(ADMUI()||CFG().website)?`<a class="row" href="${PLAY()?APP.site:IS_IOS()?APP.site+'download.html':'https://bit.ly/dokodemoapk'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg><span class="lb">${T('ဝက်ဘ်ဆိုက်','ウェブサイト','Website')} <small style="color:#6B7486">${PLAY()||IS_IOS()?'dokodemojapanese.github.io':'bit.ly/dokodemoapk'}</small></span>${CH}</a>`:''}
+${false?`<a class="row" href="${PLAY()?APP.site:IS_IOS()?APP.site+'download.html':'https://bit.ly/dokodemoapk'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg><span class="lb">${T('ဝက်ဘ်ဆိုက်','ウェブサイト','Website')} <small style="color:#6B7486">${PLAY()||IS_IOS()?'dokodemojapanese.github.io':'bit.ly/dokodemoapk'}</small></span>${CH}</a>`:''}
 ${ADMUI()?`<button class="row" data-a="stats"><span style="width:22px;text-align:center;font-size:18px">📊</span><span class="lb">${T('သုံးသူ အရေအတွက် (Admin)','利用者数（管理者）','User count (Admin)')}</span></button>`:''}
 <button class="row" data-a="vertap" style="cursor:default;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="lb">${T('ဗားရှင်း','バージョン','Version')}</span><span style="font-weight:700;color:#0F6B5C">${APP.ver}</span></button>
 </div>`:`<div class="prof">${acctHTML()}</div>
@@ -389,7 +387,7 @@ ${ADMUI()?`<button class="row" data-a="stats"><span style="width:22px;text-align
 <span class="sec">${T('လူမှုကွန်ရက်','SNS','Social Links')}</span>
 <div class="box">
 <div class="row" style="justify-content:space-around;cursor:default;min-height:96px;padding:12px 8px"><a href="https://www.facebook.com/${APP.facebook}" target="_blank" rel="noopener" aria-label="Facebook" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#14223D"><span style="width:46px;height:46px;border-radius:23px;background:#1877F2;display:flex;align-items:flex-end;justify-content:center;overflow:hidden"><b style="color:#fff;font:900 38px/1 Arial,Helvetica,sans-serif;margin:0 0 -3px 4px">f</b></span>Facebook</a><a href="https://www.youtube.com/@${APP.youtube}" target="_blank" rel="noopener" aria-label="YouTube" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#14223D"><span style="width:46px;height:46px;border-radius:23px;background:#F00;display:flex;align-items:center;justify-content:center"><span style="width:24px;height:17px;border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z" fill="#F00"/></svg></span></span>YouTube</a><a href="https://t.me/${APP.tgch}" target="_blank" rel="noopener" aria-label="Telegram" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#14223D"><span style="width:46px;height:46px;border-radius:23px;background:#229ED9;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z" fill="#fff"/></svg></span>Telegram</a></div>
-${(ADMUI()||CFG().share)?`<button class="row" data-a="share"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8463A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="lb">${T('သူငယ်ချင်းကို မျှဝေမယ်','友だちにシェア','Share with friends')} <small style="color:#6B7486">${PLAY()?'dokodemojapanese.github.io':'bit.ly/dokodemoapk'}</small></span>${CH}</button>`:''}
+${false?`<button class="row" data-a="share"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8463A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg><span class="lb">${T('သူငယ်ချင်းကို မျှဝေမယ်','友だちにシェア','Share with friends')} <small style="color:#6B7486">${PLAY()?'dokodemojapanese.github.io':'bit.ly/dokodemoapk'}</small></span>${CH}</button>`:''}
 ${(!PLAY()&&!IS_IOS()&&(ADMUI()||CFG().tester))?`<a class="row" href="https://t.me/DokodemoOfficial" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span style="width:22px;text-align:center;font-size:18px">🙋</span><span class="lb">${T('Tester လိုနေပါတယ်','テスター募集中','Testers wanted')}<br><small style="color:#6B7486;font-weight:500">${T('🎁 Pro ၁ လ အခမဲ့ + ဒေတာဖိုး/ဖုန်းဘေလ် လက်ဆောင်','🎁 Pro 1か月無料＋データ通信料/スマホ料金プレゼント','🎁 1 month Pro free + mobile data/phone bill gift')}</small></span>${CH}</a>`:''}
 </div>
 <div class="box">
@@ -16858,7 +16856,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.130',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.131',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function renderAbout(){
   const sec=(id,icon,title,body)=>`<section id="${id}" style="background:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">${icon}</span><b style="font-size:18px">${title}</b></div>${body}</section>`;
   const p=t=>`<p class="mm" style="margin:0;font-size:14px;line-height:1.9;color:#2B3446">${t}</p>`;
@@ -16887,9 +16885,20 @@ ${cur==='ab-about'?`<div class="mm" style="background:#FFF8E6;border:1px solid #
 /* ---------- Menu features: dark, theme, font size, bubble, favorites, exchange, tips ---------- */
 Object.assign(SET0,{dark:false,bubble:false,theme:'navy',fsz:100,rate:''});
 for(const k of ['dark','bubble','theme','fsz','rate'])if(!(k in SET))SET[k]=SET0[k];
-const THEME_C={navy:'#1F3A68',sakura:'#C2416B',forest:'#0F6B5C',purple:'#5B3FA6',sunset:'#B4541A'};
-CYC.theme=[['navy','Navy'],['sakura','Sakura'],['forest','Forest'],['purple','Purple'],['sunset','Sunset']];
-CYC.fsz=[[90,'90%'],[100,'100%'],[110,'110%'],[120,'120%'],[130,'130%']];
+const THEME_C={navy:'#1F3A68',sky:'#1E6FD9',teal:'#0E7C86',forest:'#0F6B5C',green:'#08742A',lime:'#4E8A1C',gold:'#B8860B',sunset:'#B4541A',orange:'#E06A10',red:'#C62828',sakura:'#C2416B',pink:'#D63384',purple:'#5B3FA6',violet:'#7B3FD0',brown:'#6D4C41',black:'#24262B'};
+CYC.theme=[['navy','Navy'],['sky','Sky'],['teal','Teal'],['forest','Forest'],['green','Green'],['lime','Lime'],['gold','Gold'],['sunset','Sunset'],['orange','Orange'],['red','Red'],['sakura','Sakura'],['pink','Pink'],['purple','Purple'],['violet','Violet'],['brown','Brown'],['black','Black']];
+CYC.fsz=[[115,'115%'],[110,'110%'],[105,'105%'],[100,'100%'],[95,'95%'],[90,'90%'],[85,'85%'],[80,'80%']];
+if(SET.fsz>115)SET.fsz=115;
+const THEME_MM={navy:'အပြာရင့်',sky:'မိုးပြာ',teal:'စိမ်းပြာ',forest:'တောစိမ်း',green:'အစိမ်း',lime:'အစိမ်းနု',gold:'ရွှေ',sunset:'နေဝင်',orange:'လိမ္မော်',red:'အနီ',sakura:'ဆာကူရာ',pink:'ပန်းရောင်',purple:'ခရမ်း',violet:'ခရမ်းနု',brown:'အညို',black:'အနက်'};
+function prefSheet(k){closeSheet();const c=THEME_C[SET.theme]||THEME_C.navy;const ov=document.createElement('div');ov.id='psheet';
+  ov.style.cssText='position:fixed;inset:0;z-index:200;background:rgba(10,14,22,.45);display:flex;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .2s';
+  let body='';
+  if(k==='fsz')body=`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">${CYC.fsz.map(([v,l])=>{const on=SET.fsz===v;return `<button data-pv="${v}" style="min-height:58px;border-radius:20px;border:1.5px solid ${on?c:'#E1E5EE'};background:${on?c:'#F6F7FA'};color:${on?'#fff':'#14223D'};font:800 19px 'M PLUS Rounded 1c',sans-serif">${l}</button>`}).join('')}</div><div class="mm" style="text-align:center;font-size:13px;color:#6B7486;margin-top:14px">あいう · ကခဂ · ABC</div>`;
+  else body=`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px 10px">${CYC.theme.map(([v,l])=>{const on=SET.theme===v,col=THEME_C[v];return `<button data-pv="${v}" style="border:none;background:transparent;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0"><span style="width:54px;height:54px;border-radius:27px;background:${col};display:flex;align-items:center;justify-content:center;box-shadow:${on?`0 0 0 3px #fff,0 0 0 6px ${col}`:'0 3px 8px rgba(0,0,0,.15)'}">${on?'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>':''}</span><span class="mm" style="font-size:11.5px;font-weight:700;color:${on?col:'#4A5468'}">${T(THEME_MM[v],l,l)}</span></button>`}).join('')}</div>`;
+  ov.innerHTML=`<div id="psheetb" style="width:min(560px,100%);background:#fff;border-radius:28px 28px 0 0;padding:12px 20px calc(26px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.9,.3,1)"><div style="width:44px;height:5px;border-radius:3px;background:#D5DAE3;margin:0 auto 14px"></div><b style="display:block;text-align:center;font-size:22px;color:#14223D;margin-bottom:18px">${k==='fsz'?T('စာလုံးအရွယ်','文字サイズ','Font size'):T('အရောင်ပုံစံ','テーマ','Theme')}</b>${body}</div>`;
+  ov.addEventListener('click',e=>{const b=e.target.closest('[data-pv]');if(b){SET[k]=k==='fsz'?+b.dataset.pv:b.dataset.pv;saveSet();applyPrefs();render();closeSheet();return}if(e.target===ov)closeSheet()});
+  document.body.appendChild(ov);requestAnimationFrame(()=>{ov.style.opacity='1';document.getElementById('psheetb').style.transform='none'})}
+function closeSheet(){const o=document.getElementById('psheet');if(!o)return;o.style.opacity='0';const b=document.getElementById('psheetb');if(b)b.style.transform='translateY(100%)';setTimeout(()=>o.remove(),250)}
 function applyPrefs(){
   try{
     document.documentElement.style.setProperty('--navy',THEME_C[SET.theme]||THEME_C.navy);
@@ -41443,6 +41452,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.k){S.kana=b.dataset.k;S.kSay='';S.view='kana';render();const m=document.querySelector&&document.querySelector('main');if(m)m.scrollTop=0;return}
   if(b.dataset.sp&&(S.view==='goju'||S.view==='kall')){S.kSay=b.dataset.sp;try{speechSynthesis.cancel()}catch(e){}speakJa(b.dataset.sp,0.8);document.querySelectorAll('#gm button[data-sp]').forEach(x=>{x.style.outline=x.dataset.sp===S.kSay?'2px solid #E8463A':''});return}
   if(b.dataset.sp){if(S.view==='jlpt'&&S.jtab)jpMarkSp(b.dataset.sp);S.kSay=b.dataset.sp;try{speechSynthesis.cancel()}catch(e){}speakJa(b.dataset.sp,0.8);const y=document.querySelector&&document.querySelector('main')?document.querySelector('main').scrollTop:0;render();const m=document.querySelector&&document.querySelector('main');if(m)m.scrollTop=y;return}
+  if(b.dataset.c==='fsz'||b.dataset.c==='theme'){prefSheet(b.dataset.c);return}
   if(b.dataset.c){cycle(b.dataset.c);render();return}
   if(b.dataset.g){SET[b.dataset.g]=!SET[b.dataset.g];saveSet();render();return}
   if(b.dataset.s){const k=b.dataset.s;if(k==='rnd'){S.rnd=S.words.map(w=>w.t).sort(()=>Math.random()-.5)}S.sort=k;S.sortOpen=false;render();return}
@@ -41554,7 +41564,7 @@ function festFly(n){
   }catch(e){}
 }
 (function(){try{if(THD()){const g=document.querySelector('#splash .lg svg');if(g)g.insertAdjacentHTML('beforeend',TH_ICON)}}catch(e){}})();
-(function(){const sp=document.getElementById('splash');if(!sp){setTimeout(()=>festFly(),400);return}const close=()=>{if(sp.classList.contains('out'))return;sp.classList.add('out');setTimeout(()=>sp.remove(),350);setTimeout(()=>festFly(),150)};sp.addEventListener('click',close);setTimeout(close,2200)})();
+(function(){const sp=document.getElementById('splash');if(!sp){setTimeout(()=>festFly(),400);return}const close=()=>{if(sp.classList.contains('out'))return;sp.classList.add('out');setTimeout(()=>sp.remove(),350);setTimeout(()=>festFly(),150)};sp.addEventListener('click',close);setTimeout(close,1500)})();
 </script>
 <script>(function(){function sync(){try{var h=document.querySelector('#app header')||document.querySelector('#app .phd')||document.querySelector('header');var c='#1F3A68';if(h){var bg=getComputedStyle(h).backgroundColor;if(bg&&bg!=='transparent'&&!/rgba\([^)]*,\s*0\)/.test(bg))c=bg;}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',c)});}catch(e){}}
 var a=document.getElementById('app');if(a){new MutationObserver(function(){requestAnimationFrame(sync)}).observe(a,{childList:true});}sync();})();</script>
