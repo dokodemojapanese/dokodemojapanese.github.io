@@ -20,11 +20,11 @@
 <style>
 :root{--navy:#1F3A68;--red:#E8463A;--ink:#14223D;--muted:#6B7486;--bg:#F3F5F9;--card:#FFFFFF;--line:#E3E8F1}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#DDE3EE}
+html,body{margin:0;height:100%;background:#F3F5F9}html:has(body.dark){background:#0B0F17}
 body{font-family:'M PLUS Rounded 1c','Noto Sans Myanmar',sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
 button{font:inherit;cursor:pointer;color:inherit}
 .mm{font-family:'Noto Sans Myanmar',sans-serif;line-height:1.7}
-#app{max-width:none;margin:0 auto;height:100%;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+#app{max-width:none;margin:0 auto;height:100%;height:100dvh;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
 header{background:var(--navy);min-height:64px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;padding-top:env(safe-area-inset-top)}
 .hbtn{width:44px;height:44px;border-radius:22px;border:none;background:transparent;display:flex;align-items:center;justify-content:center}
 .htitle{display:flex;flex-direction:column;align-items:center;line-height:1.25}
@@ -346,7 +346,12 @@ ${GA_ID?`<button class="row" data-g="noga"><svg width="22" height="22" viewBox="
 <div class="box">
 <button class="row" data-a="pushtg"><span style="width:22px;text-align:center;font-size:18px">🔔</span><span class="lb" style="display:flex;flex-direction:column;gap:1px"><span>${T('ဥပုသ်နေ့ သတိပေးချက်','布薩日の通知','Sabbath reminders')}</span><small style="color:#6B7486;font-size:11.5px">${T('ဥပုသ်・အဖိတ်နေ့ မနက် ၇ နာရီ','布薩日・前日の朝7時','Sabbath & eve · 7:00 am')}</small></span>${sw(pushTopicOn('sb'))}</button>
 <button class="row" data-a="pushst"><span style="width:22px;text-align:center;font-size:18px">📚</span><span class="lb" style="display:flex;flex-direction:column;gap:1px"><span>${T('စာလုပ်ချိန် သတိပေးချက်','勉強リマインダー','Study reminder')}</span><small style="color:#6B7486;font-size:11.5px">${T('နေ့တိုင်း ညနေ ၈ နာရီ','毎日 夜8時','Every day · 8:00 pm')}</small></span>${sw(pushTopicOn('st'))}</button>
-</div>`:sub==='app'?`<button class="row" data-dsub="" style="border-bottom:none;min-height:48px;padding:0 6px;background:transparent;font-weight:800;color:#1F3A68"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span class="lb" style="font-size:17px">${T('App အကြောင်း','アプリについて','About the app')}</span></button>
+</div>
+<div class="box">
+<button class="row" data-a="chime"><span style="width:22px;text-align:center;font-size:18px">🔊</span><span class="lb" style="display:flex;flex-direction:column;gap:1px"><span>${T('ခေါင်းလောင်းသံ','チャイム音','Chime sound')}</span><small style="color:#6B7486;font-size:11.5px">${T('App ဖွင့်ထားချိန် သတိပေးချက် ရောက်ရင် မြည်မယ်','アプリを開いている時に鳴らす','Plays when a notification arrives while the app is open')}</small></span>${sw(chimeOn())}</button>
+<button class="row" data-a="notitest"><span style="width:22px;text-align:center;font-size:18px">▶️</span><span class="lb" style="display:flex;flex-direction:column;gap:1px"><span>${T('အသံ စမ်းနားထောင်မယ်','音をテスト','Test the sound')}</span><small style="color:#6B7486;font-size:11.5px">${T('ခေါင်းလောင်းသံ + စမ်းသပ် သတိပေးချက် ပို့မယ်','チャイム＋テスト通知','Chime + a test notification')}</small></span></button>
+</div>
+<div class="mm" style="font-size:12px;color:#4A5468;line-height:1.85;background:#FFF8E6;border:1px solid #F1DFA8;border-radius:14px;padding:10px 12px;margin:6px 4px 0">🔈 ${T('ဖုန်းပိတ်ထားချိန် သတိပေးချက်ရဲ့ အသံကို ဖုန်း Settings က ထိန်းပါတယ်။ အသံ မမြည်ရင် —<br>• Android: Settings → Apps → Dokodemo (website သုံးရင် Chrome) → Notifications → Sound ကို ဖွင့်ပါ<br>• iPhone/iPad: Settings → Notifications → Dokodemo → Sounds ကို ဖွင့်ပါ<br>• ဖုန်း Silent / Do Not Disturb ပိတ်ထားပါ','アプリを閉じている時の通知音はスマホの設定で決まります。鳴らない時は —<br>• Android: 設定 → アプリ → Dokodemo（WebならChrome）→ 通知 → 音をオン<br>• iPhone/iPad: 設定 → 通知 → Dokodemo → サウンドをオン<br>• マナーモード・おやすみモードを解除','When the app is closed, the sound comes from your phone settings. If it is silent —<br>• Android: Settings → Apps → Dokodemo (Chrome for the website) → Notifications → Sound on<br>• iPhone/iPad: Settings → Notifications → Dokodemo → Sounds on<br>• Turn off Silent / Do Not Disturb')}</div>`:sub==='app'?`<button class="row" data-dsub="" style="border-bottom:none;min-height:48px;padding:0 6px;background:transparent;font-weight:800;color:#1F3A68"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span class="lb" style="font-size:17px">${T('App အကြောင်း','アプリについて','About the app')}</span></button>
 <div class="box">
 <button class="row" data-copy="${proUID()}"><span style="width:22px;text-align:center;font-size:12px;font-weight:900;color:#1F3A68;border:2px solid #1F3A68;border-radius:6px;line-height:16px;flex-shrink:0">ID</span><span class="lb" style="display:flex;flex-direction:column;gap:2px"><span>${T('ကျွန်ုပ်၏ ID','ユーザーID','My User ID')}</span><b style="letter-spacing:3px;color:var(--navy);font-size:17px">${proUID()}</b></span><span style="font-size:11.5px;font-weight:800;color:#2C5596;background:#EEF2FA;border-radius:8px;padding:4px 10px;white-space:nowrap">${T('ကူးမယ်','コピー','Copy')}</span></button>
 <button class="row" data-about="ab-about"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span class="lb">${T(DKW+' အကြောင်း','このアプリについて','About')}</span>${CH}</button>
@@ -16853,7 +16858,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.127',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.130',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function renderAbout(){
   const sec=(id,icon,title,body)=>`<section id="${id}" style="background:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">${icon}</span><b style="font-size:18px">${title}</b></div>${body}</section>`;
   const p=t=>`<p class="mm" style="margin:0;font-size:14px;line-height:1.9;color:#2B3446">${t}</p>`;
@@ -41014,10 +41019,31 @@ ${c.msgs.map(bub).join('')}${S.typing?`<div style="display:flex;gap:8px;align-it
   const f=document.getElementById('cf');
   if(f)f.onsubmit=e=>{e.preventDefault();const v=document.getElementById('msg').value.trim();if(!v)return;
     c.msgs.push(['m',v]);c.unread=false;c.time='';S.typing=true;renderChat();
-    setTimeout(()=>{S.typing=false;const r=REPLIES[Math.floor(Math.random()*REPLIES.length)];c.msgs.push(['t',r[0],r[1]]);
-      if(S.view==='chat'&&S.chat===c.i){renderChat();if(c.cm.live)speakJa(r[0],c.cm.tempo)}},c.cm.swift?350:1200);
+    setTimeout(()=>{S.typing=false;const r=REPLIES[Math.floor(Math.random()*REPLIES.length)];tmArrive(c,r[0],r[1])},c.cm.swift?350:1200);
     setTimeout(()=>{const i=document.getElementById('msg');if(i)i.focus()},0)};
 }
+
+/* ---------- TextMe in-app message notification (v1.0.129): message tone + banner + auto messages ---------- */
+function msgTone(){try{_ac=_ac||new (window.AudioContext||window.webkitAudioContext)();const ac=_ac;if(ac.state==='suspended')ac.resume();const t=ac.currentTime;
+  [[0,1174.66],[0.16,1567.98]].forEach(([dt,f])=>{[[f,0.22],[f*2,0.05]].forEach(([fr,g])=>{const o=ac.createOscillator(),v=ac.createGain();o.type='sine';o.frequency.value=fr;v.gain.setValueAtTime(0.0001,t+dt);v.gain.exponentialRampToValueAtTime(g,t+dt+0.01);v.gain.exponentialRampToValueAtTime(0.0001,t+dt+0.42);o.connect(v).connect(ac.destination);o.start(t+dt);o.stop(t+dt+0.46)})});
+  try{navigator.vibrate&&navigator.vibrate(120)}catch(e){}}catch(e){}}
+const TM_POOL=[['今、何してる？','အခု ဘာလုပ်နေလဲ'],['日本語の勉強、がんばってる？','ဂျပန်စာ ကြိုးစားနေလား'],['今日は寒いね。','ဒီနေ့ ချမ်းတယ်နော်'],['ごはん、もう食べた？','ထမင်း စားပြီးပြီလား'],['週末、ひま？','စနေ၊ တနင်္ဂနွေ အားလား'],['おはよう！今日もがんばろう。','မင်္ဂလာနံနက်ခင်းပါ၊ ဒီနေ့လည်း ကြိုးစားကြစို့'],['おやすみ。また明日ね。','ကောင်းသောညပါ၊ မနက်ဖြန် တွေ့မယ်'],['明日、時間ある？','မနက်ဖြန် အချိန်ရလား'],['この前はありがとう。','ဟိုတစ်နေ့က ကျေးဇူးပါ'],['写真、送ったよ。','ဓာတ်ပုံ ပို့လိုက်ပြီ'],['駅に着いたら、連絡してね。','ဘူတာရောက်ရင် ဆက်သွယ်နော်'],['今度、いっしょに映画を見に行こう。','နောက်တစ်ခါ အတူတူ ရုပ်ရှင်သွားကြည့်ကြရအောင်'],['風邪、大丈夫？','အအေးမိတာ သက်သာပြီလား'],['テスト、どうだった？','စာမေးပွဲ ဘယ်လိုလဲ'],['ちょっと聞いてもいい？','နည်းနည်း မေးလို့ရမလား'],['お疲れさま！','ပင်ပန်းသွားပြီနော်'],['雨が降ってるから、傘を持って行ってね。','မိုးရွာနေလို့ ထီးယူသွားနော်'],['元気？最近どう？','နေကောင်းလား၊ ဒီတလော ဘယ်လိုလဲ'],['今から行くね。','အခု လာခဲ့မယ်နော်'],['ちょっと遅れる。ごめんね。','နည်းနည်း နောက်ကျမယ်၊ ဆောရီးနော်']];
+const TM_BOSS=[['明日の資料、確認してください。','မနက်ဖြန်အတွက် စာရွက်စာတမ်းကို စစ်ပေးပါ'],['今日は早めに帰っていいですよ。','ဒီနေ့ စောစော ပြန်လို့ရပါတယ်'],['会議の時間が変わりました。','အစည်းအဝေး အချိန် ပြောင်းသွားပါပြီ'],['お疲れさまでした。','ပင်ပန်းသွားပြီ၊ ကျေးဇူးပါ']];
+function tmClock(){const d=new Date();let h=d.getHours();const ap=h<12?'am':'pm';h=h%12||12;return h+':'+String(d.getMinutes()).padStart(2,'0')+' '+ap}
+let _tmbT=null;
+function tmBanner(c,jp,mm){let b=document.getElementById('tmb');if(!b){b=document.createElement('div');b.id='tmb';b.setAttribute('role','status');document.body.appendChild(b)}
+  b.style.cssText='position:fixed;left:50%;top:10px;transform:translate(-50%,-140%);width:min(94%,520px);background:rgba(255,255,255,.97);border-radius:20px;box-shadow:0 10px 30px rgba(20,34,61,.25);padding:12px 14px;display:flex;gap:12px;align-items:center;z-index:120;transition:transform .35s cubic-bezier(.2,.9,.3,1.2);cursor:pointer;font-family:inherit';
+  b.innerHTML=`<span style="width:44px;height:44px;border-radius:22px;background:${AV[c.i%AV.length]};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex-shrink:0">${esc(c.n[0])}</span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><span style="display:flex;gap:6px;align-items:baseline"><b style="font-size:15px;color:#14223D">${esc(c.n)}</b><span style="font-size:11.5px;color:#8A93A5">TextMe · ${T('ယခု','今','now')}</span></span><span style="font-size:14.5px;color:#14223D;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(jp)}</span>${SET.tmMM&&mm?`<span class="mm" style="font-size:12px;color:#6B7486;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(mm)}</span>`:''}</span><span style="font-size:20px">💬</span>`;
+  b.onclick=()=>{b.style.transform='translate(-50%,-140%)';S.chat=c.i;c.unread=false;S.drawer=false;S.view='chat';render()};
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{b.style.transform='translate(-50%,0)'}));clearTimeout(_tmbT);_tmbT=setTimeout(()=>{b.style.transform='translate(-50%,-140%)'},5000)}
+function tmArrive(c,jp,mm){c.msgs.push(['t',jp,mm]);c.time=tmClock();const inChat=S.view==='chat'&&S.chat===c.i;
+  if(!inChat)c.unread=true;
+  if(SET.tmNoti){msgTone();if(!inChat)tmBanner(c,jp,mm)}
+  if(inChat){renderChat();if(c.cm.live)speakJa(jp,c.cm.tempo)}else if(S.view==='chats')render()}
+function tmAuto(){try{if(!SET.tmSent||document.visibilityState!=='visible')return;const now=Date.now();let last=+(localStorage.getItem('myaing.tmlast')||0);if(!last){localStorage.setItem('myaing.tmlast',String(now));return}
+  if(now-last<SET.tmSentT*60000)return;localStorage.setItem('myaing.tmlast',String(now));
+  const c=CONTACTS[Math.floor(Math.random()*CONTACTS.length)];if(S.view==='chat'&&S.chat===c.i)return;const pool=c.rel==='会社'?TM_BOSS:TM_POOL;const m=pool[Math.floor(Math.random()*pool.length)];tmArrive(c,m[0],m[1])}catch(e){}}
+setInterval(tmAuto,30000);setTimeout(tmAuto,8000);
 function renderCMenu(){
   const c=CONTACTS[S.chat],chev='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6B7486" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
   const r=(attr,t,sub,right)=>`<button class="sh-row" ${attr} style="min-height:62px"><span style="display:flex;flex-direction:column;min-width:0"><span>${t}</span><span class="mm" style="font-size:12px;color:#6B7486;line-height:1.5">${sub}</span></span>${right}</button>`;
@@ -41050,7 +41076,7 @@ function renderTmSet(){
 <span style="width:52px;height:52px;border-radius:26px;background:#E7ECF5;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="${c1}"/><circle cx="8" cy="9" r="1.8" fill="#fff"/><circle cx="12.5" cy="7" r="1.8" fill="#fff"/><circle cx="16.5" cy="10" r="1.8" fill="#E8463A"/></svg></span>
 <span style="display:flex;flex-direction:column"><b style="font-size:19px">${lab('tmTheme')}</b><span style="font-size:13px;color:#6B7486">Your TextMe look is live everywhere</span></span></div>
 <div class="sh-box" style="border-radius:24px">
-${r('data-g="tmNoti"','Noti',T('အသိပေးချက်','通知','Notifications'),sw(SET.tmNoti))}
+${r('data-g="tmNoti"','Noti',T('အသိပေးချက် · 📩 message အသံ + စာ','通知 · 📩 着信音＋表示','Notifications · 📩 sound + banner'),sw(SET.tmNoti))}
 ${r('data-c="tmLevel"','Typing Level',T('ဂျပန်စာ အဆင့် (မေးခွန်း ခက်ခဲမှု)','日本語レベル','Japanese level'),v(lab('tmLevel')))}
 ${r('data-c="tmSize"','Chat Text Size',T('စာလုံး အရွယ်','文字サイズ','Text size'),v(lab('tmSize')))}
 ${r('data-c="tmVoice"','TextMe Voice',T('အသံ','音声','Voice'),v(lab('tmVoice')))}
@@ -41085,6 +41111,20 @@ function pushOK(){return 'Notification' in window&&'serviceWorker' in navigator&
 function loadJS(u){return new Promise((res,rej)=>{if(document.querySelector('script[src="'+u+'"]'))return res();const s=document.createElement('script');s.src=u;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
 async function fbMsg(){const b='https://www.gstatic.com/firebasejs/10.12.2/';await loadJS(b+'firebase-app-compat.js');await loadJS(b+'firebase-messaging-compat.js');if(!firebase.apps.length)firebase.initializeApp(FB_CFG);return firebase.messaging()}
 function fsURL(t){return 'https://firestore.googleapis.com/v1/projects/'+FB_CFG.projectId+'/databases/(default)/documents/pushTokens/'+encodeURIComponent(t)+'?key='+FB_CFG.apiKey}
+
+/* ---------- Notification sound (v1.0.128): bell chime in the app + test notification ---------- */
+function chimeOn(){try{return localStorage.getItem('myaing.chime')!=='0'}catch(e){return true}}
+let _ac=null;
+function playChime(){try{_ac=_ac||new (window.AudioContext||window.webkitAudioContext)();const ac=_ac;if(ac.state==='suspended')ac.resume();const t=ac.currentTime;
+  [[0,659.25,1.6],[0.32,880,1.9],[0.64,1318.5,2.4]].forEach(([dt,f,len])=>{[[f,0.32],[f*2.76,0.08],[f*5.4,0.03]].forEach(([fr,g])=>{const o=ac.createOscillator(),v=ac.createGain();o.type='sine';o.frequency.value=fr;v.gain.setValueAtTime(0.0001,t+dt);v.gain.exponentialRampToValueAtTime(g,t+dt+0.012);v.gain.exponentialRampToValueAtTime(0.0001,t+dt+len);o.connect(v).connect(ac.destination);o.start(t+dt);o.stop(t+dt+len+0.05)})});
+  try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}}catch(e){}}
+async function notiTest(){playChime();
+  if(!('Notification' in window)||!('serviceWorker' in navigator)){toast(pushOKMsg());return}
+  let p=Notification.permission;if(p==='default'){try{p=await Notification.requestPermission()}catch(e){}}
+  if(p!=='granted'){toast(T('Notification ကို ခွင့်မပြုထားပါ — ဖုန်း Settings မှာ ဖွင့်ပေးပါ','通知が許可されていません','Notifications are blocked'));return}
+  try{const r=await navigator.serviceWorker.ready;await r.showNotification('Dokodemo 🔔',{body:T('အသံ စမ်းသပ်ချက် · ဒီလို သတိပေးချက်တွေ ရောက်လာပါမယ်','通知のテストです','This is a test notification'),icon:'icon-192.png',badge:'icon-192.png',tag:'dokodemo-test',renotify:true,silent:false,vibrate:[200,100,200,100,400]});
+    toast(T('✅ စမ်းသပ် သတိပေးချက် ပို့ပြီးပါပြီ','✅ テスト通知を送りました','✅ Test notification sent'))}catch(e){toast(pushOKMsg())}}
+try{navigator.serviceWorker&&navigator.serviceWorker.addEventListener('message',ev=>{const d=ev.data||{};if(d.t!=='push')return;if(chimeOn()&&document.visibilityState==='visible')playChime();toast('🔔 '+(d.title||'Dokodemo')+(d.body?' — '+d.body:''))})}catch(e){}
 function pushFlag(k){try{const v=localStorage.getItem('myaing.push.'+k);return v===null?(k==='sb'):v==='1'}catch(e){return k==='sb'}}
 function pushTopicOn(k){return PUSH_ON()&&pushFlag(k)}
 function pushSetFlag(k,on){try{localStorage.setItem('myaing.push.'+k,on?'1':'0')}catch(e){}}
@@ -41457,6 +41497,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     names:()=>{S.view='names';S.nq='';S.kSay='';S.nAll=false},
     goju:()=>{S.view='goju';S.gq='';S.kSay='';S.glv=0},
     kall:()=>{S.view='kall';S.kq='';S.kSay='';S.klv=0},
+    chime:()=>{const on=!chimeOn();try{localStorage.setItem('myaing.chime',on?'1':'0')}catch(e){}if(on)playChime()},notitest:()=>{notiTest();return 'skip'},
     pdf:()=>{S.view='pdf'},kako:()=>{S.view='kako'},uta:()=>{S.view='uta';S.ut={i:null,pl:-1,lk:null}},
     katsu:()=>{S.view='katsu';S.kSay='';S.ka={q:'',g:0,v:null,quiz:null,sc:[0,0]}},
     cmenu:()=>{S.flowing=false;S.view='cmenu'}, cmback:()=>S.view='chat',
