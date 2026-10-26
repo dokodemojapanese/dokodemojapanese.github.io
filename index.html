@@ -20,7 +20,7 @@
 <style>
 :root{--navy:#1F3A68;--red:#E8463A;--ink:#14223D;--muted:#6B7486;--bg:#F3F5F9;--card:#FFFFFF;--line:#E3E8F1}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#F3F5F9}html:has(body.dark){background:#0B0F17}
+html,body{margin:0;height:100%;background:#F3F5F9;overflow:hidden;overscroll-behavior:none}html:has(body.dark){background:#0B0F17}
 body{font-family:'M PLUS Rounded 1c','Noto Sans Myanmar',sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
 button{font:inherit;cursor:pointer;color:inherit}
 .mm{font-family:'Noto Sans Myanmar',sans-serif;line-height:1.7}
@@ -16826,7 +16826,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.144',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.145',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -41640,5 +41640,13 @@ var busy=0;function all(){busy=0;wrap(document.body);document.querySelectorAll('
 new MutationObserver(function(){if(!busy){busy=1;requestAnimationFrame(all)}}).observe(document.body,{childList:true,subtree:true,characterData:true});
 all();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){C={};all()});})();</script>
 <script>if("serviceWorker" in navigator&&location.protocol.startsWith("http")){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}</script>
+<script>/* v1.0.145 iOS Home Screen app: fill the whole screen (iOS 26 WebKit bug leaves a gap under fixed full-height layouts) */
+(function(){function sa(){try{return navigator.standalone===true||matchMedia('(display-mode: standalone)').matches}catch(e){return false}}
+var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+if(!ios||!sa())return;
+function fit(){var a=document.getElementById('app');if(!a)return;var land=Math.abs(window.orientation||0)===90||(window.matchMedia&&matchMedia('(orientation: landscape)').matches);
+ var full=land?Math.min(screen.width,screen.height):Math.max(screen.width,screen.height);
+ var h=Math.max(window.innerHeight||0,document.documentElement.clientHeight||0,full||0);a.style.bottom='auto';a.style.height=h+'px';document.documentElement.style.height=h+'px';document.body.style.height=h+'px';window.scrollTo(0,0)}
+fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,300)});addEventListener('pageshow',fit);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(fit,50)});setTimeout(fit,500)})();</script>
 </body>
 </html>
