@@ -5778,6 +5778,68 @@ const NAME_RAW=`ကို|コ
 အင်ကြင်း|インジン
 ဥက္ကာ|オッカー`;
 const NAMES=NAME_RAW.split('\n').map(l=>{const [m,k]=l.split('|');return {m,k,ks:k.split('、'),keys:m.split('/')}});
+/* Japanese given names with meanings + Myanmar reading: [kanji, kana, meaning(my), meaning(en), myanmar, sex] */
+const JPNAMES=[
+['桜','さくら','ချယ်ရီပန်း','cherry blossom','ဆာကုရ','f'],
+['結衣','ゆい','ချည်နှောင်ခြင်း + အဝတ်','bond & clothing','ယုအိ','f'],
+['葵','あおい','ရွှေဖီပန်း','hollyhock','အအိုအိ','f'],
+['陽葵','ひまり','နေရောင် + ပန်း','sun & hollyhock','ဟိမရိ','f'],
+['芽依','めい','အညှောက်ထွက်ခြင်း','sprout','မေအိ','f'],
+['凛','りん','ကြည်လင် ခန့်ညားသော','dignified','ရင်','f'],
+['花','はな','ပန်း','flower','ဟန','f'],
+['陽菜','ひな','နေရောင် + အရွက်စိမ်း','sun & greens','ဟိန','f'],
+['明里','あかり','အလင်းရောင်','brightness','အာကရိ','f'],
+['琴音','ことね','စောင်းသံ','koto (harp) sound','ကိုတိုနဲ','f'],
+['紬','つむぎ','ပိုးထည်ချော','pongee silk','ဆုမုဂိ','f'],
+['美空','みく','လှသော ကောင်းကင်','beautiful sky','မိကု','f'],
+['彩花','あやか','ရောင်စုံ ပန်း','colorful flower','အာယကာ','f'],
+['雪','ゆき','နှင်း','snow','ယုကိ','f'],
+['愛','あい','အချစ်','love','အာအိ','f'],
+['恵美','えみ','မေတ္တာနှင့် အလှ','blessing & beauty','အဲမိ','f'],
+['舞','まい','အကအခုန်','dance','မအိ','f'],
+['美咲','みさき','လှပစွာ ပွင့်လန်း','beautiful bloom','မိဆာကိ','f'],
+['千花','ちか','ပန်း တစ်ထောင်','a thousand flowers','ချိကာ','f'],
+['霞','かすみ','မြူ','mist','ကဆုမိ','f'],
+['桃花','ももか','မက်မွန်ပန်း','peach blossom','မိုမိုကာ','f'],
+['光','ひかり','အလင်းရောင်','light','ဟိကရိ','f'],
+['結菜','ゆな','ချည်နှောင် + အရွက်','bond & greens','ယုန','f'],
+['美桜','みお','လှသော ချယ်ရီ','beauty & cherry','မိအို','f'],
+['咲良','さら','ကောင်းစွာ ပွင့်လန်း','good bloom','ဆရ','f'],
+['陽翔','はると','နေရောင် + ပျံတက်','sun & soar','ဟရုတို','m'],
+['颯太','そうた','သွက်လက် ဖျတ်လတ်','swift & big','ဆိုးတ','m'],
+['悠人','ゆうと','ငြိမ်းအေးသော သူ','calm person','ယူးတို','m'],
+['蓮','れん','ကြာပန်း','lotus','ရန်','m'],
+['湊','みなと','ဆိပ်ကမ်း','harbor','မိနတို','m'],
+['陸','りく','ကုန်းမြေ','land','ရိကု','m'],
+['空','そら','ကောင်းကင်','sky','ဆိုရ','m'],
+['陽向','ひなた','နေသာသော နေရာ','sunny place','ဟိနတ','m'],
+['勇気','ゆうき','သတ္တိ','courage','ယူးကိ','m'],
+['海斗','かいと','ပင်လယ်','the sea','ကအိတို','m'],
+['大輝','だいき','ကြီးမားသော အရောင်','great radiance','ဒအိကိ','m'],
+['匠','たくみ','ကျွမ်းကျင်သော ဆရာ','artisan','တကုမိ','m'],
+['翔','しょう','ပျံတက်ခြင်း','to soar','ရှော','m'],
+['涼','りょう','အေးမြသော','cool','ရော','m'],
+['健','けん','ကျန်းမာ သန်စွမ်း','healthy & strong','ကဲန်','m'],
+['太郎','たろう','သားဦး','eldest son','တရော','m'],
+['大輔','だいすけ','ကြီးစွာ ကူညီသူ','great helper','ဒအိဆုကဲ','m'],
+['直樹','なおき','ဖြောင့်မတ်သော သစ်ပင်','upright tree','နအိုကိ','m'],
+['浩','ひろし','ကျယ်ပြန့်သော','vast','ဟိရိုရှိ','m'],
+['誠','まこと','ရိုးသားမှု၊ သစ္စာ','sincerity','မကိုတို','m'],
+['智','さとし','ဉာဏ်ပညာ','wisdom','ဆတိုရှိ','m'],
+['和希','かずき','သဟဇာတ + မျှော်လင့်ချက်','harmony & hope','ကဇုကိ','m'],
+['悠太','ゆうた','ငြိမ်းအေး + ကြီးမား','calm & big','ယူးတ','m'],
+['大和','やまと','ကြီးမြတ်သော သဟဇာတ','great harmony','ယမတို','m'],
+['翼','つばさ','အတောင်ပံ','wings','ဆုဘဆ','m'],
+['明','あきら','တောက်ပ လင်းလက်သော','bright','အာကိရ','u'],
+['薫','かおる','မွှေးရနံ့','fragrance','ကအိုရု','u'],
+['光','ひかる','တောက်ပြောင်သည်','to shine','ဟိကရု','u'],
+['翠','みどり','စိမ်းလန်း၊ မြ','green / jade','မိဒိုရိ','u'],
+['遥','はるか','ဝေးကွာ ကျယ်ပြန့်သော','far, distant','ဟရုကာ','u']
+];
+function jpNamesHTML(){
+  const grp=(sx,title)=>{const rows=JPNAMES.filter(n=>n[5]===sx);if(!rows.length)return '';
+    return `<div class="mm" style="font-size:13px;font-weight:800;color:#1F3A68;margin:16px 2px 6px">${title} · ${rows.length}</div><div style="display:flex;flex-direction:column;gap:8px">`+rows.map(n=>`<div style="display:flex;gap:8px;align-items:stretch"><button data-sp="${esc(n[1])}" style="flex:1;min-width:0;text-align:left;border:none;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 2px 8px rgba(20,34,61,.05)"><div style="display:flex;align-items:baseline;gap:8px"><b style="font-size:19px">${n[0]}</b><span style="font-size:12px;color:#6B7486">${n[1]}</span></div><div class="mm" style="font-size:12.5px;color:#0F6B5C;margin-top:2px">${n[2]}${n[3]?` · <span style="color:#8A93A5">${n[3]}</span>`:''}</div></button><span class="mm" style="width:92px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;background:#EEF2FA;border-radius:14px;font-size:13px;font-weight:700;color:#1F3A68;padding:6px">${n[4]}</span></div>`).join('')+`</div>`};
+  return `<div style="margin-top:8px"><div class="mm" style="background:#FFF6E5;color:#6B4200;border-radius:14px;padding:10px 12px;font-size:12.5px;line-height:1.7">${T('🗾 ဂျပန် နာမည်များ — အဓိပ္ပါယ်နဲ့ · ဂျပန်နာမည်ကို နှိပ်ရင် အသံထွက် · ညာဘက်မှာ မြန်မာ အသံထွက်','🗾 日本の名前 — 意味つき · 名前をタップで発音','🗾 Japanese names with meanings · tap the name to hear it · Myanmar reading on the right')}</div>`+grp('f',T('👧 မိန်းကလေး အမည်','👧 女の子の名前','👧 Girls’ names'))+grp('m',T('👦 ယောက်ျားလေး အမည်','👦 男の子の名前','👦 Boys’ names'))+grp('u',T('🧒 နှစ်မျိုးသုံး အမည်','🧒 男女兼用の名前','🧒 Unisex names'))+`</div>`}
 const NKEYS=NAMES.flatMap(n=>n.keys.map(key=>({key,k:n.ks[0]}))).sort((a,b)=>b.key.length-a.key.length);
 function nmNorm(x){return (x||'').normalize('NFC').replace(/[\u200B-\u200D\u25CC\uFEFF]/g,'').replace(/(^|[^\u1000-\u1021\u103B-\u103F])\u1031([\u1000-\u1021\u103F])([\u103B-\u103E]*)/g,'$1$2$3\u1031').replace(/\u1031{2,}/g,'\u1031')}
 const NMARK=/[ါ-ှ္်]/;
@@ -5803,6 +5865,7 @@ function renderNames(){
 </div>
 <div id="ncnt" class="mm" style="font-size:13px;color:#4A5468;text-align:center"></div>
 <div id="nlist" style="background:#fff;border-radius:20px;border:1px solid var(--line);overflow:hidden"></div>
+${jpNamesHTML()}
 <div class="mm" style="font-size:12px;color:#6B7486;line-height:1.8;padding:0 4px">${T('နိုင်ငံခြားသား အမည်ကို カタカナ နဲ့ ရေးတဲ့အတွက် လူတစ်ယောက်နဲ့ တစ်ယောက် ကွဲလွဲနိုင်ပါတယ်။ အနီးစပ်ဆုံး ရေးထားပါတယ်။','外国人の名前のカタカナ表記は人によって異なる場合があります。できるだけ近い表記にしています。','Katakana spellings of foreign names can vary from person to person. These are the closest common forms.')}</div>
 </main>`;
   const ni=document.getElementById('nq');
@@ -16826,7 +16889,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.156',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.157',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
