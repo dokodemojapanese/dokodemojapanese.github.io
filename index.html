@@ -16826,7 +16826,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.150',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoJapanese',name:'Dokodemo',ver:'1.0.151',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -16853,6 +16853,43 @@ ${cur==='ab-about'?`<div style="background:linear-gradient(135deg,#1F3A68,#14223
 `:''}${(SECS[cur]||SECS['ab-about'])()}
 <div style="text-align:center;font-size:12px;color:#8A93A5;padding:4px 0 10px;-webkit-user-select:none;user-select:none">© ${APP.year} ${DKW}. All rights reserved.<br>Version ${APP.ver}${ADMUI()?' · 🛠':''} · Made in Japan by the Dokodemo Team</div>
 </main>`;
+}
+/* ---------- App Guide (MYAING tile): explains each Pro-tab feature in 3 languages ---------- */
+const GUIDE_DESC={
+'JLPT':['N5 ကနေ N1 အထိ အဆင့်လိုက် ဖွဲ့စည်းထားတဲ့ သင်ခန်းစာ — စကားလုံး (Kotoba)၊ kanji၊ grammar၊ reading၊ listening အပြင် အဆင့်တိုင်းအတွက် mock exam ပါ ပါဝင်ပါတယ်။','N5からN1までレベル別に学べます。語彙・漢字・文法・読解・聴解に加え、各レベルの模擬試験も含まれます。','Study by level from N5 to N1 — vocabulary, kanji, grammar, reading and listening, plus a mock exam for every level.'],
+'JLPT模試':['တကယ့် JLPT စာမေးပွဲပုံစံအတိုင်း အချိန်သတ်မှတ် ဖြေရတဲ့ မော်ဒယ်စာမေးပွဲ (本番形式)။ 言語知識・読解・聴解 အပိုင်းလိုက် အမှတ်နဲ့ အောင်/ကျ ခန့်မှန်းချက်ကို ပြပေးပြီး၊ အမြန်လေ့ကျင့်ဖို့ Quick practice မုဒ်လည်း ပါပါတယ်။','本番形式のタイマー付き模擬試験です。言語知識・読解・聴解のセクション別スコアと合否の目安を表示し、クイック練習モードもあります。','A timed, full-format JLPT mock exam. It shows section scores for language knowledge, reading and listening with an estimated pass or fail, and also has a quick-practice mode.'],
+'投票':['အသုံးပြုသူတွေ မဲပေးနိုင်တဲ့ စစ်တမ်း — နောက်ထပ် ဘယ် feature အသစ်ကို အရင်လုပ်စေချင်လဲ စတဲ့ မေးခွန်းတွေမှာ ကိုယ်တိုင် ပါဝင်ဖြေဆိုနိုင်ပါတယ်။','利用者が参加できるアンケートです。次にどの新機能を作ってほしいかなど、投票で意見を伝えられます。','A community poll where users can vote — for example on which new feature they would like built next.'],
+'Podcast':['ဂျပန်စကားပြော အသံဖိုင်များ — ဝါကျတစ်ကြောင်းချင်းစီ နားထောင်ပြီး လိုက်ဖတ် (shadowing) လုပ်ကာ အသံထွက်နဲ့ နားလည်မှုကို တစ်ပြိုင်နက် လေ့ကျင့်နိုင်ပါတယ်။','日本語会話の音声です。文ごとに聞いてシャドーイングし、発音と聞き取りを同時に練習できます。','Japanese conversation audio — listen sentence by sentence and shadow along to practise pronunciation and listening at once.'],
+'Mirror':['စာလုံးတွေကို ပြောင်းပြန် (さかさ言葉) ဖတ်ကြည့်တဲ့ ကစားနည်းလေး — ဟီရဂနာ/ကတကနာ ရင်းနှီးအောင် ပျော်ပျော်ပါးပါးနဲ့ လေ့ကျင့်ပေးပါတယ်။','言葉を逆さまに読んで遊ぶミニゲームです。遊びながらひらがな・カタカナに慣れることができます。','A little game that reads words backwards (sakasa-kotoba) — a fun way to get comfortable with hiragana and katakana.'],
+'反対語':['ဆန့်ကျင်ဘက် အဓိပ္ပာယ်ရှိတဲ့ စကားလုံးစုံ (antonyms)။ N5 ကနေ N1 အထိ အဆင့်လိုက် ခွဲထားပြီး၊ စကားလုံးကို နှိပ်လိုက်ရင် အသံထွက် နားထောင်နိုင်ပါတယ်။','反対の意味を持つ語のペア（対義語）です。N5〜N1のレベル別に分かれていて、タップすると発音が聞けます。','Pairs of opposite-meaning words (antonyms), split by level from N5 to N1. Tap a word to hear it pronounced.'],
+'Same Meaning':['အဓိပ္ပာယ်တူ/ဆင်တူ စကားလုံးစုံ (synonyms)။ N5–N1 အဆင့်လိုက်၊ မြန်မာ အဓိပ္ပာယ်နဲ့ တွဲပြထားလို့ JLPT မှာ မကြာခဏ မေးတတ်တဲ့ 類義語 အတွက် အထူး အသုံးဝင်ပါတယ်။','似た意味を持つ語のペア（類義語）です。N5〜N1のレベル別、ミャンマー語の意味付きで、JLPTで頻出の類義語対策に役立ちます。','Pairs of same- or similar-meaning words (synonyms), by level N5–N1 with Myanmar meanings — especially useful for the 類義語 questions that appear often in the JLPT.'],
+'Verbs':['ကြိယာ (動詞) စာရင်း — group I/II/III (五段・一段・不規則) badge နဲ့ ခွဲပြထားပါတယ်။ N5 ကနေ N1 အထိ အဆင့်လိုက် ရှာဖွေ၊ နားထောင်နိုင်ပါတယ်။','動詞リストです。グループI/II/III（五段・一段・不規則）のバッジ付きで、N5〜N1のレベル別に検索・発音できます。','A list of verbs with group I/II/III badges (godan, ichidan, irregular). Search and listen by level from N5 to N1.'],
+'Readings Vocabulary':['Kanji ပါတဲ့ ဝေါဟာရတွေရဲ့ ဖတ်နည်း (読み方)။ "ဖတ်နည်း ဖုံးမယ်" ခလုတ်နဲ့ ဖုံးထားပြီး ကိုယ့်ဖာသာ စမ်းစစ်လို့ရကာ၊ card ကို နှိပ်လိုက်ရင် အသံနဲ့ အဖြေ ပေါ်လာပါတယ်။','漢字語の読み方を学ぶページです。「読みを隠す」ボタンで隠して自己テストでき、カードをタップすると音声と答えが表示されます。','Learn the readings of kanji words. Hide the readings to test yourself, then tap a card to hear and reveal the answer.'],
+'若者言葉':['လူငယ်တွေ သုံးတဲ့ ခေတ်ပေါ်စကား/slang — ကျောင်းစာအုပ်ထဲ မပါပေမဲ့ နေ့စဉ်ဘဝနဲ့ SNS မှာ အမြဲတွေ့ရတဲ့ အသုံးအနှုန်းတွေကို သိရှိနိုင်ပါတယ်။','若者がよく使う流行り言葉・スラングです。教科書には出ませんが、日常やSNSでよく見かける表現を知ることができます。','Trendy words and slang used by young people — expressions you will not find in textbooks but see all the time in daily life and on social media.'],
+'Quiz JP':['ဂျပန်လို မေးခွန်းတွေနဲ့ ကိုယ့်ဗဟုသုတ စမ်းသပ်တဲ့ quiz — စကားလုံးရဲ့ အဓိပ္ပာယ်ကို ဂျပန်လို ရွေးဖြေရပြီး၊ ဖြေပြီးတာနဲ့ အသံထွက်လည်း ကြားရပါတယ်။','日本語で出題されるクイズです。語彙の意味などを日本語で選んで答え、解答後には発音も聞けます。','A quiz asked in Japanese — choose word meanings in Japanese, and hear the pronunciation after you answer.'],
+'Quiz MM':['မြန်မာလို အဓိပ္ပာယ်နဲ့ ဖြေရတဲ့ quiz — ဂျပန်စကားလုံးရဲ့ မြန်မာ အဓိပ္ပာယ်မှန်ကို ရွေးရပါတယ်။ စတင်လေ့လာသူတွေအတွက် အထူး သင့်တော်ပါတယ်။','ミャンマー語の意味で答えるクイズです。日本語の単語の正しいミャンマー語訳を選びます。初級者に特に向いています。','A quiz answered with Myanmar meanings — pick the correct Myanmar translation of a Japanese word. Especially good for beginners.'],
+'有名人':['ဂျပန်နဲ့ ကမ္ဘာ့ ထင်ရှားသူတွေ အကြောင်း — သူတို့ရဲ့ နာမည်၊ အလုပ်အကိုင်တွေကို ဂျပန်လို ဖတ်ရင်း ဝေါဟာရ တိုးပွားစေပါတယ်။ (Beta — အကြောင်းအရာ ဆက်ထည့်နေဆဲ)','日本や世界の有名人について学べます。名前や職業を日本語で読みながら語彙を増やせます。（ベータ版・内容を追加中）','About famous people in Japan and around the world — build vocabulary by reading their names and jobs in Japanese. (Beta — still adding content.)'],
+'Matching':['စကားလုံးနဲ့ သူ့အဓိပ္ပာယ်ကို တွဲဆက်ရတဲ့ ကစားနည်း — မှတ်ဉာဏ်ကို စမ်းသပ်ပြီး၊ မှားတဲ့ အရေအတွက်ကို ရေတွက်ကာ ပြန်လေ့ကျင့်နိုင်ပါတယ်။','単語とその意味を線でつなぐマッチングゲームです。記憶力を試し、間違えた数を数えて復習できます。','A matching game — connect each word to its meaning, test your memory, and review based on how many you missed.'],
+'Scramble':['ရောနှောထားတဲ့ စာလုံး (かな) တွေကို မှန်ကန်တဲ့ အစီအစဉ်အတိုင်း ပြန်စီရတဲ့ ကစားနည်း — စာလုံးပေါင်းနဲ့ အသံထွက်ကို တစ်ပြိုင်နက် လေ့ကျင့်ပေးပါတယ်။','バラバラのかなを正しい順に並べ替えるゲームです。つづりと発音を同時に練習できます。','Rearrange scrambled kana into the correct order — practise spelling and pronunciation together.'],
+'TextMe':['LINE/Messenger ပုံစံ chat ထဲမှာ ဂျပန်လို စာပို့ လေ့ကျင့်တယ် — contact တွေက မေးခွန်းမေး/ပြန်ဖြေပြီး၊ quick-reply ရွေးစရာ၊ မြန်မာ အဓိပ္ပာယ်နဲ့ အသံ ပါပါတယ်။ (Beta)','LINEやメッセンジャー風のチャットで日本語メッセージを練習できます。相手が質問・返信し、クイックリプライ候補・ミャンマー語訳・音声付きです。（ベータ版）','Practise texting in Japanese in a LINE/Messenger-style chat — contacts ask and reply, with quick-reply suggestions, Myanmar meanings and audio. (Beta)'],
+'Wow':['ဂျပန်အကြောင်း စိတ်ဝင်စားစရာ မသိသေးတဲ့ အချက်လေးတွေ (豆知識) — ယဉ်ကျေးမှု၊ ဓလေ့ထုံးစံနဲ့ နေ့စဉ်ဘဝ အကြောင်း သိမှတ်ဖွယ်ရာ အချက်တွေ။','日本に関するおもしろい豆知識です。文化・習慣・日常について、知っておくと楽しい情報を集めています。','Fun trivia about Japan (mamechishiki) — bite-sized facts about culture, customs and everyday life.'],
+'書き取り':['အသံ ကြားပြီး စာလုံးကို ကိုယ်တိုင် ရိုက်/ရေးချရတဲ့ dictation လေ့ကျင့်ခန်း — နားနဲ့ ကြား၊ လက်နဲ့ ရေးတဲ့ စွမ်းရည်ကို တွဲဖက် လေ့ကျင့်ပေးပါတယ်။','聞こえた言葉を自分で書き取るディクテーション練習です。耳で聞いて手で書く力を同時に鍛えます。','A dictation exercise — hear a word and type it yourself, training your listening and writing together.'],
+'宿題':['ဒီနေ့အတွက် အိမ်စာ — စကားလုံး ၅ လုံးကို နေ့စဉ် ရွေးပေးပါတယ်။ ပြီးတာကို အမှတ်ခြစ်ပြီး နေ့တိုင်း နည်းနည်းချင်းစီ ပုံမှန် လေ့လာနိုင်ပါတယ်။','今日の宿題です。毎日5語を出題します。終わったらチェックして、毎日少しずつ続けられます。','Today’s homework — five words chosen each day. Tick them off and keep a steady, little-by-little daily habit.'],
+'物語':['ဂျပန် ပုံပြင်/ဇာတ်လမ်းတိုများ — ဇာတ်လမ်းကို ဖတ်ရင်း သဒ္ဒါနဲ့ ဝေါဟာရကို သဘာဝကျကျ လေ့လာနိုင်ပါတယ်။','日本の物語・短いお話です。読みながら文法と語彙を自然に身につけられます。','Japanese stories and short tales — pick up grammar and vocabulary naturally through reading.'],
+'ことわざ':['ဂျပန် စကားပုံများ (ことわざ) — မြန်မာ အဓိပ္ပာယ်၊ ဆိုလိုရင်းနဲ့ ဥပမာဝါကျ (例) တွဲပြထားလို့ ဘာသာစကားရော ယဉ်ကျေးမှုပါ တစ်ပြိုင်နက် တိုးပွားစေပါတယ်။','日本のことわざ集です。ミャンマー語訳・意味・例文付きで、語学と文化の両方を学べます。','Japanese proverbs (kotowaza) with Myanmar meanings, explanations and example sentences — learn both the language and the culture at once.'],
+'Dark Side':['ရိုင်းစိုင်းစကား/ဆဲစကား (裏側) — ကြားဖူးအောင်၊ ကိုယ်တိုင် ရှောင်နိုင်အောင် သိထားသင့်တဲ့ အသုံးအနှုန်းတွေ။ အရွယ်ရောက်ပြီးသူ (18+) အတွက်သာ ဖြစ်ပါတယ်။','荒い言葉・スラング（裏側）です。聞いて分かる・自分では避けられるように知っておく表現で、18歳以上向けです。','Rough words and slang (the “dark side”) — expressions to recognise and know so you can avoid them. For adults (18+) only.'],
+'注意':['သတိပြုရမယ့် အသုံးအနှုန်းတွေ — မှားသုံးမိရင် ရယ်စရာ ဖြစ်သွားနိုင်တဲ့ ဒါမှမဟုတ် အဓိပ္ပာယ် လွဲတတ်တဲ့ စကားလုံးတွေကို ရှင်းပြပေးပါတယ်။','注意が必要な表現です。間違えると誤解されやすい、またはおかしくなりやすい言葉を説明します。','Words to be careful with — expressions that are easy to misuse or that can come out wrong if you confuse them.'],
+'敬語':['ယဉ်ကျေး/ရိုသေစကား (敬語) — 尊敬語・謙譲語・丁寧語 ကို အလုပ်ခွင်နဲ့ ဧည့်သည် ဆက်ဆံရာမှာ မှန်မှန်ကန်ကန် သုံးတတ်အောင် လေ့လာနိုင်ပါတယ်။','敬語（尊敬語・謙譲語・丁寧語）です。職場や接客で正しく使えるように学べます。','Polite speech (keigo) — honorific, humble and polite forms, so you can use them correctly at work and with customers.'],
+'オノマトペ':['အသံစွဲ/အခြေအနေပြ စကားလုံးများ (オノマトペ) — ワクワク、ドキドキ စသဖြင့် ဂျပန်တွေ နေ့စဉ် သုံးလေ့ရှိတဲ့ ခံစားမှု/အသံပြ စကားလုံးတွေ။','オノマトペ（擬音語・擬態語）です。ワクワク・ドキドキなど、日本人が日常でよく使う表現を学べます。','Onomatopoeia (giongo and gitaigo) — sound and feeling words such as wakuwaku and dokidoki that Japanese speakers use every day.']
+};
+function renderGuide(){
+  const c=THEME_C[SET.theme]||THEME_C.navy;
+  const row=d=>{const key=d[1];const desc=GUIDE_DESC[key];if(!desc)return '';const jp=(TILE_JP[key]&&TILE_JP[key][0])||key;const rd=(TILE_JP[key]&&TILE_JP[key][1])||d[2]||'';const sub=T(d[3],'',TILE_EN[key]||'');
+    return card(`<div style="display:flex;align-items:center;gap:12px"><span style="width:46px;height:46px;flex-shrink:0;border-radius:14px;background:${c};color:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:800">${d[0]}</span><div style="min-width:0;flex:1"><div><b style="font-size:17px">${jp}</b>${rd?`<span style="font-size:12px;color:#6B7486;margin-left:6px">${rd}</span>`:''}</div>${sub?`<div class="mm" style="font-size:12.5px;color:#4A5468">${sub}</div>`:''}</div></div><p class="mm" style="margin:4px 2px 0;font-size:13.5px;line-height:1.85;color:#2B3446">${T(desc[0],desc[1],desc[2])}</p>`);
+  };
+  const intro=`<div style="background:linear-gradient(135deg,#1F3A68,#14223D);border-radius:20px;padding:18px"><b style="color:#fff;font-size:17px">${T('App လမ်းညွှန်','アプリガイド','App Guide')}</b><p class="mm" style="margin:8px 0 0;color:#fff;font-size:13.5px;line-height:1.8;opacity:.92">${T('Dokodemo ထဲက feature တစ်ခုချင်းစီ ဘာလုပ်ပေးလဲ၊ ဘယ်လို အသုံးဝင်လဲ ဆိုတာ အောက်မှာ ရှင်းပြထားပါတယ်။ 👑 အမှတ်ပါတဲ့ tile တွေက Pro feature ဖြစ်ပါတယ်။','このアプリの各機能が何をするのか、下で説明します。👑マークの付いたタイルはPro機能です。','Here is what each feature in the app does and how it helps. Tiles marked 👑 are Pro features.')}</p></div>`;
+  const items=DATA.practice.filter(d=>GUIDE_DESC[d[1]]);
+  proPage(T('App လမ်းညွှန်','アプリガイド','App Guide'),T('Dokodemo · v'+APP.ver,'どこでも · v'+APP.ver,'Dokodemo · v'+APP.ver),`<div style="display:flex;flex-direction:column;gap:10px">${intro}${items.map(row).join('')}</div>`);
 }
 /* ---------- Menu features: dark, theme, font size, bubble, favorites, exchange, tips ---------- */
 Object.assign(SET0,{dark:false,bubble:false,theme:'navy',fsz:100,rate:''});
@@ -38499,7 +38536,7 @@ function openPro(n){
   if(n==='文法'){jl('grammar');S.jl=4;return}
   if(n==='漢字')return jl('kanji');
   if(n==='聴解')return jl('listening');
-  if(n==='MYAING'){S.view='about';S.aboutSec='ab-about';return}
+  if(n==='MYAING'){S.view='guide';return}
   if(n==='Quiz JP')return startQuiz('jp','Quiz JP',10);
   if(n==='Quiz MM')return startQuiz('mm','Quiz MM',10);
   if(n==='試験')return startQuiz('kanji',T('Kanji စာမေးပွဲ','漢字テスト','Kanji test'),10);
@@ -41478,6 +41515,7 @@ function _render(){
   try{document.documentElement.lang={my:'my',ja:'ja',en:'en',ko:'ko',th:'th'}[SET.lang]||'my'}catch(e){}
   applyPrefs();
   if(S.view==='about'){renderAbout();return}
+  if(S.view==='guide'){renderGuide();return}
   if(S.view==='fav'){renderFav();return}
   if(S.view==='dlg'){renderDialog();return}
   if(S.view==='adult'){renderAdult();return}
