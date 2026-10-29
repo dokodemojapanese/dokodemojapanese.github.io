@@ -1,14 +1,17 @@
 /* Dokodemo offline cache. Bump VERSION each time you upload a new index.html */
-const VERSION='myaing-v175';
+const VERSION='myaing-v176';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()))});
+self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(CORE.map(u=>new Request(u,{cache:'reload'})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{
   const r=e.request;if(r.method!=='GET')return;
-  if(r.url.indexOf('config.json')>-1||/\/sw\.js(\?|$)/.test(r.url))return; /* on/off switches + update check: always fresh from network */
+  if(r.url.indexOf('config.json')>-1)return; /* on/off switches: always fresh from network */
+  if(/\/sw\.js\?/.test(r.url)){e.respondWith(fetch(r));return} /* update check: network only, never saved */
   const isPage=r.mode==='navigate'||r.url.endsWith('index.html');
-  if(isPage){ /* network first: users get updates when online, cached copy when offline */
-    e.respondWith(fetch(r.url,{cache:'no-cache',credentials:'same-origin'}).then(res=>{const c=res.clone();caches.open(VERSION).then(x=>x.put('./index.html',c));return res}).catch(()=>caches.match('./index.html')));return}
+  if(isPage){ /* v1.0.176: open instantly from the saved copy (like a native app), refresh the saved copy in the background.
+     New versions: the in-app update banner (index.html) checks sw.js and reloads. Offline: saved copy. */
+    const net=fetch(r.url,{cache:'no-cache',credentials:'same-origin'}).then(res=>{if(res&&res.ok){const c=res.clone();caches.open(VERSION).then(x=>x.put('./index.html',c))}return res});
+    net.catch(()=>{});e.respondWith(caches.match('./index.html').then(hit=>hit||net.catch(()=>caches.match('./index.html'))));return}
   e.respondWith(caches.match(r).then(hit=>hit||fetch(r).then(res=>{if(res&&(res.ok||res.type==='opaque')){const c=res.clone();caches.open(VERSION).then(x=>x.put(r,c))}return res}).catch(()=>hit)));
 });
 
