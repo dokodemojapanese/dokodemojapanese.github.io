@@ -22967,9 +22967,22 @@ Vさせて いただけませんか|V ခွင့်ပြုပေးနို
 #50
 お V(ます) / ご N します|(နှိမ့်ချ) V ပါမည်|humble o-V shimasu|ます ဖြုတ်၊ ရှေ့မှာ お (N します ဆိုရင် ご)၊ နောက်မှာ します / いたします။ ကိုယ့်လုပ်ရပ်ကို နှိမ့်ချပြော|わたしが えきまで おおくり します。=ကျွန်တော် ဘူတာအထိ လိုက်ပို့ပေးပါမယ်။;わたしが きょうの よていを ごせつめい します。=ကျွန်တော် ဒီနေ့ အစီအစဉ်ကို ရှင်းပြပါမယ်။;にもつを おもち します。=ပစ္စည်းကို ကူသယ်ပေးပါမယ်။`;
 JGD[5]=[];JGD[4]=gParse(G4_RAW);
-const JHIDE={5:['grammar']}; // sections removed: N5 grammar
+const JHIDE={5:['grammar'],4:['kaiwa'],3:['kaiwa'],2:['kaiwa'],1:['kaiwa']}; // sections removed: N5 grammar · 会話 (Kaiwa) is N5 only
 const jHid=(L,k)=>(JHIDE[L]||[]).includes(k);
-const JTABS=[['kotoba','語彙','Kotoba'],['kanji','漢字','Kanji'],['grammar','文法','Grammar'],['reading','読解','Reading'],['listening','聴解','Listening']];
+const JTABS=[['kotoba','語彙','Kotoba'],['kanji','漢字','Kanji'],['kaiwa','会話','Kaiwa'],['grammar','文法','Grammar'],['reading','読解','Reading'],['listening','聴解','Listening']];
+/* v1.0.178 N5 会話 Kaiwa, lessons 1–25: Dokodemo's own videos/audio on the Telegram channel (posts in lesson order).
+   KAIWA_TG[n-1] = Telegram post number of lesson n. To fix one lesson, change its number here. */
+const KAIWA_CH='dokodemonihongo';
+const KAIWA_TG=[31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55];
+function kaiwaBody(c){
+  const row=(n,i)=>`<a href="https://t.me/${KAIWA_CH}/${n}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;background:#fff;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 3px 10px rgba(20,34,61,.05);min-height:64px">
+<span style="width:44px;height:44px;border-radius:14px;background:${c};color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1.05"><b style="font-size:17px">${i+1}</b><span style="font-size:9.5px;font-weight:700;opacity:.9">課</span></span>
+<span style="display:flex;flex-direction:column;min-width:0;flex:1"><b style="font-size:15.5px;color:#14223D">第${i+1}課 会話</b><span class="mm" style="font-size:12.5px;color:#4A5468">${T(`သင်ခန်းစာ ${MMD(i+1)} · စကားပြော`,`第${i+1}課の会話`,`Lesson ${i+1} · Conversation`)}</span></span>
+<span style="display:flex;align-items:center;gap:6px;background:#2AA3E0;color:#fff;border-radius:16px;padding:7px 12px;font-size:13px;font-weight:800;white-space:nowrap;flex-shrink:0">${TGI(16,'transparent','#fff')} ▶</span></a>`;
+  return `<div style="background:linear-gradient(135deg,#1F3A68,#2C5596);border-radius:20px;padding:16px 18px;color:#fff;display:flex;flex-direction:column;gap:6px">
+<b style="font-size:17px">🎧 N5 会話 · Kaiwa</b>
+<span class="mm" style="font-size:13px;line-height:1.8;opacity:.92">${T('Dokodemo ရဲ့ စကားပြော သင်ခန်းစာ ၁–၂၅ ။ နှိပ်လိုက်ရင် Telegram channel မှာ ပွင့်ပြီး နားထောင်လို့ ရပါတယ်။','Dokodemoの会話レッスン第1〜25課。タップするとTelegramチャンネルで再生できます。','Dokodemo conversation lessons 1–25. Tap a lesson to play it on our Telegram channel.')}</span></div>
+${KAIWA_TG.map(row).join('')}`}
 const JLVMM={5:'အခြေခံ',4:'အခြေခံ အဆင့်မြင့်',3:'အလယ်အလတ်',2:'အဆင့်မြင့်',1:'အဆင့်မြင့်ဆုံး'};
 Object.assign(S,{jl:5,jtab:'kotoba',jans:{},jshow:{}});
 function jQuiz(key,item,isListen){
@@ -26509,6 +26522,7 @@ function renderJHub(){
 <span class="mm" style="font-size:12px;opacity:.8">${T(`${sd} / ${st} ခု လေ့လာပြီး · အသံနားထောင်တာ၊ ဖြေတာနဲ့ မှတ်ပါတယ်`,`${sd} / ${st} 学習済み · 再生や解答で記録`,`${sd} / ${st} studied · counted when you play or answer`)}</span>
 </div>
 ${order.map(card).join('')}
+${jHid(L,'kaiwa')?'':`<button data-jt="kaiwa" style="width:100%;border:none;background:#fff;border-radius:22px;padding:14px 16px;display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:center;text-align:left;box-shadow:0 4px 14px rgba(20,34,61,.06)"><span style="display:flex;align-items:center;justify-content:center"><svg width="48" height="48" viewBox="0 0 48 48"><path d="M5 9h26a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H15l-6 5v-5H5a3 3 0 0 1-3-3V12a3 3 0 0 1 3-3z" fill="#C9D6EE"/><path d="M19 19h22a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3h-3v5l-6-5H19a3 3 0 0 1-3-3V22a3 3 0 0 1 3-3z" fill="#F5C036"/><text x="18" y="24" text-anchor="middle" font-size="12" font-weight="900" fill="#1F3A68">会</text><text x="30" y="33" text-anchor="middle" font-size="12" font-weight="900" fill="#14223D">話</text></svg></span><span style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="display:flex;align-items:baseline;gap:8px"><b style="font-size:17px;color:#14223D">会話 · Kaiwa</b><span style="margin-left:auto;font-size:13px;font-weight:800;color:#1F3A68;white-space:nowrap">1–${KAIWA_TG.length}</span></span><span class="mm" style="font-size:12.5px;color:#4A5468">${T('စကားပြော · သင်ခန်းစာ ၁–၂၅ (Telegram)','会話 · 第1〜25課 (Telegram)','Conversation · lessons 1–25 (Telegram)')}</span></span></button>`}
 ${PRO_OK?'':`<button data-a="pro" class="mm" style="border:none;border-radius:18px;padding:12px 14px;background:#FFF4D6;color:#9A5A00;font-size:13.5px;font-weight:700;line-height:1.8">👑 ${T('အစမ်းသုံးနေပါတယ် · Pro နဲ့ N5–N1 အကုန်ဖွင့်ပါ','無料体験中 · ProでN5〜N1をすべて解放','Free preview · unlock all N5–N1 with Pro')}</button>`}
 </main>`;
 }
@@ -26525,6 +26539,7 @@ function renderJlpt(){
   const L=S.jl,c=LVC[L],tab=S.jtab;
   let body='';const FREE={kotoba:30,kanji:10,grammar:5,reading:1,listening:1};const lim=a=>PRO_OK?a:a.slice(0,FREE[tab]);
   const lockCard=(n,u)=>PRO_OK||n<=0?'':`<div style="background:linear-gradient(135deg,#14223D,#1F3A68);border-radius:20px;padding:18px;color:#fff;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span style="font-size:30px">👑</span><b class="mm" style="font-size:16px;line-height:1.8">${T(`အစမ်း ${FREE[tab]} ${u} ပြီးပါပြီ · ကျန် ${n} ${u}ကို Pro နဲ့ ဖွင့်ပါ`,`無料体験はここまで · 残り${n}件はProで`,`Free preview ends here · ${n} more with Pro`)}</b><span class="mm" style="font-size:13px;opacity:.85">${T('N5 ကနေ N1 အထိ အကုန် ဖွင့်ကြည့်လို့ ရပါမယ်','N5〜N1のすべてが使えます','Unlock all of N5–N1')}</span><button data-a="pro" style="min-height:46px;padding:0 22px;border:none;border-radius:23px;background:#E0A030;color:#14223D;font-weight:800;font-size:15px">👑 ${T('Pro ဝယ်မယ်','Proにする','Upgrade to Pro')}</button></div>`;
+  if(tab==='kaiwa'){body=kaiwaBody(c)}else
   if(tab==='kotoba'){
     const base=GOJU.flatMap(g=>g.words.filter(w=>w.lv===L&&w.r!=='を'&&w.r!=='ん'));const have=new Set(base.map(w=>w.r));let ws=(JEX[L]||[]).filter(w=>!have.has(w.r)).concat(base);
     let chHTML='';
@@ -27656,7 +27671,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.177',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.178',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
