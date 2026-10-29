@@ -397,6 +397,7 @@ ${false?`<button class="row" data-about="ab-credits"><svg width="22" height="22"
 ${false?`<a class="row" href="${PLAY()?APP.site:IS_IOS()?APP.site+'download.html':'https://bit.ly/dokodemoapk'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg><span class="lb">${T('ဝက်ဘ်ဆိုက်','ウェブサイト','Website')} <small style="color:#6B7486">${PLAY()||IS_IOS()?'dokodemojapanese.github.io':'bit.ly/dokodemoapk'}</small></span>${CH}</a>`:''}
 ${ADMUI()?`<button class="row" data-a="stats"><span style="width:22px;text-align:center;font-size:18px">📊</span><span class="lb">${T('Users · သုံးသူ (Admin)','利用者 (Admin)','Users (Admin)')}</span></button>`:''}
 ${ADMUI()?`<button class="row" data-a="members"><span style="width:22px;text-align:center;font-size:18px">👥</span><span class="lb">${T('Members (Admin)','メンバー (Admin)','Members (Admin)')}</span></button>`:''}
+<button class="row" onclick="window.dkUpdCheck&&dkUpdCheck(true)"><span style="width:22px;text-align:center;font-size:18px">🔄</span><span class="lb">${T('Update ရှိမရှိ စစ်မယ်','アップデートを確認','Check for updates')}</span></button>
 <button class="row" data-a="vertap" style="cursor:default;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="lb">${T('ဗားရှင်း','バージョン','Version')}</span><span style="font-weight:700;color:#0F6B5C">${APP.ver}</span></button>
 </div>`:`<div class="prof">${acctHTML()}</div>
 <span class="sec">${T('ကိုယ်ပိုင်ဆက်တင်','個人設定','Personalization')}</span>
@@ -16930,7 +16931,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.170',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.171',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -42212,7 +42213,60 @@ L.forEach(function(t){var parts=t.nodeValue.split('Dokodemo'),fr=document.create
 var busy=0;function all(){busy=0;wrap(document.body);document.querySelectorAll('.dko').forEach(fit)}
 new MutationObserver(function(){if(!busy){busy=1;requestAnimationFrame(all)}}).observe(document.body,{childList:true,subtree:true,characterData:true});
 all();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){C={};all()});})();</script>
-<script>if("serviceWorker" in navigator&&location.protocol.startsWith("http")){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}</script>
+<script>/* v1.0.171 in-app update: a Home Screen app resumes from memory and never reloads by itself,
+   so new uploads only showed after closing the app. Now: check sw.js on open / resume / every 15 min,
+   show a banner, one tap = update + reload (stays on the same tab, no splash). */
+(function(){
+if(!("serviceWorker" in navigator)||!/^https?:$/.test(location.protocol))return;
+var REG=null,LAST=0,NEWV=0,BUSY=false;
+function L(a,b,c){try{return T(a,b,c)}catch(e){return a}}
+function cur(){try{return +String(APP.ver).split('.').pop()||0}catch(e){return 0}}
+function say(m){try{toast(m)}catch(e){}}
+addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){REG=r}).catch(function(){})});
+function check(manual){
+  var now=Date.now();if(!manual&&(BUSY||now-LAST<60000))return;LAST=now;
+  if(manual)say(L('🔄 Update ရှိမရှိ စစ်နေပါတယ်…','🔄 アップデートを確認中…','🔄 Checking for updates…'));
+  fetch('sw.js?v='+now,{cache:'no-store'}).then(function(r){return r.ok?r.text():''}).then(function(t){
+    var m=/myaing-v(\d+)/.exec(t||''),v=m?+m[1]:0;
+    try{REG&&REG.update().catch(function(){})}catch(e){}
+    if(v>cur()){NEWV=v;banner()}
+    else if(manual)say(L('✅ နောက်ဆုံး ဗားရှင်း ('+APP.ver+') ဖြစ်နေပါပြီ','✅ 最新版です ('+APP.ver+')','✅ You have the latest version ('+APP.ver+')'));
+  }).catch(function(){if(manual)say(L('📶 Internet မရှိလို့ မစစ်နိုင်ပါ','📶 オフラインのため確認できません','📶 Offline — could not check'))});
+}
+function banner(){
+  if(document.getElementById('updbar'))return;
+  var b=document.createElement('div');b.id='updbar';b.setAttribute('role','status');
+  b.style.cssText='position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 10px);transform:translate(-50%,-140%);transition:transform .35s cubic-bezier(.2,1.2,.4,1);width:min(92%,440px);background:#14223D;color:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;padding:10px 10px 10px 14px;z-index:995;font-family:"Noto Sans Myanmar","M PLUS Rounded 1c",sans-serif;font-size:13.5px;line-height:1.55';
+  b.innerHTML='<span style="font-size:20px">🆕</span><span style="flex:1;min-width:0">'+L('ဗားရှင်းအသစ် <b>1.0.'+NEWV+'</b> ရပါပြီ','新しいバージョン <b>1.0.'+NEWV+'</b>','New version <b>1.0.'+NEWV+'</b> is ready')+'</span>'
+   +'<button id="updgo" style="border:none;background:#E8463A;color:#fff;font:inherit;font-weight:700;border-radius:12px;padding:8px 14px;min-height:0;white-space:nowrap">'+L('Update လုပ်မယ်','更新','Update')+'</button>'
+   +'<button id="updx" aria-label="Close" style="border:none;background:transparent;color:#AFC0DD;font-size:18px;padding:4px 6px;min-height:0">✕</button>';
+  document.body.appendChild(b);
+  b.querySelector('#updgo').onclick=function(e){e.stopPropagation();apply()};
+  b.querySelector('#updx').onclick=function(e){e.stopPropagation();b.style.transform='translate(-50%,-140%)';setTimeout(function(){b.remove()},400);LAST=Date.now()+9*60000};
+  requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.transform='translate(-50%,0)'})});
+}
+function apply(){
+  if(BUSY)return;BUSY=true;
+  var g=document.getElementById('updgo');if(g){g.textContent='…';g.disabled=true}
+  try{sessionStorage.setItem('myaing.updr','1')}catch(e){}
+  var u;try{u=new URL(location.href);u.hash='';if(typeof S!=='undefined'&&S.tab&&S.tab!=='home')u.searchParams.set('tab',S.tab);else u.searchParams.delete('tab')}catch(e){}
+  var done=false;function go(){if(done)return;done=true;try{u?location.replace(u.toString()):location.reload()}catch(e){location.reload()}}
+  setTimeout(go,4000);
+  if(!REG)return go();
+  REG.update().then(function(){var w=REG.installing||REG.waiting;if(!w)return go();
+    if(w.state==='activated')return go();w.addEventListener('statechange',function(){if(w.state==='activated')go()})}).catch(go);
+}
+window.dkUpdCheck=check;
+document.addEventListener('visibilitychange',function(){if(!document.hidden)check()});
+addEventListener('pageshow',function(e){if(e.persisted)check()});
+addEventListener('online',function(){check()});
+setInterval(function(){if(!document.hidden)check()},15*60000);
+setTimeout(function(){check()},6000);
+/* just updated: skip the splash, say so */
+try{if(sessionStorage.getItem('myaing.updr')){sessionStorage.removeItem('myaing.updr');
+  var sp=document.getElementById('splash');if(sp){sp.style.transition='none';sp.classList.add('out');setTimeout(function(){sp.remove()},50)}
+  setTimeout(function(){say(L('✅ Update ပြီးပါပြီ · ဗားရှင်း '+APP.ver,'✅ 更新しました · v'+APP.ver,'✅ Updated to v'+APP.ver))},400)}}catch(e){}
+})();</script>
 <script>/* v1.0.145 iOS Home Screen app: fill the whole screen (iOS 26 WebKit bug leaves a gap under fixed full-height layouts) */
 (function(){function sa(){try{return navigator.standalone===true||matchMedia('(display-mode: standalone)').matches}catch(e){return false}}
 var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
