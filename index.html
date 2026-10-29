@@ -162,7 +162,6 @@ body.dark #app svg.owl{filter:hue-rotate(180deg) invert(1)}
 @keyframes spPop{0%{transform:scale(.6);opacity:0}100%{transform:none;opacity:1}}
 @keyframes spUp{0%{transform:translateY(10px);opacity:0}100%{transform:none;opacity:1}}
 body.dark #splash{background:#0B0F17}
-.spf #splash *{animation-delay:0s!important;animation-duration:.3s!important}.spf #splash .dots{display:none}
 
 #fest{position:fixed;inset:0;z-index:998;pointer-events:none;overflow:hidden}
 #fest .fi{position:absolute;bottom:-90px;will-change:transform,opacity;animation:fUp var(--d) linear var(--dl) both}
@@ -207,6 +206,7 @@ main{padding:20px 24px 120px}}
 <div id="splash" role="img" aria-label="Dokodemo"><div class="lg"><svg viewBox="0 0 150 150" aria-hidden="true"><rect width="150" height="150" rx="36" fill="#14223D"/><g class="bk"><path d="M20 120 V92 L75 110 L130 92 V120 C108 114 90 116 75 128 C60 116 42 114 20 120 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M75 112 V124" stroke="#14223D" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(75 62)"><path class="orb" pathLength="1" d="M-52 0a52 15 0 0 1 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><g class="gl"><circle r="36" fill="#1F3A68"/><path d="M-36 0h72M0-36c-14 12-14 60 0 72M0-36c14 12 14 60 0 72" stroke="#4469A8" stroke-width="2.6" fill="none"/></g><g transform="translate(-34 -29) scale(.55)" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path class="ch1" pathLength="1" d="M42 16 L48 52"/><path class="ch2" pathLength="1" d="M84 36 C66 42 48 50 40 64 C33 76 38 90 54 94 C66 97 80 96 92 93"/><path class="ch3" d="M84 12 L89 25" stroke-width="9"/><path class="ch3 b" d="M99 8 L104 21" stroke-width="9"/></g><path class="orb f" pathLength="1" d="M-52 0a52 15 0 0 0 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle class="sun" cx="44" cy="-26" r="10" fill="#E8463A" stroke="#14223D" stroke-width="3"/></g></svg></div><b class="nm">Dok<span class="dko">o</span>demo</b><span class="sb">どこでも日本語</span><span class="sb s2" style="font-size:12px;opacity:.85">Learn Japanese Anywhere</span><div class="dots"><i></i><i></i><i></i></div></div>
 
 <div id="app"></div>
+<script>/* v1.0.175 returning users: same splash animation, played faster (about 2.3 s like Do Do) */(function(){try{if(!document.documentElement.classList.contains('spf'))return;var F=.55,sc=function(v){return v.split(',').map(function(x){return (parseFloat(x)*F).toFixed(3)+'s'}).join(',')};document.querySelectorAll('#splash,#splash *').forEach(function(el){var c=getComputedStyle(el);if(!c.animationName||c.animationName==='none')return;el.style.animationDelay=sc(c.animationDelay);el.style.animationDuration=sc(c.animationDuration)})}catch(e){}})();</script>
 <script>
 /* Moved from myaingstudy.github.io: import the saved data the old address sends in #migrate=… (runs before anything reads localStorage) */
 (function(){try{var h=location.hash;if(h.indexOf('#migrate=')!==0)return;var b=h.slice(9).replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';
@@ -27652,7 +27652,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.174',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.175',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -31933,7 +31933,7 @@ function festFly(n){
   }catch(e){}
 }
 (function(){try{if(THD()){const g=document.querySelector('#splash .lg svg');if(g)g.insertAdjacentHTML('beforeend',TH_ICON)}}catch(e){}})();
-(function(){const sp=document.getElementById('splash');if(!sp){setTimeout(()=>festFly(),400);return}const close=()=>{if(sp.classList.contains('out'))return;sp.classList.add('out');setTimeout(()=>sp.remove(),350);setTimeout(()=>festFly(),150)};sp.addEventListener('click',close);const fast=document.documentElement.classList.contains('spf');try{localStorage.setItem('myaing.spl','1')}catch(e){}setTimeout(close,fast?1100:4200)})();
+(function(){const sp=document.getElementById('splash');if(!sp){setTimeout(()=>festFly(),400);return}const close=()=>{if(sp.classList.contains('out'))return;sp.classList.add('out');setTimeout(()=>sp.remove(),350);setTimeout(()=>festFly(),150)};sp.addEventListener('click',close);const fast=document.documentElement.classList.contains('spf');try{localStorage.setItem('myaing.spl','1')}catch(e){}setTimeout(close,fast?2300:4200)})();
 </script>
 <script>(function(){function sync(){try{var h=document.querySelector('#app header')||document.querySelector('#app .phd')||document.querySelector('header');var c='#1F3A68';if(h){var bg=getComputedStyle(h).backgroundColor;if(bg&&bg!=='transparent'&&!/rgba\([^)]*,\s*0\)/.test(bg))c=bg;}document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',c)});}catch(e){}}
 var a=document.getElementById('app');if(a){new MutationObserver(function(){requestAnimationFrame(sync)}).observe(a,{childList:true});}sync();})();</script>
