@@ -27656,7 +27656,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.176',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.177',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -28863,6 +28863,23 @@ function checkProCode(code,uid){const lf=/^LIFE-([A-Z0-9]{6})$/.exec(code);if(lf
 function proStillValid(){if(!PRO_EXP)return true;const [y,mo,d]=PRO_EXP.split('-').map(Number);return (d?new Date(y,mo-1,d,23,59,59):new Date(y,mo,0,23,59,59))>=new Date()}
 function proTrialLeft(){if(!PRO_OK||!PRO_EXP||PRO_EXP.split('-').length!==3)return -1;const [y,mo,d]=PRO_EXP.split('-').map(Number);const e=new Date(y,mo-1,d),n=new Date();n.setHours(0,0,0,0);return Math.max(1,Math.round((e-n)/864e5)+1)}
 if(PRO_OK&&!proStillValid()){PRO_OK=false;try{localStorage.removeItem('myaing.pro')}catch(e){}}
+/* v1.0.177 Free Pro trial: TRIAL_DAYS days of Pro, once per account, starts on the first login / sign-up.
+   Uses the normal Pro expiry (myaing.proexp = last day), so the "🎁 ကျန် N ရက်" label and auto-expiry already work.
+   myaing.trial (= start date) is in SYNC_KEYS, so the trial is not given again on a new phone with the same account. */
+const TRIAL_DAYS=3;
+function maybeTrial(cd){try{
+  if(PRO_OK||localStorage.getItem('myaing.trial'))return false;
+  if(cd&&cd['myaing.trial']){localStorage.setItem('myaing.trial',cd['myaing.trial']);return false}
+  const n=new Date(),e=new Date(n.getFullYear(),n.getMonth(),n.getDate()+TRIAL_DAYS-1),p=x=>String(x).padStart(2,'0');
+  const exp=e.getFullYear()+'-'+p(e.getMonth()+1)+'-'+p(e.getDate());
+  localStorage.setItem('myaing.trial',n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate()));
+  localStorage.setItem('myaing.pro','1');localStorage.setItem('myaing.proexp',exp);PRO_OK=true;PRO_EXP=exp;return true}catch(e){return false}}
+function trialMsg(){return T(`🎉 Pro ကို ${TRIAL_DAYS} ရက် အခမဲ့ ဖွင့်ပေးလိုက်ပါပြီ! Feature အားလုံး စမ်းသုံးကြည့်ပါ 👑`,`🎉 Proを${TRIAL_DAYS}日間無料で使えます！全機能をお試しください 👑`,`🎉 You got ${TRIAL_DAYS} days of Pro for free! Try every feature 👑`)}
+/* trial finished: tell the user once */
+setTimeout(function(){try{if(!PRO_OK&&localStorage.getItem('myaing.trial')&&!localStorage.getItem('myaing.trialend')){localStorage.setItem('myaing.trialend','1');
+  toast(T(`🎁 Pro အစမ်း ${TRIAL_DAYS} ရက် ပြီးသွားပါပြီ — ဆက်သုံးချင်ရင် ⚙️ ဆက်တင် → 👑 Pro မှာ ဝယ်လို့ရပါတယ် 🙏`,`🎁 Pro無料体験が終了しました — 続けるには ⚙️設定 → 👑Pro へ 🙏`,`🎁 Your free Pro trial has ended — get Pro in ⚙️ Settings → 👑 Pro 🙏`))}}catch(e){}},4500);
+/* people who were already logged in before this version also get the trial once */
+setTimeout(function(){try{if(ACCT()&&isLive()&&maybeTrial()){render();toast(trialMsg())}}catch(e){}},3500);
 try{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&PRO_OK&&!proStillValid()){PRO_OK=false;PRO_EXP='';try{localStorage.removeItem('myaing.pro');localStorage.removeItem('myaing.proexp')}catch(e){}try{render()}catch(e){}}})}catch(e){}
 Object.assign(S,{payM:''});
 function renderPay(){
@@ -31350,7 +31367,7 @@ async function pushDisable(k){k=k||'sb';pushSetFlag(k,false);
   try{localStorage.removeItem('myaing.push')}catch(e){}render();toast(msg);
   if(t){try{await fetch(fsURL(t),{method:'DELETE'})}catch(e){}try{const m=await fbMsg();await m.deleteToken()}catch(e){}}}
 /* ---------- Google account: cloud backup / sync of study progress (Firebase Auth + Firestore) ---------- */
-const SYNC_KEYS=['myaing.set','myaing.fav','myaing.words','myaing.jprog','myaing.jexam','myaing.jlv','myaing.hw','myaing.review','myaing.tlist','myaing.dict.recent','myaing.uid','myaing.pro','myaing.proexp','myaing.adult'];
+const SYNC_KEYS=['myaing.set','myaing.fav','myaing.words','myaing.jprog','myaing.jexam','myaing.jlv','myaing.hw','myaing.review','myaing.tlist','myaing.dict.recent','myaing.uid','myaing.pro','myaing.proexp','myaing.adult','myaing.trial'];
 /* Live-site check: true on github.io OR any real custom domain (https); false on the artifact preview / localhost / file. Lets a custom domain work without code edits. */
 function isLive(){try{const h=location.hostname||'';if(location.protocol!=='https:')return false;if(/(^|\.)github\.io$/.test(h))return true;if(/(^|\.)claude\.(ai|site|com)$/.test(h)||/claudeusercontent|anthropic/.test(h))return false;if(/^(localhost$|127\.|0\.0\.0\.0|192\.168\.|10\.)/.test(h))return false;return h.indexOf('.')>-1}catch(e){return false}}
 function ACCT(){try{return JSON.parse(localStorage.getItem('myaing.acct')||'null')}catch(e){return null}}
@@ -31454,7 +31471,8 @@ async function acctAfter(u){if(!u)return;
   if(c&&Object.keys(c.d).length&&JSON.stringify(c.d)!==JSON.stringify(loc)){
     const dt=c.ts?new Date(c.ts).toLocaleString():'';
     if(confirm(T('☁️ Cloud မှာ သိမ်းထားတဲ့ မှတ်တမ်း ရှိပါတယ် ('+dt+')\n\nOK = Cloud က မှတ်တမ်းကို ဒီဖုန်းထဲ ယူမယ်\nCancel = ဒီဖုန်းထဲက မှတ်တမ်းကို Cloud မှာ သိမ်းမယ်','☁️ クラウドに保存された記録があります（'+dt+'）\n\nOK = クラウドの記録をこの端末に復元\nキャンセル = この端末の記録をクラウドに保存','☁️ A cloud backup exists ('+dt+')\n\nOK = restore it to this device\nCancel = save this device’s data to the cloud'))){restoreCloud(c.d);return}}
-  await cloudPut(true);render();toast(T('✅ Login ဝင်ပြီးပါပြီ — မှတ်တမ်းတွေ Cloud မှာ အလိုအလျောက် သိမ်းပေးပါမယ် ☁️','✅ ログインしました — 自動でクラウドに保存します ☁️','✅ Logged in — your progress is now backed up ☁️'))}
+  const gotTrial=maybeTrial(c&&c.d);
+  await cloudPut(true);render();toast(gotTrial?trialMsg():T('✅ Login ဝင်ပြီးပါပြီ — မှတ်တမ်းတွေ Cloud မှာ အလိုအလျောက် သိမ်းပေးပါမယ် ☁️','✅ ログインしました — 自動でクラウドに保存します ☁️','✅ Logged in — your progress is now backed up ☁️'))}
 async function acctLogout(){if(!confirm(T('Logout ထွက်မလား? (ဒီဖုန်းထဲက မှတ်တမ်းတွေ မပျက်ပါဘူး)','ログアウトしますか？（この端末の記録は消えません）','Log out? (data on this device is kept)')))return;
   try{await cloudPut()}catch(e){}try{const a=await fbAuth();await a.signOut()}catch(e){}
   try{localStorage.removeItem('myaing.acct');localStorage.removeItem('myaing.synced')}catch(e){}render();toast(T('👋 Logout ထွက်ပြီးပါပြီ','👋 ログアウトしました','👋 Logged out'))}
@@ -31600,7 +31618,7 @@ function renderWelcome(){fbPreload();
 <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 0 4px;text-align:center"><span style="position:relative;display:block;line-height:0"><span style="border-radius:28px;box-shadow:0 12px 28px rgba(31,58,104,.3);display:block;line-height:0">${logo}</span><span style="position:absolute;right:-66px;bottom:-14px">${owl('happy',78)}</span></span><b style="font-size:24px;letter-spacing:2px;color:#1F3A68;margin-top:6px">Dok<span class="dko">o</span>demo</b><span style="font-size:15px;font-weight:800;color:#E8463A;letter-spacing:4px;margin-top:-4px">どこでも日本語</span><span style="font-size:13px;font-weight:700;color:#4A5468;letter-spacing:.5px;margin-top:-4px">Learn Japanese Anywhere</span><span style="font-size:10.5px;font-weight:700;color:#8A93A5;margin-top:-2px">by Dokodemo Team</span><span class="mm" style="font-size:16px;font-weight:700;color:#14223D">${T(DKW+' မှ ကြိုဆိုပါတယ် 🙏','ようこそ '+DKW+' へ 🙏','Welcome to '+DKW+' 🙏')}</span><span class="mm" style="font-size:13.5px;color:#4A5468">${T('ဟီရာဂါနာ → JLPT N1 · စကားပြော ၁၈,၅၀၀ · Dictionary','ひらがな→N1・会話18,500文・辞書','Hiragana → N1 · 18,500 dialogs · Dictionary')}</span></div>
 <div style="background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 4px 14px rgba(20,34,61,.06);display:flex;flex-direction:column;gap:10px">
 <b class="mm" style="font-size:14.5px;color:#14223D">🎁 ${T('အကောင့်ဖွင့်ရင် ရမယ့် အကျိုး (အခမဲ့)','アカウント登録のメリット（無料）','Free account benefits')}</b>
-${[['☁️',T('လေ့လာထားတာတွေ Cloud မှာ အလိုလို သိမ်းပေး','学習データを自動でクラウド保存','Your progress is backed up automatically')],
+${[['👑',T(`<b>Pro ${TRIAL_DAYS} ရက် အခမဲ့</b> — Feature အားလုံး စမ်းသုံးခွင့်`,`<b>Pro ${TRIAL_DAYS}日間無料</b> — 全機能を体験`,`<b>${TRIAL_DAYS} days of Pro free</b> — try every feature`)],['☁️',T('လေ့လာထားတာတွေ Cloud မှာ အလိုလို သိမ်းပေး','学習データを自動でクラウド保存','Your progress is backed up automatically')],
    ['📱',T('ဖုန်းပြောင်း / iPad မှာ ဝင်လည်း data မပျောက်','機種変更してもデータはそのまま','Switch phone or iPad without losing data')],
    ['🏆',T('JLPT 模試 Ranking မှာ ပါဝင်နိုင်','JLPT模試ランキングに参加','Join the JLPT mock-exam ranking')],
    ['⭐',T('Favorite၊ Review၊ Pro code အားလုံး လုံခြုံ','お気に入り・復習・Proコードも安心','Favorites, review list and Pro code stay safe')]]
