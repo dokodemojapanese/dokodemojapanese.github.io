@@ -27652,7 +27652,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.173',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.174',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -31351,7 +31351,10 @@ const SYNC_KEYS=['myaing.set','myaing.fav','myaing.words','myaing.jprog','myaing
 function isLive(){try{const h=location.hostname||'';if(location.protocol!=='https:')return false;if(/(^|\.)github\.io$/.test(h))return true;if(/(^|\.)claude\.(ai|site|com)$/.test(h)||/claudeusercontent|anthropic/.test(h))return false;if(/^(localhost$|127\.|0\.0\.0\.0|192\.168\.|10\.)/.test(h))return false;return h.indexOf('.')>-1}catch(e){return false}}
 function ACCT(){try{return JSON.parse(localStorage.getItem('myaing.acct')||'null')}catch(e){return null}}
 function snapLocal(){const o={};for(const k of SYNC_KEYS){try{const v=localStorage.getItem(k);if(v!==null)o[k]=v}catch(e){}}return o}
-async function fbAuth(){const b='https://www.gstatic.com/firebasejs/10.12.2/';await loadJS(b+'firebase-app-compat.js');await loadJS(b+'firebase-auth-compat.js');if(!firebase.apps.length)firebase.initializeApp(FB_CFG);return firebase.auth()}
+let FBA=null;
+async function fbAuth(){if(FBA)return FBA;const b='https://www.gstatic.com/firebasejs/10.12.2/';await loadJS(b+'firebase-app-compat.js');await loadJS(b+'firebase-auth-compat.js');if(!firebase.apps.length)firebase.initializeApp(FB_CFG);FBA=firebase.auth();return FBA}
+/* v1.0.174: load Firebase Auth early on the welcome / login screens, so tapping Google can open the popup immediately */
+function fbPreload(){try{if(!FBA&&isLive()&&!ACCT())fbAuth().catch(()=>{})}catch(e){}}
 function userURL(uid){return 'https://firestore.googleapis.com/v1/projects/'+FB_CFG.projectId+'/databases/(default)/documents/users/'+uid}
 /* ---------- Email/Password auth + JLPT Game leaderboard ---------- */
 const PASSLINE={1:100,2:90,3:95,4:90,5:80};
@@ -31381,7 +31384,7 @@ async function emailAuth(mode){
     /weak-password/.test(c)?T('Password အားနည်းပါတယ်','パスワードが弱いです','Weak password'):
     /configuration-not-found|operation-not-allowed/.test(c)?T('Email login ကို Firebase မှာ ဖွင့်ထားရန် လိုပါသေးတယ်','FirebaseでEmailログインを有効にしてください','Enable Email sign-in in Firebase first'):
     T('မအောင်မြင်ပါ — ပြန်စမ်းပါ','失敗しました','Failed — try again'));console.warn(e)}}
-function renderAuth(){const mode=S.authMode==='signup'?'signup':'login';const c=THEME_C[SET.theme]||THEME_C.navy;
+function renderAuth(){fbPreload();const mode=S.authMode==='signup'?'signup':'login';const c=THEME_C[SET.theme]||THEME_C.navy;
   const inp=(id,label,type)=>`<label class="mm" style="display:block;font-size:13px;font-weight:800;color:#1F3A68;margin:12px 2px 6px">${label}</label><input id="${id}" type="${type}" autocomplete="off" autocapitalize="none" placeholder="" style="width:100%;box-sizing:border-box;height:52px;border-radius:14px;border:1.5px solid #D5DCE8;background:#fff;padding:0 14px;font-size:16px;font-family:inherit">`;
   const body=mode==='signup'?inp('auName',T('နာမည်','お名前','Your name'),'text')+inp('auEmail','Email','email')+inp('auPw',T('Password','パスワード','Password'),'password')+inp('auPw2',T('Password ထပ်ရိုက်ပါ','パスワード（再入力）','Type the password again'),'password'):inp('auEmail','Email','email')+inp('auPw',T('Password','パスワード','Password'),'password');
   proPage(mode==='signup'?T('Account ဖွင့်မယ်','アカウント作成','Create account'):T('Login ဝင်မယ်','ログイン','Log in'),T('ဂျပန်စာ ဆက်လေ့လာမယ်','日本語を続けよう','Keep learning'),
@@ -31423,12 +31426,22 @@ async function cloudPut(force){const snap=JSON.stringify(snapLocal());if(!force&
 function restoreCloud(d){for(const k of SYNC_KEYS){try{if(k in d)localStorage.setItem(k,d[k])}catch(e){}}try{localStorage.setItem('myaing.synced',String(Date.now()))}catch(e){}location.reload()}
 async function acctLogin(){
   if(!/^https:$/.test(location.protocol)||!isLive()){toast(T('🔐 Website (dokodemojapanese.github.io) ဒါမှမဟုတ် APK မှာ ဖွင့်ပြီးမှ Login ဝင်လို့ရပါတယ်','🔐 Webサイトまたはアプリでログインできます','🔐 Open the website or the app to log in'));return}
-  if(!confirm(T('Google account နဲ့ ဝင်မလား?\n\n☁️ စာလုပ်မှတ်တမ်း၊ Favorites၊ Settings နဲ့ Pro ကို Cloud မှာ သိမ်းထားပြီး ဖုန်းပြောင်းရင်လည်း ပြန်ယူလို့ရပါမယ်။\n🔒 သိမ်းတာက ဒီ data တွေပဲ ဖြစ်ပြီး ကိုယ်တိုင်ပဲ ဖတ်လို့ရပါတယ်။ ဘယ်အချိန်မဆို ဖျက်လို့ရပါတယ်။','Googleアカウントでログインしますか？\n\n☁️ 学習記録・お気に入り・設定・Proをクラウドに保存し、機種変更しても引き継げます。\n🔒 保存されるのはこれらのデータのみで、本人だけが読めます。いつでも削除できます。','Log in with Google?\n\n☁️ Your progress, favorites, settings and Pro are backed up to the cloud so you can restore them on another device.\n🔒 Only this data is stored, only you can read it, and you can delete it anytime.')))return;
-  toast(T('🔐 Login ဝင်နေပါတယ်…','🔐 ログイン中…','🔐 Logging in…'));
-  try{const a=await fbAuth();const pv=new firebase.auth.GoogleAuthProvider();pv.setCustomParameters({prompt:'select_account'});
-    let res;try{res=await a.signInWithPopup(pv)}catch(e){if(e&&/popup|environment|operation-not-supported/.test(e.code||'')){try{sessionStorage.setItem('myaing.redir','1')}catch(x){}await a.signInWithRedirect(pv);return}throw e}
-    await acctAfter(res.user)}
-  catch(e){console.warn(e);toast(T('❌ Login မအောင်မြင်ပါ — နောက်တစ်ခါ ပြန်စမ်းပါ','❌ ログインできませんでした','❌ Login failed — please try again'))}}
+  const errMsg=e=>{const c=(e&&e.code)||'unknown';
+    if(/popup-closed-by-user|cancelled-popup-request|user-cancelled/.test(c))return T('Login ကို ပယ်ဖျက်လိုက်ပါတယ်','ログインをキャンセルしました','Login cancelled');
+    if(/network-request-failed/.test(c))return T('📶 Internet မရပါ — ပြန်စမ်းပါ','📶 通信エラー — もう一度','📶 Network error — try again');
+    if(/unauthorized-domain/.test(c))return T('❌ ဒီ website ကို Firebase မှာ ခွင့်မပြုရသေးပါ ('+location.hostname+')','❌ このドメインは未許可です','❌ This domain is not authorized in Firebase');
+    return T('❌ Login မအောင်မြင်ပါ','❌ ログインできませんでした','❌ Login failed')+' ('+c+')'};
+  const done=async res=>{if(res&&res.user)await acctAfter(res.user)};
+  const pv=()=>{const p=new firebase.auth.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});return p};
+  if(!FBA){ /* Firebase not loaded yet: load it, then ask for one more tap (a popup opened after waiting gets blocked) */
+    toast(T('⏳ ခဏစောင့်ပါ… ပြီးရင် Google ကို နောက်တစ်ခါ နှိပ်ပါ','⏳ 準備中… もう一度Googleをタップしてください','⏳ Getting ready… tap Google again'));
+    try{await fbAuth()}catch(e){toast(T('📶 Internet မရပါ — ပြန်စမ်းပါ','📶 通信エラー','📶 Network error'))}return}
+  let res;
+  try{res=await FBA.signInWithPopup(pv())}
+  catch(e){console.warn(e);const c=(e&&e.code)||'';
+    if(/operation-not-supported|web-storage-unsupported/.test(c)){try{sessionStorage.setItem('myaing.redir','1')}catch(x){}try{await FBA.signInWithRedirect(pv());return}catch(e2){toast(errMsg(e2));return}}
+    toast(errMsg(e));return}
+  try{await done(res)}catch(e){console.warn(e);toast(errMsg(e))}}
 async function acctAfter(u){if(!u)return;
   try{localStorage.setItem('myaing.acct',JSON.stringify({n:u.displayName||'',e:u.email||'',p:u.photoURL||''}))}catch(e){}
   try{localStorage.setItem('myaing.welcomed',String(Date.now()))}catch(e){}
@@ -31573,7 +31586,7 @@ function gaPath(){const v=S.view;if(v==='main')return '/'+(S.tab==='words'?'disc
 function gaView(){if(!gaOn())return;gaInit();const p=gaPath();if(p===_gaLast)return;_gaLast=p;try{gtag('event','page_view',{page_path:p,page_location:location.origin+location.pathname+'#'+p,page_title:p})}catch(e){}}
 /* ---------- Welcome / Guest mode (shown once after splash) ---------- */
 function welcomed(){try{return !!localStorage.getItem('myaing.welcomed')}catch(e){return true}}
-function renderWelcome(){
+function renderWelcome(){fbPreload();
   const logo=`<svg width="96" height="96" viewBox="0 0 150 150" aria-hidden="true"><rect width="150" height="150" rx="34" fill="#14223D"/><path d="M20 120 V92 L75 110 L130 92 V120 C108 114 90 116 75 128 C60 116 42 114 20 120 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M75 112 V124" stroke="#14223D" stroke-width="3.5" stroke-linecap="round"/><g transform="translate(75 62)"><path d="M-52 0a52 15 0 0 1 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle r="36" fill="#1F3A68"/><path d="M-36 0h72M0-36c-14 12-14 60 0 72M0-36c14 12 14 60 0 72" stroke="#4469A8" stroke-width="2.6" fill="none"/><text x="-3" y="6" font-size="36" font-weight="900" fill="#fff" text-anchor="middle" font-family="Hiragino Sans,Noto Sans JP,sans-serif">ど</text><path d="M-52 0a52 15 0 0 0 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle cx="44" cy="-26" r="10" fill="#E8463A" stroke="#14223D" stroke-width="3"/></g></svg>`;
   const L=SET.lang||'my',lb=(k,t)=>`<button data-wlang="${k}" style="flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:20px;border:1.5px solid ${L===k?'#1F3A68':'#D5DCE8'};background:${L===k?'#1F3A68':'#fff'};color:${L===k?'#fff':'#1F3A68'};font-weight:800;font-size:14px">${t}</button>`;
   const feat=(i,a,b)=>`<div style="display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><span style="width:40px;height:40px;border-radius:12px;background:#EEF2FA;color:#1F3A68;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0">${i}</span><span style="display:flex;flex-direction:column;min-width:0"><b style="font-size:15px">${a}</b><span class="mm" style="font-size:12.5px;color:#6B7486">${b}</span></span></div>`;
@@ -31672,7 +31685,7 @@ _render=function(){const p={view:S.view,tab:S.tab,drawer:!!S.drawer,key:fxKey(),
 
 
 /* ---------- Bottom nav on every page ---------- */
-function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='main'||S.view==='welcome'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
+function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='main'||S.view==='welcome'||S.view==='auth'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
 try{new MutationObserver(()=>ensureNav()).observe(document.getElementById('app'),{childList:true})}catch(e){}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#app>nav [data-t],#app>nav [data-a="open"]');if(!t||S.view==='main'||!fxOK())return;const app=document.getElementById('app');FX.back={html:app.innerHTML,scr:[...app.querySelectorAll('main,[id]')].map(x=>x.scrollTop)}},true);
 
@@ -31745,7 +31758,7 @@ document.getElementById('app').addEventListener('click',e=>{
   if(b.dataset.mc!==undefined){mcGo(+b.dataset.mc);return}
   if(b.dataset.j5l!==undefined){S.j5l=+b.dataset.j5l;render();const m1=document.querySelector('main');if(m1)m1.scrollTop=0;return}
 if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelector('main');render();const m1=document.querySelector('main');if(m1&&m0)m1.scrollTop=0;return}
-  if(kaClick(b))return;if(utClick(b))return;if(b.dataset.a==='qrshow'){S.qrOn=true;render();return}if(b.dataset.a==='login'){S.view='auth';S.authMode='login';render();return}if(b.dataset.a==='signupview'){S.view='auth';S.authMode='signup';render();return}if(b.dataset.a==='aulogin'){emailAuth('login');return}if(b.dataset.a==='ausignup'){emailAuth('signup');return}if(b.dataset.a==='augoogle'){acctLogin();return}if(b.dataset.a==='auswap'){S.authMode=S.authMode==='signup'?'login':'signup';render();return}if(b.dataset.a==='logout'){acctLogout();return}if(b.dataset.a==='acctdel'){acctDelete();return}if(b.dataset.a==='stats'){showStats();return}if(b.dataset.a==='members'){showMembers();return}if(b.dataset.a==='pushtg'){pushTopicOn('sb')?pushDisable('sb'):pushEnable('sb');return}if(b.dataset.a==='pushst'){pushTopicOn('st')?pushDisable('st'):pushEnable('st');return}if(b.dataset.a==='vertap'){const n=Date.now();VTAP=VTAP.filter(t=>n-t<3000);VTAP.push(n);if(VTAP.length>=7){VTAP=[];const on=!ADMUI();try{localStorage.setItem('myaing.admui',on?'1':'0')}catch(e){}toast(on?T('🛠 Admin mode ဖွင့်ပြီးပါပြီ — ပိတ်ထားတဲ့ Menu တွေကိုပါ မြင်ရပါမယ်','🛠 管理者モード ON','🛠 Admin mode on'):T('Admin mode ပိတ်ပြီးပါပြီ','管理者モード OFF','Admin mode off'));render()}return}if(b.dataset.a==='tview'&&S.view==='topic'){S.tlist=!S.tlist;S.texp='';try{localStorage.setItem('myaing.tlist',S.tlist?'1':'0')}catch(e){}renderTopic();return}if(b.dataset.a==='tshuf'&&S.view==='topic'){S.tshuf=S.tshuf?0:(Date.now()%2147483000)+1;renderTopic();const m=document.getElementById('tm');if(m)m.scrollTop=0;toast(S.tshuf?T('🔀 ကျပန်း စီထားပါတယ်','🔀 シャッフルしました','🔀 Shuffled'):T('↺ မူလအစဉ်','↺ 元の順番','↺ Original order'));return}if(b.dataset.tx!==undefined&&S.view==='topic'){S.texp=S.texp===b.dataset.tx?'':b.dataset.tx}
+  if(kaClick(b))return;if(utClick(b))return;if(b.dataset.a==='qrshow'){S.qrOn=true;render();return}if(b.dataset.a==='login'){if(S.view!=='auth')S.authFrom=S.view||'';S.view='auth';S.authMode='login';render();return}if(b.dataset.a==='signupview'){if(S.view!=='auth')S.authFrom=S.view||'';S.view='auth';S.authMode='signup';render();return}if(b.dataset.a==='aulogin'){emailAuth('login');return}if(b.dataset.a==='ausignup'){emailAuth('signup');return}if(b.dataset.a==='augoogle'){acctLogin();return}if(b.dataset.a==='auswap'){S.authMode=S.authMode==='signup'?'login':'signup';render();return}if(b.dataset.a==='logout'){acctLogout();return}if(b.dataset.a==='acctdel'){acctDelete();return}if(b.dataset.a==='stats'){showStats();return}if(b.dataset.a==='members'){showMembers();return}if(b.dataset.a==='pushtg'){pushTopicOn('sb')?pushDisable('sb'):pushEnable('sb');return}if(b.dataset.a==='pushst'){pushTopicOn('st')?pushDisable('st'):pushEnable('st');return}if(b.dataset.a==='vertap'){const n=Date.now();VTAP=VTAP.filter(t=>n-t<3000);VTAP.push(n);if(VTAP.length>=7){VTAP=[];const on=!ADMUI();try{localStorage.setItem('myaing.admui',on?'1':'0')}catch(e){}toast(on?T('🛠 Admin mode ဖွင့်ပြီးပါပြီ — ပိတ်ထားတဲ့ Menu တွေကိုပါ မြင်ရပါမယ်','🛠 管理者モード ON','🛠 Admin mode on'):T('Admin mode ပိတ်ပြီးပါပြီ','管理者モード OFF','Admin mode off'));render()}return}if(b.dataset.a==='tview'&&S.view==='topic'){S.tlist=!S.tlist;S.texp='';try{localStorage.setItem('myaing.tlist',S.tlist?'1':'0')}catch(e){}renderTopic();return}if(b.dataset.a==='tshuf'&&S.view==='topic'){S.tshuf=S.tshuf?0:(Date.now()%2147483000)+1;renderTopic();const m=document.getElementById('tm');if(m)m.scrollTop=0;toast(S.tshuf?T('🔀 ကျပန်း စီထားပါတယ်','🔀 シャッフルしました','🔀 Shuffled'):T('↺ မူလအစဉ်','↺ 元の順番','↺ Original order'));return}if(b.dataset.tx!==undefined&&S.view==='topic'){S.texp=S.texp===b.dataset.tx?'':b.dataset.tx}
   if(b.dataset.a==='nall'){S.nAll=!S.nAll;nmUpd();return}
   if(b.dataset.jxl){S.jx={L:+b.dataset.jxl,st:'setup'};render();return}
   if(b.dataset.vbl){S.vbL=+b.dataset.vbl;S.vbP=0;S.vbQ='';render();const m=document.getElementById('pm');if(m)m.scrollTop=0;return}
@@ -31832,7 +31845,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     clear:()=>{if(S.words.length&&confirm(T('သိမ်းထားသော စကားလုံးအားလုံး ဖျက်မလား?','保存した単語をすべて削除しますか？','Delete all saved words?'))){stopPlay();S.words=[]}},
     reset:()=>resetWords(),
     chats:()=>{S.flowing=false;try{speechSynthesis.cancel()}catch(e){}S.view='chats';S.drawer=false},
-    kback:()=>{stopLines();S.podOn='';if(S.view==='note'){noteSaveNow();if(S.noteId){S.noteId=null;return}S.view='main';return}if(S.view==='uta'&&S.ut&&(S.ut.i!==null||S.ut.lk!==null)){S.ut={i:null,pl:-1,lk:null};return}if(S.view==='katsu'&&(S.ka.quiz||S.ka.v)){if(S.ka.quiz&&S.ka.quizOne){S.ka.quiz=null}else{S.ka.quiz=null;S.ka.v=null}S.kSay='';return}if(S.view==='jexam'&&S.jx&&S.jx.st!=='setup'){try{speechSynthesis.cancel()}catch(e){}S.jx={L:S.jx.L,st:'setup'};return}if(S.view==='jlpt'&&S.jtab){S.jtab='';S.kSay='';return}if(S.view==='adult'){S.view='pro';S.pro='Dark Side';return}if(S.view==='pay'){S.view='paywall';return}S.view='main'},
+    kback:()=>{stopLines();if(S.view==='auth'){S.view=S.authFrom==='welcome'?'welcome':'main';S.authFrom='';return}S.podOn='';if(S.view==='note'){noteSaveNow();if(S.noteId){S.noteId=null;return}S.view='main';return}if(S.view==='uta'&&S.ut&&(S.ut.i!==null||S.ut.lk!==null)){S.ut={i:null,pl:-1,lk:null};return}if(S.view==='katsu'&&(S.ka.quiz||S.ka.v)){if(S.ka.quiz&&S.ka.quizOne){S.ka.quiz=null}else{S.ka.quiz=null;S.ka.v=null}S.kSay='';return}if(S.view==='jexam'&&S.jx&&S.jx.st!=='setup'){try{speechSynthesis.cancel()}catch(e){}S.jx={L:S.jx.L,st:'setup'};return}if(S.view==='jlpt'&&S.jtab){S.jtab='';S.kSay='';return}if(S.view==='adult'){S.view='pro';S.pro='Dark Side';return}if(S.view==='pay'){S.view='paywall';return}S.view='main'},
     adult:()=>{if(PLAY())return;S.view=PRO_OK?'adult':'paywall';S.kSay=''},
     pro:()=>{S.view='paywall';S.drawer=false},
     guest:()=>{try{localStorage.setItem('myaing.welcomed',String(Date.now()))}catch(e){}S.view='main';S.tab='home';try{if(window.gtag)gtag('event','welcome_guest')}catch(e){}},
