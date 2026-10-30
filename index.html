@@ -24,6 +24,7 @@ html,body{margin:0;height:100%;background:#F3F5F9;overflow:hidden;overscroll-beh
 body{font-family:'M PLUS Rounded 1c','Noto Sans Myanmar',sans-serif;color:var(--ink);-webkit-tap-highlight-color:transparent}
 button{font:inherit;cursor:pointer;color:inherit}
 .mm{font-family:'Noto Sans Myanmar',sans-serif;line-height:1.7}
+.dlj ruby rt{font-size:.52em;font-weight:600;color:#6B7486;letter-spacing:0}body.dark .dlj ruby rt{color:#9AA6BC}
 #app{max-width:none;margin:0 auto;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
 header{background:var(--navy);min-height:64px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;padding-top:env(safe-area-inset-top)}
 .hbtn{width:44px;height:44px;border-radius:22px;border:none;background:transparent;display:flex;align-items:center;justify-content:center}
@@ -21384,6 +21385,7 @@ function drawer(){
 <div class="box">
 ${GA_ID?`<button class="row" data-g="noga"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="lb">${T('အသုံးပြုမှု စာရင်းအင်း ပို့မယ်','利用統計を送信','Send usage statistics')}</span>${sw(!SET.noga)}</button>`:''}
 <button class="row" data-a="furi"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">ふ</span><span class="lb">${T('ဖူရိဂါနာ','ふりがな','Furigana')}</span>${sw(S.furi)}</button>
+<button class="row" data-a="rom"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">R</span><span class="lb">${T('ရိုမာဂျီ (Dialog)','ローマ字（会話）','Romaji (Dialog)')}</span>${sw(S.rom)}</button>
 </div>`:sub==='noti'?`<button class="row" data-dsub="set" style="border-bottom:none;min-height:48px;padding:0 6px;background:transparent;font-weight:800;color:#1F3A68"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span class="lb" style="font-size:17px">${T('သတိပေးချက်','通知','Notifications')}</span></button>
 <div class="box">
 <button class="row" data-a="pushtg"><span style="width:22px;text-align:center;font-size:18px">🔔</span><span class="lb" style="display:flex;flex-direction:column;gap:1px"><span>${T('ဥပုသ်နေ့ သတိပေးချက်','布薩日の通知','Sabbath reminders')}</span><small style="color:#6B7486;font-size:11.5px">${T('ဥပုသ်・အဖိတ်နေ့ မနက် ၇ နာရီ','布薩日・前日の朝7時','Sabbath & eve · 7:00 am')}</small></span>${sw(pushTopicOn('sb'))}</button>
@@ -27671,7 +27673,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.181',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.182',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -28033,7 +28035,48 @@ function rvSend(){const m=S.rvMode||'review',r=m==='rate'?S.rv.r:0,cm=(S.rv.c||'
 /* ---------- Dialog scenes ---------- */
 const DLG_RAW=(document.getElementById('dlgraw')||{}).textContent||''; /* v1.0.173: dialog lines live in <script type=text/plain id=dlgraw> (faster start: not parsed as JS) */
 const DLG={};let _dc=null;
-const DLG_SEC={};DLG_RAW.split('\n').forEach(l=>{if(!l.trim())return;if(l[0]==='@'){_dc=l.slice(1);DLG[_dc]=[];return}if(l[0]==='#'){(DLG_SEC[_dc]=DLG_SEC[_dc]||[]).push({at:DLG[_dc].length,h:l.slice(1)});return}const [j,m,e]=l.split('|');DLG[_dc].push({j,m,e})});
+let _dg=0;const DLG_SEC={};DLG_RAW.split('\n').forEach(l=>{if(!l.trim())return;if(l[0]==='@'){_dc=l.slice(1);DLG[_dc]=[];return}if(l[0]==='#'){(DLG_SEC[_dc]=DLG_SEC[_dc]||[]).push({at:DLG[_dc].length,h:l.slice(1)});return}const [j,m,e]=l.split('|');DLG[_dc].push({j,m,e,g:_dg++})});
+/* v1.0.182: furigana + romaji for Dialog. dlgfuri.txt = one line per dialog line (same order), made offline with kuromoji (IPADIC) + fixes.
+   markup: tokens joined by '·', kanji{kana}, [3分]{さんぷん}, particle は^/へ^ (wa/e). Loaded on first Dialog open, cached by sw.js. */
+/* kana → romaji (Hepburn, simple). Shared by build test and app. */
+function dkRomaji(s){
+  const H=s.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-96));
+  const Y={'きゃ':'kya','きゅ':'kyu','きょ':'kyo','しゃ':'sha','しゅ':'shu','しょ':'sho','しぇ':'she','ちゃ':'cha','ちゅ':'chu','ちょ':'cho','ちぇ':'che','にゃ':'nya','にゅ':'nyu','にょ':'nyo','ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo','みゃ':'mya','みゅ':'myu','みょ':'myo','りゃ':'rya','りゅ':'ryu','りょ':'ryo','ぎゃ':'gya','ぎゅ':'gyu','ぎょ':'gyo','じゃ':'ja','じゅ':'ju','じょ':'jo','じぇ':'je','びゃ':'bya','びゅ':'byu','びょ':'byo','ぴゃ':'pya','ぴゅ':'pyu','ぴょ':'pyo','ふぁ':'fa','ふぃ':'fi','ふぇ':'fe','ふぉ':'fo','てぃ':'ti','でぃ':'di','とぅ':'tu','どぅ':'du','うぃ':'wi','うぇ':'we','うぉ':'wo','ゔぁ':'va','ゔぃ':'vi','ゔぇ':'ve','ゔぉ':'vo','つぁ':'tsa','いぇ':'ye'};
+  const M='あa いi うu えe おo かka きki くku けke こko さsa しshi すsu せse そso たta ちchi つtsu てte とto なna にni ぬnu ねne のno はha ひhi ふfu へhe ほho まma みmi むmu めme もmo やya ゆyu よyo らra りri るru れre ろro わwa ゐi ゑe をo んn がga ぎgi ぐgu げge ごgo ざza じji ずzu ぜze ぞzo だda ぢji づzu でde どdo ばba びbi ぶbu べbe ぼbo ぱpa ぴpi ぷpu ぺpe ぽpo ゔvu ぁa ぃi ぅu ぇe ぉo ゃya ゅyu ょyo ゎwa'.split(' ');
+  const K={};M.forEach(x=>K[x[0]]=x.slice(1));
+  const P={'。':'. ','、':', ','？':'? ','！':'! ','「':'"','」':'"','『':'"','』':'"','（':'(','）':')','・':' ','〜':'~','～':'~','　':' ','…':'...','：':': '};
+  let o='',i=0,tsu=false;
+  while(i<H.length){
+    let c=H[i],r=null,n=1;
+    if(Y[H.substr(i,2)]){r=Y[H.substr(i,2)];n=2}
+    else if(c==='っ'){tsu=true;i++;continue}
+    else if(c==='ー'){const v=o.match(/[aeiou]$/);r=v?v[0]:'';}
+    else if(K[c]!==undefined){r=K[c]}
+    else if(P[c]!==undefined){r=P[c]}
+    else if(/[０-９Ａ-Ｚａ-ｚ]/.test(c)){r=String.fromCharCode(c.charCodeAt(0)-65248)}
+    else r=c;
+    if(tsu){if(/^[bcdfghjklmpqrstvwxyz]/.test(r))r=(r.startsWith('ch')?'t':r[0])+r;tsu=false}
+    if(o.endsWith('n')&&H[i-1]==='ん'&&/^[aeiouy]/.test(r))o+="'";
+    o+=r;i+=n;
+  }
+  return o;
+}
+/* markup "電車{でんしゃ} の 方{ほう} が …" (tokens split by ·) → html ruby / romaji */
+function dkRuby(mk){return mk.split('·').join('').replace(/\^/g,'').replace(/\[([^\]]+)\]\{([^}]+)\}/g,(m,b,r)=>'<ruby>'+b+'<rt>'+r+'</rt></ruby>').replace(/([㐀-鿿々〆ヶ]+)\{([^}]+)\}/g,(m,b,r)=>'<ruby>'+b+'<rt>'+r+'</rt></ruby>')}
+function dkRom(mk){
+  const t=mk.split('·').map(w=>{
+    if(w==='は^')return 'wa';if(w==='へ^')return 'e';if(w==='を')return 'o';
+    w=w.replace(/\^$/,'');
+    return dkRomaji(w.replace(/\[[^\]]+\]\{([^}]+)\}/g,'$1').replace(/[㐀-鿿々〆ヶ]+\{([^}]+)\}/g,'$1'));
+  });
+  let o='';t.forEach(x=>{if(!x)return;if(/^[.,?!)~"'\s:]/.test(x)&&!/^"/.test(x))o=o.replace(/\s+$/,'')+x;else o+=(o&&!/[\s("]$/.test(o)?' ':'')+x});
+  o=o.replace(/\s+/g,' ').replace(/(\S)(gozaimasu|gozaimashita)/g,'$1 $2').trim();return o.replace(/(^|[.?!] +"?)([a-z])/g,(m,a,b)=>a+b.toUpperCase());
+}
+let DLGF=null;
+function dlgFuriLoad(){if(DLGF!==null)return;DLGF=0;fetch('dlgfuri.txt').then(r=>r.ok?r.text():'').then(t=>{DLGF=t?t.split('\n'):[];if(DLGF.length&&S.dlg&&document.getElementById('dm')){const m=document.getElementById('dm'),y=m.scrollTop;renderDialog();const n=document.getElementById('dm');if(n)n.scrollTop=y}}).catch(()=>{DLGF=[]})}
+function dlgF(x){return DLGF&&DLGF[x.g]?DLGF[x.g]:''}
+S.rom=(()=>{try{return localStorage.getItem('myaing.rom')==='1'}catch(e){return false}})();
+
 Object.assign(S,{dlg:'',pro:'',dplay:-1});
 let DPLAY_TOKEN=0;
 function playLines(lines,onStep){
@@ -28043,14 +28086,16 @@ function playLines(lines,onStep){
 function stopLines(){DPLAY_TOKEN++;try{speechSynthesis.cancel()}catch(e){}S.dplay=-1}
 function dlgFilter(q){q=(q||'').trim().toLowerCase();const m=document.getElementById('dm');if(!m)return;m.classList.toggle('dqon',!!q);m.querySelectorAll('.dl').forEach(e=>e.classList.toggle('dhide',!!q&&!e.dataset.dt.includes(q)))}
 function renderDialog(){
+  dlgFuriLoad();
   const name=S.dlg,L=DLG[name]||[],tile=(DATA.talk.find(d=>d[1]===name)||[])[3]||'';const SEC=DLG_SEC[name]||[];
   document.getElementById('app').innerHTML=`${pageHead(`${name}`,`${tile} · ${L.length} ${T('ကြောင်း','文','lines')}`)}
 <main id="dm">
 <button data-a="dplayall" style="min-height:52px;border-radius:16px;border:none;background:${S.dplay>=0?'#14223D':'var(--red)'};color:#fff;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px">${S.dplay>=0?'■ '+T('ရပ်မယ်','停止','Stop'):'▶ '+T('အကုန် ဆက်တိုက် နားထောင်မယ်','すべて再生','Play all')}</button>
+<div style="display:flex;gap:8px;flex-shrink:0"><button data-a="furi" style="flex:1;min-height:40px;border-radius:20px;border:1.5px solid ${S.furi?'var(--navy)':'#D5DCE8'};background:${S.furi?'var(--navy)':'#fff'};color:${S.furi?'#fff':'var(--navy)'};font-size:14px;font-weight:800">${S.furi?'✓ ':''}ふりがな</button><button data-a="rom" style="flex:1;min-height:40px;border-radius:20px;border:1.5px solid ${S.rom?'var(--navy)':'#D5DCE8'};background:${S.rom?'var(--navy)':'#fff'};color:${S.rom?'#fff':'var(--navy)'};font-size:14px;font-weight:800">${S.rom?'✓ ':''}Romaji</button></div>
 ${L.length>30?`<input id="dq" type="search" value="${esc(S.dlq||'')}" oninput="S.dlq=this.value;dlgFilter(this.value)" placeholder="🔍 ${T('ရှာရန် (ဂျပန်/မြန်မာ/English)','検索','Search')}" style="flex-shrink:0;min-height:46px;border-radius:14px;border:1.5px solid #D5DCE8;padding:0 14px;font-size:16px;background:#fff">`:''}
 ${SEC.length?`<div class="dsh" style="display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;flex-shrink:0">${SEC.map((c,k)=>`<button data-dsec="${k}" style="flex-shrink:0;min-height:36px;padding:0 12px;border-radius:18px;border:1.5px solid #D5DCE8;background:#fff;font-size:14px;font-weight:700;color:var(--navy)">${c.h}</button>`).join('')}</div>`:''}
-${L.map((x,i)=>`${SEC.map((c,k)=>c.at===i?`<div id="dsec${k}" class="dsh" style="flex-shrink:0;font-size:15px;font-weight:800;color:#fff;background:var(--navy);border-radius:12px;padding:8px 14px;margin-top:6px">${c.h}</div>`:'').join('')}<button class="dl" data-dt="${esc((x.j+' '+x.m+' '+x.e).toLowerCase())}" data-sp="${esc(x.j)}" style="flex-shrink:0;text-align:left;border:none;background:#fff;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;box-shadow:0 3px 10px rgba(20,34,61,.05);${S.dplay===i||S.kSay===x.j?'outline:2px solid #E8463A;':''}">
-<span style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:12px;font-weight:800;color:#fff;background:var(--navy);border-radius:8px;padding:2px 7px;margin-top:4px">${i+1}</span><span style="font-size:18px;font-weight:700;line-height:1.6">${x.j}</span></span>
+${L.map((x,i)=>`${SEC.map((c,k)=>c.at===i?`<div id="dsec${k}" class="dsh" style="flex-shrink:0;font-size:15px;font-weight:800;color:#fff;background:var(--navy);border-radius:12px;padding:8px 14px;margin-top:6px">${c.h}</div>`:'').join('')}<button class="dl" data-dt="${esc((x.j+' '+x.m+' '+x.e+' '+(dlgF(x)?dkRom(dlgF(x)):'')).toLowerCase())}" data-sp="${esc(x.j)}" style="flex-shrink:0;text-align:left;border:none;background:#fff;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;box-shadow:0 3px 10px rgba(20,34,61,.05);${S.dplay===i||S.kSay===x.j?'outline:2px solid #E8463A;':''}">
+<span style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:12px;font-weight:800;color:#fff;background:var(--navy);border-radius:8px;padding:2px 7px;margin-top:4px">${i+1}</span><span class="dlj" style="font-size:18px;font-weight:700;line-height:${S.furi&&dlgF(x)?'1.95':'1.6'}">${S.furi&&dlgF(x)?dkRuby(dlgF(x)):x.j}</span></span>${S.rom&&dlgF(x)?`<span style="font-size:14px;color:#5B6B86;font-style:italic;padding-left:32px">${esc(dkRom(dlgF(x)))}</span>`:''}
 <span class="mm" style="font-size:14px;color:#1F3A68;padding-left:32px">${x.m}</span><span style="font-size:13px;color:#4A5468;padding-left:32px">${x.e}</span></button>`).join('')}
 <div class="mm" style="font-size:13px;color:#4A5468;text-align:center">${T('ဝါကျကို နှိပ်ရင် အသံထွက်ပါတယ်','文をタップで発音','Tap a line to hear it')}</div></main>`;
   if(S.dlq)dlgFilter(S.dlq);
@@ -31892,6 +31937,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.soon){toast(T(`${b.dataset.soon} — မကြာမီ ရောက်လာပါမယ်`,`${b.dataset.soon}は準備中です`,`${b.dataset.soon} — coming soon`));return}
   const a=b.dataset.a;if(!a)return;
   const acts={
+    rom:()=>{S.rom=!S.rom;try{localStorage.setItem('myaing.rom',S.rom?'1':'0')}catch(e){}},
     open:()=>{S.view='main';S.drawer=true}, close:()=>S.drawer=false,
     study:()=>{S.view='study';S.drawer=false}, review:()=>{S.view='review';S.rvMode='review';S.drawer=false;S.rv=null}, rate:()=>{S.view='review';S.rvMode='rate';S.drawer=false;S.rv=null}, suggest:()=>{S.view='review';S.rvMode='suggest';S.drawer=false;S.rv=null}, feedback:()=>{S.view='review';S.rvMode='feedback';S.drawer=false;S.rv=null}, back:()=>{stopPlay();S.view='main';S.sortOpen=false},
     sort:()=>S.sortOpen=true, sortclose:()=>S.sortOpen=false,
