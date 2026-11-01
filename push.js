@@ -39,7 +39,33 @@ function studyMessage() {
   const day = Math.floor(jst.getTime() / 864e5), r = STUDY[day % STUDY.length];
   return { my: [r[0], r[1]], ja: [r[2], r[3]], en: [r[4], r[5]] };
 }
+/* JLPT countdown (v1.0.193) — replaces the 20:00 study reminder on milestone days, and the 07:00 message on exam day */
+const JLPT_DATES = ['2026-12-06'];
+const JLPT_MS = [90, 60, 45, 30, 21, 14, 10, 7, 5, 3, 2, 1];
+function jlptLeft() {
+  const t = Date.UTC(jst.getUTCFullYear(), jst.getUTCMonth(), jst.getUTCDate());
+  for (const d of JLPT_DATES) { const [y, m, dd] = d.split('-').map(Number); const k = Math.round((Date.UTC(y, m - 1, dd) - t) / 864e5); if (k >= 0) return k; }
+  return -1;
+}
+const mmN = n => String(n).replace(/\d/g, d => '၀၁၂၃၄၅၆၇၈၉'[d]);
+function jlptMessage(k) {
+  if (k === 0) return {
+    my: ['📝 ဒီနေ့ JLPT စာမေးပွဲနေ့!', '頑張って 💪 — 受験票၊ ခဲတံ၊ ခဲဖျက် မမေ့နဲ့နော်။ အောင်မြင်ပါစေ ✨'],
+    ja: ['📝 今日はJLPT本番！', '頑張って 💪 受験票・鉛筆・消しゴムを忘れずに ✨'],
+    en: ['📝 JLPT is today!', 'Good luck 💪 Don’t forget your admission ticket, pencils and eraser ✨'] };
+  if (k === 1) return {
+    my: ['📝 မနက်ဖြန် JLPT!', 'ဒီည စောစော အိပ်ပါ၊ 受験票 နဲ့ စာမေးပွဲ နေရာ ပြန်စစ်ထားပါ 😊'],
+    ja: ['📝 明日はJLPT！', '今夜は早く寝て、受験票と会場を確認しましょう 😊'],
+    en: ['📝 JLPT is tomorrow!', 'Sleep early tonight and check your ticket and test venue 😊'] };
+  return {
+    my: ['📝 JLPT အထိ နောက် ' + mmN(k) + ' ရက်', '၂၀၂၆ ဒီဇင်ဘာ ၆ (တနင်္ဂနွေ) — ဒီနေ့လည်း 模試 တစ်ခု ဒါမှမဟုတ် ဝေါဟာရ နည်းနည်း လုပ်ကြရအောင် 💪'],
+    ja: ['📝 JLPTまで あと' + k + '日', '2026年12月6日（日）— 今日も模試や単語を少しやりましょう 💪'],
+    en: ['📝 ' + k + ' days until the JLPT', 'Sunday, Dec 6, 2026 — do a mock test or a few words today 💪'] };
+}
 function message() {
+  const jk = jlptLeft();
+  if (MODE === 'study' && jk > 0 && JLPT_MS.includes(jk)) return jlptMessage(jk);
+  if (MODE === 'auto' && jk === 0) return jlptMessage(0);
   if (MODE === 'study') return studyMessage();
   if (MODE === 'test') return {
     my: ['🔔 Dokodemo', 'Notification စနစ် စမ်းသပ်ခြင်း — ဒီစာ ရောက်ရင် အဆင်ပြေပါပြီ ✅'],
@@ -71,7 +97,7 @@ function message() {
     const chunk = list.slice(i, i + 500);
     const res = await admin.messaging().sendEach(chunk.map(x => {
       const [title, body] = msg[x.lang] || msg.my;
-      return { token: x.token, data: { title, body, url: SITE, tag: MODE === 'study' ? 'dokodemo-study' : 'dokodemo-sabbath' },
+      return { token: x.token, data: { title, body, url: SITE, tag: (jlptLeft() >= 0 && (MODE === 'study' ? JLPT_MS.includes(jlptLeft()) : jlptLeft() === 0)) ? 'dokodemo-jlpt' : MODE === 'study' ? 'dokodemo-study' : 'dokodemo-sabbath' },
         webpush: { headers: { Urgency: 'high', TTL: '43200' } },
         android: { priority: 'high' } };
     }));
