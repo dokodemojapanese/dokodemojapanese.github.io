@@ -25,6 +25,7 @@ body{font-family:'M PLUS Rounded 1c','Noto Sans Myanmar',sans-serif;color:var(--
 button{font:inherit;cursor:pointer;color:inherit}
 .mm{font-family:'Noto Sans Myanmar',sans-serif;line-height:1.7}
 .dlchips{display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;padding:1px 0 3px}.dlchips::-webkit-scrollbar{display:none}.dlchip{flex-shrink:0;min-height:38px;padding:0 13px;border-radius:19px;border:1.5px solid;font-size:14px;font-weight:800;white-space:nowrap}.dlhid{filter:blur(7px);opacity:.55;user-select:none}
+@keyframes sfwob{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-12deg)}88%{transform:rotate(10deg)}92%{transform:rotate(-6deg)}96%{transform:rotate(4deg)}}
 .dlj ruby rt{font-size:.52em;font-weight:600;color:#6B7486;letter-spacing:0}body.dark .dlj ruby rt{color:#9AA6BC}
 #app{max-width:none;margin:0 auto;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
 header{background:var(--navy);min-height:64px;padding:0 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;padding-top:env(safe-area-inset-top)}
@@ -21930,6 +21931,7 @@ function drawer(){
 ${GA_ID?`<button class="row" data-g="noga"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="lb">${T('အသုံးပြုမှု စာရင်းအင်း ပို့မယ်','利用統計を送信','Send usage statistics')}</span>${sw(!SET.noga)}</button>`:''}
 <button class="row" data-a="furi"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">ふ</span><span class="lb">${T('ဖူရိဂါနာ','ふりがな','Furigana')}</span>${sw(S.furi)}</button>
 <button class="row" data-a="rom"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">R</span><span class="lb">${T('ရိုမာဂျီ (Dialog)','ローマ字（会話）','Romaji (Dialog)')}</span>${sw(S.rom)}</button>
+<button class="row" data-a="spinfab"><span style="width:22px;text-align:center;font-size:17px">🎡</span><span class="lb">${T('Home မှာ Spin ခလုတ် ပြမယ်','ホームにスピンボタンを表示','Show the Spin button on Home')}</span>${sw(spinFabOn())}</button>
 <button class="row" data-a="tsay"><span style="width:22px;text-align:center;font-size:17px">🔊</span><span class="lb">${T('Title ဖွင့်ရင် ဂျပန်လို အသံထွက်','タイトルを読み上げる','Say the title in Japanese')}</span>${sw(tsayOn())}</button>
 <button class="row" data-a="dshj"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">日</span><span class="lb">${T('ဂျပန်စာ ပြမယ် (Dialog)','日本語を表示（会話）','Show Japanese (Dialog)')}</span>${sw(dshOn('j'))}</button>
 <button class="row" data-a="dshm"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">မ</span><span class="lb">${T('မြန်မာ ပြမယ် (Dialog)','ミャンマー語を表示（会話）','Show Myanmar (Dialog)')}</span>${sw(dshOn('m'))}</button>
@@ -28227,7 +28229,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.193',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.194',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -31801,7 +31803,7 @@ function dlrShow(force){try{if(!starOK()||document.getElementById('dlrov'))retur
 <div class="mm" style="font-size:12.5px;opacity:.85;margin:14px 4px;line-height:1.7">${T('နေ့တိုင်းဝင်ပြီး streak ကို ထိန်းထားပါ။ တစ်ရက် ကျော်သွားရင် Day 1 ကနေ ပြန်စပါမယ်။','毎日ログインして連続記録を続けましょう。1日休むとDay 1に戻ります。','Log in every day to keep your streak. Miss a day and it restarts at Day 1.')}</div>
 ${st.can?`<button id="dlrok" style="width:100%;min-height:54px;border:none;border-radius:27px;background:linear-gradient(90deg,#FFE08A,#FFB020);color:#3A2600;font-size:18px;font-weight:900">${T(`+${STAR_DAY[st.next-1]} ⭐ ယူမယ်`,`+${STAR_DAY[st.next-1]} ⭐ 受け取る`,`Claim +${STAR_DAY[st.next-1]} ⭐`)}</button>`:''}
 <div style="font-size:13px;margin-top:10px;opacity:.85">⭐ ${starBal()}</div></div>`;
-  document.body.appendChild(ov);const close=()=>{ov.style.opacity='0';setTimeout(()=>ov.remove(),200)};
+  document.body.appendChild(ov);const close=()=>{ov.style.opacity='0';setTimeout(()=>{ov.remove();try{spinFabSync()}catch(e){}},200)};
   ov.addEventListener('click',e=>{if(e.target===ov)close()});document.getElementById('dlrx').onclick=close;
   const ok=document.getElementById('dlrok');if(ok)ok.onclick=()=>{const n=dlrClaim();try{playChime&&chimeOn()&&playChime()}catch(e){}ok.disabled=true;ok.textContent='🎉 +'+n+' ⭐';setTimeout(()=>{close();try{if(S.view==='star')render()}catch(e){}},900)};
   requestAnimationFrame(()=>{ov.style.opacity='1';ov.firstElementChild.style.transform='none'})}catch(e){}}
@@ -31863,6 +31865,32 @@ ${S.spinRes?`<div class="mm" style="text-align:center;background:rgba(255,211,10
 ${!can?`<div class="mm" style="text-align:center;font-size:13px;opacity:.85">${T('⭐ မလောက်သေးပါ — စာလေ့လာပြီး စုပါ 💪','⭐が足りません — 勉強して集めよう 💪','Not enough ⭐ — study to earn more 💪')}</div>`:''}
 <details style="background:rgba(255,255,255,.06);border-radius:16px;padding:10px 14px"><summary class="mm" style="font-weight:800;font-size:14px">📊 ${T('ဆု ရနိုင်ခြေ (%)','当選確率','Prize odds')}</summary><div style="margin-top:6px">${odds}</div><div class="mm" style="font-size:11.5px;opacity:.75;margin-top:8px;line-height:1.7">${T('တစ်ပတ်ကို အခမဲ့ ၁ ကြိမ် (တနင်္လာနေ့ ပြန်စ)။ ⭐ ကို ပိုက်ဆံနဲ့ ဝယ်လို့ မရပါ။','無料スピンは週1回（月曜リセット）。⭐は購入できません。','1 free spin per week (resets Monday). ⭐ can’t be bought.')}</div></details>
 </main>`;S.spinRes='';}
+/* v1.0.194 🎡 floating Spin button on Home: drag to move (position saved), ✕ to hide, ⚙️ More settings to show again.
+   Red dot = free spin this week or today's login reward not claimed. localStorage myaing.spinfab ('0' = hidden), myaing.spinfabpos {r,b} */
+function spinFabOn(){try{return localStorage.getItem('myaing.spinfab')!=='0'}catch(e){return true}}
+function spinFabSync(){try{let f=document.getElementById('spinfab');
+  const show=spinFabOn()&&S.tab==='home'&&(!S.view||S.view==='main')&&!S.drawer;
+  if(!show){if(f)f.style.display='none';return}
+  if(!f){f=document.createElement('div');f.id='spinfab';
+    f.innerHTML=`<div id="sfb" style="width:66px;height:66px;border-radius:33px;background:radial-gradient(circle at 35% 30%,#FFE9A3,#FFB020 55%,#E07A10);border:3px solid #fff;box-shadow:0 8px 20px rgba(224,122,16,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;touch-action:none;-webkit-user-select:none;user-select:none;cursor:grab"><span style="font-size:28px;line-height:1">🎡</span><b style="font-size:10px;color:#5A2A00;letter-spacing:.5px;margin-top:1px">SPIN</b></div><span id="sfdot" style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:8px;background:#E8463A;border:2px solid #fff;display:none"></span><button id="sfx" aria-label="Hide" style="position:absolute;top:-6px;right:-6px;width:24px;height:24px;min-height:0;border-radius:12px;border:none;background:rgba(20,34,61,.8);color:#fff;font-size:12px;line-height:24px;padding:0">✕</button>`;
+    f.style.cssText='position:fixed;z-index:150;width:66px;height:66px;display:flex';
+    document.body.appendChild(f);
+    const pos=()=>{let p={r:14,b:118};try{p=Object.assign(p,JSON.parse(localStorage.getItem('myaing.spinfabpos')||'{}'))}catch(e){}const W=innerWidth,H=innerHeight;p.r=Math.min(Math.max(4,p.r),W-70);p.b=Math.min(Math.max(80,p.b),H-80);f.style.right=p.r+'px';f.style.bottom=p.b+'px';return p};
+    pos();addEventListener('resize',pos);
+    const b=f.querySelector('#sfb');let st=null;
+    b.addEventListener('pointerdown',e=>{st={x:e.clientX,y:e.clientY,r:parseFloat(f.style.right),b:parseFloat(f.style.bottom),mv:false};try{b.setPointerCapture(e.pointerId)}catch(x){}});
+    b.addEventListener('pointermove',e=>{if(!st)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;if(!st.mv&&Math.hypot(dx,dy)<7)return;st.mv=true;b.style.cursor='grabbing';
+      f.style.right=Math.min(Math.max(4,st.r-dx),innerWidth-70)+'px';f.style.bottom=Math.min(Math.max(80,st.b-dy),innerHeight-80)+'px'});
+    const end=()=>{if(!st)return;const mv=st.mv;st=null;b.style.cursor='grab';
+      if(mv){try{localStorage.setItem('myaing.spinfabpos',JSON.stringify({r:parseFloat(f.style.right),b:parseFloat(f.style.bottom)}))}catch(x){}return}
+      S.view=starOK()?'spin':'star';S.spinRes='';render()};
+    b.addEventListener('pointerup',end);b.addEventListener('pointercancel',()=>{st=null});
+    f.querySelector('#sfx').addEventListener('click',e=>{e.stopPropagation();try{localStorage.setItem('myaing.spinfab','0')}catch(x){}f.style.display='none';
+      toast(T('🎡 ဖျောက်လိုက်ပါပြီ — ⚙️ Settings → More settings မှာ ပြန်ဖွင့်လို့ရ','🎡 非表示にしました（⚙️設定→その他で再表示）','🎡 Hidden — show it again in ⚙️ Settings → More settings'))});
+  }
+  f.style.display='flex';const dot=f.querySelector('#sfdot');const on=starOK()&&(spinFree()||dlrState().can);dot.style.display=on?'block':'none';
+  f.querySelector('#sfb').style.animation=on?'sfwob 2.6s ease-in-out infinite':'none';
+}catch(e){}}
 /* ===== JLPT countdown (marquee · Study Room · local + push notification) ===== */
 const JLPT_DATES=['2026-12-06'];
 function jlptNext(){const n=new Date();n.setHours(0,0,0,0);for(const d of JLPT_DATES){const [y,m,dd]=d.split('-').map(Number);const k=Math.round((new Date(y,m-1,dd)-n)/864e5);if(k>=0)return {d,k}}return null}
@@ -32520,7 +32548,7 @@ function ensureNav(){const app=document.getElementById('app');if(!app||S.view===
 try{new MutationObserver(()=>ensureNav()).observe(document.getElementById('app'),{childList:true})}catch(e){}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#app>nav [data-t],#app>nav [data-a="open"]');if(!t||S.view==='main'||!fxOK())return;const app=document.getElementById('app');FX.back={html:app.innerHTML,scr:[...app.querySelectorAll('main,[id]')].map(x=>x.scrollTop)}},true);
 
-function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render()}
+function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{spinFabSync()}catch(e){}}
 function _render(){
   if(S.view==='welcome'){renderWelcome();return}
   try{document.documentElement.lang={my:'my',ja:'ja',en:'en',ko:'ko',th:'th'}[SET.lang]||'my'}catch(e){}
@@ -32673,6 +32701,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   const acts={
     dshj:()=>dshTog('j'),dshm:()=>dshTog('m'),dshe:()=>dshTog('e'),
     stx1:()=>starExchange(1),stx7:()=>starExchange(7),stx30:()=>starExchange(30),spinpage:()=>{S.view='spin';S.spinRes=''},spingo:()=>{spinGo();return 'skip'},dlropen:()=>{dlrShow(true);return 'skip'},
+    spinfab:()=>{try{localStorage.setItem('myaing.spinfab',spinFabOn()?'0':'1')}catch(e){}},
     tsay:()=>{try{localStorage.setItem('myaing.tsay',tsayOn()?'0':'1')}catch(e){}},
     rom:()=>{S.rom=!S.rom;try{localStorage.setItem('myaing.rom',S.rom?'1':'0')}catch(e){}},
     open:()=>{S.view='main';S.drawer=true}, close:()=>S.drawer=false,
