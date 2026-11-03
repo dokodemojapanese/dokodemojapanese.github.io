@@ -28481,7 +28481,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.202',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.203',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -32105,8 +32105,77 @@ ${st.can?`<button id="dlrok" style="width:100%;min-height:54px;border:none;borde
   ov.addEventListener('click',e=>{if(e.target===ov)close()});document.getElementById('dlrx').onclick=close;
   const ok=document.getElementById('dlrok');if(ok)ok.onclick=()=>{const n=dlrClaim();try{playChime&&chimeOn()&&playChime()}catch(e){}ok.disabled=true;ok.textContent='🎉 +'+n+' ⭐';setTimeout(()=>{close();try{if(S.view==='star')render()}catch(e){}},900)};
   requestAnimationFrame(()=>{ov.style.opacity='1';ov.firstElementChild.style.transform='none'})}catch(e){}}
-function dlrAuto(){try{if(starOK()&&isLive()&&S.view==='main'&&!S.drawer&&dlrState().can)dlrShow()}catch(e){}}
+function dlrAuto(){try{if(document.getElementById('tpov'))return;if(starOK()&&isLive()&&S.view==='main'&&!S.drawer&&dlrState().can)dlrShow()}catch(e){}}
 setTimeout(dlrAuto,4200);
+/* v1.0.203 🙋 Tester popup on Home (announcement · notice · request · advice) — like Do Do's Home image popup.
+   Modes: 'rec' (Android/PC browser → join steps), 'play' (Play Store app = already a tester → thanks + requests), 'ios' (iPhone → invite Android friends).
+   Once a day (myaing.tpd), "don't show again" (myaing.tpx='1'), remote off: config.json "tpop":false. Progress bar: config.json "testers": N (0 = hidden). */
+const TP_GROUP='https://groups.google.com/g/dokodemo-testers',TP_OPT='https://play.google.com/apps/testing/com.dokodemo.japanese',TP_STORE='https://play.google.com/store/apps/details?id=com.dokodemo.japanese',TP_NEED=12;
+function tpMode(){return PLAY()?'play':IS_IOS()?'ios':'rec'}
+function tpMsg(){return `🙏 Dokodemo – どこでも日本語 ကို Google Play မှာ စမ်းသုံးပေးကြပါ\n\nAndroid ဖုန်းသုံးတဲ့ Tester ${TP_NEED} ယောက် လိုနေပါတယ် (၅ မိနစ်ပဲ ကြာပါတယ်) 👇\n\n① Group ဝင်ပါ (Play Store က Gmail နဲ့)\n${TP_GROUP}\n\n② "Become a tester" နှိပ်ပါ\n${TP_OPT}\n\n③ Play Store ကနေ Install လုပ်ပါ\n${TP_STORE}\n\n⚠️ ၁၄ ရက်အတွင်း App ကို မဖျက်ပါနဲ့ 🙏`}
+function tpShare(){const t=tpMsg();try{if(navigator.share){navigator.share({title:'Dokodemo Tester',text:t}).catch(()=>{});return}}catch(e){}tpCopy()}
+function tpCopy(){const t=tpMsg();try{navigator.clipboard.writeText(t).then(()=>toast(T('📋 ကူးပြီးပါပြီ · Telegram/Messenger မှာ Paste လုပ်ပါ','📋 コピーしました','📋 Copied')))}catch(e){toast(t)}}
+function tpOpen(u){try{window.open(u,'_blank','noopener')}catch(e){location.href=u}}
+function tpClose(never){const ov=document.getElementById('tpov');if(never){try{localStorage.setItem('myaing.tpx','1')}catch(e){}}if(!ov)return;const c=ov.firstElementChild;ov.style.opacity='0';if(c)c.style.transform='scale(.92) translateY(20px)';setTimeout(()=>{ov.remove();try{dlrAuto()}catch(e){}},260)}
+function tpShow(force){if(document.getElementById('tpov'))return;const m=tpMode(),cfg=CFG(),n=Math.max(0,Math.min(99,+cfg.testers||0));
+  const ov=document.createElement('div');ov.id='tpov';ov.style.cssText='position:fixed;inset:0;z-index:1003;background:rgba(5,10,20,.62);display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;transition:opacity .25s';
+  ov.addEventListener('click',e=>{if(e.target===ov)tpClose()});
+  const step=(no,ic,title,sub,btn,act,col)=>`<div style="display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:12px;box-shadow:0 4px 14px rgba(20,34,61,.08);animation:tpIn .45s ${.15+no*.1}s both"><span style="flex:none;width:44px;height:44px;border-radius:14px;background:${col}1A;color:${col};display:flex;align-items:center;justify-content:center;font-size:22px;position:relative">${ic}<b style="position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:10px;background:${col};color:#fff;font-size:11.5px;display:flex;align-items:center;justify-content:center">${no}</b></span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><b class="mm" style="font-size:14px;color:#14223D;line-height:1.5">${title}</b><span class="mm" style="font-size:11.5px;color:#6B7486;line-height:1.6">${sub}</span></span>${btn?`<button onclick="${act}" style="flex:none;min-height:38px;padding:0 12px;border-radius:19px;border:none;background:${col};color:#fff;font-size:12.5px;font-weight:800">${btn}</button>`:''}</div>`;
+  const warn=(ic,t)=>`<div class="mm" style="display:flex;gap:8px;font-size:12.5px;line-height:1.7;color:#7A3B00"><span style="flex:none">${ic}</span><span>${t}</span></div>`;
+  const prog=n?`<div style="display:flex;flex-direction:column;gap:5px;animation:tpIn .45s .1s both"><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:#fff"><span class="mm">${T('Tester ဝင်ပြီးသူ','参加テスター','Testers joined')}</span><span>${n} / ${TP_NEED}${n>=TP_NEED?' 🎉':''}</span></div><div style="height:10px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden"><div style="height:100%;width:${Math.min(100,n/TP_NEED*100)}%;background:linear-gradient(90deg,#FFC83D,#FF7A45);border-radius:5px;animation:tpBar 1.2s .3s both"></div></div></div>`:'';
+  const hero=`<svg viewBox="0 0 200 150" style="width:150px;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35));animation:tpFloat 3.2s ease-in-out infinite">
+<circle cx="100" cy="78" r="62" fill="rgba(255,255,255,.08)"/><circle cx="100" cy="78" r="46" fill="rgba(255,255,255,.08)"/>
+<rect x="68" y="18" width="64" height="118" rx="12" fill="#0B1424" stroke="#fff" stroke-opacity=".85" stroke-width="2.5"/><rect x="74" y="28" width="52" height="98" rx="6" fill="#fff"/>
+<rect x="86" y="42" width="28" height="28" rx="7" fill="#14223D"/><text x="100" y="63" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">ど</text><circle cx="110" cy="47" r="3" fill="#E8463A"/>
+<rect x="80" y="78" width="40" height="5" rx="2.5" fill="#D5DCE8"/><rect x="84" y="88" width="32" height="5" rx="2.5" fill="#E3E8F0"/><rect x="82" y="102" width="36" height="12" rx="6" fill="#1F9D55"/><text x="100" y="111" text-anchor="middle" font-size="7.5" font-weight="800" fill="#fff">TEST</text>
+<g style="animation:tpPop 2.4s ease-in-out infinite"><circle cx="146" cy="40" r="16" fill="#1F9D55"/><path d="M139 40l5 5 9-10" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g fill="#FFC83D"><path d="M40 40l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" style="animation:tpTw 1.8s infinite"/><path d="M160 104l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" style="animation:tpTw 1.8s .6s infinite"/><path d="M48 112l2 4 4 2-4 2-2 4-2-4-4-2 4-2z" style="animation:tpTw 1.8s 1.1s infinite"/></g></svg>`;
+  let title,lead,body,cta;
+  if(m==='play'){
+    title=T('Tester ဖြစ်ပေးလို့ ကျေးဇူးအများကြီး တင်ပါတယ် 🙏','テスターになってくれてありがとう 🙏','Thank you for being a tester 🙏');
+    lead=T('Google Play မှာ တရားဝင် တင်နိုင်ဖို့ Tester တွေက ၁၄ ရက် ဆက်တိုက် စမ်းပေးဖို့ လိုပါတယ်။','Google Playで公開するには、14日間続けてのテストが必要です。','To launch on Google Play, testers need to keep testing for 14 days in a row.');
+    body=step(1,'📱',T('၁၄ ရက်အတွင်း App ကို မဖျက်ပါနဲ့','14日間アンインストールしないで','Keep the app for 14 days'),T('ရံဖန်ရံခါ ဖွင့်ပြီး လေ့လာပေးပါ','時々開いて使ってください','Open it now and then'),'','', '#1F9D55')+
+      step(2,'💬',T('အကြံပြုချက် / Bug ပြောပြပေးပါ','意見・不具合を教えて','Send feedback / bugs'),T('Screenshot နဲ့ Telegram မှာ ပို့ပေးပါ','スクショをTelegramへ','Screenshots on Telegram welcome'),T('ပို့မယ်','送る','Send'),`tpOpen('https://t.me/'+APP.telegram)`,'#2AA3E0')+
+      step(3,'👥',T('Android သူငယ်ချင်းတွေကို ဖိတ်ပေးပါ','Androidの友だちを招待','Invite Android friends'),T(`Tester ${MMD(TP_NEED)} ယောက် ပြည့်ဖို့ ကူညီပေးပါ`,`テスター${TP_NEED}人が必要です`,`We need ${TP_NEED} testers`),T('မျှဝေ','共有','Share'),'tpShare()','#7A3EB1');
+    cta=`<button onclick="tpShare()" class="mm" style="min-height:54px;border-radius:27px;border:none;background:linear-gradient(90deg,#7A3EB1,#E8463A);color:#fff;font-size:15.5px;font-weight:900;box-shadow:0 8px 20px rgba(122,62,177,.35)">👥 ${T('သူငယ်ချင်းကို ဖိတ်မယ်','友だちを招待','Invite friends')}</button>`;
+  }else if(m==='ios'){
+    title=T('Android သုံးတဲ့ သူငယ်ချင်းတွေကို ဖိတ်ပေးပါ 🙏','Androidの友だちを招待してください 🙏','Invite your Android friends 🙏');
+    lead=T(`Dokodemo ကို Google Play မှာ တင်ဖို့ Android Tester ${MMD(TP_NEED)} ယောက် လိုနေပါတယ်။ iPhone က Tester မဖြစ်နိုင်ပေမဲ့ ဖိတ်ပေးလို့ ရပါတယ်။`,`Google Play公開のためAndroidテスター${TP_NEED}人が必要です。iPhoneの方は招待で応援できます。`,`We need ${TP_NEED} Android testers for Google Play. iPhone users can help by inviting friends.`);
+    body=step(1,'📋',T('ဖိတ်စာကို ကူးပါ','招待文をコピー','Copy the invite'),T('အဆင့် ၃ ဆင့်နဲ့ link တွေ ပါပြီးသား','手順とリンク入り','Steps and links included'),T('ကူး','コピー','Copy'),'tpCopy()','#1F3A68')+
+      step(2,'📤',T('Telegram / Messenger မှာ ပို့ပါ','Telegram・Messengerで送る','Send on Telegram / Messenger'),T('Android သုံးတဲ့ သူငယ်ချင်း၊ မိသားစုဆီ','Androidの友だち・家族へ','To Android friends & family'),T('မျှဝေ','共有','Share'),'tpShare()','#7A3EB1');
+    cta=`<button onclick="tpShare()" class="mm" style="min-height:54px;border-radius:27px;border:none;background:linear-gradient(90deg,#7A3EB1,#E8463A);color:#fff;font-size:15.5px;font-weight:900;box-shadow:0 8px 20px rgba(122,62,177,.35)">📤 ${T('ဖိတ်စာ မျှဝေမယ်','招待を共有','Share invite')}</button>`;
+  }else{
+    title=T('Dokodemo Tester ဖြစ်ပေးပါ 🙏','テスター募集中 🙏','Become a Dokodemo tester 🙏');
+    lead=T(`Google Play Store မှာ တရားဝင် တင်ဖို့ Android Tester ${MMD(TP_NEED)} ယောက် လိုနေပါတယ်။ ၅ မိနစ်ပဲ ကြာပါတယ်။`,`Google Play公開のため、Androidテスター${TP_NEED}人を募集中！5分で完了。`,`We need ${TP_NEED} Android testers to launch on Google Play. Takes 5 minutes.`);
+    body=step(1,'👥',T('Google Group ဝင်ပါ','Googleグループに参加','Join the Google Group'),T('"Join group" ကို နှိပ်ပါ','「Join group」をタップ','Tap "Join group"'),T('ဝင်မယ်','参加','Join'),`tpOpen(TP_GROUP)`,'#1F3A68')+
+      step(2,'✅',T('Tester အဖြစ် စာရင်းသွင်းပါ','テスターに登録','Opt in as a tester'),T('"Become a tester" ကို နှိပ်ပါ','「Become a tester」をタップ','Tap "Become a tester"'),T('နှိပ်မယ်','登録','Opt in'),`tpOpen(TP_OPT)`,'#1F9D55')+
+      step(3,'⬇️',T('Play Store ကနေ Install လုပ်ပါ','Play Storeでインストール','Install from Play Store'),T('① ② ပြီးမှ ပွင့်ပါတယ်','①②の後に開けます','Works after ① and ②'),T('Install','入手','Install'),`tpOpen(TP_STORE)`,'#E8463A');
+    cta=`<button onclick="tpOpen(TP_GROUP)" class="mm" style="min-height:56px;border-radius:28px;border:none;background:linear-gradient(90deg,#1F9D55,#17B890);color:#fff;font-size:16px;font-weight:900;box-shadow:0 8px 20px rgba(31,157,85,.35);animation:tpPulse 2s 1s infinite">🙋 ${T('အခုပဲ Tester ဝင်မယ်','今すぐ参加する','Join now')}</button><button onclick="tpShare()" class="mm" style="min-height:44px;border-radius:22px;border:1.5px solid #D5DCE8;background:#fff;color:#1F3A68;font-size:13.5px;font-weight:800">👥 ${T('သူငယ်ချင်းကို ဖိတ်မယ်','友だちに共有','Share with friends')}</button>`;
+  }
+  const warns=m==='ios'?'':`<div style="background:#FFF6E5;border:1.5px solid #F5D49A;border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;animation:tpIn .45s .55s both"><b class="mm" style="font-size:13px;color:#B4570B">⚠️ ${T('သတိပြုရန်','注意','Please note')}</b>
+${m==='play'?warn('🚫',T('Group ထဲက မထွက်ပါနဲ့ · Tester ရေတွက်တာ လျော့သွားပါမယ်','グループから退出しないでください','Please don\'t leave the group')):warn('📧',T('Group ဝင်တဲ့ Gmail နဲ့ Play Store က Gmail <b>တူရပါမယ်</b>','グループとPlay Storeは同じGmailで','Use the same Gmail for the group and Play Store'))}
+${warn('⏳',T('<b>၁၄ ရက်</b>အတွင်း App ကို မဖျက်ပါနဲ့','<b>14日間</b>は削除しないで','Keep the app for <b>14 days</b>'))}
+${m==='play'?'':warn('♻️',T('APK အဟောင်း ရှိရင် အရင်ဖျက်ပြီးမှ Play Store က သွင်းပါ','古いAPKは先に削除してください','Uninstall the old APK first'))}
+${warn('💡',T('Rating / Review ပေးဖို့ မလိုပါ · စမ်းသုံးပေးရုံပါပဲ','評価・レビューは不要です','No rating or review needed — just use it'))}</div>`;
+  ov.innerHTML=`<div style="position:relative;width:min(420px,100%);max-height:92vh;overflow:hidden;border-radius:28px;background:#F3F5F9;box-shadow:0 24px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;transform:scale(.9) translateY(24px);transition:transform .35s cubic-bezier(.2,1.3,.4,1)">
+<button onclick="tpClose()" aria-label="Close" style="position:absolute;top:12px;right:12px;z-index:2;width:44px;height:44px;border-radius:22px;border:none;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:22px;font-weight:700">✕</button>
+<div style="overflow-y:auto;-webkit-overflow-scrolling:touch">
+<div style="position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#3B57A8 0%,#1F3A68 45%,#14223D 100%);padding:22px 18px 18px;color:#fff;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+<span style="position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 14px,transparent 14px 28px)"></span>
+<span class="mm" style="position:relative;font-size:11.5px;font-weight:800;letter-spacing:.5px;background:rgba(255,200,61,.18);color:#FFC83D;border:1px solid rgba(255,200,61,.45);border-radius:12px;padding:3px 10px">📢 ${m==='play'?T('Tester များအတွက်','テスターの皆さんへ','For testers'):T('ကြေညာချက်','お知らせ','Announcement')}</span>
+<span style="position:relative">${hero}</span>
+<b class="mm" style="position:relative;font-size:19px;line-height:1.55">${title}</b>
+<span class="mm" style="position:relative;font-size:13px;line-height:1.75;opacity:.9">${lead}</span>
+<span style="position:relative;width:100%">${prog}</span></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:10px">${body}${warns}${cta}
+<div style="display:flex;justify-content:space-between;gap:8px;padding:2px 4px 4px"><button onclick="tpClose()" class="mm" style="border:none;background:none;color:#6B7486;font-size:12.5px;font-weight:700;padding:8px 4px">${T('ဒီနေ့ မပြတော့ဘူး','今日は表示しない','Not today')}</button><button onclick="tpClose(1)" class="mm" style="border:none;background:none;color:#9AA3B2;font-size:12.5px;font-weight:700;padding:8px 4px">${T('နောက်ထပ် မပြနဲ့','今後表示しない','Don\'t show again')}</button></div></div></div></div>`;
+  document.body.appendChild(ov);requestAnimationFrame(()=>{ov.style.opacity='1';const c=ov.firstElementChild;if(c)c.style.transform='none'});
+  try{localStorage.setItem('myaing.tpd',todayS())}catch(e){}}
+function tpOK(){try{if(CFG().tpop===false)return false;if(localStorage.getItem('myaing.tpx')==='1')return false;if(localStorage.getItem('myaing.tpd')===todayS())return false}catch(e){return false}return true}
+let TP_T=0;function tpAuto(){if(++TP_T>40||!tpOK())return;const busy=document.getElementById('dlrov')||document.getElementById('ksov')||document.getElementById('kwov')||document.querySelector('#splash,.splash');
+  if(busy||S.tab!=='home'||(S.view&&S.view!=='main')||S.drawer||document.hidden){setTimeout(tpAuto,3000);return}tpShow()}
+setTimeout(tpAuto,2600);
+(function(){if(document.getElementById('tpcss'))return;const st=document.createElement('style');st.id='tpcss';st.textContent='@keyframes tpIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}@keyframes tpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes tpPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}#tpov g[style*=tpPop]{transform-origin:146px 40px;transform-box:view-box}@keyframes tpTw{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.1)}}#tpov path[style*=tpTw]{transform-box:fill-box;transform-origin:center}@keyframes tpBar{from{width:0}}@keyframes tpPulse{0%,100%{box-shadow:0 8px 20px rgba(31,157,85,.35)}50%{box-shadow:0 8px 32px rgba(31,157,85,.7)}}@media (prefers-reduced-motion:reduce){#tpov *{animation:none!important}}';document.head.appendChild(st)})();
 /* ---------- ⭐ Friend referral (v1.0.195) ----------
    Friend enters the inviter's Dokodemo ID (6 chars, proUID) within 14 days of their first login, then opens the app
    (logged in) on 3 different days → friend gets +100⭐ and writes Firestore refs/{friendUid} {by,d,ts} (create only).
@@ -32778,7 +32847,7 @@ const PLAY=(()=>{let p=false;try{if(/[?&]src=play\b/.test(location.search))local
 setTimeout(function(){try{const t=+localStorage.getItem('myaing.migrated')||0;if(!t||Date.now()-t>60000)return;localStorage.setItem('myaing.migrated','1');
   toast(T('✅ Dokodemo လိပ်စာအသစ်ကို ပြောင်းပြီးပါပြီ — မှတ်တမ်းတွေ အကုန် ပါလာပါတယ်။','✅ 新しいアドレスに移動しました。記録はそのまま引き継がれています。','✅ Dokodemo has moved — your progress came with you.')+(localStorage.getItem('myaing.repush')?T(' 🔔 သတိပေးချက်ကို Menu မှာ ပြန်ဖွင့်ပေးပါ။',' 🔔 通知はメニューで再度オンにしてください。',' 🔔 Please turn reminders on again in the Menu.'):''));localStorage.removeItem('myaing.repush')}catch(e){}},2500);
 /* Remote on/off switches — edit config.json on GitHub to show/hide menu rows for everyone */
-const CFG_DEF={share:true,website:true,copyright:true,tester:true};let _cfg=null;
+const CFG_DEF={share:true,website:true,copyright:true,tester:true,tpop:true,testers:0};let _cfg=null;
 function CFG(){if(!_cfg){try{_cfg=Object.assign({},CFG_DEF,JSON.parse(localStorage.getItem('myaing.cfg')||'{}'))}catch(e){_cfg=Object.assign({},CFG_DEF)}}return _cfg}
 function IS_IOS(){return /iPhone|iPad|iPod/i.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)}
 setTimeout(function(){if(!/^https?:$/.test(location.protocol)||!isLive())return;fetch('config.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=='object')return;const n=Object.assign({},CFG_DEF,j),ch=JSON.stringify(n)!==JSON.stringify(CFG());_cfg=n;try{localStorage.setItem('myaing.cfg',JSON.stringify(j))}catch(e){}if(ch&&typeof S!=='undefined'&&S.drawer)render()}).catch(()=>{})},800);

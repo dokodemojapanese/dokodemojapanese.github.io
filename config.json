@@ -2,5 +2,7 @@
   "share": true,
   "website": true,
   "copyright": true,
-  "tester": true
+  "tester": true,
+  "tpop": true,
+  "testers": 1
 }
