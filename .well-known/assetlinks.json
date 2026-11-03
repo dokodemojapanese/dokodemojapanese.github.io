@@ -3,6 +3,9 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.dokodemo.japanese",
-    "sha256_cert_fingerprints": ["EA:A2:50:73:DD:45:1C:82:ED:99:D8:FF:21:73:63:CE:06:E4:48:D6:14:52:58:52:55:16:43:EB:AF:EE:E3:94"]
+    "sha256_cert_fingerprints": [
+      "D9:D5:BE:1D:EC:20:7E:24:D8:1A:35:83:20:96:47:52:BF:FA:36:53:E5:C8:82:58:13:81:13:08:2A:97:69:AD",
+      "EA:A2:50:73:DD:45:1C:82:ED:99:D8:FF:21:73:63:CE:06:E4:48:D6:14:52:58:52:55:16:43:EB:AF:EE:E3:94"
+    ]
   }
 }]
