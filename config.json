@@ -4,5 +4,6 @@
   "copyright": true,
   "tester": true,
   "tpop": true,
-  "testers": 1
+  "testers": 12,
+  "tstart": "2026-11-04"
 }
