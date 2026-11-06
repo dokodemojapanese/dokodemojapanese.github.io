@@ -160,6 +160,12 @@ const OPEN_TODAY = [
 /* plan = list of { msg, tag, who(token) } — a token gets the first message it matches */
 function plan() {
   const jk = jlptLeft(), study = x => x.st === true, sab = x => x.sb !== false;
+  if (SLOT === 'custom') {                       // v1.0.218: admin message from GitHub → Run workflow (custom)
+    const t = (process.env.CTITLE || '').trim(), b = (process.env.CBODY || '').trim();
+    if (!t && !b) { console.log('custom: title/body empty'); return []; }
+    const m = [t || 'Dokodemo', b];
+    return [{ tag: 'dokodemo-custom', who: () => true, msg: { my: m, ja: m, en: m, jp: (process.env.CJP || '').trim() } }];
+  }
   if (SLOT === 'test') return [{ tag: 'dokodemo-test', who: () => true, msg: {
     my: ['🔔 Dokodemo', 'Notification စနစ် စမ်းသပ်ခြင်း — ဒီစာ ရောက်ရင် အဆင်ပြေပါပြီ ✅'],
     ja: ['🔔 Dokodemo', '通知のテストです ✅'], en: ['🔔 Dokodemo', 'Test notification — it works ✅'], jp: '通知のテストです。' } }];
@@ -190,7 +196,8 @@ function plan() {
     const chunk = list.slice(i, i + 500);
     const res = await admin.messaging().sendEach(chunk.map(([x, p]) => {
       const [title, body] = p.msg[x.lang] || p.msg.my;
-      return { token: x.token, data: { title, body, url: SITE, tag: p.tag, jp: p.msg.jp || '' },
+      const w = SLOT === 'custom' ? (process.env.CWORD || '').trim() : '';
+      return { token: x.token, data: { title, body, url: w ? SITE + '?dq=' + encodeURIComponent(w) : SITE, tag: p.tag, jp: p.msg.jp || '' },
         webpush: { headers: { Urgency: 'high', TTL: '43200' } },
         android: { priority: 'high' } };
     }));
