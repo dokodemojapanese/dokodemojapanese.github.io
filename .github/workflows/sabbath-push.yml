@@ -1,16 +1,27 @@
 name: Sabbath push
 
+# v1.0.215: 3 times a day in Japan time + 3 times a day in Myanmar time (6 runs).
+# Times below are UTC. push.js picks the zone and slot from the schedule.
 on:
   schedule:
-    - cron: '0 22 * * *'   # every day 07:00 Japan time (Sabbath)
-    - cron: '0 11 * * *'   # every day 20:00 Japan time (Study)
+    - cron: '0 22 * * *'    # 07:00 Japan    (Sabbath / good morning)
+    - cron: '0 3 * * *'     # 12:00 Japan    (word of the day)
+    - cron: '0 11 * * *'    # 20:00 Japan    (study reminder)
+    - cron: '30 0 * * *'    # 07:00 Myanmar  (Sabbath / good morning)
+    - cron: '30 5 * * *'    # 12:00 Myanmar  (word of the day)
+    - cron: '30 13 * * *'   # 20:00 Myanmar  (study reminder)
   workflow_dispatch:
     inputs:
       mode:
-        description: 'auto = Sabbath (only if today is Sabbath/eve) · study = study reminder · test = test message'
+        description: 'test = test message · am = 07:00 message · noon = 12:00 word · pm = 20:00 study'
         type: choice
-        options: [auto, study, test]
+        options: [test, am, noon, pm]
         default: test
+      zone:
+        description: 'jp = Japan-time users · mm = Myanmar-time users · all = everyone'
+        type: choice
+        options: [all, jp, mm]
+        default: all
 
 jobs:
   push:
@@ -24,4 +35,6 @@ jobs:
       - run: node push.js
         env:
           FIREBASE_SA: ${{ secrets.FIREBASE_SA }}
-          MODE: ${{ github.event.inputs.mode || (github.event.schedule == '0 11 * * *' && 'study' || 'auto') }}
+          SCHED: ${{ github.event.schedule }}
+          MODE: ${{ github.event.inputs.mode || 'test' }}
+          ZONE: ${{ github.event.inputs.zone || 'jp' }}
