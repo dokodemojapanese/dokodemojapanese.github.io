@@ -13,15 +13,27 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'test = test message · am = 07:00 message · noon = 12:00 word · pm = 20:00 study'
+        description: 'custom = your own message (fill the boxes below) · test · am · noon · pm'
         type: choice
-        options: [test, am, noon, pm]
+        options: [custom, test, am, noon, pm]
         default: test
       zone:
         description: 'jp = Japan-time users · mm = Myanmar-time users · all = everyone'
         type: choice
         options: [all, jp, mm]
         default: all
+      title:
+        description: 'custom: title (e.g. 電子レンジ)'
+        required: false
+      body:
+        description: 'custom: message (e.g. မိုက်ခရိုဝေ့ဖ်မီးဖို (Microwave))'
+        required: false
+      jp:
+        description: 'custom: Japanese line read aloud (e.g. でんしレンジ)'
+        required: false
+      word:
+        description: 'custom: word to open in ど Dictionary when tapped (e.g. 電子レンジ)'
+        required: false
 
 jobs:
   push:
@@ -38,3 +50,7 @@ jobs:
           SCHED: ${{ github.event.schedule }}
           MODE: ${{ github.event.inputs.mode || 'test' }}
           ZONE: ${{ github.event.inputs.zone || 'jp' }}
+          CTITLE: ${{ github.event.inputs.title }}
+          CBODY: ${{ github.event.inputs.body }}
+          CJP: ${{ github.event.inputs.jp }}
+          CWORD: ${{ github.event.inputs.word }}
