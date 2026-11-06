@@ -1,5 +1,5 @@
 /* Dokodemo offline cache. Bump VERSION each time you upload a new index.html */
-const VERSION='myaing-v214';
+const VERSION='myaing-v215';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(CORE.map(u=>new Request(u,{cache:'reload'})))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==VERSION).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
@@ -20,8 +20,10 @@ self.addEventListener('push',e=>{let p={};try{p=e.data?e.data.json():{}}catch(x)
   const d=p.data||p.notification||p||{};const title=d.title||'Dokodemo',body=d.body||'';
   /* renotify + silent:false = play the phone's notification sound even when a notification with the same tag is replaced */
   e.waitUntil(Promise.all([
-    self.registration.showNotification(title,{body,icon:'icon-192.png',badge:'icon-192.png',tag:d.tag||'dokodemo-sabbath',renotify:true,silent:false,vibrate:[200,100,200,100,400],timestamp:Date.now(),data:{url:d.url||'./'}}),
-    clients.matchAll({type:'window',includeUncontrolled:true}).then(cs=>cs.forEach(c=>{try{c.postMessage({t:'push',title,body})}catch(x){}}))
+    self.registration.showNotification(title,{body,icon:'icon-192.png',badge:'icon-192.png',tag:d.tag||'dokodemo-sabbath',renotify:true,silent:false,vibrate:[200,100,200,100,400],timestamp:Date.now(),data:{url:d.url||'./',jp:d.jp||''}}),
+    clients.matchAll({type:'window',includeUncontrolled:true}).then(cs=>cs.forEach(c=>{try{c.postMessage({t:'push',title,body,jp:d.jp||''})}catch(x){}}))
   ]))});
-self.addEventListener('notificationclick',e=>{e.notification.close();const u=(e.notification.data&&e.notification.data.url)||'./';
-  e.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(cs=>{for(const c of cs){if('focus' in c)return c.focus()}return clients.openWindow(u)}))});
+/* v1.0.215: tapping a notification opens the app and shows a card that reads the Japanese line aloud (index.html nsayShow) */
+self.addEventListener('notificationclick',e=>{const n=e.notification,dd=n.data||{},m={t:'nclick',title:n.title||'',body:n.body||'',jp:dd.jp||''};n.close();
+  let u=dd.url||'./';try{const x=new URL(u,self.registration.scope);x.searchParams.set('nt',m.title);x.searchParams.set('nb',m.body);if(m.jp)x.searchParams.set('nj',m.jp);u=x.href}catch(x){}
+  e.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(cs=>{for(const c of cs){if('focus' in c){try{c.postMessage(m)}catch(x){}return c.focus()}}return clients.openWindow(u)}))});
