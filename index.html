@@ -33402,7 +33402,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.241',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.242',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -38135,7 +38135,7 @@ setTimeout(function(){try{const t=+localStorage.getItem('myaing.migrated')||0;if
 const CFG_DEF={share:true,website:true,copyright:true,tester:true,tpop:true,testers:0,tstart:'2026-11-04'};let _cfg=null;
 function CFG(){if(!_cfg){try{_cfg=Object.assign({},CFG_DEF,JSON.parse(localStorage.getItem('myaing.cfg')||'{}'))}catch(e){_cfg=Object.assign({},CFG_DEF)}}return _cfg}
 function IS_IOS(){return /iPhone|iPad|iPod/i.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)}
-setTimeout(function(){if(!/^https?:$/.test(location.protocol)||!isLive())return;fetch('config.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=='object')return;const n=Object.assign({},CFG_DEF,j),ch=JSON.stringify(n)!==JSON.stringify(CFG());_cfg=n;try{localStorage.setItem('myaing.cfg',JSON.stringify(j))}catch(e){}if(ch&&typeof S!=='undefined'&&S.drawer)render()}).catch(()=>{})},800);
+setTimeout(function(){if(!/^https?:$/.test(location.protocol)||!isLive())return;fetch('config.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=='object')return;const n=Object.assign({},CFG_DEF,j),ch=JSON.stringify(n)!==JSON.stringify(CFG());_cfg=n;try{localStorage.setItem('myaing.cfg',JSON.stringify(j))}catch(e){}if(ch&&typeof S!=='undefined'&&(S.drawer||S.view==='tgate'))render()}).catch(()=>{})},800);
 let VTAP=[];
 function navHTML(){if(S.drawer)return '';const sq=(c,col,t)=>`<span class="sq" style="background:${S.tab===t?col:'#A9B3C6'}">${c}</span>`;return `<nav>
 <button data-a="open" class="${S.drawer?'on':''}">${thWrap('<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16" stroke="#E8463A"/><path d="M4 12h16" stroke="#1F3A68"/><path d="M4 18h16" stroke="#E0A030"/></svg>',0)}Menu</button>
@@ -38153,6 +38153,34 @@ let _gaInit=false,_gaLast='';
 function gaInit(){if(_gaInit||!gaOn())return;_gaInit=true;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA_ID,{send_page_view:false,user_id:proUID(),anonymize_ip:true});gtag('set','user_properties',{app_pro:PRO_OK?'pro':'free',app_id:proUID()});const sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(sc)}
 function gaPath(){const v=S.view;if(v==='main')return '/'+(S.tab==='words'?'discovery':S.tab==='talk'?'dialog':S.tab==='practice'?'pro':S.tab);if(v==='dlg')return '/dialog/'+S.dlg;if(v==='xp')return '/'+({dict:'dictionary',cal:'calendar',dham:'dhamma',know:'knowledge',burma:'burma'}[S.xp]||S.xp);if(v==='topic')return '/discovery/'+S.topic;if(v==='jlpt')return '/jlpt/N'+S.jl+'/'+S.jtab;if(v==='kana')return '/kana/'+S.kana;if(v==='pro')return '/pro/'+S.pro;return '/'+v}
 function gaView(){if(!gaOn())return;gaInit();const p=gaPath();if(p===_gaLast)return;_gaLast=p;try{gtag('event','page_view',{page_path:p,page_location:location.origin+location.pathname+'#'+p,page_title:p})}catch(e){}}
+/* ---------- v1.0.242 Tester gate: during the Play closed test, NEW Android visitors in the browser (no User ID yet, not the Play app)
+   see only the tester invitation. Off when config.json tpop:false (or tgate:false). iPhone/PC and existing users are never gated. */
+function tgateOn(){try{const c=CFG();if(c.tpop===false||c.tgate===false)return false;if(!isLive()||PLAY())return false;
+  if(!/Android/i.test(navigator.userAgent||''))return false;const ls=localStorage;
+  if(ls.getItem('myaing.uid')||ls.getItem('myaing.welcomed')||ls.getItem('myaing.acct'))return false;return true}catch(e){return false}}
+function renderTGate(){const app=document.getElementById('app');if(!app)return;
+  let left=0;try{left=Math.max(0,15-tpDayN())}catch(e){}
+  const st=(n,h)=>`<div style="display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #E3E8F2;border-radius:16px;padding:12px 14px;margin-bottom:10px"><span style="flex:none;width:28px;height:28px;border-radius:50%;background:#0E9F6E;color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center">${n}</span><div style="font-size:14.5px;line-height:1.7;color:#1B2433">${h}</div></div>`;
+  const lk=(u,t)=>`<a href="${u}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;background:#0E9F6E;color:#fff;border-radius:20px;padding:6px 14px;font-weight:800;text-decoration:none;font-size:14px">${t} ↗</a>`;
+  app.innerHTML=`<main style="height:100%;overflow:auto;background:#F3F5F9;padding:22px 16px 40px">
+  <div style="max-width:520px;margin:0 auto">
+    <div style="text-align:center;margin:6px 0 16px">
+      <div style="font-size:30px;font-weight:900;color:#14223D;letter-spacing:.5px">Dok<span style="display:inline-block;width:.62em;height:.62em;border-radius:50%;background:#D93A2E;vertical-align:.02em;margin:0 .03em"></span>demo</div>
+      <div style="color:#5B6578">どこでも日本語</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#0E9F6E,#0B7A55);color:#fff;border-radius:22px;padding:20px 18px;margin-bottom:14px">
+      <div style="font-size:21px;font-weight:900;margin-bottom:6px">🙋 ${T('Tester အဖြစ် ပါဝင်ပေးပါ','テスターとして参加してください','Please join as a tester')}</div>
+      <div style="font-size:14.5px;line-height:1.75;opacity:.95">${T('Dokodemo ကို Google Play မှာ စမ်းသပ်နေပါတယ်။ စမ်းသပ်ကာလအတွင်း Android သုံးသူအသစ်တွေက Google Play app ကနေ သုံးပေးဖို့ မေတ္တာရပ်ခံပါတယ်။ အခမဲ့ပါ 🙏','現在Google Playでテスト中です。テスト期間中、Androidの新しい方はGoogle Play版からご利用ください。無料です 🙏','Dokodemo is being tested on Google Play. During the test, new Android users are asked to use the Google Play app. It\'s free 🙏')}${left?`<div style="margin-top:8px;font-weight:800">⏳ ${T('စမ်းသပ်ကာလ ပြီးဖို့ နောက် '+left+' ရက်','テスト終了まであと'+left+'日','About '+left+' days left in the test')}</div>`:''}</div>
+    </div>
+    ${st(1,T('Android ဖုန်းထဲက Gmail နဲ့ Google Group ကို Join ပါ','AndroidのGmailでGoogleグループに参加','Join the Google Group with the Gmail on your Android')+'<br>'+lk('https://groups.google.com/g/dokodemo-testers','Google Group'))}
+    ${st(2,T('Tester link ကို ဖွင့်ပြီး「Become a tester」ကို နှိပ်ပါ','テスターリンクを開き「テスターになる」','Open the tester link and tap "Become a tester"')+'<br>'+lk('https://play.google.com/apps/testing/com.dokodemo.japanese','Tester link'))}
+    ${st(3,T('Google Play ကနေ Dokodemo ကို install လုပ်ပြီး ဖွင့်ပါ','Google PlayからDokodemoをインストールして開く','Install Dokodemo from Google Play and open it')+'<br>'+lk('https://play.google.com/store/apps/details?id=com.dokodemo.japanese','Google Play'))}
+    ${st(4,T('၁၄ ရက် မဖျက်ဘဲ ထားပေးပါ။ Play app ကို တစ်ခါဖွင့်ပြီးရင် ဒီ browser မှာလည်း သုံးလို့ရသွားပါမယ်။','14日間アンインストールしないでください。Play版を一度開くと、このブラウザでも使えるようになります。','Keep it installed for 14 days. After you open the Play app once, this browser works too.'))}
+    <div style="text-align:center;margin-top:16px;display:flex;flex-direction:column;gap:10px;align-items:center">
+      <a href="https://t.me/DokodemoOfficial" target="_blank" rel="noopener" style="color:#1E6FD9;font-weight:700">✈ ${T('မေးချင်တာ ရှိရင် Telegram Admin','質問はTelegram管理者へ','Questions? Telegram Admin')}</a>
+      <button data-a="login" style="border:1px solid #C9D2E3;background:#fff;border-radius:20px;padding:8px 16px;color:#14223D;font-weight:700">${T('အကောင့် ရှိပြီးသားလား? Login ဝင်မယ်','アカウントをお持ちの方はログイン','Already have an account? Log in')}</button>
+    </div>
+  </div></main>`}
 /* ---------- Welcome / Guest mode (shown once after splash) ---------- */
 function welcomed(){try{return !!localStorage.getItem('myaing.welcomed')}catch(e){return true}}
 function renderWelcome(){fbPreload();
@@ -38254,12 +38282,13 @@ _render=function(){const p={view:S.view,tab:S.tab,drawer:!!S.drawer,key:fxKey(),
 
 
 /* ---------- Bottom nav on every page ---------- */
-function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='main'||S.view==='welcome'||S.view==='auth'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
+function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='main'||S.view==='welcome'||S.view==='tgate'||S.view==='auth'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
 try{new MutationObserver(()=>ensureNav()).observe(document.getElementById('app'),{childList:true})}catch(e){}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#app>nav [data-t],#app>nav [data-a="open"]');if(!t||S.view==='main'||!fxOK())return;const app=document.getElementById('app');FX.back={html:app.innerHTML,scr:[...app.querySelectorAll('main,[id]')].map(x=>x.scrollTop)}},true);
 
 function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{spinFabSync()}catch(e){}}
 function _render(){
+  if(S.view==='tgate'){if(tgateOn()){renderTGate();return}S.view=welcomed()?'':'welcome'}
   if(S.view==='welcome'){renderWelcome();return}
   try{document.documentElement.lang={my:'my',ja:'ja',en:'en',ko:'ko',th:'th'}[SET.lang]||'my'}catch(e){}
   applyPrefs();
@@ -38425,7 +38454,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     clear:()=>{if(S.words.length&&confirm(T('သိမ်းထားသော စကားလုံးအားလုံး ဖျက်မလား?','保存した単語をすべて削除しますか？','Delete all saved words?'))){stopPlay();S.words=[]}},
     reset:()=>resetWords(),
     chats:()=>{S.flowing=false;try{speechSynthesis.cancel()}catch(e){}S.view='chats';S.drawer=false},
-    kback:()=>{stopLines();if(S.spinning)return 'skip';if(S.view==='spin'){S.view='star';return}if(S.view==='auth'){S.view=S.authFrom==='welcome'?'welcome':'main';S.authFrom='';return}S.podOn='';if(S.view==='note'){noteSaveNow();if(S.noteId){S.noteId=null;return}S.view='main';return}if(S.view==='uta'&&S.ut&&(S.ut.i!==null||S.ut.lk!==null)){S.ut={i:null,pl:-1,lk:null};return}if(S.view==='katsu'&&(S.ka.quiz||S.ka.v)){if(S.ka.quiz&&S.ka.quizOne){S.ka.quiz=null}else{S.ka.quiz=null;S.ka.v=null}S.kSay='';return}if(S.view==='jexam'&&S.jx&&S.jx.st!=='setup'){try{speechSynthesis.cancel()}catch(e){}S.jx={L:S.jx.L,st:'setup'};return}if(S.view==='jlpt'&&S.jtab){S.jtab='';S.kSay='';return}if(S.view==='adult'){S.view='pro';S.pro='Dark Side';return}if(S.view==='pay'){S.view='paywall';return}S.view='main'},
+    kback:()=>{stopLines();if(S.spinning)return 'skip';if(S.view==='spin'){S.view='star';return}if(S.view==='auth'){S.view=S.authFrom==='welcome'?'welcome':S.authFrom==='tgate'?'tgate':'main';S.authFrom='';return}S.podOn='';if(S.view==='note'){noteSaveNow();if(S.noteId){S.noteId=null;return}S.view='main';return}if(S.view==='uta'&&S.ut&&(S.ut.i!==null||S.ut.lk!==null)){S.ut={i:null,pl:-1,lk:null};return}if(S.view==='katsu'&&(S.ka.quiz||S.ka.v)){if(S.ka.quiz&&S.ka.quizOne){S.ka.quiz=null}else{S.ka.quiz=null;S.ka.v=null}S.kSay='';return}if(S.view==='jexam'&&S.jx&&S.jx.st!=='setup'){try{speechSynthesis.cancel()}catch(e){}S.jx={L:S.jx.L,st:'setup'};return}if(S.view==='jlpt'&&S.jtab){S.jtab='';S.kSay='';return}if(S.view==='adult'){S.view='pro';S.pro='Dark Side';return}if(S.view==='pay'){S.view='paywall';return}S.view='main'},
     adult:()=>{if(PLAY())return;S.view=PRO_OK?'adult':'paywall';S.kSay=''},
     pro:()=>{S.view='paywall';S.drawer=false},
     guest:()=>{try{localStorage.setItem('myaing.welcomed',String(Date.now()))}catch(e){}S.view='main';S.tab='home';try{if(window.gtag)gtag('event','welcome_guest')}catch(e){}},
@@ -38469,7 +38498,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
 /* v1.0.172: show the Login / Sign-up screen after the splash on every app start while not logged in
    (before it was shown only once, so after tapping Guest it never came back). Skipped for update reloads and ?tab= shortcuts. */
 (function(){let upd=false,sc=false;try{upd=!!sessionStorage.getItem('myaing.updr');sc=/[?&]tab=/.test(location.search)}catch(e){}
-  if(!welcomed()||(!ACCT()&&isLive()&&!upd&&!sc))S.view='welcome'})();
+  if(tgateOn())S.view='tgate';else if(!welcomed()||(!ACCT()&&isLive()&&!upd&&!sc))S.view='welcome'})();
 render();
 
 /* ---------- Month floating art (12 Myanmar months: flower · festival · lights) ---------- */
