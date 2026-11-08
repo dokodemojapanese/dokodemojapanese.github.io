@@ -33402,7 +33402,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.244',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.246',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -37568,6 +37568,7 @@ function canSpeak(lang){
   return true}
 function utter(t,lang,rate){const u=new SpeechSynthesisUtterance(t);u.lang=lang;u.rate=rate||1;const v=voiceFor(lang);if(v)u.voice=v;return u}
 const DKLOGO=`<svg width="18" height="18" style="vertical-align:-4px;margin-right:5px;border-radius:5px" viewBox="0 0 150 150" aria-hidden="true" class="dklg"><rect width="150" height="150" rx="34" fill="#14223D"/><path d="M20 120 V92 L75 110 L130 92 V120 C108 114 90 116 75 128 C60 116 42 114 20 120 Z" fill="#fff" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M75 112 V124" stroke="#14223D" stroke-width="3.5" stroke-linecap="round"/><g transform="translate(75 62)"><path d="M-52 0a52 15 0 0 1 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle r="36" fill="#1F3A68"/><path d="M-36 0h72M0-36c-14 12-14 60 0 72M0-36c14 12 14 60 0 72" stroke="#4469A8" stroke-width="2.6" fill="none"/><text x="-3" y="6" font-size="36" font-weight="900" fill="#fff" text-anchor="middle" font-family="Hiragino Sans,Noto Sans JP,sans-serif">ど</text><path d="M-52 0a52 15 0 0 0 104 0" transform="rotate(-18)" fill="none" stroke="#F5C036" stroke-width="5.5" stroke-linecap="round"/><circle cx="44" cy="-26" r="10" fill="#E8463A" stroke="#14223D" stroke-width="3"/></g></svg>`;
+
 /* v1.0.243: the same text twice within 0.6 s (e.g. kana cell data-sp + ksOpen) is spoken only once */
 let _sjL='',_sjT=0;
 function speakJa(t,rate,done){const _n=Date.now();if(!done&&t===_sjL&&_n-_sjT<600)return;_sjL=t;_sjT=_n;if(!canSpeak('ja-JP')){done&&setTimeout(done,300);return}try{const u=utter(t,'ja-JP',rate);u.onend=done||null;u.onerror=done||null;speechSynthesis.speak(u)}catch(e){done&&setTimeout(done,800)}}
