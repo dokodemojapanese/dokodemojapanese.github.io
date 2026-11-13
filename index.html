@@ -33582,7 +33582,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.298',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.300',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -37881,12 +37881,69 @@ function mcGo(m){S.mcm=m;const el=document.querySelector('.mcard');if(el){el.out
   document.addEventListener('touchend',e=>{if(!on)return;on=false;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){const c=document.querySelector('.mcdots .on');const m=c?+c.dataset.mc:1;mcGo(dx<0?(m===12?1:m+1):(m===1?12:m-1))}},{passive:true})})();
 
 const MFLD=[null, ["မြန်မာ့ဆယ့်နှစ်လရာသီရဲ့ ပထမဆုံးလဖြစ်တဲ့ တန်ခူးလရဲ့ ရာသီပန်းကတော့ ဖြူဖွေးတဲ့ ပွင့်ဖတ်လေးဖတ်နဲ့ ရွှေဝါရောင် ဝတ်ဆံစုလေးရှိတဲ့ ကံ့ကော်ပန်း ဖြစ်ပါတယ်။", "1年の最初の月・タグー月の花は、白い4枚の花びらと金色のしべを持つガンゴー（セイロンテツボク）です。", "The flower of Tagu, the first month of the Myanmar year, is the Ironwood (Gangaw), with four white petals and a golden tuft of stamens."], ["ညောင်ရေသွန်းတဲ့ ကဆုန်လမှာ စကားဝါပန်းလေးတွေ ပွင့်ပါတယ်။", "菩提樹に水をかけるカソン月には、チャンパカ（キンコウボク）が咲きます。", "In Kason, the month of watering the Bodhi tree, Champak flowers bloom."], ["အဖြူရောင်အဆင်းနဲ့ ရနံ့သင်းတဲ့ စံပယ်ပန်းလေးကတော့ နယုန်လရဲ့ရာသီပန်းလေးဖြစ်ပါတယ်။", "白くて香りのよいジャスミンが、ナヨン月の花です。", "The white, fragrant jasmine is the flower of Nayon."], ["ပုန်းညက်ပန်းလေးတွေ ပွင့်ပြီဆိုတာနဲ့ လမြတ်ဝါဆိုကိုရောက်ပြီလို့ ဆိုနိုင်ပါတယ်။", "ポンニェッの花が咲くと、尊いワーゾー月が来たと言われます。", "When Ponnyet flowers bloom, the holy month of Waso has arrived."], ["ဝါခေါင်လမှာပွင့်တဲ့ပန်းလေးကတော့ အဖြူရောင်ပွင့်ဖတ်ပေါ်မှာ ပန်းရောင်အစင်းလေးတွေပါတဲ့ ခတ္တာပန်းလေးပဲ ဖြစ်ပါတယ်။", "ワーガウン月に咲くのは、白い花びらにピンクのすじが入ったカッターの花です。", "The flower of Wagaung is the Khatta, with white petals striped in pink."], ["အဝါရောင်ခွက်ပုံစံဝတ်ဆံရှိတဲ့ ရင်းမာပန်းလေးကတော့ တော်သလင်းလမှာ ဖူးပွင့်လေ့ရှိပါတယ်။", "黄色いカップ形のしべを持つインマーの花は、トーダリン月に咲きます。", "Yinma, with its yellow cup-shaped stamens, blooms in Tawthalin."], ["သီတင်းကျွတ်အခါသမယမှာတော့ အရောင်အဆင်းစုံလင်တဲ့ကြာပန်းလေးတွေပွင့်ပါတယ်။", "ダディンジュッの頃には、色とりどりのハスの花が咲きます。", "In Thadingyut, lotus flowers of many colours bloom."], ["ရွှေဝါရောင်ပွင့်ဖတ်လေးတွေရှိတဲ့ ခဝဲပန်းကတော့ တန်ဆောင်မုန်းမှာ ဖူးပွင့်ပါတယ်။", "金色の花びらのカウェーの花は、タザウンモン月に咲きます。", "Khawe, with golden petals, blooms in Tazaungmon."], ["နတ်တော်လရဲ့ရာသီပန်းကတော့ တော်ဝင်သဇင်ပန်းလေးတွေ ဖြစ်ပါတယ်။", "ナダウ月の花は、王家の蘭タズィンです。", "The flower of Nadaw is the royal Thazin orchid."], ["ခွာညိုပန်းလေးတွေ ဝေဝေဆာဆာဖူးပွင့်တဲ့လကတော့ ပြာသိုလပဲဖြစ်ပါတယ်။", "クワニョーの花がいっぱいに咲く月は、ピャードー月です。", "Pyatho is the month when Khwanyo flowers bloom in abundance."], ["ရဲရဲနီပေါက်ပန်းလေးဟာ တပို့တွဲလရဲ့ နွေဦးသင်္ကေတဖြစ်ပါတယ်။", "真っ赤なパウッの花は、ダボードゥエ月の早春のしるしです。", "The bright red Pauk flower is Tabodwe's sign of early spring."], ["ဆယ့်နှစ်လရာသီရဲ့ နောက်ဆုံးလဖြစ်တဲ့ တပေါင်းလမှာတော့ သရဖီပန်းများအခိုင်လိုက်ဖူးပွင့်ကြပါတယ်။", "1年最後の月・ダバウン月には、タラピーの花が房になって咲きます。", "In Tabaung, the last month of the year, Thayaphi flowers bloom in clusters."]];
+/* v1.0.300 Calendar flowers: Myanmar 12-month flowers (left) ⇄ Western birth flowers (right). Festival scenes removed from this section. */
+/* index = Myanmar month (1 Tagu = April … 12 Tabaung = March) */
+const BFLW=[null,
+ ['daisy','ဒေစီပန်း','デイジー','Daisy','平和・希望','ငြိမ်းချမ်းရေး၊ မျှော်လင့်ချက်','peace, hope'],
+ ['lily','ခေါင်းလောင်းပန်းဖြူ','スズラン','Lily of the valley','再び幸せが訪れる','ပျော်ရွှင်မှု ပြန်ရောက်လာမယ်','happiness returns'],
+ ['rose','နှင်းဆီ','バラ','Rose','愛','အချစ်','love'],
+ ['wlily','ရေကြာ','スイレン','Water lily','清純な心','သန့်ရှင်းတဲ့ စိတ်','a pure heart'],
+ ['poppy','ဘိန်းပန်း','ポピー（ケシ）','Poppy','思いやり','စာနာစိတ်','kindness'],
+ ['aster','အက်စတာပန်း','アスター','Aster','追憶','အမှတ်တရ','remembrance'],
+ ['cosmos','ကော့စမော့စ်ပန်း','コスモス','Cosmos','乙女の真心','မိန်းကလေးရဲ့ ရိုးသားတဲ့စိတ်','a maiden’s sincerity'],
+ ['chry','ခရိုင်ဆန်သီမမ်ပန်း','キク','Chrysanthemum','高貴','မြင့်မြတ်ခြင်း','nobility'],
+ ['poin','ခရစ္စမတ်ပန်း','ポインセチア','Poinsettia','祝福','ကောင်းချီး','blessing'],
+ ['carn','ကာနေးရှင်း','カーネーション','Carnation','無垢で深い愛','ဖြူစင်ပြီး နက်ရှိုင်းတဲ့ အချစ်','pure, deep love'],
+ ['violet','ဗိုင်အိုလက်','スミレ','Violet','誠実','ရိုးသားခြင်း','sincerity'],
+ ['daff','ဒက်ဖိုဒေးလ်','ラッパスイセン','Daffodil','尊敬','လေးစားခြင်း','respect']];
+const GMON=[null,['ဇန်နဝါရီ','1月','January'],['ဖေဖော်ဝါရီ','2月','February'],['မတ်','3月','March'],['ဧပြီ','4月','April'],['မေ','5月','May'],['ဇွန်','6月','June'],['ဇူလိုင်','7月','July'],['ဩဂုတ်','8月','August'],['စက်တင်ဘာ','9月','September'],['အောက်တိုဘာ','10月','October'],['နိုဝင်ဘာ','11月','November'],['ဒီဇင်ဘာ','12月','December']];
+const mm2g=m=>((m+2)%12)+1;
+function flP(n,ry,rx,d,fill,o){o=o||{};let h='';const r0=o.r0||0;for(let i=0;i<n;i++){const a=r0+i*360/n;h+=`<ellipse cx="50" cy="${50-d}" rx="${rx}" ry="${ry}" fill="${fill}"${o.st?` stroke="${o.st}" stroke-width="${o.sw||1}"`:''} transform="rotate(${a.toFixed(1)} 50 50)"/>`}return h}
+function flPt(n,len,w,fill,o){o=o||{};let h='';const r0=o.r0||0,b=o.b||6;for(let i=0;i<n;i++){const a=r0+i*360/n;h+=`<path d="M50 ${50-b} C${50-w} ${50-b-len*0.35} ${50-w*0.6} ${50-b-len*0.85} 50 ${50-b-len} C${50+w*0.6} ${50-b-len*0.85} ${50+w} ${50-b-len*0.35} 50 ${50-b}Z" fill="${fill}"${o.st?` stroke="${o.st}" stroke-width="${o.sw||1}"`:''} transform="rotate(${a.toFixed(1)} 50 50)"/>`}return h}
+const flC=(r,f,x,y)=>`<circle cx="${x||50}" cy="${y||50}" r="${r}" fill="${f}"/>`;
+const flLeaf=(x,y,a,s,c)=>`<path d="M0 0 C${6*s} ${-8*s} ${18*s} ${-8*s} ${24*s} 0 C${18*s} ${8*s} ${6*s} ${8*s} 0 0Z" fill="${c||'#5DAA5A'}" transform="translate(${x} ${y}) rotate(${a})"/>`;
+function flMini(x,y,sc,inner){return `<g transform="translate(${x} ${y}) scale(${sc}) translate(-50 -50)">${inner}</g>`}
+function flArt(k){let g='';
+ switch(k){
+ /* Myanmar */
+ case 'gangaw':g=flLeaf(14,78,-30,1.2)+flLeaf(86,80,-150,1.2)+flP(4,19,16,15,'#FFFFFF',{st:'#D9DEE8',sw:1.2,r0:45})+flC(14,'#F5B800')+Array.from({length:14},(_,i)=>{const a=i/14*Math.PI*2;return flC(2.4,'#FFD84D',50+Math.cos(a)*14,50+Math.sin(a)*14)}).join('')+flC(7,'#E89A00');break;
+ case 'champak':g=flLeaf(16,80,-35,1.1)+flP(8,22,5.5,16,'#F6A21E',{r0:10})+flP(6,18,5,12,'#FFC94D',{r0:35})+flC(6,'#C97A00');break;
+ case 'jasmine':{const st=flP(6,11,5,9,'#FFFFFF',{st:'#DCE3EC',sw:1})+flC(4,'#F2D36B');g=flLeaf(10,74,-20,1.1)+flLeaf(88,78,-160,1.1)+flMini(34,40,0.95,st)+flMini(66,46,0.85,st)+flMini(46,70,0.75,st);break}
+ case 'ponnyet':{const st=flP(4,9,8,7,'#FFFFFF',{st:'#DCE3EC',sw:1})+flC(5,'#F2C230');g=flLeaf(50,92,-90,1.2)+[[50,32,.9],[28,50,.8],[72,50,.8],[38,72,.75],[64,72,.75]].map(p=>flMini(p[0],p[1],p[2],st)).join('');break}
+ case 'khatta':g=flP(6,24,6.5,18,'#FFFFFF',{st:'#E4C2D2',sw:1.2,r0:15})+flP(6,18,1.6,20,'#E46A9C',{r0:15})+flC(6,'#F2D36B');break;
+ case 'yinma':g=flLeaf(14,80,-30,1.1)+flP(5,15,12,14,'#FFF6DC',{st:'#E9D7A4',sw:1})+flC(11,'#F2B705')+flC(7,'#FFE27A')+flC(3,'#C98A00');break;
+ case 'lotus':g=`<ellipse cx="50" cy="84" rx="40" ry="9" fill="#4FA36A"/>`+flPt(5,40,20,'#F7A9C4',{r0:-72,b:-10})+`<g transform="translate(0 6)">${flPt(3,34,17,'#F27BA8',{r0:-40,b:-6})}</g>`+flC(7,'#F5C842',50,56);break;
+ case 'khawe':g=flLeaf(12,82,-30,1.1)+flP(5,16,13,15,'#F5B800',{st:'#D99A00',sw:1})+flC(9,'#E07A10')+flC(4,'#FFD84D');break;
+ case 'thazin':{const o=`<g>${flPt(3,20,9,'#FFF9EE',{r0:0,b:2,st:'#E8DDC4',sw:.8})}${flPt(2,15,8,'#FFF3DA',{r0:60,b:2,st:'#E8DDC4',sw:.8})}<ellipse cx="50" cy="58" rx="6" ry="8" fill="#F3C64A"/><circle cx="50" cy="50" r="3" fill="#C97A00"/></g>`;g=`<path d="M78 8 C70 30 60 55 54 92" stroke="#6E9B4E" stroke-width="2.5" fill="none"/>`+flMini(66,26,0.85,o)+flMini(40,52,0.95,o)+flMini(64,76,0.8,o);break}
+ case 'khwanyo':g=flLeaf(14,80,-30,1.1)+flPt(5,30,12,'#FBF3E2',{st:'#D8C29A',sw:1.2})+flC(8,'#8B5A2B')+flC(3,'#D9A65A');break;
+ case 'pauk':g=`<path d="M10 70 C35 62 60 60 92 66" stroke="#5B3B2A" stroke-width="4" fill="none" stroke-linecap="round"/>`+[[24,64,-35],[44,60,-10],[62,60,15],[80,63,40]].map(p=>`<path d="M0 0 C-10 -8 -10 -26 2 -34 C6 -24 8 -12 0 0Z" fill="#F0531C" transform="translate(${p[0]} ${p[1]}) rotate(${p[2]})"/><path d="M0 0 C-4 -6 -4 -16 1 -22" stroke="#FFB067" stroke-width="2" fill="none" transform="translate(${p[0]} ${p[1]}) rotate(${p[2]})"/>`).join('')+`<path d="M30 66 C26 74 28 82 34 86" stroke="#3E2A1E" stroke-width="2" fill="none"/>`;break;
+ case 'thayaphi':{const st=flP(5,6,5,5,'#FFFFFF',{st:'#DCE3EC',sw:.8})+flC(3,'#F2C230');g=`<path d="M50 92 V58 M50 58 L28 40 M50 58 L72 40 M50 58 L50 30 M50 58 L36 30 M50 58 L64 30" stroke="#6E9B4E" stroke-width="2" fill="none"/>`+flLeaf(50,88,-150,1.1)+[[28,38],[72,38],[50,26],[36,26],[64,26],[42,44],[58,44]].map(p=>flMini(p[0],p[1],1,st)).join('');break}
+ /* Western birth flowers */
+ case 'daisy':g=flLeaf(14,82,-30,1.1)+flP(16,17,4.2,16,'#FFFFFF',{st:'#DCE3EC',sw:.8})+flC(11,'#F5B800')+flC(6,'#E89A00');break;
+ case 'lily':g=`<path d="M30 92 C30 60 46 30 76 22" stroke="#5DAA5A" stroke-width="3" fill="none"/><path d="M18 94 C10 60 22 34 40 24 C34 50 32 74 30 94Z" fill="#6DBB6A"/>`+[[44,32],[56,26],[66,24],[38,48]].map((p,i)=>`<path d="M${p[0]} ${p[1]} v4" stroke="#5DAA5A" stroke-width="1.6"/><path d="M${p[0]-7} ${p[1]+14} C${p[0]-7} ${p[1]+4} ${p[0]+7} ${p[1]+4} ${p[0]+7} ${p[1]+14} L${p[0]+4} ${p[1]+12} L${p[0]} ${p[1]+15} L${p[0]-4} ${p[1]+12}Z" fill="#FFFFFF" stroke="#D3DCE6" stroke-width="1"/>`).join('');break;
+ case 'rose':g=flLeaf(12,84,-25,1.15)+flLeaf(88,84,-155,1.15)+flC(30,'#C8243C')+flC(24,'#DE3A52')+`<path d="M50 34 C66 36 70 56 54 64 C40 70 32 56 40 48 C46 42 56 46 54 54" stroke="#9E1830" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 46 C30 32 40 26 50 26" stroke="#9E1830" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;break;
+ case 'wlily':g=`<path d="M50 84 m-40 0 a40 12 0 1 0 80 0 a40 12 0 1 0 -80 0Z" fill="#4FA36A"/><path d="M50 84 L80 76 L82 84Z" fill="#3E8A57"/>`+flPt(8,30,11,'#FFFFFF',{st:'#EBC6D6',sw:1,b:-6})+`<g transform="translate(0 4)">${flPt(6,22,9,'#F7B6CF',{r0:30,b:-4})}</g>`+flC(6,'#F5C842',50,56);break;
+ case 'poppy':g=`<path d="M50 92 V66" stroke="#5DAA5A" stroke-width="3"/>`+flP(4,18,19,13,'#E8322A',{r0:45})+flP(4,14,15,8,'#F4553E')+flC(8,'#2A2230')+Array.from({length:8},(_,i)=>{const a=i/8*Math.PI*2;return flC(1.6,'#2A2230',50+Math.cos(a)*12,50+Math.sin(a)*12)}).join('');break;
+ case 'aster':g=flLeaf(14,82,-30,1.1)+flP(22,17,3.2,16,'#8E6BE0')+flP(16,12,2.6,10,'#B79BF2',{r0:8})+flC(9,'#F5B800');break;
+ case 'cosmos':g=`<path d="M50 92 V66" stroke="#5DAA5A" stroke-width="2.5"/>`+Array.from({length:8},(_,i)=>`<path d="M50 50 L42 22 Q46 18 50 22 Q54 18 58 22Z" fill="#F07AAE" stroke="#D85A92" stroke-width="1" transform="rotate(${i*45} 50 50)"/>`).join('')+flC(8,'#F5B800')+flC(4,'#E07A10');break;
+ case 'chry':g=flLeaf(12,84,-25,1.1)+flP(24,19,3.4,17,'#F5B800')+flP(20,14,3,11,'#FFC929',{r0:7})+flP(14,9,2.6,6,'#FFDA5C',{r0:3})+flC(5,'#E89A00');break;
+ case 'poin':g=flP(6,22,9,18,'#2F8A4E',{r0:30})+flPt(6,30,13,'#D7262E',{b:2})+flPt(5,20,9,'#EE3B40',{r0:36,b:2})+[[47,48],[53,48],[50,53],[45,53],[55,53]].map(p=>flC(2.6,'#F5C842',p[0],p[1])).join('');break;
+ case 'carn':g=`<path d="M50 92 V68" stroke="#5DAA5A" stroke-width="3"/>`+flLeaf(50,80,-35,0.9)+`<path d="M20 52 L24 40 L30 46 L34 30 L42 40 L50 26 L58 40 L66 30 L70 46 L76 40 L80 52 C74 66 62 72 50 72 C38 72 26 66 20 52Z" fill="#F483A9"/><path d="M28 54 L32 46 L38 50 L44 40 L50 48 L56 40 L62 50 L68 46 L72 54 C66 62 58 66 50 66 C42 66 34 62 28 54Z" fill="#E85D8F"/><path d="M50 72 V80 M42 70 L44 80 M58 70 L56 80" stroke="#5DAA5A" stroke-width="5" stroke-linecap="round"/>`;break;
+ case 'violet':g=flLeaf(14,82,-30,1.2)+`<g fill="#7348C9"><ellipse cx="40" cy="30" rx="11" ry="15" transform="rotate(-20 40 30)"/><ellipse cx="60" cy="30" rx="11" ry="15" transform="rotate(20 60 30)"/></g><g fill="#8E66DE"><ellipse cx="30" cy="52" rx="10" ry="13" transform="rotate(-70 30 52)"/><ellipse cx="70" cy="52" rx="10" ry="13" transform="rotate(70 70 52)"/><ellipse cx="50" cy="66" rx="14" ry="15"/></g><path d="M50 58 l-6 10 M50 58 l0 12 M50 58 l6 10" stroke="#3A2470" stroke-width="1.4"/>`+flC(5,'#FFFFFF',50,52)+flC(2.6,'#F5C842',50,52);break;
+ case 'daff':g=flLeaf(12,84,-25,1.1)+flPt(6,30,13,'#FFD84D',{b:4,st:'#E8B800',sw:1})+flC(14,'#F59A1E')+flC(10,'#FFB547')+flC(5,'#E07A10');break;
+ }
+ return g}
+function flSVG(k,px){return `<svg viewBox="0 0 100 100" width="${px||56}" height="${px||56}" aria-hidden="true" style="display:block;flex-shrink:0">${flArt(k)}</svg>`}
+const MFK=[null,'gangaw','champak','jasmine','ponnyet','khatta','yinma','lotus','khawe','thazin','khwanyo','pauk','thayaphi'];
 function calFlowers(Y,Mo,L,sx){const ms=[];for(let d=1;d<=L;d++){const k=mcIdx(mmDay(Y,Mo,d));if(k&&!ms.includes(k))ms.push(k)}
-  const sel=S.calFl||mcIdx(sx)||ms[0]||1;setTimeout(()=>{const f=document.getElementById('calflx');if(f&&!f.dataset.s){const b=f.querySelector('[data-calfl="'+(ms[0]||sel)+'"]');if(b)f.scrollLeft=b.offsetLeft-12}},0);const Li=LC()==='ja'?1:LC()==='en'?2:0;
-  const th=Array.from({length:12},(_,i)=>{const m=i+1,on=m===sel,hi=ms.includes(m);return `<button data-calfl="${m}" style="flex:0 0 112px;border:2px solid ${on?'#C98A00':'transparent'};border-radius:14px;background:${hi?'#FFF4D6':'#F7F8FB'};padding:4px;display:flex;flex-direction:column;gap:3px;align-items:stretch"><span style="display:block;border-radius:10px;overflow:hidden">${mcArt(m,'t'+m)}</span><span class="mm" style="font-size:11px;font-weight:800;color:#6B4A00;line-height:1.5;text-align:center">${MMM[m]}</span><span class="mm" style="font-size:11px;color:#4A5468;line-height:1.5;text-align:center">${MFLW[m][0]}</span></button>`}).join('');
-  return `<div style="background:#fff;border-radius:22px;border:1px solid var(--line);overflow:hidden"><div class="mm" style="padding:12px 16px;font-weight:800;font-size:15px;border-bottom:1px solid #E8ECF3;background:#FFF8EA">🌼 ${T('မြန်မာ ၁၂ လ ရာသီပန်းများ','ミャンマー12か月の花','Myanmar flowers of the 12 months')}<div style="font-size:11.5px;font-weight:600;color:#9A7A3A;margin-top:3px">${T(`${Mo} လ ထဲက မြန်မာလ: `,`${Mo}月のミャンマー月: `,`Myanmar months in month ${Mo}: `)}${ms.map(m=>[MMM[m]+'လ',MMJ[m]+'月',MME[m]][Li]+' ('+MFLW[m][Li]+')').join(' · ')}</div></div>
-<div id="calflx" style="display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scroll-snap-type:x proximity">${th}</div>
-<div style="padding:0 16px 14px"><div style="border-radius:14px;overflow:hidden;margin-bottom:10px">${mcArt(sel,'big')}</div><div class="mm" style="font-size:17px;font-weight:800;color:#4A3300">${[MMM[sel]+'လ',MMJ[sel]+'月',MME[sel]][Li]} · ${MFLW[sel][Li]}</div><div class="mm" style="font-size:12.5px;color:#9A7A3A;margin:2px 0 6px">🎉 ${MFEST[sel][Li]}</div><div class="mm" style="font-size:14.5px;line-height:1.9;color:#14223D">${MFLD[sel][Li]}</div>${Li?`<div class="mm" style="font-size:13px;line-height:1.9;color:#6B7486;margin-top:4px">${MFLD[sel][0]}</div>`:''}</div></div>`}
+ const sel=S.calFl||mcIdx(sx)||ms[0]||1;const Li=LC()==='ja'?1:LC()==='en'?2:0;
+ const rows=Array.from({length:12},(_,i)=>{const m=i+1,g=mm2g(m),B=BFLW[m],on=m===sel,hi=ms.includes(m)||g===Mo;
+  const cell=(art,top,name,sub,bg)=>`<span style="flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:${bg};border-radius:14px;padding:6px 8px">${art}<span style="display:flex;flex-direction:column;min-width:0"><small class="mm" style="font-size:10.5px;font-weight:800;color:#9A7A3A;line-height:1.5">${top}</small><b class="mm" style="font-size:13px;line-height:1.5;color:#14223D">${name}</b>${sub?`<small class="mm" style="font-size:10.5px;color:#6B7486;line-height:1.4">${sub}</small>`:''}</span></span>`;
+  const left=cell(flSVG(MFK[m],50),[MMM[m]+'လ',MMJ[m]+'月',MME[m]][Li],MFLW[m][Li],Li?MFLW[m][0]:'','#FFF8EA');
+  const right=cell(flSVG(B[0],50),GMON[g][Li],[B[1],B[2],B[3]][Li],Li===1?B[3]:(Li===0?B[3]:B[2]),'#F3F1FD');
+  const det=on?`<div style="padding:4px 6px 8px;display:flex;flex-direction:column;gap:6px"><div class="mm" style="font-size:13.5px;line-height:1.85;color:#14223D">🌼 ${MFLD[m][Li]}</div><div class="mm" style="font-size:13px;line-height:1.8;color:#4A3F7A;background:#F3F1FD;border-radius:12px;padding:8px 10px">💐 ${T(`${GMON[g][0]}လ မွေးလပန်း — ${B[1]} (${B[3]}) · 花言葉 「${B[4]}」 = ${B[5]}`,`${GMON[g][1]}の誕生花は${B[2]}。花言葉は「${B[4]}」。`,`${GMON[g][2]} birth flower: ${B[3]} — flower language 「${B[4]}」 (${B[6]}).`)}</div></div>`:'';
+  return `<div style="border:2px solid ${on?'#C98A00':hi?'#F2D7A0':'transparent'};border-radius:18px;padding:3px;${hi&&!on?'background:#FFFCF4;':''}"><button data-calfl="${m}" aria-expanded="${on}" style="width:100%;border:none;background:none;padding:0;display:flex;gap:6px;align-items:stretch;text-align:left">${left}${right}</button>${det}</div>`}).join('');
+ return `<div style="background:#fff;border-radius:22px;border:1px solid var(--line);overflow:hidden"><div class="mm" style="padding:12px 16px;font-weight:800;font-size:15px;border-bottom:1px solid #E8ECF3;background:linear-gradient(90deg,#FFF8EA,#F3F1FD)">🌼 ${T('ရာသီပန်း · မွေးလပန်း','ミャンマーの月の花 · 誕生花','Month flowers · Birth flowers')}<div style="font-size:11.5px;font-weight:600;color:#9A7A3A;margin-top:3px">${T('ဘယ်ဘက် — မြန်မာ ၁၂ လ ရာသီပန်း · ညာဘက် — အနောက်တိုင်း မွေးလပန်း (တန်ခူး = ဧပြီ)','左：ミャンマー12か月の花 · 右：誕生花（タグー＝4月）','Left: Myanmar month flower · Right: Western birth flower (Tagu = April)')}</div><div style="font-size:11.5px;font-weight:600;color:#6B7486;margin-top:2px">${T(`${Mo} လ ထဲက မြန်မာလ: `,`${Mo}月のミャンマー月: `,`Myanmar months in month ${Mo}: `)}${ms.map(m=>[MMM[m]+'လ',MMJ[m]+'月',MME[m]][Li]).join(' · ')}</div></div><div style="display:flex;flex-direction:column;gap:6px;padding:10px 10px 12px">${rows}</div></div>`}
 
 /* ---------- Pro lock popup ---------- */
 Object.assign(S,{proModal:'',proModalCode:false});
@@ -38606,7 +38663,7 @@ async function pushDisable(k){k=k||'sb';pushSetFlag(k,false);
   try{localStorage.removeItem('myaing.push')}catch(e){}render();toast(msg);
   if(t){try{await fetch(fsURL(t),{method:'DELETE'})}catch(e){}try{const m=await fbMsg();await m.deleteToken()}catch(e){}}}
 /* ---------- Google account: cloud backup / sync of study progress (Firebase Auth + Firestore) ---------- */
-const SYNC_KEYS=['myaing.set','myaing.fav','myaing.words','myaing.jprog','myaing.jexam','myaing.jlv','myaing.hw','myaing.review','myaing.tlist','myaing.dict.recent','myaing.uid','myaing.pro','myaing.proexp','myaing.adult','myaing.trial','myaing.star','myaing.starlog','myaing.dlr','myaing.stard','myaing.spinfree','myaing.spro','myaing.spinlog','myaing.acct0','myaing.ref','myaing.refgot','myaing.kwr','myaing.kwqbest'];
+const SYNC_KEYS=['myaing.set','myaing.fav','myaing.words','myaing.jprog','myaing.jexam','myaing.jlv','myaing.hw','myaing.review','myaing.tlist','myaing.dict.recent','myaing.uid','myaing.pro','myaing.proexp','myaing.adult','myaing.trial','myaing.star','myaing.starlog','myaing.dlr','myaing.stard','myaing.spinfree','myaing.spro','myaing.spinlog','myaing.acct0','myaing.ref','myaing.refgot','myaing.kwr','myaing.kwqbest','myaing.ocblock','myaing.ocrules'];
 /* Live-site check: true on github.io OR any real custom domain (https); false on the artifact preview / localhost / file. Lets a custom domain work without code edits. */
 function isLive(){try{const h=location.hostname||'';if(location.protocol!=='https:')return false;if(/(^|\.)github\.io$/.test(h))return true;if(/(^|\.)claude\.(ai|site|com)$/.test(h)||/claudeusercontent|anthropic/.test(h))return false;if(/^(localhost$|127\.|0\.0\.0\.0|192\.168\.|10\.)/.test(h))return false;return h.indexOf('.')>-1}catch(e){return false}}
 function ACCT(){try{return JSON.parse(localStorage.getItem('myaing.acct')||'null')}catch(e){return null}}
@@ -39078,7 +39135,7 @@ _render=function(){const p={view:S.view,tab:S.tab,drawer:!!S.drawer,key:fxKey(),
 
 
 /* ---------- Bottom nav on every page ---------- */
-function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='main'||S.view==='welcome'||S.view==='tgate'||S.view==='auth'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
+function ensureNav(){const app=document.getElementById('app');if(!app||S.view==='ochat'||S.view==='main'||S.view==='welcome'||S.view==='tgate'||S.view==='auth'||S.view==='jexam')return;if(app.querySelector(':scope>nav')||app.querySelector('.pills,#cf'))return;app.insertAdjacentHTML('beforeend',navHTML())}
 try{new MutationObserver(()=>ensureNav()).observe(document.getElementById('app'),{childList:true})}catch(e){}
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#app>nav [data-t],#app>nav [data-a="open"]');if(!t||S.view==='main'||!fxOK())return;const app=document.getElementById('app');FX.back={html:app.innerHTML,scr:[...app.querySelectorAll('main,[id]')].map(x=>x.scrollTop)}},true);
 
@@ -39116,6 +39173,8 @@ function _render(){
   if(S.view==='sroom'){renderStudyRoom();return}if(S.view==='star'){renderStar();return}if(S.view==='spin'){renderSpin();return}
   if(S.view==='auth'){renderAuth();return}
   if(S.view==='game'){renderGame();return}
+  try{document.getElementById('app').classList.toggle('ocx',S.view==='ochat')}catch(e){}
+  if(S.view==='ochat'){ocRender();return}
   if(S.view==='fav'){renderFav();return}
   if(S.view==='dlg'){renderDialog();return}
   if(S.view==='adult'){renderAdult();return}
@@ -39160,6 +39219,7 @@ ${navHTML()}${proModalHTML()}${SET.bubble&&!S.drawer&&!S.proModal?`<button data-
 function bindSearch(refocus){const q=document.getElementById('q');q.oninput=()=>{S.q=q.value;document.getElementById('main').innerHTML=body();bindSearch(true)};if(refocus){q.focus();q.setSelectionRange(q.value.length,q.value.length)}}
 document.getElementById('app').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.oc!==undefined){try{ocClick(b,e)}catch(x){console.warn(x)}return}
   /* v1.0.192: say the tile's Japanese name when a tile is opened (Menu → More settings → Title အသံ, myaing.tsay) */
   if(b.classList.contains('tile')&&b.dataset.say&&tsayOn()){const w=b.dataset.say;setTimeout(()=>{try{speechSynthesis.cancel()}catch(x){}speakJa(w,0.9)},150)}
   if(b.dataset.xp){S.xp=b.dataset.xp;S.xsec=0;S.kSay='';S.view='xp';render();const m=document.querySelector&&document.querySelector('main');if(m)m.scrollTop=0;return}
@@ -39282,7 +39342,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     hl:()=>{S.hide='left';S.reveal={}}, hr:()=>{S.hide='right';S.reveal={}}, sa:()=>{S.hide='none';S.reveal={}},
     clear:()=>{if(S.words.length&&confirm(T('သိမ်းထားသော စကားလုံးအားလုံး ဖျက်မလား?','保存した単語をすべて削除しますか？','Delete all saved words?'))){stopPlay();S.words=[]}},
     reset:()=>resetWords(),
-    chats:()=>{S.flowing=false;try{speechSynthesis.cancel()}catch(e){}S.view='chats';S.drawer=false},
+    chats:()=>{S.flowing=false;try{speechSynthesis.cancel()}catch(e){}S.view=(typeof ocOn==='function'&&ocOn())?'ochat':'chats';if(S.view==='ochat')S.oc={v:'home',tab:'all'};S.drawer=false},
     kback:()=>{stopLines();if(S.spinning)return 'skip';if(S.view==='spin'){S.view='star';return}if(S.view==='auth'){S.view=S.authFrom==='welcome'?'welcome':S.authFrom==='tgate'?'tgate':'main';S.authFrom='';return}S.podOn='';if(S.view==='note'){noteSaveNow();if(S.noteId){S.noteId=null;return}S.view='main';return}if(S.view==='uta'&&S.ut&&(S.ut.i!==null||S.ut.lk!==null)){S.ut={i:null,pl:-1,lk:null};return}if(S.view==='katsu'&&(S.ka.quiz||S.ka.v)){if(S.ka.quiz&&S.ka.quizOne){S.ka.quiz=null}else{S.ka.quiz=null;S.ka.v=null}S.kSay='';return}if(S.view==='jexam'&&S.jx&&S.jx.st!=='setup'){try{speechSynthesis.cancel()}catch(e){}S.jx={L:S.jx.L,st:'setup'};return}if(S.view==='jlpt'&&S.jtab){S.jtab='';S.kSay='';return}if(S.view==='adult'){S.view='pro';S.pro='Dark Side';return}if(S.view==='pay'){S.view='paywall';return}S.view='main'},
     adult:()=>{if(PLAY())return;S.view=PRO_OK?'adult':'paywall';S.kSay=''},
     pro:()=>{S.view='paywall';S.drawer=false},
@@ -39451,6 +39511,553 @@ function fit(){var a=document.getElementById('app');if(!a)return;var land=Math.a
  var full=land?Math.min(screen.width,screen.height):Math.max(screen.width,screen.height);
  var h=Math.max(window.innerHeight||0,document.documentElement.clientHeight||0,full||0);a.style.bottom='auto';a.style.height=h+'px';document.documentElement.style.height=h+'px';document.body.style.height=h+'px';window.scrollTo(0,0)}
 fit();addEventListener('resize',fit);addEventListener('orientationchange',function(){setTimeout(fit,300)});addEventListener('pageshow',fit);document.addEventListener('visibilitychange',function(){if(!document.hidden)setTimeout(fit,50)});setTimeout(fit,500)})();</script>
+<script type="text/dk">
+/* ==== v1.0.299 Dokodemo Chat — Online Community · Group · 1:1 (Messenger × Viber × LINE × Telegram style) ====
+   Turned on by config.json "chat":true, admin mode (ADMUI), or localStorage myaing.ocbeta='1'.
+   Firestore (compat SDK, loaded lazily): oc_rooms/{rid}/m, oc_groups/{gid}(+/m), oc_dm/{a_b}(+/m), oc_dir/{did}, oc_note/{uid}, oc_rep, oc_ban.
+   Off the live site (artifact / localhost) it runs on a local mock store so the UI can be tried. */
+try{if(/[?&]ocbeta=1/.test(location.search))localStorage.setItem('myaing.ocbeta','1');if(/[?&]ocbeta=0/.test(location.search))localStorage.removeItem('myaing.ocbeta')}catch(e){}
+function ocOn(){try{if(CFG().chat===true)return true;if(ADMUI())return true;return localStorage.getItem('myaing.ocbeta')==='1'}catch(e){return false}}
+const OC_ADMIN='japanesedokodemo@gmail.com';
+function ocIsAdmin(){const a=ACCT();if(!isLive())return ADMUI();return !!(a&&String(a.e||'').toLowerCase()===OC_ADMIN)}
+const OC_AV=[['#5AA8F0','#2F6FC4'],['#7ED69A','#2E9E5B'],['#E57FA8','#C2477A'],['#F2A65A','#D9733A'],['#B49AF0','#7A5BD6'],['#6FD3B5','#24A07A'],['#F07C70','#C9433A'],['#8FC7E8','#4A93C2']];
+const OC_NC=['#2F7FC9','#2E8B57','#B23C6C','#C46A1F','#6A4BC9','#1F8F6A','#B0392F','#2F7FC9'];
+function ocGrad(i){const c=OC_AV[Math.abs(i|0)%OC_AV.length];return 'linear-gradient(135deg,'+c[0]+','+c[1]+')'}
+function ocHash(s){let h=0;s=String(s||'');for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h)}
+function ocFirst(n){const a=Array.from(String(n||'?').trim());return esc((a[0]||'?').toUpperCase())}
+function ocAv(n,c,sz,extra){sz=sz||44;return '<span class="ocav" style="width:'+sz+'px;height:'+sz+'px;border-radius:'+(sz/2)+'px;background:'+ocGrad(c)+';font-size:'+Math.round(sz*0.42)+'px">'+ocFirst(n)+(extra||'')+'</span>'}
+const OC_ROOMS=[
+ {id:'news',ic:'ど',c:['#2B4C7E','#14223D'],j:'お知らせ',m:'Dokodemo သတင်း',e:'Announcements',ro:1,rule:['Dokodemo Team ပဲ ပို့လို့ရပါတယ်','Dokodemo Team のお知らせ','Posts from the Dokodemo Team']},
+ {id:'n5',ic:'N5',c:['#4FC08D','#1F8F6A'],j:'N5 ルーム',m:'N5 လေ့လာသူများ',e:'N5 learners',rule:['N5 လေ့ကျင့်ဖို့ Room · ရိုးရိုး ဂျပန်စာနဲ့ ရေးကြည့်ပါ','N5 の練習ルーム','N5 practice room']},
+ {id:'n4',ic:'N4',c:['#38B2C8','#17808A'],j:'N4 ルーム',m:'N4 လေ့လာသူများ',e:'N4 learners',rule:['N4 လေ့ကျင့်ဖို့ Room','N4 の練習ルーム','N4 practice room']},
+ {id:'n3',ic:'N3',c:['#5B7CFF','#3D5AFE'],j:'N3 ルーム',m:'N3 လေ့လာသူများ',e:'N3 learners',rule:['N3 လေ့ကျင့်ဖို့ Room · ဂျပန်လို ရေးကြည့်ပါ','N3 の練習ルーム','N3 practice room']},
+ {id:'n2',ic:'N2',c:['#9B6BFF','#6A3FE8'],j:'N2 ルーム',m:'N2 လေ့လာသူများ',e:'N2 learners',rule:['N2 လေ့ကျင့်ဖို့ Room','N2 の練習ルーム','N2 practice room']},
+ {id:'n1',ic:'N1',c:['#F07C70','#C9433A'],j:'N1 ルーム',m:'N1 လေ့လာသူများ',e:'N1 learners',rule:['N1 လေ့ကျင့်ဖို့ Room','N1 の練習ルーム','N1 practice room']},
+ {id:'qa',ic:'文',c:['#FFB547','#E08A1E'],j:'文法 Q&A',m:'သဒ္ဒါ မေးမြန်းရန်',e:'Grammar Q&A',rule:['မသိတာ မေးပါ · သိတဲ့သူက ဖြေပေးပါ','わからない文法を聞こう','Ask and answer grammar questions']},
+ {id:'free',ic:'話',c:['#E57FA8','#C2477A'],j:'雑談',m:'လွတ်လပ်စွာ ပြောမယ်',e:'Free talk',rule:['ဂျပန်လို စကားပြောကြမယ် · ယဉ်ကျေးစွာ','日本語でおしゃべりしよう','Chat freely in Japanese']},
+ {id:'work',ic:'仕',c:['#6FB7F0','#2463A3'],j:'仕事・特定技能',m:'အလုပ် · SSW',e:'Work & SSW',rule:['အလုပ်၊ 特定技能 အကြောင်း · အလုပ်ခေါ်/ငွေတောင်း ကြော်ငြာ မတင်ရ','仕事・特定技能の話','Work & SSW talk — no job ads or money requests']},
+ {id:'life',ic:'生',c:['#7ED69A','#2E8B57'],j:'生活',m:'ဂျပန်မှာ နေထိုင်ခြင်း',e:'Life in Japan',rule:['ဂျပန်မှာ နေထိုင်ရေး မေးမြန်းဖို့','日本の生活の話','Life in Japan']},
+ {id:'jlpt',ic:'J',c:['#B49AF0','#7A5BD6'],j:'JLPT 試験',m:'စာမေးပွဲ အကြောင်း',e:'JLPT exam',rule:['JLPT စာမေးပွဲ အကြောင်း မေးမြန်းဖို့','JLPT の話','JLPT talk']}
+];
+const ocRoom=id=>OC_ROOMS.find(r=>r.id===id)||OC_ROOMS[1];
+const ocRG=r=>'linear-gradient(135deg,'+r.c[0]+','+r.c[1]+')';
+
+/* ---------- stickers (Dokodemo owl, drawn in SVG) ---------- */
+const OC_STP=[
+ {id:'owl',j:'フクロウ',m:'အခြေခံ',pro:0},{id:'study',j:'勉強',m:'စာလေ့လာ',pro:0},{id:'life',j:'生活',m:'နေ့စဉ်',pro:0},{id:'keigo',j:'敬語',m:'ယဉ်ကျေးစကား',pro:1},{id:'kao',j:'顔文字',m:'Kaomoji',pro:0}];
+const OC_ST=(function(){const L=[
+ ['owl','おはよう','မင်္ဂလာနံနက်ခင်း','h','sun'],['owl','こんにちは','မင်္ဂလာပါ','o','wave'],['owl','こんばんは','မင်္ဂလာညနေခင်း','o','moon'],['owl','おやすみ','ကောင်းသောညပါ','z','zzz'],
+ ['owl','ありがとう','ကျေးဇူးတင်ပါတယ်','h','heart'],['owl','ごめんね','တောင်းပန်ပါတယ်','t','sweat'],['owl','おめでとう','ဂုဏ်ယူပါတယ်','s','conf'],['owl','すごい！','တော်လိုက်တာ!','s','spark'],
+ ['owl','いいね','ကောင်းတယ်','h','thumb'],['owl','OK！','ရပါတယ်','h','ok'],['owl','がんばって','ကြိုးစားနော်','d','band'],['owl','おつかれ','ပင်ပန်းသွားပြီနော်','z','tea'],
+ ['owl','うれしい','ဝမ်းသာတယ်','l','heart'],['owl','かなしい','ဝမ်းနည်းတယ်','t',''],['owl','びっくり','အံ့သြတယ်','x','ex'],['owl','わからない','နားမလည်ဘူး','q','q'],
+ ['study','勉強中','စာလုပ်နေတယ်','o','book'],['study','合格！','အောင်ပြီ!','s','cap'],['study','宿題おわった','အိမ်စာ ပြီးပြီ','h','pen'],['study','ねむい…','အိပ်ချင်တယ်…','z','zzz'],
+ ['study','覚えた！','မှတ်မိပြီ!','h','spark'],['study','教えて','သင်ပေးပါ','q','q'],['study','一緒に勉強しよう','အတူ စာလုပ်ကြမယ်','h','book'],['study','テストまであと少し','စာမေးပွဲ နီးပြီ','d','clock'],
+ ['study','復習しよう','ပြန်လေ့ကျင့်မယ်','o','book'],['study','難しい…','ခက်တယ်…','t','sweat'],['study','ファイト！','ဖိုက်တင်!','d','band'],['study','できた！','လုပ်နိုင်ပြီ!','s','conf'],
+ ['life','今どこ？','အခု ဘယ်မှာလဲ?','q','q'],['life','もうすぐ着く','ခဏနေ ရောက်မယ်','o','clock'],['life','遅れます！','နောက်ကျမယ်!','x','clock'],['life','待ってるね','စောင့်နေမယ်နော်','h','heart'],
+ ['life','了解！','သိပြီ!','h','ok'],['life','お腹すいた','ဗိုက်ဆာတယ်','t','rice'],['life','また明日','မနက်ဖြန် တွေ့မယ်','h','wave'],['life','ドンマイ','ကိစ္စမရှိဘူး','h','spark'],
+ ['keigo','おはようございます','မင်္ဂလာနံနက်ခင်းပါ','h','sun'],['keigo','お疲れ様です','ပင်ပန်းသွားပြီနော် (ယဉ်ကျေး)','o','tea'],['keigo','よろしくお願いします','ကူညီပေးပါ / ခင်ခင်မင်မင်','h','bow'],['keigo','承知しました','နားလည်ပါပြီ','o','ok'],
+ ['keigo','かしこまりました','ဟုတ်ကဲ့ နားလည်ပါပြီ','h','bow'],['keigo','申し訳ございません','အလွန် တောင်းပန်ပါတယ်','t','bow'],['keigo','失礼します','ခွင့်ပြုပါ','o','bow'],['keigo','お先に失礼します','အရင် ပြန်ခွင့်ပြုပါ','h','moon'],
+ ['keigo','いただきます','စားပါမယ်','h','rice'],['keigo','ごちそうさまでした','စားလို့ကောင်းပါတယ်','h','heart'],['keigo','恐れ入ります','အားနာပါတယ်','o','sweat'],['keigo','ありがとうございます','ကျေးဇူးအများကြီး တင်ပါတယ်','h','bow']];
+ const col=[['#7A5BD6','#5236A8'],['#F2A65A','#B8621E'],['#F28DB2','#B2386A'],['#6FB7F0','#2463A3'],['#7ED69A','#2A7D48'],['#FFC94D','#A66F00'],['#4D5B9E','#2C3770'],['#F07C70','#B0392F']];
+ return L.map((x,i)=>({id:x[0]+i,p:x[0],j:x[1],m:x[2],e:x[3],a:x[4],c:col[i%col.length][0],d:col[i%col.length][1]}))})();
+const OC_KAO=[['(^_^)/','ဟိုင်း'],['(´・ω・`)','ဝမ်းနည်း'],['(≧▽≦)','ပျော်တယ်'],['m(_ _)m','တောင်းပန်/ကျေးဇူး'],['(｀・ω・´)ゞ','ဟုတ်ကဲ့!'],['ヽ(・∀・)ﾉ','ဝမ်းသာ'],['(T_T)','ငိုချင်'],['( ˘ω˘ )ｽﾔｧ','အိပ်ပြီ'],['＼(^o^)／','ဟေး!'],['(〃▽〃)','ရှက်တယ်'],['(・・?)','ဟင်?'],['(ﾉ´ヮ`)ﾉ*:･ﾟ✧','အံ့သြ']];
+function ocStGet(id){return OC_ST.find(s=>s.id===id)}
+function ocOwl(s,px){if(!s)return '';px=px||96;const c=s.c,d=s.d,e=s.e,a=s.a;let eyes='';
+ const L=[46,50],R=[74,50];
+ const ball=(x,y)=>'<circle cx="'+x+'" cy="'+y+'" r="13" fill="#fff"/>';
+ if(e==='h')eyes='<path d="M37 52q9-10 18 0M65 52q9-10 18 0" stroke="#0F1A30" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
+ else if(e==='z')eyes='<path d="M38 52h16M66 52h16" stroke="#0F1A30" stroke-width="4.5" stroke-linecap="round"/>';
+ else if(e==='l')eyes='<path d="M46 58l-8-8a4.5 4.5 0 018-4 4.5 4.5 0 018 4zM74 58l-8-8a4.5 4.5 0 018-4 4.5 4.5 0 018 4z" fill="#E8463A"/>';
+ else if(e==='s')eyes=ball(L[0],L[1])+ball(R[0],R[1])+'<path d="M46 43l2.6 5.4 5.9.9-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.9zM74 43l2.6 5.4 5.9.9-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.9z" fill="#FFB800"/>';
+ else if(e==='x')eyes=ball(L[0],L[1])+ball(R[0],R[1])+'<circle cx="46" cy="50" r="3" fill="#0F1A30"/><circle cx="74" cy="50" r="3" fill="#0F1A30"/>';
+ else if(e==='w')eyes=ball(L[0],L[1])+'<circle cx="47" cy="52" r="6" fill="#0F1A30"/><path d="M66 52q8-8 16 0" stroke="#0F1A30" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
+ else{eyes=ball(L[0],L[1])+ball(R[0],R[1])+'<circle cx="'+(e==='q'?45:47)+'" cy="'+(e==='q'?48:52)+'" r="6" fill="#0F1A30"/><circle cx="'+(e==='q'?75:73)+'" cy="'+(e==='q'?48:52)+'" r="6" fill="#0F1A30"/><circle cx="49" cy="49" r="2" fill="#fff"/><circle cx="75" cy="49" r="2" fill="#fff"/>';
+  if(e==='t')eyes+='<path d="M38 62q-4 8 0 11q4-3 0-11zM82 62q-4 8 0 11q4-3 0-11z" fill="#5BB6F5"/>';
+  if(e==='d')eyes+='<path d="M34 36l20 7M86 36l-20 7" stroke="#0F1A30" stroke-width="4" stroke-linecap="round"/>'}
+ let acc='',wl='<ellipse cx="25" cy="70" rx="9" ry="16" fill="'+d+'" transform="rotate(-20 25 70)"/>',wr='<ellipse cx="95" cy="70" rx="9" ry="16" fill="'+d+'" transform="rotate(20 95 70)"/>';
+ if(a==='wave'||a==='thumb'||a==='ok')wr='<ellipse cx="98" cy="46" rx="9" ry="17" fill="'+d+'" transform="rotate(40 98 46)"/>';
+ if(a==='sun')acc='<circle cx="101" cy="17" r="9" fill="#FFB800"/><path d="M101 3v4M101 27v4M87 17h4M111 17h4M91 7l3 3M108 24l3 3M111 7l-3 3M94 24l-3 3" stroke="#FFB800" stroke-width="2.5" stroke-linecap="round"/>';
+ else if(a==='moon')acc='<path d="M104 6a11 11 0 100 22 9 9 0 010-22z" fill="#FFD34D"/><circle cx="16" cy="14" r="2" fill="#FFD34D"/><circle cx="26" cy="7" r="1.5" fill="#FFD34D"/>';
+ else if(a==='zzz')acc='<text x="88" y="24" font-family="sans-serif" font-size="16" font-weight="900" fill="'+d+'">z</text><text x="99" y="14" font-family="sans-serif" font-size="12" font-weight="900" fill="'+d+'">z</text>';
+ else if(a==='heart')acc='<path d="M101 26l-8-8a5 5 0 018-6 5 5 0 018 6z" fill="#FF5E8A"/><path d="M18 22l-5-5a3.2 3.2 0 015-4 3.2 3.2 0 015 4z" fill="#FF8FB1"/>';
+ else if(a==='sweat')acc='<path d="M98 16q-6 10 0 14q6-4 0-14z" fill="#5BB6F5"/>';
+ else if(a==='conf')acc='<rect x="12" y="10" width="6" height="6" fill="#FFB800" transform="rotate(20 15 13)"/><rect x="100" y="8" width="6" height="6" fill="#5BB6F5" transform="rotate(-20 103 11)"/><circle cx="108" cy="30" r="3" fill="#FF5E8A"/><circle cx="12" cy="32" r="3" fill="#7ED69A"/><rect x="58" y="2" width="5" height="5" fill="#FF5E8A"/>';
+ else if(a==='spark')acc='<path d="M104 8l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5zM16 20l1.8 4 4 1.8-4 1.8-1.8 4-1.8-4-4-1.8 4-1.8z" fill="#FFB800"/>';
+ else if(a==='thumb')acc='<path d="M100 22v-8a3 3 0 016 0v6h5a3 3 0 013 3.4l-1.4 8a3 3 0 01-3 2.6H100z" fill="#FFC94D" stroke="#A66F00" stroke-width="1.5"/>';
+ else if(a==='ok')acc='<circle cx="106" cy="20" r="10" fill="none" stroke="#2E9E5B" stroke-width="4"/>';
+ else if(a==='band')acc='<path d="M24 34q36-14 72 0v9q-36-13-72 0z" fill="#E8463A"/><circle cx="60" cy="31" r="5" fill="#fff"/><circle cx="60" cy="31" r="2.5" fill="#E8463A"/><path d="M96 38l12-6M96 42l12 4" stroke="#E8463A" stroke-width="4" stroke-linecap="round"/>';
+ else if(a==='tea')acc='<path d="M92 88h20v8a10 10 0 01-20 0z" fill="#fff" stroke="'+d+'" stroke-width="2.5"/><path d="M112 90a4 4 0 010 8" stroke="'+d+'" stroke-width="2.5" fill="none"/><path d="M98 82q2-4 0-7M105 82q2-4 0-7" stroke="#B9C2D3" stroke-width="2" fill="none" stroke-linecap="round"/>';
+ else if(a==='ex')acc='<path d="M104 4v16" stroke="#E8463A" stroke-width="6" stroke-linecap="round"/><circle cx="104" cy="28" r="3.5" fill="#E8463A"/>';
+ else if(a==='q')acc='<text x="96" y="30" font-family="sans-serif" font-size="28" font-weight="900" fill="#3D5AFE">?</text>';
+ else if(a==='book')acc='<path d="M34 86l26 6 26-6v14l-26 6-26-6z" fill="#fff" stroke="#3D5AFE" stroke-width="2.5" stroke-linejoin="round"/><path d="M60 92v14" stroke="#3D5AFE" stroke-width="2"/>';
+ else if(a==='cap')acc='<path d="M30 26l30-12 30 12-30 12z" fill="#14223D"/><path d="M44 31v9q16 7 32 0v-9" fill="#14223D"/><path d="M90 26v14" stroke="#FFB800" stroke-width="2.5"/><circle cx="90" cy="41" r="3" fill="#FFB800"/>';
+ else if(a==='pen')acc='<path d="M96 94l14-14 5 5-14 14-7 2z" fill="#FFB800" stroke="#A66F00" stroke-width="1.5"/>';
+ else if(a==='clock')acc='<circle cx="104" cy="18" r="12" fill="#fff" stroke="'+d+'" stroke-width="3"/><path d="M104 11v7l5 3" stroke="'+d+'" stroke-width="2.6" stroke-linecap="round"/>';
+ else if(a==='rice')acc='<path d="M88 86h28a14 14 0 01-28 0z" fill="#fff" stroke="'+d+'" stroke-width="2.5"/><path d="M90 86q12-10 24 0" fill="#fff"/><path d="M108 70l-10 14M114 72l-12 14" stroke="#A66F00" stroke-width="2" stroke-linecap="round"/>';
+ const bow=a==='bow';const body='<g'+(bow?' transform="rotate(14 60 70)"':'')+'><path d="M27 40l5-22 17 13z" fill="'+d+'"/><path d="M93 40l-5-22-17 13z" fill="'+d+'"/><ellipse cx="60" cy="62" rx="38" ry="38" fill="'+c+'"/><ellipse cx="60" cy="74" rx="24" ry="22" fill="#FFF8EE"/>'+wl+wr+eyes+'<path d="M55 61h10l-5 8z" fill="#F2A23A"/><circle cx="35" cy="64" r="4" fill="#FF8FB1" opacity=".8"/><circle cx="85" cy="64" r="4" fill="#FF8FB1" opacity=".8"/></g>';
+ const n=Array.from(s.j).length,fs=n<=4?15:n<=6?13.5:n<=8?11.5:10.5;
+ return '<svg width="'+px+'" height="'+Math.round(px*128/120)+'" viewBox="0 0 120 128" role="img" aria-label="'+esc(s.j)+'">'+body+acc+'<rect x="4" y="100" width="112" height="25" rx="12.5" fill="#fff" stroke="'+d+'" stroke-width="2.2"/><text x="60" y="'+(117-(15-fs)*0.25)+'" text-anchor="middle" font-family="M PLUS Rounded 1c,sans-serif" font-size="'+fs+'" font-weight="800" fill="'+d+'">'+esc(s.j)+'</text></svg>'}
+const OC_RX=[['sugoi','すごい','linear-gradient(135deg,#FFB547,#FF7A45)','#2A1500'],['iine','いいね','linear-gradient(135deg,#5B7CFF,#3D5AFE)','#fff'],['ari','ありがとう','linear-gradient(135deg,#FF7FB0,#E0457E)','#fff'],['wakaru','わかる','linear-gradient(135deg,#4FC08D,#1F8F6A)','#fff'],['wara','笑','linear-gradient(135deg,#B49AF0,#7A5BD6)','#fff'],['hate','？','#2A3350','#fff']];
+const ocRx=k=>OC_RX.find(r=>r[0]===k);
+
+/* ---------- local state ---------- */
+const OC={db:null,uid:'',mock:false,unsub:null,path:'',msgs:[],home:null,homeT:0,sent:[],dm:null,grp:null,init:null,lp:null};
+const ocLS=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
+const ocLSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+function ocRulesOk(){return !!ocLS('myaing.ocrules',0)}
+function ocBlocks(){return ocLS('myaing.ocblock',[])}
+function ocBlocked(u){return ocBlocks().some(b=>b.u===u)}
+function ocBlock(u,n,on){let L=ocBlocks().filter(b=>b.u!==u);if(on)L.push({u,n:String(n||'').slice(0,24)});ocLSet('myaing.ocblock',L)}
+function ocSeen(k,t){const m=ocLS('myaing.ocseen',{});if(t===undefined)return m[k]||0;m[k]=Math.max(m[k]||0,t);ocLSet('myaing.ocseen',m)}
+function ocNick(){return (NICK()||(OC.mock?T('ကျွန်တော်','あなた','Me'):'User')).slice(0,24)}
+function ocMyC(){return ocHash(OC.uid)%8}
+function ocMs(t){if(!t)return Date.now();if(typeof t==='number')return t;if(t.toMillis)return t.toMillis();if(t.seconds)return t.seconds*1000;return Date.now()}
+function ocTime(ms){const d=new Date(ms),n=new Date();const hm=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');if(d.toDateString()===n.toDateString())return hm;const y=new Date(n);y.setDate(n.getDate()-1);if(d.toDateString()===y.toDateString())return T('မနေ့က','昨日','Yesterday');return (d.getMonth()+1)+'/'+d.getDate()}
+function ocHM(ms){const d=new Date(ms);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function ocDay(ms){const d=new Date(ms),n=new Date();if(d.toDateString()===n.toDateString())return T('ယနေ့','今日','Today');const y=new Date(n);y.setDate(n.getDate()-1);if(d.toDateString()===y.toDateString())return T('မနေ့က','昨日','Yesterday');return d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate()}
+
+/* ---------- data layer: Firestore (live) or local mock ---------- */
+const OCM={d:null,ls:{}};
+function ocmLoad(){if(OCM.d)return OCM.d;OCM.d=ocLS('myaing.ocmock',null);if(!OCM.d||OCM.d._v!==1){OCM.d={_v:1};ocmSeed()}return OCM.d}
+function ocmSave(){ocLSet('myaing.ocmock',OCM.d)}
+function ocmCol(p){const d=ocmLoad();return d[p]||(d[p]={})}
+function ocmSplit(p){const i=p.lastIndexOf('/');return [p.slice(0,i),p.slice(i+1)]}
+function ocmFire(p){(OCM.ls[p]||[]).slice().forEach(f=>{try{f()}catch(e){}})}
+function ocmSeed(){const now=Date.now(),m=60000;const put=(p,id,o)=>{ocmCol(p)[id]=o};
+ const U=[['zaw001','ゾー',1],['sak002','さくら',2],['aun003','Aung',0],['min004','ミン',3],['kya005','Kyaw',6]];
+ const msg=(p,k,u,t,ago,ex)=>put(p,'s'+k,Object.assign({u:U[u][0],n:U[u][1],c:U[u][2],t:t,s:'',q:'',re:{},ts:now-ago*m},ex||{}));
+ msg('oc_rooms/news/m',1,0,'',600,{u:'admin',n:'Dokodemo Team',c:0,t:'Dokodemo Chat へようこそ！ယဉ်ကျေးစွာ ပြောကြပါစို့ 🙏'});
+ msg('oc_rooms/n3/m',1,1,'今日は文法を勉強します！',55);msg('oc_rooms/n3/m',2,2,'今日のTango 5つ覚えた',40,{re:{sak002:'sugoi',min004:'sugoi'}});msg('oc_rooms/n3/m',3,3,'「〜わけにはいかない」の例文、だれか教えて',12);msg('oc_rooms/n3/m',4,1,'',8,{s:'study17'});
+ msg('oc_rooms/n5/m',1,0,'はじめまして！ゾーです。よろしくおねがいします。',30);msg('oc_rooms/n5/m',2,4,'',20,{s:'owl0'});
+ msg('oc_rooms/free/m',1,1,'週末、大阪城に行った人いる？',90);
+ put('oc_groups','DK7Q2M',{name:'大阪 N3 勉強会',o:'min004',mem:['min004','zaw001',OC.uid||'me_local'],mn:{min004:'ミン',zaw001:'ゾー'},last:'ミン: 明日の模試、一緒にやろう',lt:now-6*m,ts:now-9000*m});
+ msg('oc_groups/DK7Q2M/m',1,3,'明日の模試、一緒にやろう',6);
+ const pid=['me_local','zaw001'].sort().join('_');put('oc_dm',pid,{p:['me_local','zaw001'],n:{zaw001:'ゾー',me_local:''},last:'ゾー: N4の宿題、終わった？',lt:now-30*m,rd:{}});
+ msg('oc_dm/'+pid+'/m',1,0,'こんばんは！',35);msg('oc_dm/'+pid+'/m',2,0,'N4の宿題、終わった？',30);
+ put('oc_dir','K4M9TP',{u:'zaw001',n:'ゾー',c:1,ts:now});put('oc_note','zaw001',{n:'ゾー',c:1,t:'N4 合格するぞ',ts:now-60*m});put('oc_note','sak002',{n:'さくら',c:2,t:'発音練習中',ts:now-120*m});
+ ocmSave()}
+const ocTS=()=>OC.mock?Date.now():firebase.firestore.FieldValue.serverTimestamp();
+const ocDelF=()=>OC.mock?{__del:1}:firebase.firestore.FieldValue.delete();
+function ocListen(p,cb){if(OC.mock){const f=()=>{const c=ocmCol(p);cb(Object.keys(c).map(id=>Object.assign({id},c[id])).sort((a,b)=>b.ts-a.ts).slice(0,80))};(OCM.ls[p]=OCM.ls[p]||[]).push(f);setTimeout(f,0);return ()=>{OCM.ls[p]=(OCM.ls[p]||[]).filter(x=>x!==f)}}
+ return OC.db.collection(p).orderBy('ts','desc').limit(80).onSnapshot(s=>cb(s.docs.map(d=>Object.assign({id:d.id},d.data({serverTimestamps:'estimate'})))),e=>{console.warn(e);cb(null,e)})}
+async function ocAdd(p,o){if(OC.mock){const id='m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);ocmCol(p)[id]=JSON.parse(JSON.stringify(o));ocmSave();ocmFire(p);return id}const r=await OC.db.collection(p).add(o);return r.id}
+async function ocGet(p){if(OC.mock){const [c,id]=ocmSplit(p);const v=ocmCol(c)[id];return v?JSON.parse(JSON.stringify(v)):null}const d=await OC.db.doc(p).get();return d.exists?d.data():null}
+async function ocSet(p,o){if(OC.mock){const [c,id]=ocmSplit(p);ocmCol(c)[id]=JSON.parse(JSON.stringify(o));ocmSave();ocmFire(c);return}await OC.db.doc(p).set(o)}
+async function ocUpd(p,o){if(OC.mock){const [c,id]=ocmSplit(p);const v=ocmCol(c)[id];if(!v)throw new Error('not-found');Object.keys(o).forEach(k=>{const ks=k.split('.');let t=v;for(let i=0;i<ks.length-1;i++){t=t[ks[i]]=t[ks[i]]||{}}const val=o[k];if(val&&val.__del)delete t[ks[ks.length-1]];else t[ks[ks.length-1]]=val});ocmSave();ocmFire(c);return}await OC.db.doc(p).update(o)}
+async function ocDel(p){if(OC.mock){const [c,id]=ocmSplit(p);delete ocmCol(c)[id];ocmSave();ocmFire(c);return}await OC.db.doc(p).delete()}
+async function ocWhere(p,f,v){if(OC.mock){const c=ocmCol(p);return Object.keys(c).filter(id=>(c[id][f]||[]).indexOf(v)>-1).map(id=>Object.assign({id},c[id]))}const s=await OC.db.collection(p).where(f,'array-contains',v).limit(60).get();return s.docs.map(d=>Object.assign({id:d.id},d.data()))}
+async function ocLatest(p,n){n=n||1;if(OC.mock){const c=ocmCol(p);return Object.keys(c).map(id=>Object.assign({id},c[id])).sort((a,b)=>b.ts-a.ts).slice(0,n)}const s=await OC.db.collection(p).orderBy('ts','desc').limit(n).get();return s.docs.map(d=>Object.assign({id:d.id},d.data()))}
+async function ocInit(){if(OC.uid)return true;if(OC.init)return OC.init;
+ OC.init=(async()=>{if(!isLive()){OC.mock=true;OC.uid='me_local';ocmLoad();return true}
+  if(!ACCT())return false;const a=await fbAuth();const u=a.currentUser||await new Promise(r=>{const un=a.onAuthStateChanged(x=>{un();r(x)})});if(!u)return false;
+  await loadJS('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js');OC.db=firebase.firestore();OC.uid=u.uid;
+  try{const did=proUID(),k=new Date().toDateString();if(localStorage.getItem('myaing.ocdir')!==k+did){await ocSet('oc_dir/'+did,{u:OC.uid,n:ocNick(),c:ocMyC(),ts:ocTS()});localStorage.setItem('myaing.ocdir',k+did)}}catch(e){console.warn(e)}
+  return true})();
+ try{return await OC.init}finally{if(!OC.uid)OC.init=null}}
+function ocErr(e){console.warn(e);const c=(e&&e.code)||'';if(/permission/.test(c)||/permission/i.test(String(e&&e.message)))toast(T('🚫 ခွင့်မရှိပါ — Chat ပိတ်ခံထားရတာ (သို့) Firestore rules မတင်ရသေးတာ ဖြစ်နိုင်ပါတယ်','🚫 権限がありません','🚫 Not allowed (blocked, or rules not published yet)'));else toast(T('❌ မအောင်မြင်ပါ — internet စစ်ပြီး ပြန်စမ်းပါ','❌ 失敗しました','❌ Failed — check internet and retry'))}
+
+/* ---------- text safety ---------- */
+const OC_BAD=['fuck','shit','bitch','asshole','死ね','殺す','ころす','クソ野郎','ငါလိုး','မအေလိုး','စောက်','ဖာသည်','ခွေးမသား'];
+function ocClean(t){t=String(t||'').replace(/\s+$/,'').replace(/^\s+/,'').slice(0,600);let hit=0;
+ t=t.replace(/(?:\+?\d[\d\-\s]{7,}\d)|(?:[၀-၉][၀-၉\-\s]{7,}[၀-၉])/g,()=>{hit=1;return '＊＊＊'});
+ t=t.replace(/(?:https?:\/\/|www\.)\S+/gi,()=>{hit=2;return '[link]'});
+ const low=t.toLowerCase();OC_BAD.forEach(w=>{let i=low.indexOf(w);while(i>-1){t=t.slice(0,i)+'＊'.repeat(Array.from(w).length)+t.slice(i+w.length);hit=hit||3;i=t.toLowerCase().indexOf(w,i+1)}});
+ return {t,hit}}
+
+/* ---------- dictionary helpers: furigana + save words ---------- */
+let OC_DM=null;
+function ocDictMap(){if(OC_DM)return OC_DM;OC_DM=new Map();try{const D=dictBuild();const kj=/[一-龯々]/;D.forEach(w=>{if(!w.k||!w.r||w.k===w.r||!kj.test(w.k)||Array.from(w.k).length>8||/[〜~（(]/.test(w.k)||!/^[ぁ-んー]+$/.test(w.r))return;if(!OC_DM.has(w.k))OC_DM.set(w.k,w);const m=w.k.match(/^(.*[一-龯々])([ぁ-ん]+)$/);if(m&&w.r.endsWith(m[2])){const st=m[1],sr=w.r.slice(0,w.r.length-m[2].length);if(st&&sr&&!OC_DM.has(st))OC_DM.set(st,{k:st,r:sr,mm:w.mm,en:w.en,stem:w})}})}catch(e){}return OC_DM}
+function ocTok(t){const M=ocDictMap(),out=[];const A=Array.from(t);let i=0;while(i<A.length){let hit=null;if(/[一-龯々]/.test(A[i])){for(let L=Math.min(8,A.length-i);L>=1;L--){const s=A.slice(i,i+L).join('');if(M.has(s)){hit=M.get(s);break}}}if(hit){out.push({w:hit,s:hit.k});i+=Array.from(hit.k).length}else{const l=out[out.length-1];if(l&&!l.w)l.s+=A[i];else out.push({s:A[i]});i++}}return out}
+function ocRuby(t){if(!S.ocFuri||!/[一-龯々]/.test(t))return esc(t);return ocTok(t).map(x=>x.w?'<ruby>'+esc(x.s)+'<rt>'+esc(x.w.r)+'</rt></ruby>':esc(x.s)).join('')}
+function ocWords(t){const seen={};return ocTok(t).filter(x=>x.w).map(x=>x.w.stem||x.w).filter(w=>{if(seen[w.k])return false;seen[w.k]=1;return true}).slice(0,6)}
+
+/* ---------- CSS ---------- */
+function ocCss(){if(document.getElementById('occss'))return;const st=document.createElement('style');st.id='occss';st.textContent=`
+.ocw{--bg:#fff;--bg2:#F1F3F8;--tx:#0F1A30;--sub:#5A6680;--bub:#EEF1F7;--line:#ECEEF3;--card:#fff;--acc:#3D5AFE;position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);font-family:'M PLUS Rounded 1c','Noto Sans Myanmar',sans-serif;overflow:hidden}
+body.dark #app.ocx{filter:none}
+body.dark .ocw{--bg:#0B0F1A;--bg2:#1B2236;--tx:#F3F5FA;--sub:#9AA4BC;--bub:#222A3D;--line:#1C2335;--card:#151B2B;--acc:#8FA2FF}
+.ocw button{font-family:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+.och{display:flex;align-items:center;gap:8px;padding:max(8px,env(safe-area-inset-top)) 10px 8px;flex-shrink:0}
+.ocib{width:44px;height:44px;border-radius:22px;border:none;background:var(--bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--tx)}
+.ocib.t{background:transparent;color:var(--acc)}
+.ocav{display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex-shrink:0;position:relative}
+.ocsc{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.ocsr{display:flex;align-items:center;gap:8px;height:42px;border-radius:21px;background:var(--bg2);padding:0 14px;color:var(--sub);margin:2px 16px 8px}
+.ocsr input{border:none;background:transparent;font:inherit;font-size:15px;flex:1;min-width:0;color:var(--tx);outline:none}
+.ocnotes{display:flex;gap:14px;padding:20px 16px 8px;overflow-x:auto;scrollbar-width:none}
+.ocnotes::-webkit-scrollbar,.occards::-webkit-scrollbar,.octabs::-webkit-scrollbar,.ocqr::-webkit-scrollbar{display:none}
+.ocnote{display:flex;flex-direction:column;align-items:center;gap:5px;width:64px;flex-shrink:0;position:relative;border:none;background:none;padding:0}
+.ocnote .bb{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--card);border-radius:12px;box-shadow:0 2px 8px rgba(15,26,48,.16);padding:3px 8px;font-size:10.5px;white-space:nowrap;max-width:96px;overflow:hidden;text-overflow:ellipsis;z-index:1;color:var(--tx)}
+.ocnote .rg{width:62px;height:62px;border-radius:31px;padding:3px;box-sizing:border-box;background:linear-gradient(135deg,#3D5AFE,#B23CE0,#FF5E8A)}
+.ocnote .rg.off{background:var(--line)}
+.ocnote .rg>span{border:2.5px solid var(--bg);box-sizing:border-box}
+.ocnote small{font-size:12px;color:var(--sub);white-space:nowrap;max-width:64px;overflow:hidden;text-overflow:ellipsis}
+.octabs{display:flex;gap:8px;padding:6px 16px 10px;overflow-x:auto}
+.octab{height:36px;padding:0 15px;border-radius:18px;border:none;background:var(--bg2);font-size:13px;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.octab.on{background:var(--tx);color:var(--bg)!important}
+.octab i{font-style:normal;font-size:11px;background:#E5483B;color:#fff;border-radius:8px;padding:0 5px}
+.ocsec{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 6px;font-size:13px;font-weight:800;color:var(--sub);letter-spacing:.3px}
+.ocsec button{border:none;background:none;color:var(--acc);font-size:13px;font-weight:700;min-height:36px}
+.occards{display:flex;gap:10px;padding:2px 16px 12px;overflow-x:auto}
+.occard{width:148px;height:98px;flex-shrink:0;border-radius:20px;border:none;color:#fff!important;padding:12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;text-align:left}
+.occard b{font-size:17px}.occard small{font-size:11.5px;opacity:.95;line-height:1.4}
+.ocrow{display:flex;align-items:center;gap:12px;padding:8px 16px;border:none;background:none;width:100%;text-align:left}
+.ocrow .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.ocrow .nm{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ocrow .ms{font-size:13.5px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ocrow.un .nm{font-weight:800}.ocrow.un .ms{color:var(--tx);font-weight:700}
+.ocdot{width:12px;height:12px;border-radius:6px;background:var(--acc);flex-shrink:0}
+.ocpin{background:var(--bg2)}
+.ocfab{position:absolute;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:29px;border:none;background:linear-gradient(135deg,#3D5AFE,#9B3BD9);color:#fff!important;box-shadow:0 8px 20px rgba(61,90,254,.4);display:flex;align-items:center;justify-content:center;z-index:3}
+.ocv .och{border-bottom:1px solid var(--line);background:var(--bg)}
+.ocpinb{display:flex;align-items:center;gap:10px;padding:7px 14px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--sub);flex-shrink:0}
+.ocpinb i{width:3px;height:30px;border-radius:2px;background:var(--acc);flex-shrink:0}
+.ocl{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:10px 10px 6px;display:flex;flex-direction:column;gap:2px;overscroll-behavior:contain}
+.ocday{align-self:center;font-size:11.5px;color:var(--sub);padding:10px 0 6px}
+.ocm{display:flex;gap:8px;align-items:flex-end;margin-top:2px}
+.ocm.me{justify-content:flex-end}
+.ocm.g1{margin-top:10px}
+.ocm .sp{width:30px;flex-shrink:0}
+.ocbw{display:flex;flex-direction:column;gap:3px;max-width:76%;align-items:flex-start;min-width:0}
+.ocm.me .ocbw{align-items:flex-end}
+.ocnm{font-size:12px;font-weight:700;padding-left:10px}
+.ocb{background:var(--bub);border-radius:20px;padding:8px 14px;font-size:15.5px;line-height:1.75;word-break:break-word;white-space:pre-wrap;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:relative;cursor:pointer}
+.ocb rt{font-size:9.5px;color:var(--sub)}
+.ocm.me .ocb{color:#fff;background-image:linear-gradient(180deg,#9B3BD9 0%,#5B4BF0 45%,#3D5AFE 100%);background-attachment:fixed}
+.ocm.me .ocb rt{color:#DCE2FF}
+.ocm:not(.me) .ocb.f{border-top-left-radius:20px}.ocm:not(.me) .ocb{border-bottom-left-radius:6px}
+.ocm.me .ocb{border-bottom-right-radius:6px}
+.ocq{display:flex;gap:7px;background:rgba(127,140,170,.16);border-radius:10px;padding:4px 9px 4px 0;margin:2px 0 4px;font-size:12.5px;line-height:1.5;overflow:hidden}
+.ocq:before{content:'';width:3px;border-radius:2px;background:currentColor;opacity:.7;flex-shrink:0}
+.ocq b{display:block}
+.ocst{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;line-height:0}
+.ocrx{display:flex;gap:4px;margin-top:-10px;position:relative;z-index:1;flex-wrap:wrap}
+.ocrx button{border:2px solid var(--bg);border-radius:12px;padding:1px 7px;font-size:11px;font-weight:800;min-height:24px}
+.ocrd{font-size:11px;color:var(--sub);padding:2px 4px 0}
+.ocqr{display:flex;gap:8px;padding:6px 12px;overflow-x:auto;flex-shrink:0}
+.ocqr button{flex-shrink:0;min-height:44px;padding:4px 14px;border-radius:22px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.ocqr b{font-size:13px}.ocqr small{font-size:10.5px;color:var(--sub)}
+.ocrep{display:flex;align-items:center;gap:10px;margin:0 12px;padding:6px 10px;border-radius:12px;background:var(--bg2);font-size:12.5px;flex-shrink:0}
+.ocrep div{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ocin{display:flex;align-items:flex-end;gap:6px;padding:6px 8px calc(10px + env(safe-area-inset-bottom));flex-shrink:0;background:var(--bg)}
+.ocinb{flex:1;min-height:44px;border-radius:22px;background:var(--bg2);display:flex;align-items:flex-end;padding:0 4px 0 16px;gap:4px;min-width:0}
+.ocinb textarea{flex:1;min-width:0;border:none;background:transparent;font:inherit;font-size:16px;color:var(--tx);resize:none;outline:none;padding:11px 0;max-height:110px;line-height:1.4;height:44px;box-sizing:border-box}
+.ocsend{width:44px;height:44px;border-radius:22px;border:none;background:linear-gradient(135deg,#3D5AFE,#9B3BD9);color:#fff!important;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#ocPanel{flex-shrink:0}
+.ocpanel{background:var(--card);border-top:1px solid var(--line);height:min(44vh,330px);display:flex;flex-direction:column}
+.ocpt{display:flex;gap:8px;padding:10px 12px 6px;overflow-x:auto;flex-shrink:0}
+.ocpt button{height:34px;padding:0 13px;border-radius:17px;border:none;background:var(--bg2);font-size:13px;font-weight:700;white-space:nowrap}
+.ocpt button.on{background:var(--tx);color:var(--bg)!important}
+.ocgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:6px 10px calc(14px + env(safe-area-inset-bottom));overflow-y:auto;flex:1;min-height:0;align-content:start}
+.ocgrid button{border:none;border-radius:16px;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;gap:2px;min-height:96px}
+.ocgrid small{font-size:9.5px;color:var(--sub);line-height:1.3;text-align:center}
+.ockao{grid-template-columns:repeat(3,minmax(0,1fr))}.ockao button{min-height:60px;font-size:14px}
+.ocov{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column}
+.ocbd{position:absolute;inset:0;background:rgba(8,11,20,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:none}
+.ocsheet{position:relative;margin-top:auto;background:var(--card);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;max-height:88%;overflow-y:auto;color:var(--tx)}
+.ocsheet .hd{align-self:center;width:40px;height:5px;border-radius:3px;background:var(--line)}
+.ocsheet h3{margin:0;font-size:18px}
+.ocfld{display:flex;gap:8px}.ocfld input{flex:1;min-width:0;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);padding:0 14px;font:inherit;font-size:16px;color:var(--tx)}
+.ocbtn{min-height:46px;padding:0 18px;border-radius:14px;border:none;background:linear-gradient(135deg,#3D5AFE,#7B3FE4);color:#fff!important;font-size:15px;font-weight:700}
+.ocbtn.gh{background:var(--bg2);color:var(--tx)!important}.ocbtn.rd{background:#C0392B}
+.ocmenu{position:relative;margin:auto 16px;display:flex;flex-direction:column;gap:12px;max-height:94%;overflow-y:auto;padding:16px 0}
+.ocrxbar{display:flex;gap:6px;align-self:flex-start;background:#1B2236;border:1px solid #2E3753;border-radius:26px;padding:6px;box-shadow:0 12px 30px rgba(0,0,0,.45);flex-wrap:wrap}
+.ocrxbar button{height:40px;min-width:40px;padding:0 11px;border-radius:20px;border:none;font-size:13px;font-weight:800}
+.ocmc{background:#161C2D;border:1px solid #2A3250;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;color:#F3F5FA}
+.ocmc>button{min-height:50px;border:none;border-top:1px solid #232B42;background:transparent;color:#F3F5FA!important;font-size:15px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;text-align:left}
+.ocmc>button.rd{color:#FF7A70!important}
+.ocmc .wd{padding:12px 14px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(135deg,rgba(61,90,254,.18),rgba(155,59,217,.18))}
+.ocmc .wd>div{display:flex;gap:8px;flex-wrap:wrap}
+.ocmc .wd button{min-height:44px;padding:4px 12px;border-radius:14px;border:1px solid #4A57A8;background:#1F2747;color:#F3F5FA!important;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left}
+.ocmc .wd button.on{background:#3D5AFE;border-color:#3D5AFE}
+.ocpv{background:#2A3350;color:#F3F5FA;border-radius:22px 22px 22px 6px;padding:12px 16px;font-size:16.5px;line-height:1.9;box-shadow:0 0 0 2px #5B6BFF,0 14px 34px rgba(61,90,254,.35);white-space:pre-wrap;word-break:break-word;align-self:flex-start;max-width:90%}
+.ocpv rt{font-size:10px;color:#C3CAE0}
+.ocradio{display:flex;align-items:center;gap:12px;min-height:48px;padding:0 14px;border-radius:14px;border:1px solid var(--line);font-size:14.5px;background:none;text-align:left;width:100%}
+.ocradio.on{border-color:#C0392B;background:rgba(192,57,43,.08)}
+.ochero{color:#fff;padding:max(8px,env(safe-area-inset-top)) 8px 26px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;background:linear-gradient(135deg,#3D5AFE 0%,#6A3FE8 55%,#B23CE0 100%);flex-shrink:0}
+.ochero .ocib{background:rgba(255,255,255,.16);color:#fff}
+.occh{margin:0 14px;background:var(--card);border-radius:20px;overflow:hidden}
+.occh .ocrow{border-bottom:1px solid var(--line)}
+.occhi{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0}
+.ocevt{margin:-14px 14px 0;background:var(--card);border-radius:20px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(15,26,48,.12);position:relative}
+.ocgray{background:var(--bg2)}
+.ocidc{margin:14px 16px;border-radius:22px;padding:18px;color:#fff;background:linear-gradient(135deg,#14223D,#3D5AFE 60%,#9B3BD9);display:flex;flex-direction:column;gap:8px}
+.ocidc b{font-size:30px;letter-spacing:5px}
+.ocempty{padding:30px 20px;text-align:center;color:var(--sub);font-size:13.5px;line-height:1.8}
+.ocbig{font-size:26px;font-weight:800;letter-spacing:-.4px;flex:1}
+`;document.head.appendChild(st)}
+const OC_I={
+ back:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>',
+ pen:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
+ srch:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+ info:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6" /><path d="M12 7.5h.01" stroke-width="2.8"/></svg>',
+ plus:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v8M8 12h8"/></svg>',
+ stk:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 11-8-8h8z"/><path d="M8.5 14c1.6 1.8 5.4 1.8 7 0"/></svg>',
+ send:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-3-7z"/></svg>',
+ x:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ dots:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
+ shield:'<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'};
+
+/* ---------- navigation ---------- */
+function ocUnsub(){if(OC.unsub){try{OC.unsub()}catch(e){}OC.unsub=null;OC.path=''}}
+function ocGo(o){ocUnsub();S.oc=Object.assign({v:'home',tab:(S.oc&&S.oc.tab)||'all'},o);render()}
+function ocPath(o){o=o||S.oc;return o.v==='room'?'oc_rooms/'+o.id+'/m':o.v==='grp'?'oc_groups/'+o.id+'/m':'oc_dm/'+o.id+'/m'}
+function ocKey(o){o=o||S.oc;return (o.v==='room'?'r:':o.v==='grp'?'g:':'d:')+o.id}
+
+/* ---------- top-level render ---------- */
+function ocRender(){ocCss();const app=document.getElementById('app');if(!S.oc)S.oc={v:'home',tab:'all'};if(S.ocFuri===undefined)S.ocFuri=ocLS('myaing.ocfuri',1)!==0;
+ if(isLive()&&!ACCT()){app.innerHTML=ocLoginHTML();return}
+ if(!ocRulesOk()){app.innerHTML=ocRulesHTML();return}
+ if(!OC.uid){app.innerHTML='<div class="ocw"><div class="och"><button class="ocib" data-oc="exit" aria-label="Back">'+OC_I.back+'</button><div class="ocbig">Chats</div></div><div class="ocempty">⏳ '+T('Chat ကို ဖွင့်နေပါတယ်…','チャットを読み込み中…','Opening chat…')+'</div></div>';
+  ocInit().then(ok=>{if(S.view!=='ochat')return;if(!ok){toast(T('🔐 Login ပြန်ဝင်ပေးပါ','ログインしてください','Please log in again'));return}render()}).catch(e=>{ocErr(e)});return}
+ const v=S.oc.v;
+ if(v==='room'||v==='grp'||v==='dm')return ocConv();
+ if(v==='comm')return ocComm();if(v==='ginfo')return ocGInfo();if(v==='dinfo')return ocDInfo();if(v==='me')return ocMe();if(v==='reports')return ocReports();
+ return ocHome()}
+function ocLoginHTML(){return '<div class="ocw"><div class="och"><button class="ocib" data-oc="exit" aria-label="Back">'+OC_I.back+'</button><div class="ocbig">Chats</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center"><div style="width:84px;height:84px;border-radius:28px;background:linear-gradient(135deg,#3D5AFE,#9B3BD9);color:#fff;display:flex;align-items:center;justify-content:center">'+OC_I.stk.replace('width="22" height="22"','width="44" height="44"')+'</div><div style="font-size:22px;font-weight:800">Dokodemo Chat</div><div style="font-size:14px;color:var(--sub);line-height:1.8">'+T('ဂျပန်စာ လေ့လာသူတွေနဲ့ ဂျပန်လို စကားပြောကြမယ်။<br>Chat သုံးဖို့ Login ဝင်ထားဖို့ လိုပါတယ် (Nickname ပဲ ပြပါတယ်)','日本語を勉強している仲間と話そう。<br>チャットにはログインが必要です','Talk with other Japanese learners.<br>Log in to use chat (only your nickname is shown).')+'</div><button class="ocbtn" data-a="login" style="width:100%;max-width:300px">'+T('Login ဝင်မယ်','ログイン','Log in')+'</button></div></div>'}
+function ocRulesHTML(){const R=[T('ယဉ်ကျေးစွာ ပြောပါ · ဆဲဆို၊ စော်ကားခြင်း မလုပ်ရ','丁寧に話す。悪口・いじめは禁止','Be kind — no insults or bullying'),T('ဖုန်းနံပါတ်၊ လိပ်စာ၊ ငွေစာရင်း မမျှဝေရ','電話番号・住所・口座は書かない','Never share phone numbers, addresses or bank details'),T('ကြော်ငြာ၊ ငွေတောင်းခြင်း၊ link spam မလုပ်ရ','宣伝・お金の要求・スパムは禁止','No ads, money requests or spam links'),T('လိင်ပိုင်းဆိုင်ရာ၊ အကြမ်းဖက် စာ မပို့ရ','性的・暴力的な内容は禁止','No sexual or violent content'),T('မကောင်းတဲ့စာ တွေ့ရင် စာကို ဖိထားပြီး Report / Block လုပ်ပါ','困ったら長押しして通報・ブロック','Long-press a message to Report / Block')];
+ return '<div class="ocw"><div class="och"><button class="ocib" data-oc="exit" aria-label="Back">'+OC_I.back+'</button></div><div class="ocsc" style="padding:0 18px 20px;display:flex;flex-direction:column;gap:16px"><div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:6px"><div style="width:72px;height:72px;border-radius:24px;background:#14223D;color:#fff;display:flex;align-items:center;justify-content:center">'+OC_I.shield+'</div><div style="font-size:22px;font-weight:800">'+T('Community စည်းကမ်း','コミュニティのルール','Community rules')+'</div><div style="font-size:13px;color:var(--sub)">'+T('ပထမဆုံး တစ်ခါပဲ ပြပါမယ်','最初に一度だけ表示されます','Shown once')+'</div></div><div style="background:var(--bg2);border-radius:20px;padding:4px 16px">'+R.map((r,i)=>'<div style="display:flex;gap:12px;padding:12px 0;'+(i<R.length-1?'border-bottom:1px solid var(--line);':'')+'align-items:flex-start"><span style="width:26px;height:26px;border-radius:13px;background:rgba(61,90,254,.14);color:var(--acc);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(i+1)+'</span><span style="font-size:14px;line-height:1.6">'+r+'</span></div>').join('')+'</div><div style="font-size:12px;color:var(--sub);line-height:1.7">'+T('စည်းကမ်း ချိုးဖောက်ရင် Admin က စာဖျက်ခြင်း၊ Chat ပိတ်ခြင်း လုပ်ပါမယ်။ 18 နှစ်အောက် အသုံးပြုသူတွေ ရှိလို့ ပိုဂရုစိုက်ပေးပါ။','違反した場合、管理者がメッセージ削除・利用停止を行います。18歳未満の利用者もいます。','Admins delete messages and block accounts that break the rules. Some users are under 18 — please take care.')+'</div><label style="display:flex;align-items:center;gap:12px;background:var(--bg2);border-radius:16px;padding:14px 16px;font-size:14px"><input type="checkbox" id="ocAgree" style="width:22px;height:22px;accent-color:#3D5AFE;flex-shrink:0">'+T('စည်းကမ်းကို ဖတ်ပြီး သဘောတူပါတယ်','ルールを読んで同意します','I have read and agree')+'</label><button class="ocbtn" data-oc="agree">'+T('Chat ဝင်မယ်','チャットを始める','Start chatting')+'</button></div></div>'}
+
+/* ---------- home (chats list) ---------- */
+async function ocHomeLoad(force){if(OC.homeBusy)return;if(!force&&OC.home&&Date.now()-OC.homeT<90000)return;OC.homeBusy=1;
+ try{const [g,d]=await Promise.all([ocWhere('oc_groups','mem',OC.uid).catch(e=>{console.warn(e);return []}),ocWhere('oc_dm','p',OC.uid).catch(e=>{console.warn(e);return []})]);
+  const rl={};await Promise.all(OC_ROOMS.map(r=>ocLatest('oc_rooms/'+r.id+'/m',1).then(a=>{rl[r.id]=a[0]||null}).catch(()=>{})));
+  const notes={};const ids=[OC.uid].concat(d.map(x=>(x.p||[]).find(u=>u!==OC.uid)).filter(Boolean)).slice(0,14);
+  await Promise.all(ids.map(u=>ocGet('oc_note/'+u).then(n=>{if(n&&Date.now()-ocMs(n.ts)<86400000)notes[u]=n}).catch(()=>{})));
+  OC.home={g,d,rl,notes};OC.homeT=Date.now()}finally{OC.homeBusy=0}
+ if(S.view==='ochat'&&S.oc&&(S.oc.v==='home'||S.oc.v==='comm')){const q=document.getElementById('ocq'),qv=q?q.value:'';render();if(qv){const q2=document.getElementById('ocq');if(q2){q2.value=qv;ocFilter(qv)}}}}
+function ocRows(){const H=OC.home||{g:[],d:[],rl:{}};const R=[];
+ (H.g||[]).forEach(g=>R.push({k:'g:'+g.id,kind:'grp',id:g.id,n:g.name||'Group',c:ocHash(g.id),m:g.last||T('Group ဖွဲ့ပြီးပါပြီ','グループを作成しました','Group created'),t:ocMs(g.lt||g.ts)}));
+ (H.d||[]).forEach(d=>{const o=(d.p||[]).find(u=>u!==OC.uid)||'';if(ocBlocked(o))return;R.push({k:'d:'+d.id,kind:'dm',id:d.id,n:(d.n||{})[o]||'User',c:ocHash(o),m:d.last||T('စကားစပြောကြမယ်','話しかけてみよう','Say hi'),t:ocMs(d.lt),ou:o})});
+ R.forEach(r=>{r.un=r.t>ocSeen(r.k)&&r.m.indexOf(ocNick()+':')!==0});return R.sort((a,b)=>b.t-a.t)}
+function ocHome(){const o=S.oc,H=OC.home;if(!H||Date.now()-OC.homeT>90000)ocHomeLoad();const rows=ocRows(),tab=o.tab||'all';
+ const un=rows.filter(r=>r.un).length;const show=rows.filter(r=>tab==='all'||(tab==='unread'&&r.un)||(tab==='group'&&r.kind==='grp')||(tab==='dm'&&r.kind==='dm'));
+ const nw=H&&H.rl&&H.rl.news;const notes=(H&&H.notes)||{};
+ const me=notes[OC.uid];
+ let nh='<button class="ocnote" data-oc="me" aria-label="My note"><span class="bb">'+(me?esc(me.t):T('+ Note','+ ひとこと','+ Note'))+'</span><span class="rg off">'+ocAv(ocNick(),ocMyC(),56)+'</span><small>'+T('ကျွန်တော်','あなた','You')+'</small></button>';
+ (H?H.d:[]).forEach(d=>{const u=(d.p||[]).find(x=>x!==OC.uid);if(!u||ocBlocked(u))return;const n=notes[u];const nm=(d.n||{})[u]||'User';nh+='<button class="ocnote" data-oc="open" data-k="dm" data-id="'+esc(d.id)+'">'+(n?'<span class="bb">'+esc(n.t)+'</span>':'')+'<span class="rg'+(n?'':' off')+'">'+ocAv(nm,ocHash(u),56)+'</span><small>'+esc(nm)+'</small></button>'});
+ const tabs=[['all','All',0],['unread',T('မဖတ်ရသေး','未読','Unread'),un],['group','Group',0],['dm','1:1',0]].map(t=>'<button class="octab'+(tab===t[0]?' on':'')+'" data-oc="tab" data-t="'+t[0]+'">'+t[1]+(t[2]?'<i>'+t[2]+'</i>':'')+'</button>').join('');
+ const cards=OC_ROOMS.filter(r=>r.id!=='news').map(r=>{const l=H&&H.rl[r.id];return '<button class="occard" style="background:'+ocRG(r)+'" data-oc="open" data-k="room" data-id="'+r.id+'"><b>'+esc(r.j)+'</b><small>'+(l?esc((l.n||'')+': '+(l.t||ocStLabel(l.s))).slice(0,40):esc(r.m))+'</small></button>'}).join('');
+ let list='';
+ list+='<button class="ocrow ocpin" data-oc="open" data-k="room" data-id="news">'+'<span class="ocav" style="width:54px;height:54px;border-radius:27px;background:'+ocRG(OC_ROOMS[0])+';font-size:20px">ど</span><span class="tx"><span class="nm">Dokodemo お知らせ 📌</span><span class="ms">'+(nw?esc(nw.t||ocStLabel(nw.s)):esc(T('Dokodemo Team ရဲ့ သတင်း','運営からのお知らせ','News from the Dokodemo Team')))+'</span></span>'+(nw&&ocMs(nw.ts)>ocSeen('r:news')?'<span class="ocdot"></span>':'')+'</button>';
+ if(!H)list+='<div class="ocempty">⏳</div>';
+ else if(!show.length)list+='<div class="ocempty">'+T('Chat မရှိသေးပါ။<br>✏️ ခလုတ်နဲ့ Group ဖွဲ့ (သို့) Dokodemo ID နဲ့ သူငယ်ချင်း ရှာပါ','まだチャットがありません。<br>✏️ でグループ作成・友だち追加','No chats yet.<br>Tap ✏️ to create a group or add a friend by ID')+'</div>';
+ show.forEach(r=>{list+='<button class="ocrow'+(r.un?' un':'')+'" data-oc="open" data-k="'+r.kind+'" data-id="'+esc(r.id)+'" data-s="'+esc((r.n+' '+r.m).toLowerCase())+'">'+ocAv(r.n,r.c,54)+'<span class="tx"><span class="nm">'+esc(r.n)+'</span><span class="ms">'+esc(r.m)+' · '+ocTime(r.t)+'</span></span>'+(r.un?'<span class="ocdot"></span>':'')+'</button>'});
+ list+='<button class="ocrow" data-oc="textme"><span class="ocav" style="width:54px;height:54px;border-radius:27px;background:linear-gradient(135deg,#FFB547,#E0457E);font-size:18px">AI</span><span class="tx"><span class="nm">TextMe</span><span class="ms">'+esc(T('AI နဲ့ ဂျပန်လို စာပို့ လေ့ကျင့်မယ်','AIとチャット練習','Practice chatting with AI'))+'</span></span></button>';
+ if(ocIsAdmin())list+='<button class="ocrow" data-oc="reports"><span class="ocav" style="width:54px;height:54px;border-radius:27px;background:linear-gradient(135deg,#F07C70,#C9433A);font-size:16px">🛡</span><span class="tx"><span class="nm">Reports (Admin)</span><span class="ms">'+T('Report ထားတဲ့ စာများ','通報一覧','Reported messages')+'</span></span></button>';
+ document.getElementById('app').innerHTML='<div class="ocw"><div class="och"><button class="ocib" data-oc="exit" aria-label="Back">'+OC_I.back+'</button><button data-oc="me" aria-label="Profile" style="border:none;background:none;padding:0">'+ocAv(ocNick(),ocMyC(),38)+'</button><div class="ocbig">Chats</div><button class="ocib" data-oc="new" aria-label="New chat">'+OC_I.pen+'</button></div>'
+ +'<div class="ocsc" id="ocsc"><label class="ocsr">'+OC_I.srch+'<input id="ocq" placeholder="'+T('ရှာမယ်','検索','Search')+'" autocomplete="off"></label>'
+ +'<div class="ocnotes">'+nh+'</div><div class="octabs">'+tabs+'</div>'
+ +'<div class="ocsec"><span>COMMUNITY</span><button data-oc="comm">'+T('အားလုံး ›','すべて ›','All ›')+'</button></div><div class="occards">'+cards+'</div>'
+ +'<div class="ocsec"><span>CHATS</span><button data-oc="refresh">↻</button></div><div id="ocRows">'+list+'</div><div style="height:90px"></div></div>'
+ +'<button class="ocfab" data-oc="new" aria-label="New chat">'+OC_I.pen+'</button><div id="ocOv"></div></div>';
+ const q=document.getElementById('ocq');if(q)q.oninput=()=>ocFilter(q.value)}
+function ocFilter(v){v=String(v||'').toLowerCase().trim();document.querySelectorAll('#ocRows .ocrow[data-s]').forEach(b=>{b.style.display=!v||b.dataset.s.indexOf(v)>-1?'':'none'})}
+function ocStLabel(id){const s=ocStGet(id);return s?T('Sticker ပို့ထားတယ်','スタンプ','Sticker')+' · '+s.j:''}
+
+/* ---------- community (channels) ---------- */
+function ocComm(){const H=OC.home;if(!H||Date.now()-OC.homeT>90000)ocHomeLoad();const ev=CFG().chatEvent;let evh='';
+ if(ev&&ev.d&&ev.d>=new Date(Date.now()+9*3600000).toISOString().slice(0,10)){const d=new Date(ev.d+'T00:00:00');evh='<div class="ocevt"><div style="width:52px;height:56px;border-radius:14px;background:#FFF0EE;color:#C0392B;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0"><b style="font-size:11px">'+['SUN','MON','TUE','WED','THU','FRI','SAT'][d.getDay()]+'</b><b style="font-size:22px;line-height:1">'+d.getDate()+'</b></div><div style="flex:1;display:flex;flex-direction:column;gap:2px"><b style="font-size:15px">'+esc(ev.t||'')+'</b><span style="font-size:12px;color:var(--sub)">'+esc(ev.m||'')+'</span></div>'+(ev.r?'<button class="ocbtn" style="min-height:40px;padding:0 14px" data-oc="open" data-k="room" data-id="'+esc(ev.r)+'">'+T('သွားမယ်','行く','Go')+'</button>':'')+'</div>'}
+ const rows=OC_ROOMS.map(r=>{const l=H&&H.rl[r.id];const u=l&&ocMs(l.ts)>ocSeen('r:'+r.id);return '<button class="ocrow" data-oc="open" data-k="room" data-id="'+r.id+'"><span class="occhi" style="background:'+ocRG(r)+'">'+esc(r.ic)+'</span><span class="tx"><span class="nm">'+esc(r.j)+(r.ro?' <small style="font-size:10.5px;color:var(--sub);background:var(--bg2);border-radius:8px;padding:2px 7px;font-weight:600">Admin only</small>':'')+'</span><span class="ms">'+(l?esc((l.n||'')+': '+(l.t||ocStLabel(l.s))):esc(T(r.m,r.j,r.e)))+'</span></span>'+(u?'<span class="ocdot"></span>':'')+'</button>'}).join('');
+ document.getElementById('app').innerHTML='<div class="ocw"><div class="ocsc"><div class="ochero"><div style="position:absolute;right:-40px;top:-30px;width:170px;height:170px;border-radius:85px;background:rgba(255,255,255,.1)"></div><div style="position:absolute;right:40px;top:70px;width:70px;height:70px;border-radius:35px;background:#E5483B;opacity:.85"></div><div style="display:flex;justify-content:space-between;position:relative"><button class="ocib" data-oc="home" aria-label="Back">'+OC_I.back+'</button></div><div style="padding:0 8px;display:flex;flex-direction:column;gap:4px;position:relative"><div style="font-size:12px;font-weight:700;opacity:.9;letter-spacing:1px">DOKODEMO COMMUNITY</div><div style="font-size:30px;font-weight:800;letter-spacing:-.5px">'+T('ဂျပန်စာ ချစ်သူများ','日本語の仲間','Japanese learners')+'</div><div style="font-size:13px;opacity:.95">'+T('Level အလိုက် Room · မေးမြန်း · စကားပြော','レベル別ルーム・質問・おしゃべり','Rooms by level · Q&A · Free talk')+'</div></div></div>'+(evh||'<div style="height:14px"></div>')+'<div class="ocsec" style="padding-top:16px"><span>CHANNELS</span></div><div class="occh">'+rows+'</div><div style="height:30px"></div></div></div>'}
+
+/* ---------- conversation ---------- */
+function ocConvMeta(){const o=S.oc;if(o.v==='room'){const r=ocRoom(o.id);return {t:r.j,s:T(r.m,r.e,r.e),av:'<span class="ocav" style="width:42px;height:42px;border-radius:21px;background:'+ocRG(r)+';font-size:15px">'+esc(r.ic)+'</span>',ro:r.ro&&!ocIsAdmin(),rule:T(r.rule[0],r.rule[1],r.rule[2])}}
+ if(o.v==='grp'){const g=OC.grp||{};return {t:g.name||'Group',s:(g.mem?g.mem.length:'·')+' '+T('ယောက်','人','members'),av:ocAv(g.name||'G',ocHash(o.id),42),info:1}}
+ const d=OC.dm||{};const u=(d.p||[]).find(x=>x!==OC.uid)||'';const n=(d.n||{})[u]||'…';return {t:n,s:'1:1 · Dokodemo',av:ocAv(n,ocHash(u),42),info:1}}
+function ocConv(){const o=S.oc,M=ocConvMeta();
+ const inp=M.ro?'<div class="ocempty" style="padding:14px">'+T('Dokodemo Team ပဲ ပို့လို့ရပါတယ်','運営のみ投稿できます','Only the Dokodemo Team can post here')+'</div>':
+ '<div id="ocRep"></div><div class="ocqr" id="ocQR"></div><div class="ocin"><button class="ocib t" data-oc="panel" data-p="kao" aria-label="Kaomoji">'+OC_I.plus+'</button><div class="ocinb"><label for="ocIn" style="position:absolute;width:1px;height:1px;overflow:hidden">Message</label><textarea id="ocIn" rows="1" maxlength="600" placeholder="Aa · '+T('စာရိုက်ပါ','メッセージ','Message')+'"></textarea><button class="ocib t" data-oc="panel" data-p="st" aria-label="Stickers" style="width:38px;height:44px">'+OC_I.stk+'</button></div><button class="ocsend" data-oc="send" aria-label="Send">'+OC_I.send+'</button></div><div id="ocPanel"></div>';
+ document.getElementById('app').innerHTML='<div class="ocw ocv"><div class="och"><button class="ocib t" data-oc="cback" aria-label="Back">'+OC_I.back+'</button>'+M.av+'<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px"><b style="font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(M.t)+'</b><span id="ocSub" style="font-size:12px;color:var(--sub)">'+esc(M.s)+'</span></div><button class="ocib" data-oc="furi" aria-label="Furigana" style="width:auto;padding:0 12px;height:36px;font-size:13px;font-weight:800;'+(S.ocFuri?'background:linear-gradient(135deg,#3D5AFE,#7B3FE4);color:#fff':'')+'">ふ</button>'+(M.info?'<button class="ocib t" data-oc="info" aria-label="Info">'+OC_I.info+'</button>':'')+'</div>'
+ +(M.rule?'<div class="ocpinb"><i></i><div><b style="color:var(--acc)">'+T('စည်းကမ်း','ルール','Rules')+'</b> · '+esc(M.rule)+'</div></div>':'')
+ +'<div class="ocl" id="ocList"><div class="ocempty">⏳</div></div>'+inp+'<div id="ocOv"></div></div>';
+ ocBindConv();
+ const p=ocPath();if(OC.path!==p){ocUnsub();OC.msgs=[];OC.path=p;
+  if(o.v==='grp'){ocGet('oc_groups/'+o.id).then(g=>{OC.grp=g;if(!g||(g.mem||[]).indexOf(OC.uid)<0){toast(T('Group မှာ မရှိတော့ပါ','このグループのメンバーではありません','You are not in this group'));ocGo({v:'home'});return}const s=document.getElementById('ocSub');if(s){const m=ocConvMeta();s.textContent=m.s;const h=document.querySelector('.ocv .och b');if(h)h.textContent=m.t;const av=document.querySelector('.ocv .och .ocav');if(av)av.outerHTML=m.av}}).catch(ocErr)}
+  if(o.v==='dm'){const sub=()=>{OC.dmUnsub&&OC.dmUnsub();if(OC.mock){OC.dm=ocmCol('oc_dm')[o.id]||null;return}OC.dmUnsub=OC.db.doc('oc_dm/'+o.id).onSnapshot(d=>{OC.dm=d.exists?d.data():null;ocPaintList()},()=>{})};sub()}
+  const un=ocListen(p,(L,err)=>{if(err){ocErr(err);return}OC.msgs=L||[];ocPaintList()});OC.unsub=()=>{un();if(OC.dmUnsub){OC.dmUnsub();OC.dmUnsub=null}}}
+ else ocPaintList()}
+function ocBindConv(){const ta=document.getElementById('ocIn');if(ta){ta.oninput=()=>{ta.style.height='44px';ta.style.height=Math.min(110,ta.scrollHeight)+'px'};ta.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&e.keyCode!==229&&!/Android|iPhone|iPad/i.test(navigator.userAgent)){e.preventDefault();ocSend()}};ta.onfocus=()=>{const p=document.getElementById('ocPanel');if(p)p.innerHTML='';setTimeout(ocScrollEnd,250)}}
+ const L=document.getElementById('ocList');if(!L)return;
+ const start=e=>{const b=e.target.closest('[data-mid]');if(!b)return;clearTimeout(OC.lp);OC.lpx=e.clientX;OC.lpy=e.clientY;OC.lpFired=0;OC.lp=setTimeout(()=>{OC.lpFired=1;try{navigator.vibrate&&navigator.vibrate(12)}catch(x){}ocMenu(b.dataset.mid)},440)};
+ L.addEventListener('pointerdown',start);L.addEventListener('pointermove',e=>{if(Math.abs(e.clientX-OC.lpx)>8||Math.abs(e.clientY-OC.lpy)>8)clearTimeout(OC.lp)});['pointerup','pointercancel','pointerleave'].forEach(t=>L.addEventListener(t,()=>clearTimeout(OC.lp)));
+ L.addEventListener('contextmenu',e=>{const b=e.target.closest('[data-mid]');if(b){e.preventDefault();if(!OC.lpFired)ocMenu(b.dataset.mid)}});
+ L.addEventListener('click',e=>{if(OC.lpFired){OC.lpFired=0;return}if(e.target.closest('button'))return;const b=e.target.closest('[data-mid]');if(!b)return;const m=OC.msgs.find(x=>x.id===b.dataset.mid);if(!m)return;if(m.s){const s=ocStGet(m.s);if(s){speakJa(s.j,0.9);toast(s.j+' — '+s.m)}}else if(m.t&&/[ぁ-んァ-ン一-龯]/.test(m.t))speakJa(m.t,0.9)})}
+function ocNear(){const L=document.getElementById('ocList');return !L||L.scrollHeight-L.scrollTop-L.clientHeight<160}
+function ocScrollEnd(){const L=document.getElementById('ocList');if(L)L.scrollTop=L.scrollHeight}
+function ocPaintList(){const L=document.getElementById('ocList');if(!L){if(S.view!=='ochat')ocUnsub();return}const o=S.oc,near=ocNear()||!L.dataset.p;
+ const A=OC.msgs.slice().reverse().filter(m=>!ocBlocked(m.u));let h='',pd='',pu='',pt=0;const dm=o.v==='dm';
+ if(!A.length)h='<div class="ocempty">'+T('စာ မရှိသေးပါ — ပထမဆုံး စာ ပို့ကြည့်ပါ 👋','まだメッセージがありません。最初のひとことを！','No messages yet — say hi 👋')+'</div>';
+ let lastMine=null;A.forEach(m=>{if(m.u===OC.uid)lastMine=m});
+ const rd=dm&&OC.dm&&OC.dm.rd?OC.dm.rd:{};const other=dm&&OC.dm?(OC.dm.p||[]).find(x=>x!==OC.uid):'';const otherRd=other?ocMs(rd[other]):0;
+ A.forEach((m,i)=>{const ts=ocMs(m.ts),day=ocDay(ts);if(day!==pd){h+='<div class="ocday">'+day+' '+ocHM(ts)+'</div>';pd=day;pu=''}
+  const mine=m.u===OC.uid,nx=A[i+1],first=pu!==m.u||ts-pt>300000,last=!nx||nx.u!==m.u||ocMs(nx.ts)-ts>300000||ocDay(ocMs(nx.ts))!==day;pu=m.u;pt=ts;
+  const col=OC_NC[(m.c|0)%8];
+  let body='';if(m.s){body='<div class="ocst" data-mid="'+esc(m.id)+'">'+ocOwl(ocStGet(m.s),132)+'</div>'}
+  else{const q=m.q?String(m.q).split('\u0001'):null;body='<div class="ocb'+(first?' f':'')+'" data-mid="'+esc(m.id)+'">'+(q?'<div class="ocq" style="color:'+(mine?'#fff':col)+'"><div><b>'+esc(q[0]||'')+'</b>'+esc((q[1]||'').slice(0,80))+'</div></div>':'')+ocRuby(m.t||'')+'</div>'}
+  const re=m.re||{},cnt={};Object.keys(re).forEach(k=>{const v=re[k];if(ocRx(v))cnt[v]=(cnt[v]||0)+1});
+  const rx=Object.keys(cnt).length?'<div class="ocrx">'+Object.keys(cnt).map(k=>{const r=ocRx(k);return '<button data-oc="rx" data-rx="'+k+'" data-m="'+esc(m.id)+'" style="background:'+r[2]+';color:'+r[3]+'">'+r[1]+(cnt[k]>1?' '+cnt[k]:'')+'</button>'}).join('')+'</div>':'';
+  const nm=!mine&&first&&!dm?'<div class="ocnm" style="color:'+col+'">'+esc(m.n||'')+(m.u==='admin'||m.adm?' ✓':'')+'</div>':'';
+  const seen=mine&&lastMine===m&&(dm?otherRd>=ts:false)?'<div class="ocrd">'+T('ဖတ်ပြီး','既読','Seen')+' '+ocTime(otherRd)+'</div>':(mine&&lastMine===m?'<div class="ocrd">'+ocTime(ts)+'</div>':'');
+  h+='<div class="ocm'+(mine?' me':'')+(first?' g1':'')+'">'+(!mine?(last?'<span title="'+esc(m.n||'')+'">'+ocAv(m.n,m.c,30)+'</span>':'<span class="sp"></span>'):'')+'<div class="ocbw">'+nm+body+rx+seen+'</div></div>'});
+ L.innerHTML=h;L.dataset.p='1';if(near)ocScrollEnd();
+ const sub=document.getElementById('ocSub');if(sub&&o.v==='room'){const act={};A.forEach(m=>{if(Date.now()-ocMs(m.ts)<1800000)act[m.u]=1});const n=Object.keys(act).length;sub.textContent=T(ocRoom(o.id).m,ocRoom(o.id).e,ocRoom(o.id).e)+(n?' · '+T('မိနစ် ၃၀ အတွင်း '+n+' ယောက်','30分以内に'+n+'人','active: '+n):'')}
+ const newest=A.length?ocMs(A[A.length-1].ts):0;if(newest)ocSeen(ocKey(),newest);
+ if(dm&&newest&&OC.dm&&!document.hidden){const mine=ocMs((OC.dm.rd||{})[OC.uid]);const lastOther=A.slice().reverse().find(m=>m.u!==OC.uid);if(lastOther&&ocMs(lastOther.ts)>mine&&!OC.rdBusy){OC.rdBusy=1;ocUpd('oc_dm/'+o.id,{['rd.'+OC.uid]:ocTS()}).catch(()=>{}).then(()=>{OC.rdBusy=0})}}
+ ocQR(A)}
+function ocQR(A){const q=document.getElementById('ocQR');if(!q)return;const lo=A.slice().reverse().find(m=>m.u!==OC.uid);let L;
+ if(!lo){L=[['はじめまして！','တွေ့ရတာ ဝမ်းသာပါတယ်'],['よろしくお願いします','ခင်ခင်မင်မင်နော်'],['こんにちは！','မင်္ဂလာပါ']]}
+ else if(/[？?]\s*$|か\s*$|の\s*$/.test(lo.t||''))L=[['はい！','ဟုတ်ကဲ့'],['いいえ','မဟုတ်ပါဘူး'],['わかりません','မသိပါဘူး'],['いいですね！','ကောင်းတယ်']];
+ else L=[['いいですね！','ကောင်းတယ်'],['すごい！','တော်လိုက်တာ'],['ありがとう！','ကျေးဇူးပါ'],['がんばって！','ကြိုးစားနော်']];
+ q.innerHTML=L.map(x=>'<button data-oc="qr" data-t="'+esc(x[0])+'"><b>'+esc(x[0])+'</b><small>'+esc(x[1])+'</small></button>').join('')}
+async function ocSend(extra){const o=S.oc;const ta=document.getElementById('ocIn');let raw=extra&&extra.t!==undefined?extra.t:(ta?ta.value:'');const sid=extra&&extra.s||'';
+ const c=ocClean(raw);if(!c.t&&!sid)return;
+ const now=Date.now();OC.sent=OC.sent.filter(t=>now-t<30000);if(OC.sent.length>=8){toast(T('⏳ ခဏစောင့်ပြီးမှ ပို့ပါ (စက္ကန့် ၃၀ မှာ ၈ စောင်)','⏳ 少し待ってから送ってください','⏳ Slow down a little'));return}
+ if(c.hit===1)toast(T('🔒 ဖုန်းနံပါတ်ကို ဖျောက်ထားပါတယ် — ကိုယ်ရေး အချက်အလက် မမျှဝေပါနဲ့','🔒 電話番号は隠しました','🔒 Phone number hidden'));else if(c.hit===2)toast(T('🔗 Link တွေ ပို့လို့ မရပါ','🔗 リンクは送れません','🔗 Links are not allowed'));
+ const rep=S.oc.reply;const msg={u:OC.uid,n:ocNick(),c:ocMyC(),t:sid?'':c.t,s:sid,q:rep?(String(rep.n).slice(0,24)+'\u0001'+String(rep.t).slice(0,100)):'',re:{},ts:ocTS()};
+ if(ta&&!sid){ta.value='';ta.style.height='44px'}S.oc.reply=null;const rb=document.getElementById('ocRep');if(rb)rb.innerHTML='';
+ OC.sent.push(now);
+ try{await ocAdd(ocPath(),msg);try{navigator.vibrate&&navigator.vibrate(8)}catch(x){}
+  if(o.v==='grp'||o.v==='dm'){const last=(ocNick()+': '+(sid?ocStLabel(sid):c.t)).slice(0,80);ocUpd((o.v==='grp'?'oc_groups/':'oc_dm/')+o.id,{last,lt:ocTS()}).catch(e=>console.warn(e))}
+  OC.homeT=0;setTimeout(ocScrollEnd,60)}catch(e){ocErr(e);if(ta&&!sid&&!ta.value)ta.value=raw}}
+async function ocReact(mid,k){const m=OC.msgs.find(x=>x.id===mid);if(!m)return;const cur=(m.re||{})[OC.uid];try{await ocUpd(ocPath()+'/'+mid,{['re.'+OC.uid]:cur===k?ocDelF():k})}catch(e){ocErr(e)}}
+
+/* ---------- long-press menu (reactions + learning tools + safety) ---------- */
+function ocMenu(mid){const m=OC.msgs.find(x=>x.id===mid);if(!m)return;const ov=document.getElementById('ocOv');if(!ov)return;const mine=m.u===OC.uid,st=m.s?ocStGet(m.s):null;
+ const text=st?st.j:(m.t||'');const W=st?[]:ocWords(text);
+ const rx='<div class="ocrxbar">'+OC_RX.map(r=>'<button data-oc="rx" data-m="'+esc(mid)+'" data-rx="'+r[0]+'" style="background:'+r[2]+';color:'+r[3]+';'+((m.re||{})[OC.uid]===r[0]?'outline:2px solid #fff;':'')+'">'+r[1]+'</button>').join('')+'</div>';
+ const pv=st?'<div style="align-self:flex-start">'+ocOwl(st,150)+'<div style="color:#C3CAE0;font-size:13px;padding:4px 6px">'+esc(st.m)+'</div></div>':'<div class="ocpv">'+(S.ocFuri?ocRuby(text):esc(text))+'</div>';
+ const wd=W.length?'<div class="wd"><div style="font-size:12px;font-weight:800;color:#C9D0FF">'+T('単語帳に保存 · ဝေါဟာရ မှတ်မယ်','単語帳に保存','Save words')+'</div><div>'+W.map(w=>'<button data-oc="fav" data-w="'+encodeURIComponent(JSON.stringify({k:w.k,r:w.r,mm:w.mm,en:w.en||''}))+'" class="'+(isFav(w.r)?'on':'')+'"><span style="font-size:14px;font-weight:800">'+esc(w.k)+' <span style="font-size:11px;color:#A9B7FF;font-weight:500">'+esc(w.r)+'</span></span><span style="font-size:11px;color:#C3CAE0">'+esc(String(w.mm).slice(0,28))+'</span></button>').join('')+'</div></div>':'';
+ const it=[];
+ if(!S.oc.ro)it.push(['reply',T('ပြန်ဖြေမယ်','返信','Reply'),'Reply']);
+ if(/[ぁ-んァ-ン一-龯]/.test(text))it.push(['tts',T('အသံ နားထောင်မယ်','発音を聞く','Listen'),'TTS']);
+ if(text)it.push(['tr',T('ဘာသာပြန်မယ်','翻訳','Translate'),/[ぁ-んァ-ン一-龯]/.test(text)?'→ မြန်မာ':'→ 日本語']);
+ if(!st)it.push(['copy','Copy','']);
+ if(mine||ocIsAdmin())it.push(['del',T('ဖျက်မယ်','削除','Delete'),'','rd']);
+ if(!mine){it.push(['report',T('Report လုပ်မယ်','通報','Report'),'','rd']);it.push(['block',T('Block လုပ်မယ်','ブロック','Block'),esc(m.n||''),'rd'])}
+ OC.menuM=m;
+ ov.innerHTML='<div class="ocov"><button class="ocbd" data-oc="close" aria-label="Close"></button><div class="ocmenu">'+rx+pv+'<div class="ocmc">'+wd+it.map(x=>'<button data-oc="m'+x[0]+'" class="'+(x[3]||'')+'"><span>'+x[1]+'</span><span style="font-size:12px;color:#9AA4BC">'+x[2]+'</span></button>').join('')+'</div></div></div>'}
+function ocCloseOv(){const ov=document.getElementById('ocOv');if(ov)ov.innerHTML=''}
+function ocReportSheet(m){const ov=document.getElementById('ocOv');if(!ov)return;const R=[T('ဆဲဆို / စော်ကား','悪口・いじめ','Insults / bullying'),'Spam / '+T('ကြော်ငြာ','宣伝','ads'),T('လိင်ပိုင်းဆိုင်ရာ စာ/ပုံ','性的な内容','Sexual content'),T('လိမ်လည် / ငွေတောင်း','詐欺・お金の要求','Scam / money request'),T('ကိုယ်ရေး အချက်အလက်','個人情報','Personal info'),T('အခြား','その他','Other')];OC.repWhy=OC.repWhy||0;OC.repM=m;
+ ov.innerHTML='<div class="ocov"><button class="ocbd" data-oc="close" aria-label="Close"></button><div class="ocsheet"><span class="hd"></span><h3>'+T('Report လုပ်မယ်','通報する','Report')+'</h3><div style="font-size:12.5px;color:var(--sub)">'+esc(m.n||'')+' · '+esc((m.t||ocStLabel(m.s)).slice(0,60))+'</div>'+R.map((r,i)=>'<button class="ocradio'+(OC.repWhy===i?' on':'')+'" data-oc="why" data-i="'+i+'"><span style="width:18px;height:18px;border-radius:9px;border:2px solid '+(OC.repWhy===i?'#C0392B':'var(--sub)')+';display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(OC.repWhy===i?'<span style="width:8px;height:8px;border-radius:4px;background:#C0392B"></span>':'')+'</span>'+r+'</button>').join('')+'<label style="display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:4px 2px">'+T('ဒီလူကို Block လည်း လုပ်မယ်','ブロックもする','Also block this person')+'<input type="checkbox" id="ocRepBlk" checked style="width:22px;height:22px;accent-color:#C0392B"></label><div style="font-size:11.5px;color:var(--sub);line-height:1.6">'+T('Block လုပ်ရင် သူ့စာတွေ မမြင်ရတော့ပါ · သူ့ကို အသိမပေးပါ · Admin က စစ်ပါမယ်','ブロックすると相手のメッセージは表示されません（相手には通知されません）','Blocked people’s messages are hidden. They are not notified.')+'</div><button class="ocbtn rd" data-oc="repsend">'+T('Report ပို့မယ်','通報を送る','Send report')+'</button></div></div>'}
+async function ocReportSend(){const m=OC.repM;if(!m)return;const blk=document.getElementById('ocRepBlk');
+ try{await ocAdd('oc_rep',{by:OC.uid,u:String(m.u||''),n:String(m.n||'').slice(0,24),t:String(m.t||m.s||'').slice(0,300),w:(m.id?ocPath()+'/'+m.id:(S.oc.v==='dinfo'?'oc_dm/'+S.oc.id:'')).slice(0,160),why:String(OC.repWhy||0),ts:ocTS()});toast(T('✅ Report ပို့ပြီးပါပြီ — ကျေးဇူးတင်ပါတယ်','✅ 通報しました','✅ Report sent — thank you'))}catch(e){ocErr(e)}
+ if(blk&&blk.checked){ocBlock(m.u,m.n,true);ocPaintList()}ocCloseOv()}
+
+/* ---------- stickers / kaomoji panel ---------- */
+function ocPanel(p){const el=document.getElementById('ocPanel');if(!el)return;if(OC.panel===p&&el.innerHTML){el.innerHTML='';OC.panel='';return}OC.panel=p;S.oc.pk=S.oc.pk||(p==='kao'?'kao':'owl');if(p==='kao')S.oc.pk='kao';else if(S.oc.pk==='kao')S.oc.pk='owl';try{document.getElementById('ocIn').blur()}catch(e){}ocPanelPaint()}
+function ocPanelPaint(){const el=document.getElementById('ocPanel');if(!el)return;const pk=S.oc.pk||'owl';const P=OC_STP.find(x=>x.id===pk)||OC_STP[0];
+ const tabs='<div class="ocpt">'+OC_STP.map(x=>'<button class="'+(x.id===pk?'on':'')+'" data-oc="pk" data-p="'+x.id+'">'+esc(x.j)+(x.pro&&!PRO_OK?' 👑':'')+'</button>').join('')+'</div>';
+ let g;if(pk==='kao')g='<div class="ocgrid ockao">'+OC_KAO.map(k=>'<button data-oc="kao" data-t="'+esc(k[0])+'"><span>'+esc(k[0])+'</span><small>'+esc(k[1])+'</small></button>').join('')+'</div>';
+ else if(P.pro&&!PRO_OK)g='<div class="ocempty">👑 '+T('敬語 Sticker တွေက Pro အတွက်ပါ','敬語スタンプは Pro 限定です','Keigo stickers are for Pro')+'<br><div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px;opacity:.55">'+OC_ST.filter(s=>s.p===pk).slice(0,4).map(s=>ocOwl(s,64)).join('')+'</div><button class="ocbtn" style="margin-top:12px" data-oc="pro">Pro</button></div>';
+ else g='<div class="ocgrid">'+OC_ST.filter(s=>s.p===pk).map(s=>'<button data-oc="st" data-s="'+s.id+'" aria-label="'+esc(s.j)+'">'+ocOwl(s,70)+'<small>'+esc(s.m)+'</small></button>').join('')+'</div>';
+ el.innerHTML='<div class="ocpanel">'+tabs+'<div style="padding:0 14px;font-size:11.5px;color:var(--sub)">'+(pk==='kao'?T('နှိပ်ရင် စာထဲ ထည့်မယ်','タップで入力','Tap to insert'):T('Dokodemo ဇီးကွက် · နှိပ်ရင် ပို့မယ် · ပို့ပြီး စာကိုနှိပ်ရင် အသံထွက်မယ်','タップで送信','Tap to send'))+'</div>'+g+'</div>';setTimeout(ocScrollEnd,30)}
+
+/* ---------- new chat / group / friend ---------- */
+function ocNewSheet(mode){const ov=document.getElementById('ocOv');if(!ov)return;mode=mode||'menu';let b='';
+ if(mode==='menu')b='<h3>'+T('အသစ် စမယ်','新しいチャット','New chat')+'</h3>'+[['ng','👥',T('Group ဖွဲ့မယ်','グループを作る','Create a group'),T('အများဆုံး ၅၀ ယောက်','最大50人','Up to 50 people')],['jg','🔑',T('Code နဲ့ Group ဝင်မယ်','コードで参加','Join with a code'),T('Code ၆ လုံး','6文字のコード','6-character code')],['fd','🔎',T('Dokodemo ID နဲ့ သူငယ်ချင်း ရှာမယ်','IDで友だち追加','Add a friend by ID'),T('ကိုယ့် ID ကို Profile မှာ ကြည့်ပါ','自分のIDはプロフィールに','Your ID is in your profile')]].map(x=>'<button class="ocrow" style="padding:10px 4px" data-oc="nsh" data-m="'+x[0]+'"><span class="ocav" style="width:46px;height:46px;border-radius:15px;background:var(--bg2);font-size:21px">'+x[1]+'</span><span class="tx"><span class="nm">'+x[2]+'</span><span class="ms">'+x[3]+'</span></span></button>').join('');
+ else if(mode==='ng')b='<h3>'+T('Group ဖွဲ့မယ်','グループを作る','Create a group')+'</h3><div class="ocfld"><input id="ocNg" maxlength="40" placeholder="'+T('ဥပမာ — 大阪 N3 勉強会','例：大阪 N3 勉強会','e.g. Osaka N3 study')+'"></div><button class="ocbtn" data-oc="mkgrp">'+T('ဖွဲ့မယ်','作成','Create')+'</button>';
+ else if(mode==='jg')b='<h3>'+T('Code နဲ့ ဝင်မယ်','コードで参加','Join with a code')+'</h3><div class="ocfld"><input id="ocJg" maxlength="6" autocapitalize="characters" placeholder="DK7Q2M" style="letter-spacing:4px;font-weight:800"></div><button class="ocbtn" data-oc="jngrp">'+T('ဝင်မယ်','参加','Join')+'</button>';
+ else if(mode==='fd')b='<h3>'+T('Dokodemo ID နဲ့ ရှာမယ်','IDで友だち追加','Add by Dokodemo ID')+'</h3><div class="ocfld"><input id="ocFd" maxlength="6" autocapitalize="characters" placeholder="K4M9TP" style="letter-spacing:4px;font-weight:800"></div><button class="ocbtn" data-oc="fdgo">'+T('ရှာမယ်','検索','Find')+'</button><div style="font-size:12px;color:var(--sub)">'+T('ကိုယ့် ID','あなたのID','Your ID')+': <b>'+esc(proUID())+'</b></div>';
+ ov.innerHTML='<div class="ocov"><button class="ocbd" data-oc="close" aria-label="Close"></button><div class="ocsheet"><span class="hd"></span>'+b+'</div></div>';const f=ov.querySelector('input');if(f)setTimeout(()=>f.focus(),60)}
+const OC_CC='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function ocCode(){let s='';for(let i=0;i<6;i++)s+=OC_CC[Math.floor(Math.random()*OC_CC.length)];return s}
+async function ocMkGrp(){const i=document.getElementById('ocNg');const n=ocClean(i?i.value:'').t.slice(0,40);if(!n){toast(T('Group နာမည် ထည့်ပါ','グループ名を入力','Enter a group name'));return}
+ try{let id='';for(let k=0;k<4;k++){const c=ocCode();if(!(await ocGet('oc_groups/'+c))){id=c;break}}if(!id)throw new Error('code');
+  await ocSet('oc_groups/'+id,{name:n,o:OC.uid,mem:[OC.uid],mn:{[OC.uid]:ocNick()},last:'',lt:ocTS(),ts:ocTS()});OC.homeT=0;toast(T('✅ Group ဖွဲ့ပြီးပါပြီ · Code '+id,'✅ 作成しました · コード '+id,'✅ Group created · code '+id));ocGo({v:'grp',id,back:'home'})}catch(e){ocErr(e)}}
+async function ocJoin(code){code=String(code||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(code.length!==6){toast(T('Code ၆ လုံး ထည့်ပါ','6文字のコード','Enter the 6-character code'));return}
+ try{const g=await ocGet('oc_groups/'+code);if(!g){toast(T('ဒီ Code နဲ့ Group မရှိပါ','グループが見つかりません','No group with this code'));return}const mem=g.mem||[];
+  if(mem.indexOf(OC.uid)<0){if(mem.length>=50){toast(T('Group ပြည့်နေပါပြီ (၅၀)','満員です（50人）','Group is full (50)'));return}await ocUpd('oc_groups/'+code,{mem:mem.concat([OC.uid]),['mn.'+OC.uid]:ocNick()});toast(T('✅ Group ဝင်ပြီးပါပြီ','✅ 参加しました','✅ Joined'))}
+  OC.homeT=0;ocGo({v:'grp',id:code,back:'home'})}catch(e){ocErr(e)}}
+async function ocFind(id){id=String(id||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(id.length!==6){toast(T('ID ၆ လုံး ထည့်ပါ','6文字のID','Enter the 6-character ID'));return}
+ if(id===proUID()){toast(T('ဒါ ကိုယ့် ID ပါ 😊','あなたのIDです','That is your own ID'));return}
+ try{const d=await ocGet('oc_dir/'+id);if(!d||!d.u){toast(T('ဒီ ID နဲ့ Chat သုံးသူ မရှိသေးပါ','このIDの人はまだチャットを使っていません','No chat user with this ID yet'));return}await ocOpenDM(d.u,d.n)}catch(e){ocErr(e)}}
+async function ocOpenDM(u,n){const pid=[OC.uid,u].sort().join('_');const ex=await ocGet('oc_dm/'+pid);if(!ex)await ocSet('oc_dm/'+pid,{p:[OC.uid,u].sort(),n:{[OC.uid]:ocNick(),[u]:String(n||'User').slice(0,24)},last:'',lt:ocTS(),rd:{}});OC.homeT=0;ocGo({v:'dm',id:pid,back:'home'})}
+
+/* ---------- group info / dm info / me / admin ---------- */
+function ocGInfo(){const o=S.oc,g=OC.grp;if(!g){ocGet('oc_groups/'+o.id).then(x=>{OC.grp=x;if(x)render()}).catch(ocErr);document.getElementById('app').innerHTML='<div class="ocw"><div class="ocempty">⏳</div></div>';return}
+ const own=g.o===OC.uid;const mem=(g.mem||[]);const mn=g.mn||{};
+ const rows=mem.map(u=>'<div class="ocrow" style="padding:8px 14px">'+ocAv(mn[u]||'?',ocHash(u),42)+'<span class="tx"><span class="nm">'+esc(mn[u]||'User')+(u===OC.uid?' ('+T('ကျွန်တော်','あなた','you')+')':'')+'</span><span class="ms">'+(u===g.o?'owner':'member')+'</span></span>'+(own&&u!==OC.uid?'<button class="ocib" data-oc="kick" data-u="'+esc(u)+'" aria-label="Remove" style="width:38px;height:38px">'+OC_I.x+'</button>':(u!==OC.uid?'<button class="ocbtn gh" style="min-height:36px;padding:0 12px;font-size:12.5px" data-oc="dmu" data-u="'+esc(u)+'" data-n="'+esc(mn[u]||'')+'">1:1</button>':''))+'</div>').join('');
+ document.getElementById('app').innerHTML='<div class="ocw"><div class="ocsc"><div class="ochero" style="align-items:center;padding-bottom:22px"><div style="align-self:stretch;display:flex;justify-content:space-between"><button class="ocib" data-oc="conv" aria-label="Back">'+OC_I.back+'</button></div>'+ocAv(g.name,ocHash(o.id),88)+'<div style="font-size:21px;font-weight:800;text-align:center">'+esc(g.name||'')+'</div><div style="font-size:13px;opacity:.9">'+mem.length+' / 50 '+T('ယောက်','人','members')+'</div></div>'
+ +'<div class="occh" style="margin-top:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:10px"><div><div style="font-size:11.5px;color:var(--sub)">Invite code</div><div style="font-size:26px;font-weight:800;letter-spacing:5px">'+esc(o.id)+'</div></div><div style="display:flex;gap:8px"><button class="ocbtn gh" data-oc="copy" data-t="'+esc(o.id)+'" style="min-height:44px;padding:0 14px">Copy</button><button class="ocbtn" data-oc="share" data-t="'+esc(T('Dokodemo Chat Group 「'+g.name+'」 ကို ဝင်ပါ — Code: '+o.id,'Dokodemo チャットのグループ「'+g.name+'」に参加してね。コード: '+o.id,'Join my Dokodemo Chat group "'+g.name+'" — code: '+o.id))+'" style="min-height:44px;padding:0 14px">Share</button></div></div>'
+ +'<div class="ocsec" style="padding-top:16px"><span>MEMBERS · '+mem.length+'</span></div><div class="occh">'+rows+'</div>'
+ +'<div class="occh" style="margin-top:14px;display:flex;flex-direction:column">'+(own?'':'<button class="ocrow" style="color:#C0392B;padding:14px 16px" data-oc="greport">'+T('Group ကို Report လုပ်မယ်','グループを通報','Report group')+'</button>')+(own?'<button class="ocrow" style="color:#C0392B;padding:14px 16px" data-oc="gdel">'+T('Group ဖျက်မယ်','グループを削除','Delete group')+'</button>':'<button class="ocrow" style="color:#C0392B;padding:14px 16px;border-top:1px solid var(--line)" data-oc="gleave">'+T('Group မှ ထွက်မယ်','グループを退出','Leave group')+'</button>')+'</div><div style="height:30px"></div></div></div>'}
+function ocDInfo(){const o=S.oc,d=OC.dm||{};const u=(d.p||[]).find(x=>x!==OC.uid)||'';const n=(d.n||{})[u]||'User';const bl=ocBlocked(u);
+ document.getElementById('app').innerHTML='<div class="ocw"><div class="ocsc"><div class="ochero" style="align-items:center;padding-bottom:24px"><div style="align-self:stretch"><button class="ocib" data-oc="conv" aria-label="Back">'+OC_I.back+'</button></div>'+ocAv(n,ocHash(u),88)+'<div style="font-size:21px;font-weight:800">'+esc(n)+'</div><div style="font-size:13px;opacity:.9">1:1 · Dokodemo Chat</div></div><div class="occh" style="margin-top:14px;display:flex;flex-direction:column"><button class="ocrow" style="padding:14px 16px" data-oc="dblock" data-u="'+esc(u)+'" data-n="'+esc(n)+'"><span class="nm" style="color:'+(bl?'var(--acc)':'#C0392B')+'">'+(bl?T('Unblock လုပ်မယ်','ブロック解除','Unblock'):T('Block လုပ်မယ်','ブロック','Block'))+'</span></button><button class="ocrow" style="padding:14px 16px;border-top:1px solid var(--line)" data-oc="dreport" data-u="'+esc(u)+'" data-n="'+esc(n)+'"><span class="nm" style="color:#C0392B">'+T('Report လုပ်မယ်','通報','Report')+'</span></button></div><div style="font-size:12px;color:var(--sub);padding:14px 18px;line-height:1.7">'+T('ကိုယ်ရေး အချက်အလက် (ဖုန်း၊ လိပ်စာ၊ ငွေ) မမျှဝေပါနဲ့။ ငွေတောင်းရင် Report လုပ်ပါ။','個人情報（電話・住所・お金）は教えないでください。','Never share personal info. Report anyone who asks for money.')+'</div></div><div id="ocOv"></div></div>'}
+function ocMe(){const H=OC.home||{};const me=(H.notes||{})[OC.uid];const bl=ocBlocks();
+ document.getElementById('app').innerHTML='<div class="ocw"><div class="och"><button class="ocib" data-oc="home" aria-label="Back">'+OC_I.back+'</button><div class="ocbig">Profile</div></div><div class="ocsc"><div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:6px 0 4px">'+ocAv(ocNick(),ocMyC(),84)+'<div class="ocfld" style="width:calc(100% - 32px)"><input id="ocNick" maxlength="24" value="'+esc(ocNick())+'" aria-label="Nickname" style="text-align:center;font-weight:800"><button class="ocbtn gh" data-oc="nick">'+T('ပြင်မယ်','変更','Save')+'</button></div><span style="font-size:12px;color:var(--sub)">'+T('Chat မှာ Nickname ပဲ ပြပါတယ် · email မပြပါ','チャットではニックネームだけ表示','Only your nickname is shown')+'</span></div>'
+ +'<div class="ocidc"><span style="font-size:12px;opacity:.9;letter-spacing:1px">MY DOKODEMO ID</span><b>'+esc(proUID())+'</b><span style="font-size:12.5px;opacity:.92">'+T('ဒီ ID ကို သူငယ်ချင်းကို ပေးရင် 1:1 Chat လုပ်လို့ရပါတယ်','このIDを友だちに教えると1:1チャットできます','Share this ID so friends can chat with you')+'</span><div style="display:flex;gap:8px;margin-top:4px"><button class="ocbtn gh" data-oc="copy" data-t="'+esc(proUID())+'">Copy</button><button class="ocbtn gh" data-oc="share" data-t="'+esc(T('Dokodemo Chat မှာ ကျွန်တော့် ID: '+proUID(),'Dokodemo チャットの私のID: '+proUID(),'My Dokodemo Chat ID: '+proUID()))+'">Share</button></div></div>'
+ +'<div class="ocsec"><span>NOTE · 24h</span></div><div style="padding:0 16px;display:flex;flex-direction:column;gap:8px"><div class="ocfld"><input id="ocNote" maxlength="40" value="'+esc(me?me.t:'')+'" placeholder="'+T('ဥပမာ — N3 合格するぞ','例：N3 合格するぞ','e.g. N3 合格するぞ')+'"></div><div style="display:flex;gap:8px"><button class="ocbtn" style="flex:1" data-oc="note">'+T('Note တင်မယ်','投稿','Post note')+'</button>'+(me?'<button class="ocbtn gh" data-oc="notedel">'+T('ဖျက်မယ်','削除','Delete')+'</button>':'')+'</div></div>'
+ +'<div class="ocsec" style="padding-top:18px"><span>BLOCKED · '+bl.length+'</span></div><div style="padding:0 6px">'+(bl.length?bl.map(b=>'<div class="ocrow">'+ocAv(b.n,ocHash(b.u),40)+'<span class="tx"><span class="nm">'+esc(b.n||'User')+'</span></span><button class="ocbtn gh" style="min-height:36px;padding:0 12px;font-size:12.5px" data-oc="unblock" data-u="'+esc(b.u)+'">Unblock</button></div>').join(''):'<div class="ocempty" style="padding:10px">—</div>')+'</div>'
+ +'<div class="ocsec" style="padding-top:18px"><span>'+T('စည်းကမ်း','ルール','RULES')+'</span><button data-oc="rules">'+T('ပြန်ဖတ်မယ် ›','もう一度読む ›','Read again ›')+'</button></div><div style="height:40px"></div></div></div>'}
+async function ocReports(){const app=document.getElementById('app');app.innerHTML='<div class="ocw"><div class="och"><button class="ocib" data-oc="home" aria-label="Back">'+OC_I.back+'</button><div class="ocbig">Reports</div></div><div class="ocsc" id="ocRepL"><div class="ocempty">⏳</div></div></div>';
+ try{const L=await ocLatest('oc_rep',60);const el=document.getElementById('ocRepL');if(!el)return;const why=['悪口','Spam','性的','詐欺','個人情報','その他'];
+  el.innerHTML=L.length?L.map(r=>'<div style="margin:8px 14px;background:var(--bg2);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px"><div style="font-size:12px;color:var(--sub)">'+ocTime(ocMs(r.ts))+' · '+esc(why[+r.why]||'')+' · '+esc(r.w||'')+'</div><div style="font-size:14px"><b>'+esc(r.n||'')+'</b>: '+esc(r.t||'')+'</div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="ocbtn rd" style="min-height:38px;padding:0 12px;font-size:13px" data-oc="adel" data-w="'+esc(r.w||'')+'" data-id="'+esc(r.id)+'">'+T('စာဖျက်','削除','Delete msg')+'</button><button class="ocbtn rd" style="min-height:38px;padding:0 12px;font-size:13px" data-oc="aban" data-u="'+esc(r.u||'')+'" data-n="'+esc(r.n||'')+'">Ban</button><button class="ocbtn gh" style="min-height:38px;padding:0 12px;font-size:13px" data-oc="aok" data-id="'+esc(r.id)+'">OK</button></div></div>').join(''):'<div class="ocempty">'+T('Report မရှိပါ ✨','通報はありません','No reports ✨')+'</div>'}catch(e){ocErr(e)}}
+
+/* ---------- click dispatch (buttons with data-oc) ---------- */
+function ocCopy(t){try{navigator.clipboard.writeText(t).then(()=>toast(T('📋 Copy ကူးပြီးပါပြီ','📋 コピーしました','📋 Copied')),()=>toast(t))}catch(e){toast(t)}}
+function ocShare(t){try{if(navigator.share){navigator.share({text:t+'\n'+APP.site}).catch(()=>{});return}}catch(e){}ocCopy(t+' '+APP.site)}
+function ocClick(b,e){const a=b.dataset.oc,o=S.oc||{};
+ if(a==='exit'){ocUnsub();S.view='main';render();return}
+ if(a==='agree'){const c=document.getElementById('ocAgree');if(!c||!c.checked){toast(T('စည်းကမ်းကို သဘောတူကြောင်း အမှန်ခြစ်ပါ','ルールに同意してください','Please tick to agree'));return}ocLSet('myaing.ocrules',Date.now());render();return}
+ if(a==='rules'){ocLSet('myaing.ocrules',0);render();return}
+ if(a==='home'){ocGo({v:'home'});return}
+ if(a==='comm'){ocGo({v:'comm'});return}
+ if(a==='me'){ocGo({v:'me'});return}
+ if(a==='reports'){ocGo({v:'reports'});return}
+ if(a==='refresh'){OC.homeT=0;ocHomeLoad(true);toast('↻');return}
+ if(a==='tab'){o.tab=b.dataset.t;render();return}
+ if(a==='textme'){ocUnsub();S.view='chats';render();return}
+ if(a==='open'){const k=b.dataset.k,id=b.dataset.id;if(k==='grp')OC.grp=null;if(k==='dm')OC.dm=(OC.home&&OC.home.d||[]).find(x=>x.id===id)||null;ocGo({v:k,id,back:o.v==='comm'?'comm':'home',ro:k==='room'&&ocRoom(id).ro&&!ocIsAdmin()});return}
+ if(a==='cback'){ocUnsub();ocGo({v:o.back||'home'});return}
+ if(a==='info'){S.oc=Object.assign({},o,{v:o.v==='grp'?'ginfo':'dinfo',cv:o.v});render();return}
+ if(a==='conv'){S.oc=Object.assign({},o,{v:o.cv||'home'});render();return}
+ if(a==='furi'){S.ocFuri=!S.ocFuri;ocLSet('myaing.ocfuri',S.ocFuri?1:0);b.style.background=S.ocFuri?'linear-gradient(135deg,#3D5AFE,#7B3FE4)':'';b.style.color=S.ocFuri?'#fff':'';ocPaintList();return}
+ if(a==='send'){ocSend();return}
+ if(a==='qr'){ocSend({t:b.dataset.t});return}
+ if(a==='panel'){ocPanel(b.dataset.p);return}
+ if(a==='pk'){S.oc.pk=b.dataset.p;ocPanelPaint();return}
+ if(a==='st'){const s=ocStGet(b.dataset.s);if(s){speakJa(s.j,0.95);ocSend({t:'',s:s.id})}return}
+ if(a==='kao'){const ta=document.getElementById('ocIn');if(ta){ta.value+=(ta.value&&!/\s$/.test(ta.value)?' ':'')+b.dataset.t;ta.dispatchEvent(new Event('input'))}return}
+ if(a==='pro'){ocUnsub();S.view='paywall';render();return}
+ if(a==='close'){ocCloseOv();return}
+ if(a==='rx'){ocReact(b.dataset.m,b.dataset.rx);ocCloseOv();return}
+ if(a==='fav'){try{const w=JSON.parse(decodeURIComponent(b.dataset.w));toggleFav(w);const on=isFav(w.r);b.classList.toggle('on',on);toast(on?T('⭐ Favorite ထဲ ထည့်ပြီး','⭐ お気に入りに追加','⭐ Saved'):T('ဖယ်ပြီး','削除','Removed'))}catch(x){}return}
+ const m=OC.menuM;
+ if(a==='mreply'&&m){S.oc.reply={n:m.n,t:m.t||ocStLabel(m.s)};ocCloseOv();const r=document.getElementById('ocRep');if(r)r.innerHTML='<div class="ocrep"><div><b>'+esc(m.n||'')+'</b> · '+esc((m.t||ocStLabel(m.s)).slice(0,60))+'</div><button class="ocib" style="width:32px;height:32px" data-oc="unreply" aria-label="Cancel">'+OC_I.x+'</button></div>';const ta=document.getElementById('ocIn');if(ta)ta.focus();return}
+ if(a==='unreply'){S.oc.reply=null;const r=document.getElementById('ocRep');if(r)r.innerHTML='';return}
+ if(a==='mtts'&&m){speakJa(m.s?(ocStGet(m.s)||{}).j:m.t,0.85);return}
+ if(a==='mtr'&&m){const t=m.s?(ocStGet(m.s)||{}).j:m.t;const ja=/[ぁ-んァ-ン一-龯]/.test(t);window.open('https://translate.google.com/?sl=auto&tl='+(ja?'my':'ja')+'&text='+encodeURIComponent(t)+'&op=translate','_blank');ocCloseOv();return}
+ if(a==='mcopy'&&m){ocCopy(m.t||'');ocCloseOv();return}
+ if(a==='mdel'&&m){if(!confirm(T('ဒီစာကို ဖျက်မလား?','このメッセージを削除しますか？','Delete this message?')))return;ocDel(ocPath()+'/'+m.id).catch(ocErr);ocCloseOv();return}
+ if(a==='mreport'&&m){OC.repWhy=0;ocReportSheet(m);return}
+ if(a==='why'){OC.repWhy=+b.dataset.i;ocReportSheet(OC.repM);return}
+ if(a==='repsend'){ocReportSend();return}
+ if(a==='mblock'&&m){if(!confirm(T(m.n+' ကို Block လုပ်မလား?',m.n+' をブロックしますか？','Block '+m.n+'?')))return;ocBlock(m.u,m.n,true);ocCloseOv();ocPaintList();toast(T('🚫 Block လုပ်ပြီးပါပြီ','🚫 ブロックしました','🚫 Blocked'));return}
+ if(a==='new'){ocNewSheet('menu');return}
+ if(a==='nsh'){ocNewSheet(b.dataset.m);return}
+ if(a==='mkgrp'){ocMkGrp();return}
+ if(a==='jngrp'){const i=document.getElementById('ocJg');ocJoin(i?i.value:'');return}
+ if(a==='fdgo'){const i=document.getElementById('ocFd');ocFind(i?i.value:'');return}
+ if(a==='copy'){ocCopy(b.dataset.t);return}
+ if(a==='share'){ocShare(b.dataset.t);return}
+ if(a==='dmu'){ocOpenDM(b.dataset.u,b.dataset.n).catch(ocErr);return}
+ if(a==='kick'){const g=OC.grp;if(!g||!confirm(T('ဒီ member ကို ဖယ်မလား?','このメンバーを外しますか？','Remove this member?')))return;const u=b.dataset.u;ocUpd('oc_groups/'+o.id,{mem:(g.mem||[]).filter(x=>x!==u),['mn.'+u]:ocDelF()}).then(()=>{OC.grp=null;render()}).catch(ocErr);return}
+ if(a==='gleave'){const g=OC.grp;if(!g||!confirm(T('Group မှ ထွက်မလား?','グループを退出しますか？','Leave this group?')))return;ocUpd('oc_groups/'+o.id,{mem:(g.mem||[]).filter(x=>x!==OC.uid),['mn.'+OC.uid]:ocDelF()}).then(()=>{OC.homeT=0;ocGo({v:'home'})}).catch(ocErr);return}
+ if(a==='gdel'){if(!confirm(T('Group ကို ဖျက်မလား? ပြန်ယူလို့ မရပါ','グループを削除しますか？','Delete this group? This cannot be undone.')))return;ocDel('oc_groups/'+o.id).then(()=>{OC.homeT=0;ocGo({v:'home'})}).catch(ocErr);return}
+ if(a==='greport'){const g=OC.grp||{};ocAdd('oc_rep',{by:OC.uid,u:String(g.o||''),n:String(g.name||'').slice(0,24),t:'[group] '+String(g.name||'').slice(0,200),w:('oc_groups/'+o.id).slice(0,160),why:'5',ts:ocTS()}).then(()=>toast(T('✅ Report ပို့ပြီးပါပြီ','✅ 通報しました','✅ Report sent'))).catch(ocErr);return}
+ if(a==='dblock'){const u=b.dataset.u,on=!ocBlocked(u);ocBlock(u,b.dataset.n,on);toast(on?T('🚫 Block လုပ်ပြီး','🚫 ブロックしました','🚫 Blocked'):T('Unblock လုပ်ပြီး','解除しました','Unblocked'));render();return}
+ if(a==='dreport'){ocReportSheet({u:b.dataset.u,n:b.dataset.n,t:'[1:1 chat]',id:''});return}
+ if(a==='unblock'){ocBlock(b.dataset.u,'',false);render();return}
+ if(a==='note'){const i=document.getElementById('ocNote');const t=ocClean(i?i.value:'').t.slice(0,40);if(!t)return;ocSet('oc_note/'+OC.uid,{n:ocNick(),c:ocMyC(),t,ts:ocTS()}).then(()=>{OC.homeT=0;OC.home&&(OC.home.notes[OC.uid]={t,ts:Date.now()});toast(T('✅ Note တင်ပြီး (၂၄ နာရီ)','✅ 投稿しました（24時間）','✅ Posted (24h)'));render()}).catch(ocErr);return}
+ if(a==='nick'){const i=document.getElementById('ocNick');const n=ocClean(i?i.value:'').t.slice(0,24);if(!n)return;try{localStorage.setItem('myaing.nick',n)}catch(x){}try{localStorage.removeItem('myaing.ocdir')}catch(x){}if(!OC.mock)ocSet('oc_dir/'+proUID(),{u:OC.uid,n,c:ocMyC(),ts:ocTS()}).catch(()=>{});toast(T('✅ Nickname ပြင်ပြီး','✅ 変更しました','✅ Saved'));render();return}
+ if(a==='notedel'){ocDel('oc_note/'+OC.uid).then(()=>{if(OC.home)delete OC.home.notes[OC.uid];render()}).catch(ocErr);return}
+ if(a==='adel'){if(!confirm('Delete?'))return;const w=b.dataset.w,id=b.dataset.id;(/\/m\/[^/]+$/.test(w)?ocDel(w):Promise.resolve()).then(()=>ocDel('oc_rep/'+id)).then(()=>ocReports()).catch(ocErr);return}
+ if(a==='aban'){if(!confirm('Ban '+b.dataset.n+'?'))return;ocSet('oc_ban/'+b.dataset.u,{n:b.dataset.n,ts:ocTS()}).then(()=>toast('🚫 Banned')).catch(ocErr);return}
+ if(a==='aok'){ocDel('oc_rep/'+b.dataset.id).then(()=>ocReports()).catch(ocErr);return}
+}
+
+</script>
 <script>/* v1.0.176: let the splash paint first, then run the app code in order (Do Do-style instant splash) */
 (function(){var done=false;function run(){if(done)return;done=true;var L=document.querySelectorAll('script[type="text/dk"]');for(var i=0;i<L.length;i++){var o=L[i],x=document.createElement('script');x.textContent=o.textContent;o.parentNode.replaceChild(x,o)}}
 requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(run,0)})});setTimeout(run,250)})();</script>
