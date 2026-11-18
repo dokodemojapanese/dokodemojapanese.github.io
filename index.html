@@ -346,11 +346,16 @@ html.dodo #app main .grid .tile small,html.dodo #app main .grid .tile .rd{font-s
 html.dodo #app main .grid .tile .mm{font-size:11px!important;line-height:1.5!important}
 html.dodo #app nav{border-radius:28px!important;box-shadow:0 6px 24px rgba(20,34,61,.16)!important;background:rgba(255,255,255,.96)!important}
 html.dodo #app nav button .sq{background:transparent!important;box-shadow:none!important;outline:none!important;border:none!important}
-html.dodo #app nav button:not(.on) .sq img{filter:grayscale(1) opacity(.55)}
 html.dodo #app nav button.on{color:#1E5BD8!important}
 html.dodo #app nav button::after,html.dodo #app nav button.on::after{display:none!important}
 
 html.dodo #spinfab{display:none!important}
+html.dodo #app nav.dnav{display:flex!important;justify-content:space-around;align-items:stretch;height:74px!important;border-radius:37px!important;padding:6px 6px 4px!important}
+html.dodo #app nav.dnav button{flex:1;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:13px!important;font-weight:600!important;color:#222B3A!important;background:none!important;position:relative}
+html.dodo #app nav.dnav button .dsq{display:flex;width:32px;height:32px;align-items:center;justify-content:center}
+html.dodo #app nav.dnav button.on{color:#1E7A3C!important;font-weight:700!important}
+html.dodo #app nav.dnav button.on::before{content:'';position:absolute;bottom:2px;left:50%;width:26px;height:3.5px;margin-left:-13px;border-radius:2px;background:#1E7A3C}
+
 html.dodo .dodosrch{display:flex;align-items:center;gap:14px;width:calc(100% - 28px);max-width:420px;margin:14px auto 12px;min-height:58px;padding:0 22px;border:none;border-radius:29px;background:#fff;box-shadow:0 4px 16px rgba(20,34,61,.10);font-size:17px;color:#8A93A5;font-family:inherit;text-align:left}
 html.dodo .dodosrch span{flex:1;text-align:center;margin-right:30px}
 </style>
@@ -33611,7 +33616,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.319',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.320',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -38932,6 +38937,21 @@ async function dpShow(force){if(!DODO()||document.getElementById('dpov'))return;
   const ov=document.createElement('div');ov.id='dpov';ov.style.cssText='position:fixed;inset:0;z-index:1150;background:rgba(10,14,24,.55);display:flex;align-items:center;justify-content:center;padding:calc(70px + env(safe-area-inset-top)) 12px calc(100px + env(safe-area-inset-bottom));box-sizing:border-box;opacity:0;transition:opacity .25s';
   ov.innerHTML=`<div style="position:relative;width:min(460px,100%);max-height:100%;overflow:auto;background:radial-gradient(120% 80% at 50% 40%,#1a1a1a 0%,#000 70%);border-radius:6px;box-shadow:0 20px 50px rgba(0,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:56px 22px 34px;min-height:58vh;box-sizing:border-box"><button onclick="dpClose()" aria-label="Close" style="position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:22px;border:none;background:rgba(255,255,255,.08);color:#fff;font-size:24px;line-height:1">✕</button>${inner}</div>`;
   ov.addEventListener('click',e=>{if(e.target===ov)dpClose()});document.body.appendChild(ov);requestAnimationFrame(()=>{ov.style.opacity='1'})}
+/* v1.0.320 Native app: Android WebView has no speechSynthesis → bridge it to the native TextToSpeech plugin (same API, so every speak/queue keeps working) */
+(function(){try{if(!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform()))return;if(!(Capacitor.isPluginAvailable&&Capacitor.isPluginAvailable('TextToSpeech')))return;
+  const TTS=Capacitor.Plugins.TextToSpeech;const VO=[{name:'日本語 (Android)',lang:'ja-JP',default:true,localService:true,voiceURI:'n-ja'},{name:'English (Android)',lang:'en-US',default:false,localService:true,voiceURI:'n-en'}];
+  function U(t){this.text=t||'';this.lang='ja-JP';this.rate=1;this.pitch=1;this.volume=1;this.voice=null;this.onend=null;this.onerror=null;this.onstart=null}
+  const q=[];let cur=null,busy=false,gen=0;
+  function run(){if(busy||!q.length)return;cur=q.shift();busy=true;const u=cur,g=gen;try{u.onstart&&u.onstart({})}catch(e){}
+    const lang=(u.voice&&u.voice.lang)||u.lang||'ja-JP';
+    TTS.speak({text:String(u.text),lang:lang,rate:Math.max(.1,Math.min(2,(u.rate||1)*.95)),pitch:u.pitch||1,volume:1,category:'playback'})
+      .then(()=>{if(g!==gen)return;busy=false;cur=null;try{u.onend&&u.onend({})}catch(e){}run()})
+      .catch(e=>{if(g!==gen)return;busy=false;cur=null;try{u.onerror&&u.onerror({error:String(e)})}catch(x){}run()})}
+  window.SpeechSynthesisUtterance=U;
+  const ss={speak(u){q.push(u);run()},cancel(){q.length=0;gen++;busy=false;cur=null;try{TTS.stop()}catch(e){}},pause(){},resume(){},getVoices(){return VO.slice()},
+    get speaking(){return busy},get pending(){return q.length>0},get paused(){return false},onvoiceschanged:null,addEventListener(){},removeEventListener(){}};
+  try{Object.defineProperty(window,'speechSynthesis',{value:ss,configurable:true,writable:true})}catch(e){window.speechSynthesis=ss}
+}catch(e){console.warn('tts bridge',e)}})();
 function natVerS(){return window.NAT_V?' · '+window.NAT_V:''}
 function natInit(){if(!NAT())return;dodoApply();try{render()}catch(e){}setTimeout(()=>dpShow(false),1200);try{const A=natPl('App');if(A&&!window.NAT_BB){window.NAT_BB=1;A.addListener('backButton',natBack)}}catch(e){}try{const A=natPl('App');if(A&&!window.NAT_V)A.getInfo().then(i=>{if(i&&i.version){window.NAT_V=i.version;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}try{document.documentElement.classList.add('native')}catch(e){}
   const LN=natPl('LocalNotifications');
@@ -39322,7 +39342,15 @@ function CFG(){if(!_cfg){try{_cfg=Object.assign({},CFG_DEF,JSON.parse(localStora
 function IS_IOS(){return /iPhone|iPad|iPod/i.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)}
 setTimeout(function(){if(!/^https?:$/.test(location.protocol)||!isLive())return;fetch('config.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(!j||typeof j!=='object')return;const n=Object.assign({},CFG_DEF,j),ch=JSON.stringify(n)!==JSON.stringify(CFG());_cfg=n;try{localStorage.setItem('myaing.cfg',JSON.stringify(j))}catch(e){}if(ch&&typeof S!=='undefined'&&(S.drawer||S.view==='tgate'))render()}).catch(()=>{})},800);
 let VTAP=[];
-function navHTML(){if(S.drawer)return '';const sq=(c,col,t)=>`<span class="sq" style="background:${S.tab===t?col:'#A9B3C6'}">${c}</span>`;return `<nav>
+function navDodo(){const on=t=>S.tab===t&&!S.drawer?'on':'';
+  const ic={
+   words:'<svg width="30" height="30" viewBox="0 0 32 32"><rect x="3" y="3" width="26" height="26" rx="7" fill="#fff" stroke="#1E6FE8" stroke-width="2.6"/><path d="M16 7v8M16 17v8M7 16h8M17 16h8" stroke="#1E6FE8" stroke-width="2.4" stroke-linecap="round"/><path d="M13.5 9.5 16 7l2.5 2.5M13.5 22.5 16 25l2.5-2.5M9.5 13.5 7 16l2.5 2.5M22.5 13.5 25 16l-2.5 2.5" fill="none" stroke="#1E6FE8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.2" fill="#E8463A"/></svg>',
+   home:'<svg width="30" height="30" viewBox="0 0 32 32"><text x="16" y="25.5" text-anchor="middle" font-size="27" font-weight="900" fill="#1E5BD8" font-family="M PLUS Rounded 1c,Hiragino Maru Gothic ProN,sans-serif">ど</text></svg>',
+   talk:'<svg width="30" height="30" viewBox="0 0 32 32"><path d="M16 4C8.8 4 3.5 8.9 3.5 15c0 3.2 1.5 6 3.9 8l-1.3 4.6 5-2.4c1.5.5 3.1.8 4.9.8 7.2 0 12.5-4.9 12.5-11S23.2 4 16 4z" fill="#2F7BEA"/><circle cx="10.5" cy="15" r="1.9" fill="#fff"/><circle cx="16" cy="15" r="1.9" fill="#fff"/><circle cx="21.5" cy="15" r="1.9" fill="#fff"/></svg>',
+   practice:'<svg width="30" height="30" viewBox="0 0 32 32"><path d="M4 11l6 5 6-9 6 9 6-5-2.5 14h-19z" fill="#F4B400" stroke="#D99A00" stroke-width="1.4" stroke-linejoin="round"/><rect x="6.5" y="25" width="19" height="3" rx="1.5" fill="#D99A00"/><circle cx="16" cy="6.5" r="2" fill="#E8463A"/><circle cx="4" cy="10.5" r="1.7" fill="#E8463A"/><circle cx="28" cy="10.5" r="1.7" fill="#E8463A"/></svg>'};
+  const b=(t,l)=>`<button data-t="${t}" class="${on(t)}"><span class="dsq">${ic[t]}</span>${l}</button>`;
+  return `<nav class="dnav"><button data-a="open"><span class="dsq"><svg width="30" height="30" viewBox="0 0 32 32"><circle cx="6.5" cy="8" r="2.6" fill="#E8463A"/><rect x="11" y="5.6" width="17" height="4.8" rx="2.4" fill="#E8463A"/><circle cx="6.5" cy="16" r="2.6" fill="#1E6FE8"/><rect x="11" y="13.6" width="17" height="4.8" rx="2.4" fill="#1E6FE8"/><circle cx="6.5" cy="24" r="2.6" fill="#F4B400"/><rect x="11" y="21.6" width="17" height="4.8" rx="2.4" fill="#F4B400"/></svg></span>Menu</button>${b('words','Discovery')}${b('home','Home')}${b('talk','Dialog')}${b('practice','Pro')}</nav>`}
+function navHTML(){if(S.drawer)return '';if(DODO())return navDodo();const sq=(c,col,t)=>`<span class="sq" style="background:${S.tab===t?col:'#A9B3C6'}">${c}</span>`;return `<nav>
 <button data-a="open" class="${S.drawer?'on':''}">${thWrap('<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16" stroke="#E8463A"/><path d="M4 12h16" stroke="#1F3A68"/><path d="M4 18h16" stroke="#E0A030"/></svg>',0)}Menu</button>
 ${navBtn('words','Discovery',sq('語','#1F3A68','words'))}
 ${navBtn('home','Home',sq('ど','#E8463A','home'))}
