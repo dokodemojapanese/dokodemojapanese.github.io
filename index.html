@@ -24726,7 +24726,7 @@ ${ADMUI()?`<button class="row" data-a="searches"><span style="width:22px;text-al
 ${ADMUI()?`<button class="row" data-a="members"><span style="width:22px;text-align:center;font-size:18px">👥</span><span class="lb">${T('Active User List (Admin)','アクティブユーザー (Admin)','Active User List (Admin)')}</span></button>`:''}
 <button class="row" data-a="howto"><span style="width:22px;text-align:center;font-size:18px">📖</span><span class="lb">${T('အသုံးပြုနည်း · App/Website လမ်းညွှန်','使い方ガイド（アプリ・サイト）','How to use (app & website)')}</span></button>
 <button class="row" onclick="window.dkUpdCheck&&dkUpdCheck(true)"><span style="width:22px;text-align:center;font-size:18px">🔄</span><span class="lb">${T('Update ရှိမရှိ စစ်မယ်','アップデートを確認','Check for updates')}</span></button>
-<button class="row" data-a="vertap" style="cursor:default;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="lb">${T('ဗားရှင်း','バージョン','Version')}</span><span style="font-weight:700;color:#0F6B5C">${APP.ver}</span></button>
+<button class="row" data-a="vertap" style="cursor:default;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="lb">${T('ဗားရှင်း','バージョン','Version')}</span><span style="font-weight:700;color:#0F6B5C">${APP.ver}${natVerS()}</span></button>
 </div>`:`<div class="prof">${acctHTML()}</div>
 <span class="sec">${T('ကိုယ်ပိုင်ဆက်တင်','個人設定','Personalization')}</span>
 <div class="box">
@@ -33588,7 +33588,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.314',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.315',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -33639,11 +33639,11 @@ ${cur==='ab-about'?`<style>
 <p class="t1 in" style="animation-delay:.22s"><span style="display:block;font-size:1.25em;letter-spacing:.5px">Learn Japanese</span><span class="t3">Anywhere · Anytime · For Everyone</span></p>
 <p class="t2 in" style="animation-delay:.32s">A Japanese Learning Platform for Burmese Learners.</p>
 <span class="bd in" style="animation-delay:.42s">BURMESE EDITION · ビルマ語版</span>
-<button class="vb" data-a="vertap">Version ${APP.ver}${ADMUI()?' · 🛠':''}</button>
+<button class="vb" data-a="vertap">Version ${APP.ver}${natVerS()}${ADMUI()?' · 🛠':''}</button>
 </div>
 <div class="abS"><div style="animation-delay:.1s"><b>N5→N1</b><span>JLPT</span></div><div style="animation-delay:.18s"><b>18,500</b><span>${T('စကားပြော','会話','Dialog')}</span></div><div style="animation-delay:.26s"><b>12,000+</b><span>${T('အဘိဓာန်','辞書','Dictionary')}</span></div><div style="animation-delay:.34s"><b>3</b><span>${T('ဘာသာ','言語','Languages')}</span></div></div>
 `:''}${(SECS[cur]||SECS['ab-about'])()}
-<div style="text-align:center;font-size:12px;color:#8A93A5;padding:4px 0 10px;-webkit-user-select:none;user-select:none">${DKCOPY()}<br>Version ${APP.ver}${ADMUI()?' · 🛠':''} · Made in Japan by the Dokodemo Team</div>
+<div style="text-align:center;font-size:12px;color:#8A93A5;padding:4px 0 10px;-webkit-user-select:none;user-select:none">${DKCOPY()}<br>Version ${APP.ver}${natVerS()}${ADMUI()?' · 🛠':''} · Made in Japan by the Dokodemo Team</div>
 </main>`;
 }
 /* ---------- App Guide (MYAING tile): explains each Pro-tab feature in 3 languages ---------- */
@@ -38858,11 +38858,15 @@ ${c.on?ti(0,T('အချိန် ၁','時間 1','Time 1'))+ti(1,T('အချ�
 async function natGoogle(done){const FA=natPl('FirebaseAuthentication');
   if(!FA){toast(T('📱 Dev app ကို update (APK အသစ်) လုပ်ပြီးမှ Google login ရပါမယ် — အခုတော့ Email နဲ့ ဝင်ပါ','📱 アプリ更新後にGoogleログインできます — 今はメールで','📱 Update the Dev APK for Google login — use email for now'));return}
   await fbAuth();
-  const r=await FA.signInWithGoogle();
+  let r;
+  /* v1.0.315: Credential Manager can answer "No credentials available" on some phones → fall back to the classic Google account picker */
+  try{r=await FA.signInWithGoogle()}
+  catch(e){const m=String((e&&(e.message||e.code))||e);if(/cancel/i.test(m))throw e;console.warn('CM failed, legacy',m);r=await FA.signInWithGoogle({useCredentialManager:false})}
   const t=r&&r.credential&&r.credential.idToken;if(!t)throw {code:'no-id-token'};
   const res=await FBA.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(t));
   await done(res)}
-function natInit(){if(!NAT())return;try{document.documentElement.classList.add('native')}catch(e){}
+function natVerS(){return window.NAT_V?' · '+window.NAT_V:''}
+function natInit(){if(!NAT())return;try{const A=natPl('App');if(A&&!window.NAT_V)A.getInfo().then(i=>{if(i&&i.version){window.NAT_V=i.version;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}try{document.documentElement.classList.add('native')}catch(e){}
   const LN=natPl('LocalNotifications');
   if(LN&&!window.NAT_L){window.NAT_L=1;try{LN.addListener('localNotificationActionPerformed',ev=>{const n=(ev&&ev.notification)||{};const x=n.extra||{};
     if(x.jp&&nsayOn())setTimeout(()=>{try{nsayShow({title:n.title,body:n.body,jp:x.jp});speakJa(x.jp,.9)}catch(e){}},600)})}catch(e){}}
