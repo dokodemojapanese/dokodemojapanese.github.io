@@ -345,16 +345,13 @@ html.dodo #app main .grid .tile b,html.dodo #app main .grid .tile .jp{font-size:
 html.dodo #app main .grid .tile small,html.dodo #app main .grid .tile .rd{font-size:10.5px!important}
 html.dodo #app main .grid .tile .mm{font-size:11px!important;line-height:1.5!important}
 html.dodo #app nav{border-radius:28px!important;box-shadow:0 6px 24px rgba(20,34,61,.16)!important;background:rgba(255,255,255,.96)!important}
-html.dodo #app nav button .sq{background:transparent!important;box-shadow:none!important;outline:none!important;border:none!important}
-html.dodo #app nav button.on{color:#1E5BD8!important}
-html.dodo #app nav button::after,html.dodo #app nav button.on::after{display:none!important}
 
 html.dodo #spinfab{display:none!important}
-html.dodo #app nav.dnav{display:flex!important;justify-content:space-around;align-items:stretch;height:74px!important;border-radius:37px!important;padding:6px 6px 4px!important}
-html.dodo #app nav.dnav button{flex:1;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:13px!important;font-weight:600!important;color:#222B3A!important;background:none!important;position:relative}
-html.dodo #app nav.dnav button .dsq{display:flex;width:32px;height:32px;align-items:center;justify-content:center}
-html.dodo #app nav.dnav button.on{color:#1E7A3C!important;font-weight:700!important}
-html.dodo #app nav.dnav button.on::before{content:'';position:absolute;bottom:2px;left:50%;width:26px;height:3.5px;margin-left:-13px;border-radius:2px;background:#1E7A3C}
+html.dodo #app nav.dnav:not(.dk){display:flex!important;justify-content:space-around;align-items:stretch;height:74px!important;border-radius:37px!important;padding:6px 6px 4px!important}
+html.dodo #app nav.dnav:not(.dk) button{flex:1;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:13px!important;font-weight:600!important;color:#222B3A!important;background:none!important;position:relative}
+html.dodo #app nav.dnav:not(.dk) button .dsq{display:flex;width:32px;height:32px;align-items:center;justify-content:center}
+html.dodo #app nav.dnav:not(.dk) button.on{color:#1E7A3C!important;font-weight:700!important}
+html.dodo #app nav.dnav:not(.dk) button.on::before{content:'';position:absolute;bottom:2px;left:50%;width:26px;height:3.5px;margin-left:-13px;border-radius:2px;background:#1E7A3C}
 
 html.dodo .dodosrch{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;width:calc(100% - 28px);max-width:420px;margin:14px auto 12px;min-height:58px;padding:0 22px;border:none;border-radius:29px;background:#fff;box-shadow:0 4px 16px rgba(20,34,61,.10);font-size:17px;color:#8A93A5;font-family:inherit;text-align:left}
 html.dodo .dodosrch span{flex:1;text-align:center;margin-right:30px}
@@ -373,12 +370,12 @@ html.dodo #app main .list.pray{background:#fff!important;border:1.5px solid #DAD
 html.dodo #app main .list.pray>button{min-height:45px!important;height:45px!important;padding:0!important;font-size:16px!important;font-weight:400!important;color:#1F2430!important;background:transparent!important;border-bottom:1.5px solid #E6E8EC!important}
 html.dodo #app main .list.pray>button:last-child{border-bottom:none!important}
 html.dodo #app main .list.pray::before,html.dodo #app main .list.pray::after{display:none!important}
-html.dodo #app nav.dnav{width:calc(100% - 50px)!important;height:70px!important;border-radius:35px!important;bottom:calc(9px + env(safe-area-inset-bottom))!important;padding:4px 2px!important;box-shadow:0 4px 18px rgba(20,34,61,.12)!important;border:1px solid #EEF0F3!important}
-html.dodo #app nav.dnav button{font-size:12.5px!important;font-weight:500!important;color:#2A2F3A!important;gap:4px!important}
-html.dodo #app nav.dnav button .dsq{width:26px;height:26px}
-html.dodo #app nav.dnav button .dsq svg{width:26px;height:26px}
-html.dodo #app nav.dnav button.on{color:#1E7A3C!important;font-weight:500!important}
-html.dodo #app nav.dnav button.on::before{width:20px!important;margin-left:-10px!important;height:3px!important;bottom:3px!important}
+html.dodo #app nav.dnav{width:calc(100% - 50px)!important;height:70px!important;border-radius:35px!important;bottom:9px!important;padding:4px 2px!important;box-shadow:0 4px 18px rgba(20,34,61,.12)!important;border:1px solid #EEF0F3!important}
+html.dodo #app nav.dnav:not(.dk) button{font-size:12.5px!important;font-weight:500!important;color:#2A2F3A!important;gap:4px!important}
+html.dodo #app nav.dnav:not(.dk) button .dsq{width:30px;height:30px}
+html.dodo #app nav.dnav:not(.dk) button .dsq svg{width:30px;height:30px}
+html.dodo #app nav.dnav:not(.dk) button.on{color:#1E7A3C!important;font-weight:500!important}
+html.dodo #app nav.dnav:not(.dk) button.on::before{width:20px!important;margin-left:-10px!important;height:3px!important;bottom:3px!important}
 
 /* v1.0.323 Do Do-style menu (drawer) */
 html.dodo aside{width:84.4vw!important;max-width:340px!important}
@@ -399,6 +396,14 @@ html.dodosp #splash{background:#FCFAFE!important}
 html.dodosp #splash>*{display:none!important}
 html.dodosp #splash::after{content:'';position:absolute;left:50%;top:50%;width:128px;height:128px;margin:-64px 0 0 -64px;background:url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdkIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMkY3QkVBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUYzQTY4Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAgNTApIHNjYWxlKC42MikgdHJhbnNsYXRlKC02OS41IC01Mi41KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2dkKSIgc3Ryb2tlLXdpZHRoPSIxNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNDIgMTYgTDQ4IDUyIi8+PHBhdGggZD0iTTg0IDM2IEM2NiA0MiA0OCA1MCA0MCA2NCBDMzMgNzYgMzggOTAgNTQgOTQgQzY2IDk3IDgwIDk2IDkyIDkzIi8+PC9nPjxjaXJjbGUgY3g9IjczIiBjeT0iMjUiIHI9IjcuNSIgZmlsbD0iI0U4NDYzQSIvPjwvc3ZnPg==) center/contain no-repeat;animation:dkBreath 1.3s ease-in-out infinite}
 @keyframes dkBreath{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* v1.0.326 Android 15+ edge-to-edge: the app draws under the status bar → navy header grows under it (like Do Do) */
+html.dodo{--sat:env(safe-area-inset-top,0px)}
+html.dodo.satfb{--sat:var(--satfb,30px)}
+html.dodo #app header{padding-top:var(--sat)!important;height:calc(44px + var(--sat))!important;min-height:calc(44px + var(--sat))!important;box-sizing:border-box!important}
+html.dodo aside{padding-top:calc(var(--sat) + 6px)!important}
+html.dodosp #splash::after{margin-top:calc(-64px + env(safe-area-inset-top,0px) / 2)!important}
+html.dodo #app main .list.pray>button{min-height:44px!important;height:44px!important}
 </style>
 </head>
 <body>
@@ -33657,7 +33662,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.325',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.328',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -38996,7 +39001,7 @@ async function dpShow(force){if(!DODO()||document.getElementById('dpov'))return;
 function natVerS(){return window.NAT_V?' · '+window.NAT_V:''}
 let NAT_SBK='';function natSB(){try{const SB=natPl('StatusBar');if(!SB)return;const k=(S.drawer&&DODO())?'L':'D';if(k===NAT_SBK)return;NAT_SBK=k;
   if(k==='L'){SB.setBackgroundColor({color:'#F5F7FA'}).catch(()=>{});SB.setStyle({style:'LIGHT'}).catch(()=>{})}else{SB.setBackgroundColor({color:'#1F3A68'}).catch(()=>{});SB.setStyle({style:'DARK'}).catch(()=>{})}}catch(e){}}
-function natInit(){if(!NAT())return;try{if(!window.NAT_RW){window.NAT_RW=1;const _r=render;render=function(){const x=_r.apply(this,arguments);natSB();return x}}}catch(e){}try{const SB=natPl('StatusBar');if(SB){SB.setBackgroundColor({color:'#1F3A68'}).catch(()=>{});SB.setStyle({style:'DARK'}).catch(()=>{})}}catch(e){}dodoApply();try{render()}catch(e){}setTimeout(()=>dpShow(false),1200);try{const A=natPl('App');if(A&&!window.NAT_BB){window.NAT_BB=1;A.addListener('backButton',natBack)}}catch(e){}try{const A=natPl('App');if(A&&!window.NAT_V)A.getInfo().then(i=>{if(i&&i.version){window.NAT_V=i.version;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}try{document.documentElement.classList.add('native')}catch(e){}
+function natInit(){if(!NAT())return;try{const pr=document.createElement('div');pr.style.cssText='position:fixed;top:0;height:env(safe-area-inset-top,0px);width:1px;visibility:hidden';document.body.appendChild(pr);const sat=pr.getBoundingClientRect().height;pr.remove();const av=+((navigator.userAgent.match(/Android (\d+)/)||[])[1]||0);if(!sat&&av>=15){document.documentElement.classList.add('satfb')}}catch(e){}try{if(!window.NAT_RW){window.NAT_RW=1;const _r=render;render=function(){const x=_r.apply(this,arguments);natSB();return x}}}catch(e){}try{const SB=natPl('StatusBar');if(SB){SB.setBackgroundColor({color:'#1F3A68'}).catch(()=>{});SB.setStyle({style:'DARK'}).catch(()=>{})}}catch(e){}dodoApply();try{render()}catch(e){}setTimeout(()=>dpShow(false),1200);try{const A=natPl('App');if(A&&!window.NAT_BB){window.NAT_BB=1;A.addListener('backButton',natBack)}}catch(e){}try{const A=natPl('App');if(A&&!window.NAT_V)A.getInfo().then(i=>{if(i&&i.version){window.NAT_V=i.version;try{render()}catch(e){}}}).catch(()=>{})}catch(e){}try{document.documentElement.classList.add('native')}catch(e){}
   const LN=natPl('LocalNotifications');
   if(LN&&!window.NAT_L){window.NAT_L=1;try{LN.addListener('localNotificationActionPerformed',ev=>{const n=(ev&&ev.notification)||{};const x=n.extra||{};
     if(x.jp&&nsayOn())setTimeout(()=>{try{nsayShow({title:n.title,body:n.body,jp:x.jp});speakJa(x.jp,.9)}catch(e){}},600)})}catch(e){}}
@@ -39393,7 +39398,7 @@ function navDodo(){const on=t=>S.tab===t&&!S.drawer?'on':'';
    practice:'<svg width="30" height="30" viewBox="0 0 32 32"><path d="M4 11l6 5 6-9 6 9 6-5-2.5 14h-19z" fill="#F4B400" stroke="#D99A00" stroke-width="1.4" stroke-linejoin="round"/><rect x="6.5" y="25" width="19" height="3" rx="1.5" fill="#D99A00"/><circle cx="16" cy="6.5" r="2" fill="#E8463A"/><circle cx="4" cy="10.5" r="1.7" fill="#E8463A"/><circle cx="28" cy="10.5" r="1.7" fill="#E8463A"/></svg>'};
   const b=(t,l)=>`<button data-t="${t}" class="${on(t)}"><span class="dsq">${ic[t]}</span>${l}</button>`;
   return `<nav class="dnav"><button data-a="open"><span class="dsq"><svg width="30" height="30" viewBox="0 0 32 32"><circle cx="6.5" cy="8" r="2.6" fill="#E8463A"/><rect x="11" y="5.6" width="17" height="4.8" rx="2.4" fill="#E8463A"/><circle cx="6.5" cy="16" r="2.6" fill="#1E6FE8"/><rect x="11" y="13.6" width="17" height="4.8" rx="2.4" fill="#1E6FE8"/><circle cx="6.5" cy="24" r="2.6" fill="#F4B400"/><rect x="11" y="21.6" width="17" height="4.8" rx="2.4" fill="#F4B400"/></svg></span>Menu</button>${b('words','Discovery')}${b('home','Home')}${b('talk','Dialog')}${b('practice','Pro')}</nav>`}
-function navHTML(){if(S.drawer)return '';if(DODO())return navDodo();const sq=(c,col,t)=>`<span class="sq" style="background:${S.tab===t?col:'#A9B3C6'}">${c}</span>`;return `<nav>
+function navHTML(){if(S.drawer)return '';const sq=(c,col,t)=>`<span class="sq" style="background:${S.tab===t?col:'#A9B3C6'}">${c}</span>`;return `<nav class="${DODO()?'dnav dk':''}">
 <button data-a="open" class="${S.drawer?'on':''}">${thWrap('<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16" stroke="#E8463A"/><path d="M4 12h16" stroke="#1F3A68"/><path d="M4 18h16" stroke="#E0A030"/></svg>',0)}Menu</button>
 ${navBtn('words','Discovery',sq('語','#1F3A68','words'))}
 ${navBtn('home','Home',sq('ど','#E8463A','home'))}
