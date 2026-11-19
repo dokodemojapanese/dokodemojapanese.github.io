@@ -33713,7 +33713,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.331',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.332',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -39026,7 +39026,7 @@ function DODO(){try{return typeof NAT==='function'&&NAT()&&localStorage.getItem(
 function dodoApply(){try{document.documentElement.classList.toggle('dodo',DODO())}catch(e){}}
 /* v1.0.329 Website dictionary detail page (dokodemonihongo.com #dict) inside the Dev app.
    Data files in the app repo: dict.json, sent.json (example sentences), kanji.json, kvg.txt. dxUse() = Dev app only. */
-function dxUse(){try{return NAT()&&localStorage.getItem('myaing.dxweb')!=='0'}catch(e){return false}}
+function dxUse(){try{return localStorage.getItem('myaing.dxweb')!=='0'}catch(e){return true}} /* v1.0.332: all apps (Play, browser, Dev) */
 (function(){
 var D=null,R=null,SENT=null,KJ=null,KVG=null,LOAD=null,Q='',LIM=30,STACK=[],KD_COL=['#E8463A','#1F3A68','#0F6B5C','#B8860B','#7A3EB1','#C2416B'],LC={1:'#C0392B',2:'#6A3FE8',3:'#3D5AFE',4:'#17808A',5:'#2E9E5B'},SYN={},ANTI={},BYK={};
 function lg(){var l='my';try{l=SET.lang||'my'}catch(e){}return l==='ja'||l==='en'?l:'my'}
