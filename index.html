@@ -29665,7 +29665,7 @@ const KL1_RAW=`#行為－1 ①|လုပ်ရပ် ① ①|Actions 1 · 1|1-1|
 const KL1=[];KL1_RAW.split('\n').forEach(l=>{if(l.startsWith('#')){const [ja,mm,en,wd,src,xs]=l.slice(1).split('|');KL1.push({t:[mm,ja,en],wd,src,ch:+wd.split('-')[0],X:[],K:[]});return}const [k,st,on,kun,mm,ws]=l.split('|');KL1[KL1.length-1].K.push({k,st:+st,on:on==='—'?[]:on.split('・'),kun:kun==='—'?[]:kun.split('・'),mm,W:ws.split(';').map(x=>{const [a,r,m,e]=x.split(',');return {a,r,m,e:e||''}})})});
 const KL1E={"為": "Do, Change, Make", "扱": "Handle, Entertain, Thresh", "披": "Expose, Open", "抑": "Repress, Well, Now", "抵": "Resist, Reach, Touch", "抗": "Confront, Resist, Defy", "掲": "Put Up (a Notice), Put Up, Hoist", "拭": "Wipe, Mop, Swab", "跳": "Hop, Leap Up, Spring", "躍": "Leap, Dance, Skip", "踏": "Step, Trample, Carry Through", "駆": "Drive, Run, Gallop", "伏": "Prostrated, Bend Down, Bow", "弾": "Bullet, Twang, Flip", "裂": "Split, Rend, Tear", "塗": "Paint, Plaster, Daub", "叱": "Scold, Reprove", "黙": "Silence, Become Silent, Stop Speaking", "唱": "Chant, Recite, Call Upon", "聴": "Listen, Headstrong, Naughty", "眺": "Stare, Watch, Look At", "隠": "Conceal, Hide, Cover", "添": "Annexed, Accompany, Marry", "排": "Repudiate, Exclude, Expel", "挑": "Challenge, Contend For, Make Love To", "操": "Maneuver, Manipulate, Operate", "磨": "Grind, Polish, Scour", "奪": "Rob, Take By Force, Snatch Away", "妨": "Disturb, Prevent, Hamper", "遮": "Intercept, Interrupt, Obstruct", "伴": "Consort, Accompany, Bring With", "揺": "Swing, Shake, Sway", "尽": "Exhaust, Use Up, Run Out Of", "諦": "Truth, Clarity, Abandon", "誓": "Vow, Swear, Pledge", "悟": "Enlightenment, Perceive, Discern", "避": "Evade, Avoid, Avert", "耐": "-proof, Enduring", "焦": "Char, Hurry, Impatient", "慌": "Disconcerted, Be Confused, Lose One's Head", "尋": "Inquire, Fathom, Look For", "促": "Stimulate, Urge, Press", "惑": "Beguile, Delusion, Perplexity", "譲": "Defer, Turnover, Transfer", "陥": "Collapse, Fall Into, Cave In", "迫": "Urge, Force, Imminent", "遂": "Consummate, Accomplish, Attain", "抽": "Pluck, Pull, Extract", "覆": "Capsize, Cover, Shade", "偽": "Falsehood, Lie, Deceive", "輝": "Radiance, Shine, Sparkle", "控": "Withdraw, Draw In, Hold Back", "砕": "Smash, Break, Crush", "削": "Plane, Sharpen, Whittle", "挟": "Pinch, Between", "挿": "Insert, Put In, Graft", "及": "Reach Out, Exert, Exercise", "紛": "Distract, Be Mistaken For, Go Astray", "免": "Excuse, Dismissal", "慎": "Humility, Be Careful, Discreet", "併": "Join, Get Together, Unite", "劣": "Inferiority, Be Inferior To, Be Worse", "隔": "Isolate, Alternate, Distance", "抹": "Rub, Paint, Erase", "惜": "Pity, Be Sparing Of, Frugal", "嘆": "Sigh, Lament, Moan", "驚": "Wonder, Be Surprised, Frightened", "憩": "Recess, Rest, Relax", "粘": "Sticky, Glutinous, Greasy", "奮": "Stirred Up, Be Invigorated, Flourish", "歓": "Delight, Joy", "諭": "Rebuke, Admonish, Charge", "忍": "Endure, Bear, Put Up With", "狂": "Lunatic, Insane, Crazy", "奔": "Run, Bustle", "貪": "Covet, Indulge In", "侮": "Scorn, Despise, Make Light Of", "辱": "Embarrass, Humiliate, Shame", "褒": "Praise, Extol", "慰": "Consolation, Amusement, Seduce", "嫁": "Marry Into, Bride", "婿": "Bridegroom, Son-in-law", "縁": "Affinity, Relation, Connection", "戚": "Grieve, Relatives", "系": "Lineage, System", "姻": "Matrimony, Marry", "叔": "Uncle, Youth", "伯": "Chief, Count, Earl", "恩": "Grace, Kindness, Goodness", "涯": "Horizon, Shore, Limit", "継": "Inherit, Succeed, Continue", "婆": "Old Woman, Grandma, Wet Nurse", "紳": "Sire, Good Belt, Gentleman", "淑": "Graceful, Gentle, Pure", "嬢": "Lass, Girl, Miss", "貴": "Precious, Value, Prize", "威": "Intimidate, Dignity, Majesty", "仰": "Face-up, Look Up, Depend", "謹": "Discreet, Reverently, Humbly", "賀": "Congratulations, Joy", "奉": "Observance, Offer, Present", "忠": "Loyalty, Fidelity, Faithfulness", "孝": "Filial Piety, Child's Respect", "貞": "Upright, Chastity, Constancy", "徳": "Benevolence, Virtue, Goodness", "称": "Appellation, Praise, Admire", "郎": "Son, Counter For Sons", "俺": "I, Myself", "己": "Self", "孤": "Orphan, Alone", "匿": "Hide, Shelter, Shield", "遺": "Bequeath, Leave Behind, Reserve", "逝": "Departed, Die", "葬": "Interment, Bury, Shelve", "忌": "Mourning, Abhor, Detestable", "棺": "Coffin, Casket", "墓": "Grave, Tomb", "故": "Happenstance, Especially, Intentionally", "魂": "Soul, Spirit", "桃": "Peach", "柿": "Persimmon", "芋": "Potato", "栗": "Chestnut", "腐": "Rot, Decay, Sour", "昆": "Descendants, Elder Brother, Insect", "漬": "Pickling, Soak, Moisten", "藻": "Seaweed, Duckweed", "沸": "Seethe, Boil, Ferment", "騰": "Leaping Up, Jumping Up, Rising", "煮": "Boil, Cook", "炊": "Cook, Boil", "揚": "Raise, Elevate, Hoist", "炒": "Broil, Parch, Roast", "蒸": "Steam, Heat, Sultry", "鍋": "Pot, Pan, Kettle", "舎": "Cottage, Inn, Hut", "塔": "Pagoda, Tower, Steeple", "垣": "Hedge, Fence, Wall", "邸": "Residence, Mansion", "亭": "Pavilion, Restaurant, Mansion", "房": "Tassel, Tuft, Fringe", "棟": "Ridgepole, Ridge", "倉": "Godown, Warehouse, Storehouse", "縄": "Straw Rope, Cord", "網": "Netting, Network", "綱": "Hawser, Class (genus), Rope", "絞": "Strangle, Constrict, Wring", "盆": "Basin, Lantern Festival, Tray", "鉢": "Bowl, Rice Tub, Pot", "刃": "Blade, Sword, Edge", "栓": "Plug, Bolt, Cork", "扉": "Front Door, Title Page, Front Page", "棚": "Shelf, Ledge, Rack", "卓": "Eminent, Table, Desk", "斎": "Purification, Buddhist Food, Room", "堀": "Ditch, Moat, Canal", "炉": "Hearth, Furnace, Kiln", "芳": "Perfume, Balmy, Favorable", "臭": "Stinking, Ill-smelling, Suspicious Looking", "穏": "Calm, Quiet, Moderation", "暇": "Spare Time, Rest, Leisure", "滑": "Slippery, Slide, Slip", "雰": "Atmosphere, Fog", "朗": "Melodious, Clear, Bright", "裕": "Abundant, Rich, Fertile", "乏": "Destitution, Scarce, Limited", "徴": "Indications, Sign, Omen", "愚": "Foolish, Folly, Absurdity", "稚": "Immature, Young", "猛": "Fierce, Rave, Rush", "烈": "Ardent, Violent, Vehement", "卑": "Lowly, Base, Vile", "壮": "Robust, Manhood, Prosperity", "陰": "Shade, Yin, Negative", "膨": "Swell, Get Fat, Thick", "奇": "Strange, Strangeness, Curiosity", "妙": "Exquisite, Strange, Queer", "微": "Delicate, Minuteness, Insignificance", "魅": "Fascination, Charm, Bewitch", "凡": "Commonplace, Ordinary, Mediocre", "甲": "Armor, High (voice), A Grade", "乙": "The Latter, Duplicate, Strange", "恒": "Constancy, Always", "至": "Climax, Arrive, Proceed", "瞬": "Wink, Blink, Twinkle", "旬": "Decameron, Ten-day Period, Season (for Specific Products)", "頃": "Time, About, Toward", "徐": "Gradually, Slowly, Deliberately", "頻": "Repeatedly, Recur", "逐": "Pursue, Drive Away, Chase", "斉": "Adjusted, Alike, Equal", "唯": "Solely, Only, Merely", "疎": "Alienate, Rough, Neglect", "剰": "Surplus, Besides", "緩": "Slacken, Loosen, Relax", "衡": "Equilibrium, Measuring Rod, Scale", "殊": "Particularly, Especially, Exceptionally", "偏": "Partial, Side, Left-side Radical", "宜": "Best Regards, Good", "慈": "Mercy", "慕": "Pining, Yearn For, Love Dearly", "悦": "Ecstasy, Joy, Rapture", "愉": "Pleasure, Happy, Rejoice", "哀": "Pathetic, Grief, Sorrow", "惰": "Lazy, Laziness", "閑": "Leisure", "慮": "Prudence, Thought, Concern", "愁": "Distress, Grieve, Lament", "憂": "Melancholy, Grieve, Lament", "憤": "Aroused, Resent, Be Indignant", "慨": "Rue, Be Sad, Sigh", "惨": "Wretched, Disaster, Cruelty", "寂": "Loneliness, Quietly, Mellow", "剛": "Sturdy, Strength", "敢": "Daring, Brave, Bold", "俊": "Sagacious, Genius, Excellence", "敏": "Cleverness, Agile, Alert", "迅": "Swift, Fast", "豪": "Overpowering, Great, Powerful", "巧": "Adroit, Skilled, Ingenuity", "粋": "Chic, Style, Purity", "粗": "Coarse, Rough, Rugged", "丈": "Length, Ten Shaku, Measure", "懐": "Pocket, Feelings, Heart", "悔": "Repent, Regret", "怪": "Suspicious, Mystery, Apparition", "妄": "Delusion, Unnecessarily, Without Authority", "恨": "Regret, Bear A Grudge, Resentment", "羨": "Envious, Be Jealous, Covet", "煩": "Anxiety, Trouble, Worry", "憧": "Yearn After, Long For, Aspire To", "飽": "Sated, Tired Of, Bored", "錯": "Confused, Mix, Be In Disorder", "瞭": "Clear", "寛": "Tolerant, Leniency, Generosity", "悠": "Permanence, Distant, Long Time", "醜": "Ugly, Unclean, Shame", "麗": "Lovely, Beautiful, Graceful", "幹": "Tree Trunk, Main Part, Talent", "茎": "Stalk, Stem", "芽": "Bud, Sprout, Spear", "苗": "Seedling, Sapling, Shoot", "芝": "Turf, Lawn", "茂": "Overgrown, Grow Thick, Be Luxuriant", "郊": "Outskirts, Suburbs, Rural Area", "樹": "Timber, Trees, Wood", "獲": "Seize, Get, Find", "尾": "Tail, End, Counter For Fish", "雄": "Masculine, Male, Hero", "雌": "Feminine, Female", "滅": "Destroy, Ruin, Overthrow", "獣": "Animal, Beast", "狩": "Hunt, Raid, Gather", "猟": "Game-hunting, Shooting, Game", "窒": "Plug Up, Obstruct", "素": "Elementary, Principle, Naked", "亜": "Asia, Rank Next, Come After", "鉛": "Lead", "硫": "Sulphur", "酸": "Acid, Bitterness, Sour", "磁": "Magnet, Porcelain", "晶": "Sparkle, Clear, Crystal", "潮": "Tide, Salt Water, Opportunity", "浦": "Bay, Creek, Inlet", "沿": "Run Alongside, Follow Along, Run Along", "溝": "Gutter, Ditch, Sewer", "漂": "Drift, Float (on Liquid)", "没": "Drown, Sink, Hide", "濁": "Voiced, Uncleanness, Wrong", "澄": "Lucidity, Be Clear, Clear", "霧": "Fog, Mist", "霜": "Frost", "露": "Dew, Tears, Expose", "曇": "Cloudy Weather, Cloud Up", "虹": "Rainbow", "圏": "Sphere, Circle, Radius", "緯": "Horizontal, Woof, Left & Right", "蝶": "Butterfly", "蚊": "Mosquito", "蜂": "Bee, Wasp, Hornet", "蜜": "Honey, Nectar, Molasses", "蛍": "Lightning-bug, Firefly", "亀": "Tortoise, Turtle", "蛇": "Snake, Serpent, Hard Drinker", "餌": "Food, Bait, Prey", "雀": "Sparrow", "鳩": "Pigeon, Dove", "鴨": "Wild Duck, Easy Mark", "烏": "Crow, Raven", "鶴": "Crane, Stork", "鶏": "Chicken", "翼": "Wing, Plane, Flank", "牙": "Tusk, Fang, Tusk Radical (no. 92)", "猿": "Monkey", "狼": "Wolf", "猪": "Boar", "熊": "Bear", "虎": "Tiger, Drunkard", "鯨": "Whale", "竜": "Dragon, Imperial", "龍": "Dragon, Imperial", "繭": "Cocoon", "蚕": "Silkworm", "桑": "Mulberry", "柳": "Willow", "峰": "Summit, Peak", "岳": "Point, Peak, Mountain", "峠": "Mountain Peak, Mountain Pass, Climax", "漠": "Vague, Obscure, Desert", "堤": "Dike, Bank, Embankment", "隆": "Hump, High, Noble", "峡": "Gorge, Ravine", "岬": "Headland, Cape, Spit", "渓": "Mountain Stream, Valley", "渦": "Whirlpool, Eddy, Vortex", "潤": "Wet, Be Watered, Profit By", "郡": "County, District", "汽": "Vapor, Steam", "舶": "Liner, Ship", "搬": "Conveyor, Carry, Transport", "巡": "Patrol, Go Around, Circumference", "貢": "Tribute, Support, Finance", "献": "Offering, Counter For Drinks, Present", "繁": "Luxuriant, Thick, Overgrown", "拓": "Clear (the Land), Open, Break Up (land)", "刈": "Reap, Cut, Clip", "稲": "Rice Plant", "穂": "Ear, Ear (grain), Head", "耕": "Till, Plow, Cultivate", "穫": "Harvest, Reap", "穀": "Cereals, Grain", "栽": "Plantation, Planting", "培": "Cultivate, Foster", "渉": "Ford, Go Cross, Transit", "提": "Propose, Take Along, Carry In Hand", "摘": "Pinch, Pick, Pluck", "択": "Choose, Select, Elect", "把": "Grasp, Faggot, Bunch", "妥": "Gentle, Peace, Depravity", "佐": "Assistant, Help", "請": "Solicit, Invite, Ask", "派": "Faction, Group, Party", "遣": "Dispatch, Despatch, Send", "宣": "Proclaim, Say, Announce", "卸": "Wholesale", "属": "Belong, Genus, Subordinate Official", "軸": "Axis, Pivot, Stem", "軌": "Rut, Wheel, Track", "還": "Send Back, Return", "遇": "Meet, Encounter, Interview", "蓄": "Amass, Raise, Hoard", "勘": "Intuition, Perception, Check", "託": "Consign, Requesting, Entrusting With", "障": "Hinder, Hurt, Harm", "祉": "Welfare, Happiness", "概": "Outline, Condition, Approximation", "顧": "Look Back, Review, Examine Oneself", "礎": "Cornerstone, Foundation Stone", "践": "Tread, Step On, Trample", "模": "Imitation, Copy, Mock", "範": "Pattern, Example, Model", "釈": "Explanation", "拠": "Foothold, Based On, Follow", "克": "Overcome, Kindly, Skillfully", "擬": "Mimic, Aim (a Gun) At, Nominate", "哲": "Philosophy, Clear", "倫": "Ethics, Companion", "志": "Intention, Plan, Resolve", "功": "Achievement, Merits, Success", "佳": "Excellent, Beautiful, Good", "秀": "Excel, Excellence, Beauty", "推": "Conjecture, Infer, Guess", "薦": "Recommend, Mat, Advise", "訂": "Revise, Correct, Decide", "項": "Paragraph, Nape Of Neck, Clause", "索": "Cord, Rope, Searching", "稿": "Draft, Copy, Manuscript", "翻": "Flip, Turn Over, Wave", "欄": "Column, Handrail, Blank", "載": "Ride, Board, Get On", "啓": "Disclose, Open, Say", "監": "Oversee, Official, Govt Office", "督": "Coach, Command, Urge", "矛": "Halberd, Arms, Festival Float", "盾": "Shield, Escutcheon, Pretext", "浸": "Immersed, Soak, Dip", "透": "Transparent, Permeate, Filter", "諸": "Various, Many, Several", "班": "Squad, Corps, Unit", "怠": "Neglect, Laziness", "誠": "Sincerity, Admonish, Warn", "誇": "Boast, Be Proud, Pride", "懸": "State Of Suspension, Hang, Depend", "繰": "Winding, Reel, Spin", "析": "Chop, Divide, Tear", "熟": "Mellow, Ripen, Mature", "揮": "Brandish, Wave, Wag", "庶": "Commoner, All, Bastard", "娯": "Recreation, Pleasure", "興": "Entertain, Revive, Retrieve", "趣": "Purport, Gist, Elegance", "釣": "Angling, Fish, Catch", "撮": "Snapshot, Take Pictures", "彫": "Carve, Engrave, Chisel", "創": "Genesis, Wound, Injury", "俗": "Vulgar, Customs, Manners", "描": "Sketch, Compose, Write", "肖": "Resemblance", "漫": "Cartoon, Involuntarily, Unrestrained", "陶": "Pottery, Porcelain", "墨": "Black Ink, India Ink, Ink Stick", "朱": "Vermilion, Cinnabar, Scarlet", "淡": "Thin, Faint, Pale", "琴": "Harp, Koto", "弦": "Bowstring, Chord, Hypotenuse", "鼓": "Drum, Beat, Rouse", "笛": "Flute, Clarinet, Pipe", "雅": "Gracious, Elegant, Graceful", "奏": "Play Music, Speak To A Ruler, Complete", "譜": "Musical Score, Music, Note", "鑑": "Specimen, Take Warning From, Learn From", "仁": "Humanity, Virtue, Benevolence", "僧": "Buddhist Priest, Monk", "尼": "Nun", "尚": "Esteem, Furthermore, Still", "禅": "Zen, Silent Meditation", "鐘": "Bell, Gong, Chimes", "典": "Code, Ceremony, Law", "弓": "Bow, Bow (archery, Violin)", "矢": "Dart, Arrow", "鋼": "Steel", "剣": "Sabre, Sword, Blade", "刀": "Sword, Saber, Knife", "鎖": "Chain, Irons, Connection", "侍": "Waiter, Samurai, Wait Upon", "騎": "Equestrian, Riding On Horses, Counter For Equestrians", "宮": "Shinto Shrine, Constellations, Palace", "廷": "Courts, Imperial Court, Government Office", "皇": "Emperor", "帝": "Sovereign, The Emperor, God", "后": "Empress, Queen, After", "陛": "Highness, Steps (of Throne)", "妃": "Queen, Princess", "姫": "Princess", "奨": "Exhort, Urge, Encourage", "彰": "Patent, Clear", "傑": "Greatness, Excellence", "賜": "Grant, Gift, Boon", "勲": "Meritorious Deed, Merit", "誉": "Reputation, Praise, Honor", "呈": "Display, Offer, Present", "冠": "Crown, Best, Peerless", "幻": "Phantasm, Vision, Dream", "仙": "Hermit, Wizard, Cent", "聖": "Holy, Saint, Sage", "魔": "Witch, Demon, Evil Spirit", "吉": "Good Luck, Joy, Congratulations", "凶": "Villain, Evil, Bad Luck", "厄": "Unlucky, Misfortune, Bad Luck", "鬼": "Ghost, Devil", "幕": "Curtain, Bunting, Act Of Play", "藩": "Clan, Enclosure", "紀": "Chronicle, Account, Narrative", "暦": "Calendar, Almanac", "崇": "Adore, Respect, Revere", "祥": "Auspicious, Happiness, Blessedness", "碑": "Tombstone, Monument", "墳": "Tomb, Mound", "郷": "Home Town, Village, Native Place", "旗": "National Flag, Banner, Standard", "搭": "Board, Load (a Vehicle), Ride", "織": "Weave, Fabric", "染": "Dye, Color, Paint", "瞳": "Pupil (of Eye)", "眉": "Eyebrow", "頬": "Cheeks, Jaw", "唇": "Lips", "爪": "Claw, Nail, Talon", "喉": "Throat, Voice", "掌": "Manipulate, Rule, Administer", "癖": "Mannerism, Habit, Vice", "裸": "Naked, Nude, Uncovered", "膚": "Skin, Body, Grain", "肢": "Limb, Arms & Legs", "膝": "Knee, Lap", "肘": "Elbow, Arm", "胴": "Trunk, Torso, Hull (ship)", "脇": "Armpit, The Other Way, Another Place", "尻": "Buttocks, Hips, Butt", "肺": "Lungs", "腸": "Intestines, Guts, Bowels", "肝": "Liver, Pluck, Nerve", "胆": "Gall Bladder, Courage, Pluck", "膜": "Membrane", "腎": "Kidney", "尿": "Urine", "盲": "Blind, Blind Man, Ignoramus", "慢": "Ridicule, Laziness", "疾": "Rapidly", "疫": "Epidemic", "痢": "Diarrhea", "循": "Sequential, Follow", "胎": "Womb, Uterus", "矯": "Rectify, Straighten, Correct", "耗": "Decrease", "鍛": "Forge, Discipline, Train", "錬": "Tempering, Refine, Drill", "殖": "Augment, Increase, Multiply", "摂": "Vicarious, Surrogate, Act In Addition To", "肥": "Fertilizer, Get Fat, Fertile", "凝": "Congeal, Freeze, Stiff", "衰": "Decline, Wane, Weaken", "秘": "Secret, Conceal", "密": "Secrecy, Density (pop), Minuteness", "摩": "Chafe, Rub, Polish", "擦": "Grate, Rub, Scratch", "締": "Tighten, Tie, Shut", "施": "Give, Bestow, Perform", "衝": "Collide, Brunt, Highway", "弁": "Valve, Petal, Braid", "訴": "Accusation, Sue, Complain Of Pain", "訟": "Sue, Accuse", "審": "Hearing, Judge, Trial", "償": "Reparation, Make Up For, Recompense", "執": "Tenacious, Take Hold, Grasp", "是": "Just So, This, Right", "憲": "Constitution, Law", "廃": "Abolish, Obsolete, Cessation", "棄": "Abandon, Throw Away, Discard", "却": "Instead, On The Contrary, Rather", "陳": "Exhibit, State, Relate", "貫": "Pierce, 8 1/3lbs, Penetrate", "賠": "Compensation, Indemnify", "犠": "Sacrifice", "牲": "Animal Sacrifice, Offering", "脅": "Threaten, Coerce", "襲": "Attack, Advance On, Succeed To", "逮": "Apprehend, Chase", "闘": "Fight, War", "詐": "Lie, Falsehood, Deceive", "欺": "Deceit, Cheat, Delude", "邦": "Home Country, Country, Japan", "陣": "Camp, Battle Array, Ranks", "轄": "Control, Wedge", "拘": "Arrest, Seize, Concerned", "偵": "Spy", "阻": "Thwart, Separate From, Prevent", "斥": "Reject, Retreat, Recede", "儀": "Ceremony, Rule, Affair", "寧": "Rather, Preferably, Peaceful", "挨": "Approach, Draw Near, Push Open", "拶": "Be Imminent, Draw Close", "謙": "Self-effacing, Humble Oneself, Condescend", "遜": "Humble, Modest", "汰": "Washing, Sieving, Filtering", "畏": "Fear, Majestic, Graciously", "寿": "Longevity, Congratulations, One's Natural Life", "恭": "Respect, Reverent", "慶": "Jubilation, Congratulate, Rejoice", "弔": "Condolences, Mourning, Funeral", "旦": "Daybreak, Dawn, Morning", "詣": "Visit A Temple, Arrive, Attain", "訃": "Obituary", "喪": "Miss, Mourning", "累": "Accumulate, Involvement, Trouble", "幣": "Cash, Bad Habit, Humble Prefix", "俸": "Stipend, Salary", "酬": "Repay, Reward, Retribution", "倹": "Frugal, Economy, Thrifty", "廉": "Bargain, Reason, Charge", "租": "Tariff, Crop Tax, Borrowing", "賦": "Levy, Ode, Prose", "采": "Dice, Form, Appearance", "逸": "Deviate, Idleness, Leisure", "赴": "Proceed, Get, Become", "諾": "Consent, Assent, Agreement", "唆": "Tempt, Seduce, Instigate", "捗": "Make Progress", "粛": "Solemn, Quietly, Softly", "憾": "Remorse, Regret, Be Sorry", "該": "Above-stated, The Said, That Specific", "旋": "Rotation, Go Around", "扶": "Aid, Help, Assist", "媒": "Mediator, Go-between", "嘱": "Entrust, Request, Send A Message", "懇": "Sociable, Kind, Courteous", "弊": "Abuse, Evil, Vice", "綻": "Be Rent, Ripped, Unravel", "措": "Set Aside, Give Up, Suspend", "准": "Quasi-, Semi-, Associate", "款": "Goodwill, Article, Section", "遵": "Abide By, Follow, Obey", "頒": "Distribute, Disseminate, Partition", "閲": "Review, Inspection, Revision", "抄": "Extract, Selection, Summary", "謄": "Mimeograph, Copy", "枢": "Hinge, Pivot, Door", "閥": "Clique, Lineage, Pedigree", "宰": "Superintend, Manager, Rule", "吏": "Officer, An Official", "迭": "Transfer, Alternation", "諮": "Consult With", "遷": "Transition, Move, Change", "罷": "Quit, Stop, Leave", "睦": "Intimate, Friendly, Harmonious", "如": "Likeness, Like, Such As", "弥": "All The More, Increasingly", "暁": "Daybreak, Dawn, In The Event", "宵": "Wee Hours, Evening, Early Night", "暫": "Temporarily, A While, Moment", "漸": "Steadily, Gradually Advancing, Finally", "刹": "Temple", "零": "Zero, Spill, Overflow", "壱": "One (in Documents)", "弐": "Ii, Two, Second", "桁": "Beam, Girder, Spar", "幾": "How Many, How Much, How Far", "箇": "Counter For Articles", "括": "Fasten, Tie Up, Arrest", "弧": "Arc, Arch, Bow", "凹": "Concave, Hollow, Sunken", "凸": "Convex, Beetle Brow, Uneven", "垂": "Droop, Suspend, Hang", "塊": "Clod, Lump, Chunk", "径": "Diameter, Path, Method", "岐": "Branch Off, Fork In Road, Scene", "又": "Or Again, Furthermore, On The Other Hand", "既": "Previously, Already, Long Ago", "且": "Moreover, Also, Furthermore", "但": "However, But", "謡": "Song, Sing, Ballad", "唄": "Song, Ballad", "吟": "Versify, Singing, Recital", "詠": "Recitation, Poem, Song", "叙": "Confer, Relate, Narrate", "随": "Follow, Though, Notwithstanding", "韻": "Rhyme, Elegance, Tone", "諧": "Harmony", "碁": "Go", "棋": "Chess Piece, Japanese Chess, Shogi", "駒": "Pony, Horse, Colt", "玩": "Play, Take Pleasure In, Trifle With", "戯": "Frolic, Play, Sport", "楷": "Square Character Style, Correctness", "稽": "Think, Consider", "架": "Erect, Frame, Mount", "謎": "Riddle, Puzzle, Enigma", "幽": "Seclude, Confine To A Room, Deep", "霊": "Spirits, Soul", "獄": "Prison, Jail", "冥": "Dark", "妖": "Attractive, Bewitching, Calamity", "闇": "Get Dark, Gloom, Disorder", "旨": "Delicious, Relish, Show A Liking For", "匠": "Artisan, Workman, Carpenter", "伎": "Deed, Skill", "儒": "Confucian", "繊": "Slender, Fine, Thin Kimono", "維": "Fiber, Tie, Rope", "麻": "Hemp, Flax, Numb", "絹": "Silk", "紡": "Spinning", "縫": "Sew, Stitch, Embroider", "繕": "Darning, Repair, Mend", "呉": "Give, Do Something For, Kingdom Of Wu", "紋": "Family Crest, Figures", "珠": "Pearl, Gem, Jewel", "扇": "Fan, Folding Fan", "巾": "Towel, Hanging Scroll, Width", "寸": "Measurement, Tenth Of A Shaku, A Little", "尺": "Shaku, Japanese Foot, Measure", "藤": "Wisteria", "藍": "Indigo", "漆": "Lacquer, Varnish, Seven", "褐": "Brown, Woollen Kimono", "丹": "Rust-colored, Red, Red Lead", "錦": "Brocade, Fine Dress, Honors", "鈴": "Small Bell, Buzzer", "唐": "T'ang, China, Foreign", "袖": "Sleeve, Wing (building), Extension", "裾": "Cuff, Hem, Foot Of Mountain", "襟": "Collar, Neck, Lapel", "芯": "Wick", "履": "Perform, Complete, Footgear", "駄": "Burdensome, Pack Horse, Horse Load", "紐": "String, Cord, Braid", "縛": "Truss, Arrest, Bind", "賄": "Bribe, Board, Supply", "賂": "Bribe", "痴": "Stupid, Foolish", "窃": "Stealth, Steal, Secret", "拐": "Kidnap, Falsify", "虐": "Tyrannize, Oppress", "喝": "Hoarse, Scold", "賭": "Gamble, Wager, Bet", "拉": "Latin, Kidnap, Crush", "拷": "Torture, Beat", "搾": "Squeeze", "謀": "Conspire, Cheat, Impose On", "嚇": "Menacing, Dignity, Majesty", "酷": "Cruel, Severe, Atrocious", "征": "Subjugate, Attack The Rebellious, Collect Taxes", "覇": "Hegemony, Supremacy, Leadership", "懲": "Penal, Chastise, Punish", "戒": "Commandment", "猶": "Furthermore, Still, Yet", "陪": "Obeisance, Follow, Accompany", "糾": "Twist, Ask, Investigate", "劾": "Censure, Criminal Investigation", "勃": "Suddenness, Rise", "賊": "Burglar, Rebel, Traitor", "邪": "Wicked, Injustice, Wrong", "虚": "Void, Emptiness, Unpreparedness", "禍": "Calamity, Misfortune, Evil", "堕": "Degenerate, Descend To, Lapse Into", "虜": "Captive, Barbarian, Low Epithet For The Enemy", "殉": "Martyrdom, Follow By Resigning", "踪": "Remains, Clue, Footprint", "奴": "Guy, Slave, Manservant", "隷": "Slave, Servant, Prisoner", "囚": "Captured, Criminal, Arrest", "屯": "Barracks, Police Station, Camp", "桟": "Scaffold, Cleat, Frame", "壇": "Podium, Stage, Rostrum", "塀": "Fence, Wall, (kokuji)", "坪": "Two-mat Area, Approx. Thirty-six Sq Ft", "陵": "Mausoleum, Imperial Tomb, Mound", "郭": "Enclosure, Quarters, Fortification", "楼": "Watchtower, Lookout, High Building", "朽": "Decay, Rot, Remain In Seclusion", "舗": "Shop, Store, Pave", "隙": "Crevice, Fissure, Discord", "柵": "Stockade, Fence, Weir", "瓦": "Tile, Gram", "硝": "Nitrate, Saltpeter", "箸": "Chopsticks", "椀": "Wooden Or Lacquered Bowl", "串": "Spit, Skewer", "椅": "Chair", "鞄": "Suitcase, Bag, Briefcase", "籠": "Basket, Devote Oneself, Seclude Oneself", "箋": "Paper, Label, Letter", "銭": "Coin, .01 Yen, Money", "醸": "Brew, Cause", "酵": "Fermentation", "薫": "Send Forth Fragrance, Fragrant, Be Scented", "殻": "Husk, Nut Shell", "俵": "Bag, Bale, Sack", "斗": "Big Dipper, Ten Sho (vol), Sake Dipper", "升": "Measuring Box, 1.8 Liter", "斤": "Axe, 1.32 Lb, Catty", "麺": "Noodles, Wheat Flour", "煎": "Broil, Parch, Roast", "餅": "Mochi Rice Cake", "釜": "Kettle, Cauldron, Iron Pot", "蓋": "Cover, Lid, Flap", "酎": "Sake", "膳": "Small Low Table, Tray", "衷": "Inmost, Heart, Mind", "枕": "Pillow", "鍵": "Key", "錠": "Lock, Fetters, Shackles", "呂": "Spine, Backbone", "頓": "Suddenly, Immediately, In A Hurry", "槽": "Vat, Tub, Tank", "糧": "Provisions, Food, Bread", "窯": "Kiln, Oven, Furnace", "貼": "Stick, Paste, Apply", "剝": "Peel / Strip", "据": "Set, Lay A Foundation, Install", "斬": "Beheading, Kill, Murder", "蹴": "Kick", "狙": "Aim At, Sight, Shadow", "冒": "Risk, Face, Defy", "臨": "Look To, Face, Meet", "傍": "Bystander, Side, Besides", "鎮": "Tranquilize, Ancient Peace-preservation Centers", "窮": "Hard Up, Destitute, Suffer", "堪": "Withstand, Endure, Support", "撤": "Remove, Withdraw, Disarm", "喚": "Yell, Cry, Call", "享": "Enjoy, Receive, Undergo", "嗅": "Smell, Sniff, Scent", "匂": "Fragrant, Stink, Glow", "乞": "Beg, Invite, Ask", "倣": "Emulate, Imitate", "漏": "Leak, Escape, Time", "擁": "Hug, Embrace, Possess", "詮": "Discussion, Methods Called For, Selection", "遡": "Go Upstream, Retrace The Past", "惧": "Fear, Be Afraid Of, Dread", "悼": "Lament, Grieve Over", "捉": "Catch, Capture", "銘": "Inscription, Signature (of Artisan)", "葛": "Arrowroot, Kudzu", "萎": "Wither, Droop, Lame", "嫉": "Jealous, Envy", "妬": "Jealous, Envy", "嘲": "Ridicule, Insult", "怨": "Grudge, Show Resentment, Be Jealous", "呪": "Spell, Curse, Charm", "蔑": "Ignore, Despise, Neglect", "罵": "Abuse, Insult", "潰": "Crush, Smash, Break", "氾": "Spread Out, Wide", "濫": "Excessive, Overflow, Spread Out", "礁": "Reef, Sunken Rock", "溺": "Drown, Indulge", "浪": "Wandering, Waves, Billows", "潜": "Submerge, Conceal, Hide", "帆": "Sail", "隻": "Vessels, Counter For Ships, Fish", "艦": "Warship", "艇": "Rowboat, Small Boat", "羅": "Gauze, Thin Silk, Rome", "盤": "Tray, Shallow Bowl, Platter", "遭": "Encounter, Meet, Party", "墜": "Crash, Fall (down)", "飢": "Hungry, Starve", "餓": "Starve, Hungry, Thirst", "湧": "Boil, Ferment, Seethe", "崖": "Cliff, Bluff, Precipice", "麓": "Foot Of A Mountain", "窟": "Cavern", "坑": "Pit, Hole", "勾": "Be Bent, Slope, Capture", "畔": "Paddy Ridge, Levee", "堆": "Piled High", "伐": "Fell, Strike, Attack", "壌": "Lot, Earth, Soil", "墾": "Ground-breaking, Open Up Farmland", "薪": "Fuel, Firewood, Kindling", "斧": "Ax, Hatchet", "酪": "Dairy Products, Whey, Broth", "朴": "Crude, Simple, Plain", "艶": "Glossy, Luster, Glaze", "淫": "Lewdness, Licentiousness", "爽": "Refreshing, Bracing, Resonant", "蛮": "Barbarian", "摯": "Gift, Seriousness", "傲": "Be Proud", "臆": "Timidity, Heart, Mind", "緻": "Fine (i.e. Not Coarse)", "遍": "Everywhere, Times, Widely", "曖": "Dark, Not Clear", "昧": "Dark, Foolish", "恣": "Selfish, Arbitrary", "苛": "Torment, Scold, Chastise", "庸": "Commonplace, Ordinary, Employment", "拙": "Bungling, Clumsy, Unskillful", "顕": "Appear, Existing", "泰": "Peaceful, Calm, Peace", "璧": "Sphere, Ball", "凄": "Uncanny, Weird, Threatening", "甚": "Tremendously, Very, Great", "僅": "A Wee Bit", "旺": "Flourishing, Successful, Beautiful", "寡": "Widow, Minority, Few", "貌": "Form, Appearance, Countenance", "痩": "Get Thin", "泌": "Ooze, Flow, Soak In", "髄": "Marrow, Pith, Essence", "脊": "Stature, Height", "椎": "Chinquapin, Mallet, Spine", "胞": "Placenta, Sac, Sheath", "孔": "Cavity, Hole, Slit", "顎": "Jaw, Chin, Gill", "咽": "Throat, Choked, Smothered", "唾": "Saliva, Sputum", "拳": "Fist", "股": "Thigh, Crotch", "腺": "Gland", "癒": "Healing, Cure, Quench (thirst)", "篤": "Fervent, Kind, Cordial", "剖": "Divide", "醒": "Awake, Be Disillusioned, Sober Up", "骸": "Bone, Body, Corpse", "痕": "Mark, Foot Print", "痘": "Pox, Smallpox", "梗": "For The Most Part, Close Up, Flower Stem", "塞": "Close, Shut, Cover", "臼": "Mortar", "撲": "Slap, Strike, Hit", "捻": "Twirl, Twist, Play With", "挫": "Crush, Break, Sprain", "腫": "Tumor, Swelling", "瘍": "Swelling, Boil, Tumor", "鎌": "Sickle, Scythe, Trick", "潟": "Lagoon", "畿": "Capital, Suburbs Of Capital", "滋": "Nourishing, More & More, Be Luxuriant", "那": "What?", "須": "Ought, By All Means, Necessarily", "曽": "Formerly, Once, Before", "汎": "Pan-", "沙": "Sand", "塁": "Bases, Fort, Rampart", "韓": "Korea", "厘": "Rin, 1/10 Sen, 1/10 Bu", "附": "Affixed, Attach, Refer To", "彙": "Same Kind, Collect, Classify", "逓": "Relay, In Turn, Sending", "某": "So-and-so, One, A Certain", "羞": "Feel Ashamed", "赦": "Pardon, Forgiveness", "丙": "Third Class, 3rd, 3rd Calendar Sign", "喩": "Metaphor, Compare", "哺": "Nurse, Suckle", "侶": "Companion, Follower", "戴": "Be Crowned With, Live Under (a Ruler), Receive", "賓": "V.i.p., Guest", "帥": "Commander, Leading Troops, Governor", "曹": "Office, Official, Comrade", "尉": "Military Officer, Jailer, Old Man", "翁": "Venerable Old Man", "嫡": "Legitimate Wife, Direct Descent (non-bastard)", "爵": "Baron, Peerage, Court Rank", "侯": "Marquis, Lord, Daimyo", "勅": "Imperial Order", "詔": "Imperial Edict", "謁": "Audience, Audience (with King)", "朕": "Majestic Plural, Imperial We", "塡": "Fill In, Fill Up, Make Good", "斑": "Spot, Blemish, Speck", "慄": "Fear", "弄": "Play With, Tamper, Trifle With", "憬": "Yearn For, Aspire To, Admire", "毀": "Break, Destroy, Censure", "蔽": "Cover, Shade, Mantle", "鬱": "Gloom, Depression, Melancholy", "沃": "Fertility", "辣": "Pungent, Spicy, Harsh", "舷": "Gunwale", "冶": "Melting, Smelting", "瑠": "Lapis Lazuli", "璃": "Glassy, Lapis Lazuli", "錮": "Confinement, To Tie", "璽": "Emperor's Seal", "鋳": "Casting, Mint", "塑": "Model, Molding", "虞": "Fear, Uneasiness, Anxiety", "嗣": "Heir, Succeed", "畝": "Furrow, Thirty Tsubo, Ridge"};
 (()=>{Object.keys(KL1E).forEach(k=>{if(KL1E[k]&&!KEN[k])KEN[k]=KL1E[k]})})();
-const KLA=()=>S.jl===4?KL4:S.jl===3?KL3:S.jl===2?KL2:S.jl===1?KL1:KL5;
+const KLA=()=>kmOn(S.jl)?KMB(S.jl):S.jl===4?KL4:S.jl===3?KL3:S.jl===2?KL2:S.jl===1?KL1:KL5;
 /* ---------- N3 Kotoba Version 2 = "N3 KOTOBA Standard 2400" by Dokodemo (Part 1 · 54 units, Part 2 · 20 units) ---------- */
 const N3K2_RAW=`#1|1
 1|さくじつ|昨日|မနေ့က
@@ -32358,9 +32358,9 @@ function fixStrokes(){try{document.querySelectorAll('path.kst').forEach(p=>{cons
 /* v1.0.221 N2 漢字 credit line (AKI JLC vocabulary) */
 function kl2Credit(ls){return ''}
 function kanjiLessons(c){const KLX=KLA();
-  const ls=KLX[S.kl]||KLX[0],K=ls.K[S.kk]||ls.K[0];
+  const ls=KLX[S.kl]||KLX[0],K=ls.K[S.kk]||ls.K[0];if(KLX.km)kmW(K);
   const total=KLX.reduce((n,x)=>n+x.K.length,0);let start=0;for(let i=0;i<S.kl;i++)start+=KLX[i].K.length;
-  const lchips=KLX===KL1?kl1Head(c,ls,KLX):`<div style="display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px">${KLX.map((x,i)=>`<button data-kl="${i}" style="flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:20px;border:1.5px solid ${i===S.kl?c:'#D5DCE8'};background:${i===S.kl?c:'#fff'};color:${i===S.kl?'#fff':'#1F3A68'};font-size:14px;font-weight:700;white-space:nowrap">${x.wd?`<span style="opacity:.75;font-size:12px">${T(`${MMD(x.wd.split('-')[0])} ပတ် ${MMD(x.wd.split('-')[1])} ရက်`,`第${x.wd.split('-')[0]}週 ${x.wd.split('-')[1]}日目`,`W${x.wd.split('-')[0]}·D${x.wd.split('-')[1]}`)}</span> `:`${i+1}. `}${T(...x.t)}</button>`).join('')}</div>${KLX===KL2?kl2Credit(ls):''}`;
+  const lchips=KLX===KL1?kl1Head(c,ls,KLX):KLX.km?kmHead(c,ls,KLX):`<div style="display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px">${KLX.map((x,i)=>`<button data-kl="${i}" style="flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:20px;border:1.5px solid ${i===S.kl?c:'#D5DCE8'};background:${i===S.kl?c:'#fff'};color:${i===S.kl?'#fff':'#1F3A68'};font-size:14px;font-weight:700;white-space:nowrap">${x.wd?`<span style="opacity:.75;font-size:12px">${T(`${MMD(x.wd.split('-')[0])} ပတ် ${MMD(x.wd.split('-')[1])} ရက်`,`第${x.wd.split('-')[0]}週 ${x.wd.split('-')[1]}日目`,`W${x.wd.split('-')[0]}·D${x.wd.split('-')[1]}`)}</span> `:`${i+1}. `}${T(...x.t)}</button>`).join('')}</div>${KLX===KL2?kl2Credit(ls):''}`;
   const ktabs=`<div style="display:flex;overflow-x:auto;background:#fff;border-radius:16px;box-shadow:0 3px 10px rgba(20,34,61,.05)">${ls.K.map((x,i)=>`<button data-kk="${i}" aria-label="${x.k}" style="flex:0 0 auto;min-width:56px;min-height:56px;border:none;background:transparent;border-bottom:3px solid ${i===S.kk?'#E8463A':'transparent'};font-size:28px;font-weight:${i===S.kk?800:500};color:${i===S.kk?'#14223D':'#A3ABBA'}">${x.k}</button>`).join('')}</div>`;
   const head=`<div style="background:${c};border-radius:22px;padding:18px 16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;color:#fff">
 <button data-sp="${K.W[0].r}" style="border:none;background:rgba(255,255,255,.12);border-radius:18px;width:120px;padding:8px 0;display:flex;flex-direction:column;align-items:center;color:#fff"><span style="font-size:76px;line-height:1.1;font-weight:500">${K.k}</span>${K.st?`<span style="font-size:13px;opacity:.9">${K.st} ${T('ချက်','画','strokes')}</span>`:''}</button>
@@ -32379,6 +32379,323 @@ ${K.kun.length?`<div style="display:flex;flex-wrap:wrap;gap:4px 8px;align-items:
   return lchips+ktabs+head+strokeBox(K,c)+words+xw+nav;
 }
 
+const KM_RAW={5:`@1|すうじ|ဂဏန်း|Numbers
+すうじ|ဂဏန်း|Numbers|一二三四五六七八九十百千万円
+@2|カレンダー|ပြက္ခဒိန်|Calendar
+カレンダー|ပြက္ခဒိန်|Calendar|月火水木金土日年
+@3|人|လူ|People
+人|လူ|People|人口目耳手足力
+@4|しぜん－1|သဘာဝ ၁|Nature 1
+しぜん－1|သဘာဝ ၁|Nature 1|山川田石花竹雨
+@5|ばしょ|နေရာ|Places
+ばしょ|နေရာ|Places|上下左右外内中
+@6|学校－1|ကျောင်း ၁|School 1
+学校－1|ကျောင်း ၁|School 1|学校先生名字本体
+@7|学校－2|ကျောင်း ၂|School 2
+学校－2|ကျောင်း ၂|School 2|大小高友入出門
+@8|かぞく|မိသားစု|Family
+かぞく|မိသားစု|Family|父母子男女犬鳥
+@9|どうし－1|ကြိယာ ၁|Verbs 1
+どうし－1|ကြိယာ ၁|Verbs 1|立休見聞行来帰
+@10|たべもの|အစားအစာ|Food
+たべもの|အစားအစာ|Food|米茶牛肉魚貝好物
+@11|しぜん－2|သဘာဝ ၂|Nature 2
+しぜん－2|သဘာဝ ၂|Nature 2|林森畑岩音明暗
+@12|どうし－2|ကြိယာ ၂|Verbs 2
+どうし－2|ကြိယာ ၂|Verbs 2|言書読話食飲買
+@13|町|မြို့|Town
+町|မြို့|Town|町寺電車東西南北
+@14|時間|အချိန်|Time
+時間|အချိန်|Time|時間半分今何夕方
+@15|けいようし|နာမဝိသေသန|Adjectives
+けいようし|နာမဝိသေသန|Adjectives|新古長安多少元気`,
+4:`@1|生かつ|နေ့စဉ်ဘဝ|Daily life
+家族|မိသားစု|Family|家族兄弟姉妹私育
+マンション|တိုက်ခန်း|Apartment|部屋広低近遠静
+ファッション|ဖက်ရှင်|Fashion|洋服短玉毛糸光衣
+@2|コンビニ|ကွန်ဗီနီ|Convenience store
+レジ|ငွေရှင်းကောင်တာ|Cash register|店客親切売当品
+店内|ဆိုင်ထဲ|In the store|便利使銀白黒紙
+24時間|၂၄ နာရီ|24 hours|朝晩昼夜前後午早
+@3|おくり物|ပို့ပစ္စည်း|Parcels
+荷物|ပစ္စည်း|Luggage|荷送宅急速遅重軽
+あて先|လိပ်စာ|Address|住所様主番地号京
+都道府県|ခရိုင်/ပြည်နယ်|Prefectures|国都道府県市区村
+@4|スケジュール|အစီအစဉ်|Schedule
+デート|ချိန်းတွေ့|Dates|毎週映画館公園
+けっこんきねん日|မင်္ဂလာ နှစ်ပတ်လည်|Wedding anniversary|夫妻特思料理有
+しごと|အလုပ်|Work|会社働作工場始終
+@5|町|မြို့|Town
+駅|ဘူတာ|Station|駅鉄乗降開閉発着
+交さてん|လမ်းဆုံ|Intersection|交通台止色赤黄青
+病院|ဆေးရုံ|Hospital|病院医科薬待合計
+@6|学生|ကျောင်းသား|Students
+研究|သုတေသန|Research|研究語文英化数心
+コミュニケーション|ဆက်ဆံရေး|Communication|若集知酒歌声楽
+ラーメン屋|ရာမန်ဆိုင်|Ramen shop|味油太細皿飯麦
+@7|春夏秋冬|ရာသီလေးပါး|Four seasons
+きせつ|ရာသီ|Seasons|春夏秋冬空星雲去
+天気|ရာသီဥတု|Weather|天晴雪風強弱暑寒
+旅行|ခရီးသွား|Travel|旅持世界写真船
+@8|学校|ကျောင်း|School
+勉強|စာလေ့လာ|Study|勉漢宿題質問教室
+テスト|စာမေးပွဲ|Tests|試験答考正丸不同
+図書館|စာကြည့်တိုက်|Library|貸借返冊歴史図
+@9|夏休み|နွေရာသီ ပိတ်ရက်|Summer holidays
+運動|လေ့ကျင့်ခန်း|Exercise|運動練習走歩泳才
+リゾート|အပန်းဖြေ နေရာ|Resort|自然草原湖谷海辺
+いなか|ကျေးလက်|Countryside|里野緑池鳥羽馬鳴`,
+3:`@1|生活|နေ့စဉ်ဘဝ|Daily life
+生活1|နေ့စဉ်ဘဝ ၁|Daily life 1|起寝浴湯
+生活2|နေ့စဉ်ဘဝ ၂|Daily life 2|洗濯干活
+ゴミ|အမှိုက်|Garbage|拾捨燃袋
+カレンダー1|ပြက္ခဒိန် ၁|Calendar 1|曜末昨翌
+カレンダー2|ပြက္ခဒိန် ၂|Calendar 2|予定用事
+@2|家|အိမ်|Home
+室内1|အခန်းထဲ ၁|Indoors 1|押引取消
+室内2|အခန်းထဲ ၂|Indoors 2|戸窓階段
+植物|အပင်|Plants|植葉実根
+建築|ဗိသုကာ|Architecture|建築構造
+室内3|အခန်းထဲ ၃|Indoors 3|設柱庫向
+@3|料理|ဟင်းချက်|Cooking
+作る1|ချက်ပြုတ် ၁|Cooking 1|熱冷温度
+作る2|ချက်ပြုတ် ၂|Cooking 2|材型焼器
+食材1|ဟင်းချက်ပစ္စည်း ၁|Ingredients 1|卵乳粉塩
+食材2|ဟင်းချက်ပစ္စည်း ၂|Ingredients 2|菜果豆缶
+単位|ယူနစ်|Units|杯枚匹量
+@4|病院|ဆေးရုံ|Hospital
+体|ခန္ဓာကိုယ်|Body|頭顔首鼻
+呼吸|အသက်ရှူ|Breathing|呼吸息汗
+検査|စစ်ဆေး|Medical tests|検査歯痛
+けが|ဒဏ်ရာ|Injuries|血液包帯
+救急|အရေးပေါ်|Emergency|救助死亡
+@5|スポーツ|အားကစား|Sports
+勝負|အနိုင်အရှုံး|Win or lose|戦決勝負
+大会|ပြိုင်ပွဲ|Tournament|代表第回
+記録1|မှတ်တမ်း ၁|Records 1|記録優賞
+記録2|မှတ်တမ်း ၂|Records 2|秒差測順
+野球|ဘေ့စ်ဘော|Baseball|球打投点
+@6|感情|ခံစားချက်|Emotions
+恋愛1|အချစ် ၁|Love 1|感情恋愛
+恋愛2|အချစ် ၂|Love 2|信想伝欲
+悩み|စိတ်ပူပန်မှု|Worries|苦悩困難
+気持ちの表れ1|ခံစားချက် ဖော်ပြ ၁|Expressing feelings 1|怒悲笑喜
+気持ちの表れ2|ခံစားချက် ဖော်ပြ ၂|Expressing feelings 2|残念泣涙
+@7|結婚|လက်ထပ်|Marriage
+結婚|လက်ထပ်|Marriage|結婚紹介
+独身|လူလွတ်|Single life|独身貯期
+婚約|စေ့စပ်|Engagement|約束必守
+結婚式|မင်္ဂလာပွဲ|Wedding|式列祝酔
+幸せ|ပျော်ရွှင်မှု|Happiness|永願幸福
+@8|関係|ဆက်ဆံရေး|Relationships
+人間関係|လူမှုဆက်ဆံရေး|Relationships|関係和付
+家族|မိသားစု|Family|娘老婦姓
+仲間|အပေါင်းအသင်း|Companions|仲君彼他
+友人|သူငယ်ချင်း|Friends|初再久達
+個性|ကိုယ်ပိုင်စရိုက်|Personality|個性各格
+@9|単位|ယူနစ်|Units
+単位1|ယူနစ် ၁|Units 1|単複全以
+単位2|ယူနစ် ၂|Units 2|未満無非
+@10|学校|ကျောင်း|School
+子ども|ကလေး|Children|幼児童徒
+先生|ဆရာ|Teachers|担任師組
+教室|စာသင်ခန်း|Classroom|机座板筆
+図書館|စာကြည့်တိုက်|Library|貸借返冊
+体育|ကာယပညာ|P.E.|具箱棒伸
+@11|受験|ဝင်ခွင့်စာမေးပွဲ|Entrance exams
+希望|မျှော်လင့်ချက်|Hopes|希望夢的
+学校探し|ကျောင်းရှာ|Choosing a school|可能調選
+面接1|အင်တာဗျူး ၁|Interviews 1|面接受落
+面接2|အင်တာဗျူး ၂|Interviews 2|倍率平均
+成績|အမှတ်|Grades|成績良悪
+@12|授業|စာသင်ချိန်|Classes
+授業|စာသင်ချိန်|Classes|授業級卒
+欠席|ပျက်ကွက်|Absence|欠席由訳
+説明|ရှင်းပြ|Explanation|例易解説
+努力|ကြိုးစားမှု|Effort|覚忘努続
+勉強|စာလေ့လာ|Study|要復補効
+@13|地球|ကမ္ဘာ|The Earth
+生物|သက်ရှိ|Living things|種類存在
+天体|ကောင်းကင်ဘုံ|Celestial bodies|陽巨氷河
+自然|သဘာဝ|Nature|季候暖流
+地形1|မြေမျက်နှာသွင်ပြင် ၁|Terrain 1|形底深浅
+地形2|မြေမျက်နှာသွင်ပြင် ၂|Terrain 2|島陸岸坂
+@14|旅行|ခရီးသွား|Travel
+旅行1|ခရီးသွား ၁|Travel 1|準備迎変
+旅行2|ခရီးသွား ၂|Travel 2|飛移登泊
+ツアー|ခရီးစဉ်|Tours|団程欧州
+観光1|လည်ပတ်ရေး ၁|Sightseeing 1|観舟芸演
+観光2|လည်ပတ်ရေး ၂|Sightseeing 2|仏神祭絵
+@15|交通|သွားလာရေး|Traffic
+交差点|လမ်းဆုံ|Intersection|角曲折路
+事故|မတော်တဆမှု|Accidents|追突転倒
+位置|တည်နေရာ|Position|位置横央
+道路1|လမ်း ၁|Roads 1|直線逆側
+道路2|လမ်း ၂|Roads 2|注意橋進
+@16|仕事|အလုပ်|Work
+求職|အလုပ်ရှာ|Job hunting|仕職求探
+マナー|ယဉ်ကျေးမှု စည်းကမ်း|Manners|常識失礼
+仕事1|အလုပ် ၁|Work 1|労員官局
+仕事2|အလုပ် ၂|Work 2|辞退積
+給料|လစာ|Salary|給収支厚
+@17|会議|အစည်းအဝေး|Meetings
+会議1|အစည်းအဝေး ၁|Meetings 1|議賛反対
+会議2|အစည်းအဝေး ၂|Meetings 2|肯否保留
+会議3|အစည်းအဝေး ၃|Meetings 3|判断確認
+会議4|အစည်းအဝေး ၄|Meetings 4|報告連絡
+会議5|အစည်းအဝေး ၅|Meetings 5|相談指示
+@18|会社|ကုမ္ပဏီ|Company
+管理職|မန်နေဂျာ|Management|最副管者
+世代|မျိုးဆက်|Generations|現旧昔次
+予算1|ဘတ်ဂျက် ၁|Budget 1|億兆費算
+予算2|ဘတ်ဂျက် ၂|Budget 2|供税
+@19|産業|စက်မှုလုပ်ငန်း|Industry
+産業1|စက်မှုလုပ်ငန်း ၁|Industry 1|産農貿商
+産業2|စက်မှုလုပ်ငန်း ၂|Industry 2|機械危険
+技術|နည်းပညာ|Technology|技術
+手工業|လက်မှုလုပ်ငန်း|Handicrafts|編綿布皮
+貧富|ချမ်းသာ ဆင်းရဲ|Rich and poor|貧富豊等
+@20|法律|ဥပဒေ|Law
+ルール1|စည်းမျဉ်း ၁|Rules 1|法律規則
+ルール2|စည်းမျဉ်း ၂|Rules 2|禁許件
+犯罪|ရာဇဝတ်မှု|Crime|犯罪容疑
+争い|ပဋိပက္ခ|Conflict|争敗兵軍
+政治|နိုင်ငံရေး|Politics|役臣`,
+2:`@1|生活－1|နေ့စဉ်ဘဝ ၁|Daily life 1
+贈り物1|လက်ဆောင် ၁|Gifts 1|配届渡券招贈
+料理|ဟင်းချက်|Cooking|含混溶汁丼盛
+引っ越し|အိမ်ပြောင်း|Moving house|契越賃仮証域
+雑誌|မဂ္ဂဇင်း|Magazines|雑誌刊並巻著
+掃除|သန့်ရှင်းရေး|Cleaning|居庭清掃整汚
+@2|町|မြို့|Town
+交通1|သွားလာရေး ၁|Traffic 1|駐輪港到途過
+交通2|သွားလာရေး ၂|Traffic 2|符停標普刻違
+産業|စက်မှုလုပ်ငန်း|Industry|漁輸製郵航融
+銀行1|ဘဏ် ၁|Bank 1|戻換払込両替
+銀行2|ဘဏ် ၂|Bank 2|照預札貨帳振
+@3|文化|ယဉ်ကျေးမှု|Culture
+花1|ပန်း ၁|Flowers 1|桜梅松杉美香
+ファッション1|ဖက်ရှင် ၁|Fashion 1|脱掛姿勢柔軟
+様子を表す言葉1|အခြေအနေပြ စကား ၁|Descriptive words 1|固純快甘濃薄
+文化1|ယဉ်ကျေးမှု ၁|Culture 1|劇舞堂展宗恵
+歴史|သမိုင်း|History|宝城栄蔵昭士
+@4|健康－1|ကျန်းမာရေး ၁|Health 1
+健康1|ကျန်းမာရေး ၁|Health 1|健康診療命異
+体1|ခန္ဓာကိုယ် ၁|Body 1|背腹肩腕胸腰
+体2|ခန္ဓာကိုယ် ၂|Body 2|脳臓胃筋骨節
+診察1|ဆေးစစ် ၁|Examination 1|症状因況態圧
+治療|ကုသမှု|Treatment|傷処触針抜完
+@5|仕事|အလုပ်|Work
+ビジネスマン|စီးပွားရေးသမား|Businessperson|忙疲慣競養兼
+労働|လုပ်သား|Labor|就従応訪課論
+採用|ဝန်ထမ်းခန့်|Hiring|採募雇適般総
+営業|အရောင်း|Sales|企案依頼比較
+人事|ဝန်ထမ်းရေးရာ|Personnel|評価改善勤務
+@6|会社|ကုမ္ပဏီ|Company
+経営|စီမံခန့်ခွဲ|Business management|営景資益株債
+販売|ရောင်းချ|Sales|販購値額財納
+利益|အမြတ်|Profit|増減損得拡縮
+戦略|ဗျူဟာ|Strategy|略充加除余
+出版|ထုတ်ဝေရေး|Publishing|片裏幅版章
+@7|ドラマ|ဒရာမာ|Drama
+サスペンス1|သည်းထိတ်ရင်ဖို ၁|Suspense 1|毒殺責逃暴恐
+サスペンス2|သည်းထိတ်ရင်ဖို ၂|Suspense 2|緊張破割別離
+ロマンス1|အချစ်ဇာတ်လမ်း ၁|Romance 1|印象与齢籍際
+ロマンス2|အချစ်ဇာတ်လမ်း ၂|Romance 2|遊誘勧寄迷占
+@8|人間関係－1|လူမှုဆက်ဆံရေး ၁|Relationships 1
+仲間1|အပေါင်းအသင်း ၁|Companions 1|周囲協互共我
+仲間2|အပေါင်းအသင်း ၂|Companions 2|皆緒援精抱氏
+敬語1|ယဉ်ကျေးစကား ၁|Honorifics 1|尊敬申参致御
+@9|自然－1|သဘာဝ ၁|Nature 1
+砂浜|သဲသောင်|Beach|湾沖浜江層砂
+水1|ရေ ၁|Water 1|泉源浮沈井沢
+地球|ကမ္ဘာ|The Earth|宇宙環境極昇
+災害1|ဘေးအန္တရာယ် ၁|Disasters 1|災害震防影響
+@10|社会－1|လူ့အဖွဲ့အစည်း ၁|Society 1
+教育1|ပညာရေး ၁|Education 1|講義導専限修
+教育2|ပညာရေး ၂|Education 2|述将博策詩基
+法律|ဥပဒေ|Law|条令司制省庁
+警察|ရဲ|Police|警察署捕訓乱
+政治1|နိုင်ငံရေး ၁|Politics 1|党民挙委権票
+攻撃|တိုက်ခိုက်|Attack|攻撃爆討射武
+@11|生活－2|နေ့စဉ်ဘဝ ၂|Daily life 2
+住宅1|နေအိမ် ၁|Housing 1|畳床軒玄壁廊
+住宅2|နေအိမ် ၂|Housing 2|寮隣敷狭荘
+贈り物2|လက်ဆောင် ၂|Gifts 2|封筒歳暮宛菓
+調味料|ဟင်းခတ်|Seasonings|詰瓶粒酢糖辛
+交通3|သွားလာရေး ၃|Traffic 3|渋滞街往距灯
+@12|働く|အလုပ်လုပ်|Working
+サラリーマン|ရုံးဝန်ထမ်း|Office worker|携即稼需拒厳
+コピー|မိတ္တူ|Copying|刷枠縦斜端隅
+様子を表す言葉2|အခြေအနေပြ စကား ၂|Descriptive words 2|堅硬鋭鈍詳簡
+様子を表す言葉3|အခြေအနေပြ စကား ၃|Descriptive words 3|潔頑勇賢偉珍
+美容|အလှအပ|Beauty|肌粧髪脚華鏡
+ファッション2|ဖက်ရှင် ၂|Fashion 2|帽傘革靴柄装
+@13|健康－2|ကျန်းမာရေး ၂|Health 2
+健康2|ကျန်းမာရေး ၂|Health 2|睡眠喫煙脂肪
+出産|မီးဖွား|Childbirth|妊娠双誕脈拍
+診察2|ဆေးစစ် ၂|Examination 2|看患視眼舌刺
+診察3|ဆေးစစ် ၃|Examination 3|菌剤
+@14|自然－2|သဘာဝ ၂|Nature 2
+花2|ပန်း ၂|Flowers 2|咲枯散飾菊枝
+色|အရောင်|Colors|紺紫紅灰鮮彩
+動物1|တိရစ္ဆာန် ၁|Animals 1|飼畜猫羊豚巣
+動物2|တိရစ္ဆာန် ၂|Animals 2|放牧
+水2|ရေ ၂|Water 2|滝沼滴凍瀬浄
+地質調査1|ဘူမိ စစ်တမ်း ၁|Geological survey 1|掘埋泥炭鉱銅
+地質調査2|ဘူမိ စစ်တမ်း ၂|Geological survey 2|穴洞
+@15|人間関係－2|လူမှုဆက်ဆံရေး ၂|Relationships 2
+サスペンス3|သည်းထိတ်ရင်ဖို ၃|Suspense 3|殴叫怖嫌憎恥
+サスペンス4|သည်းထိတ်ရင်ဖို ၄|Suspense 4|誤謝励冗握絶
+宴会1|ပါတီ ၁|Banquet 1|宴催渇酌泡吐
+宴会2|ပါတီ ၂|Banquet 2|騒延超更徹憶
+仲間3|အပေါင်းအသင်း ၃|Companions 3|僕僚輩誰偶
+仲間4|အပေါင်းအသင်း ၄|Companions 4|孫祖似
+敬語2|ယဉ်ကျေးစကား ၂|Honorifics 2|召拝了承伺頂
+@16|自然現象|သဘာဝဖြစ်စဉ်|Natural phenomena
+災害2|ဘေးအန္တရာယ် ၂|Disasters 2|被壊傾崩噴炎
+災害3|ဘေးအန္တရာယ် ၃|Disasters 3|洪津波荒激吹
+気候|ရာသီဥတု|Climate|乾燥湿涼雷嵐
+@17|社会－2|လူ့အဖွဲ့အစည်း ၂|Society 2
+教育3|ပညာရေး ၃|Education 3|俳句詞覧簿塾
+文化2|ယဉ်ကျေးမှု ၂|Culture 2|踊像殿坊跡祈
+犯罪|ရာဇဝတ်မှု|Crime|刑罰盗捜裁
+政治2|နိုင်ငံရေး ၂|Politics 2|統衆秩序閣批
+軍事1|စစ်ရေး ၁|Military 1|敵砲領侵銃核
+軍事2|စစ်ရေး ၂|Military 2|護衛盟隊屈
+@18|地名|နေရာအမည်|Place names
+地名1|နေရာအမည် ၁|Place names 1|阪埼栃茨梨群
+地名2|နေရာအမည် ၂|Place names 2|鹿奈媛阜
+地名3|နေရာအမည် ၃|Place names 3|岡崎丘丁塚`};
+/* v1.0.351 漢字マスター N5–N2 — the books' chapter → lesson → kanji ORDER only (no book text).
+   Readings, meanings, words = Dokodemo's own data (KL lists / 漢字字典 / dictionary). Switch: myaing.kbk{L}='km' */
+const KM_BAND={2:[[1,10,'基本編','အခြေခံ','Basic'],[11,18,'挑戦編','စိန်ခေါ်','Challenge']]};
+let _kmb={},_kmK=null;
+function kmOn(L){if(L<2||L>5)return false;try{return localStorage.getItem('myaing.kbk'+L)==='km'}catch(e){return false}}
+function kmSet(L,v){try{if(v)localStorage.setItem('myaing.kbk'+L,v);else localStorage.removeItem('myaing.kbk'+L)}catch(e){}S.kl=0;S.kk=0;S.ksn=null;S.kSay='';render();const m=document.getElementById('jm');if(m)m.scrollTop=0}
+function kmMap(){if(_kmK)return _kmK;_kmK={};[KL5,KL4,KL3,KL2,KL1].forEach(A=>{try{A.forEach(l=>l.K.forEach(K=>{const o=_kmK[K.k];if(!o||(!(o.W&&o.W.length)&&K.W&&K.W.length))_kmK[K.k]=K}))}catch(e){}});return _kmK}
+function kmEntry(k){const m=kmMap()[k];if(m&&m.W&&m.W.length)return m;let a=null;try{a=kdData().find(x=>x.k===k)}catch(e){}a=a||{};
+  const fx=s=>(s||'').split(/[・、,]/).map(x=>x.trim().replace(/^-+|-+$/g,'')).filter(Boolean).map(x=>x.replace(/\.(.+)$/,'($1)'));
+  return {k,st:+a.s||(m&&m.st)||0,on:m?m.on:fx(a.on),kun:m?m.kun:fx(a.kun),mm:(m&&m.mm)||a.mm||'',W:null}}
+function kmW(K){if(K.W&&K.W.length)return K.W;let ws=[];try{ws=kdWords(K.k).filter(w=>w.mm).slice(0,4).map(w=>({a:w.k,r:w.r,m:w.mm,e:w.en||''}))}catch(e){}
+  if(!ws.length){const r=(K.kun[0]||K.on[0]||'').replace(/[()（）]/g,'');ws=[{a:K.k,r:r?dHira(r):K.k,m:K.mm,e:(typeof KEN!=='undefined'&&KEN[K.k])||''}]}
+  K.W=ws;return ws}
+function KMB(L){if(_kmb[L])return _kmb[L];const out=[];out.km=L;let ch=0,ct=null,n=0;
+  (KM_RAW[L]||'').trim().split('\n').forEach(l=>{const p=l.split('|');if(l[0]==='@'){ch=+p[0].slice(1);ct=[p[2],p[1],p[3]];n=0;return}n++;
+    out.push({t:[p[1],p[0],p[2]],ch,ct,n,src:'km',X:[],K:[...p[3]].map(kmEntry)})});return _kmb[L]=out}
+function kmBar(L,c){if(L<2||L>5)return '';const on=kmOn(L),a=(L===4?KL4:L===3?KL3:L===2?KL2:KL5),na=a.reduce((n,x)=>n+x.K.length,0),nk=KMB(L).reduce((n,x)=>n+x.K.length,0);
+  const b=(v,ic,t,sub,act)=>`<button onclick="kmSet(${L},'${v}')" style="flex:1;min-width:0;min-height:54px;border-radius:16px;border:1.5px solid ${act?c:'#D5DCE8'};background:${act?c:'#fff'};color:${act?'#fff':'#1F3A68'};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:4px 6px"><b style="font-size:14px;white-space:nowrap">${ic} ${t}</b><span class="mm" style="font-size:11.5px;opacity:.85">${sub}</span></button>`;
+  return `<div style="display:flex;gap:8px">${b('','📕',T('Dokodemo','Dokodemo','Dokodemo'),T(`ကန်ဂျီ ${MMD(na)} လုံး`,`${na}字`,`${na} kanji`),!on)}${b('km','📗','漢字マスター N'+L,T(`ကန်ဂျီ ${MMD(nk)} လုံး · ${MMD(KMB(L)[KMB(L).length-1].ch)} ခန်း`,`${nk}字 · ${KMB(L)[KMB(L).length-1].ch}章`,`${nk} kanji · ${KMB(L)[KMB(L).length-1].ch} chapters`),on)}</div>`}
+function kmHead(c,ls,KLX){const L=KLX.km,ch=ls.ch,first={};KLX.forEach((x,i)=>{if(first[x.ch]==null)first[x.ch]=i});
+  const chs=Object.keys(first).map(Number),bk=(KM_BAND[L]||[]).find(b=>ch>=b[0]&&ch<=b[1]);
+  const inCh=KLX.map((x,i)=>[x,i]).filter(([x])=>x.ch===ch),kc=inCh.reduce((n,[x])=>n+x.K.length,0);
+  const hero=`<div style="position:relative;overflow:hidden;border-radius:22px;padding:14px 16px;color:#fff;background:radial-gradient(120% 140% at 100% 0%,#3B9C6E 0%,${c} 55%,#14223D 100%);box-shadow:0 8px 22px rgba(20,34,61,.22)"><span style="position:absolute;right:-6px;top:-24px;font-size:104px;font-weight:900;opacity:.09">${ch}章</span>
+<div style="display:flex;align-items:center;gap:8px"><span style="font-size:11.5px;font-weight:900;background:#FFE08A;color:#5A3A00;border-radius:8px;padding:2px 8px">📗 漢字マスター N${L}</span>${bk?`<span class="mm" style="font-size:12px;opacity:.9">${bk[2]} · ${T(bk[3],bk[2],bk[4])}</span>`:''}<span style="margin-left:auto;font-size:12px;opacity:.85">${ch} / ${chs.length}</span></div>
+<b style="display:block;font-size:22px;margin-top:6px">第${ch}章　${esc(ls.ct[1])}</b><span class="mm" style="display:block;font-size:13.5px;opacity:.9">${esc(ls.ct[0])} · ${esc(ls.ct[2])}</span>
+<span class="mm" style="display:block;font-size:12px;opacity:.8;margin-top:4px">${T('ကန်ဂျီ '+MMD(kc)+' လုံး · သင်ခန်းစာ '+MMD(inCh.length)+' ခန်း','漢字'+kc+'字 · '+inCh.length+'課',kc+' kanji · '+inCh.length+' lessons')}</span></div>`;
+  const chips=`<div style="display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px">${chs.map(n=>{const on=n===ch,x=KLX[first[n]];return `<button data-kl="${first[n]}" style="flex:0 0 auto;min-height:44px;padding:0 12px;border-radius:14px;border:1.5px solid ${on?c:'#D5DCE8'};background:${on?c:'#fff'};color:${on?'#fff':'#1F3A68'};display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15"><b style="font-size:13.5px">${n}章</b><span style="font-size:10.5px;opacity:.8;white-space:nowrap">${esc(x.ct[1])}</span></button>`}).join('')}</div>`;
+  const sub=inCh.length>1?`<div style="display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px">${inCh.map(([x,i])=>{const on=i===S.kl;return `<button data-kl="${i}" style="flex:0 0 auto;min-height:40px;padding:0 12px;border-radius:20px;border:1.5px solid ${on?'#E8463A':'#E3E7EF'};background:${on?'#FDECEA':'#fff'};color:${on?'#B42318':'#4A5468'};font-size:13px;font-weight:800;white-space:nowrap">${esc(x.t[1])} <span style="font-weight:600;letter-spacing:1px">${x.K.slice(0,4).map(k=>k.k).join('')}${x.K.length>4?'…':''}</span></button>`}).join('')}</div>`:'';
+  return hero+chips+sub}
 /* v1.0.235 N1 漢字 — chapter chips (第1章–第30章) + lesson chips inside the chapter */
 const KL1BK=[[1,14,'必修編','မဖြစ်မနေ','Core'],[15,29,'熟達編','ကျွမ်းကျင်','Advanced'],[30,30,'難読編','ဖတ်ခက်','Hard readings']];
 function kl1Head(c,ls,KLX){const ch=ls.ch,first={};KLX.forEach((x,i)=>{if(first[x.ch]==null)first[x.ch]=i});
@@ -32588,7 +32905,7 @@ function renderJlpt(){
       return `<button data-sp="${say}" style="content-visibility:auto;contain-intrinsic-size:auto 64px;width:100%;border:none;background:#fff;border-radius:16px;padding:10px 14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center;text-align:left;box-shadow:0 3px 10px rgba(20,34,61,.05);min-height:56px;${S.kSay===say?'outline:2px solid #E8463A;':''}"><span style="display:flex;flex-direction:column"><span style="font-size:20px;font-weight:800;line-height:1.3">${top}</span>${sub?`<span style="font-size:12px;color:#6B7486">${sub}</span>`:''}</span><span style="display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);padding-left:10px"><span class="mm" style="font-size:14px;font-weight:600;color:#1F3A68">${w.m}</span>${w.en?`<span style="font-size:13px;color:#4A5468">${w.en}</span>`:''}</span></button>`}).join('')+lockCard(ws.length-FREE.kotoba,'လုံး');
     if(L!==5&&TG(L)){body=tgBar(L,c)+(tgOn(L)?tgBody(L,c,lockCard):body)}
   }else if(tab==='kanji'&&(L===5||L===4||L===2||L===1||(L===3&&S.k3v!==1))){
-    body=(L===3?k3vBar(c):'')+kanjiLessons(c);
+    body=(L===3?k3vBar(c):'')+kmBar(L,c)+kanjiLessons(c);
   }else if(tab==='kanji'){
     body=(L===3?k3vBar(c):'')+`<div class="mm" style="font-size:13px;color:#4A5468;text-align:center">${T(`N${L} Kanji ${JKD[L].length} လုံး · နှိပ်ရင် ဥပမာ အသံထွက်ပါတယ်`,`N${L} 漢字 ${JKD[L].length}字 · タップで例を発音`,`N${L} · ${JKD[L].length} kanji · tap for example`)}</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">`+lim(JKD[L]).map(k=>`<button onclick="kdOpenK('${k.k}')" style="content-visibility:auto;contain-intrinsic-size:auto 200px;border:2px solid ${S.kSay===k.exr?'#E8463A':'transparent'};background:#fff;border-radius:18px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(20,34,61,.06);text-align:center">
 <span style="font-size:46px;font-weight:700;line-height:1.1;color:${c}">${k.k}</span>
@@ -33719,7 +34036,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.350',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.351',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
