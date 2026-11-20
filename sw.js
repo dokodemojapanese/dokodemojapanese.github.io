@@ -1,5 +1,5 @@
 /* Dokodemo offline cache. Bump VERSION each time you upload a new index.html */
-const VERSION='myaing-v351';
+const VERSION='myaing-v353';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 const SWV=+VERSION.split('v').pop();
 /* v1.0.346: GitHub's CDN can hand out the OLD index.html for a few minutes after an upload. Always fetch with ?v= (bypasses the CDN copy)
