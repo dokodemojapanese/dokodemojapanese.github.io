@@ -27443,7 +27443,7 @@ function body(){
     const r=HOME.filter(t=>!q||t.includes(q));
     h+=r.length?`${q?'':homeNews()}<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
   }else{
-    const r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q));
+    const r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q)).filter(([,j])=>S.tab!=='talk'||q?!(q&&DGRPT[j]):(S.dgrp?DGRP[j]===S.dgrp:!DGRP[j]));if(S.tab==='talk'&&S.dgrp&&!q)h+=`<div style="display:flex;align-items:center;gap:8px;margin:2px 4px 10px"><button data-dgrp="" style="border:none;background:#EEF2FA;color:#1E5BD8;font-weight:800;border-radius:12px;padding:8px 14px;font-size:14px">← ${T('နောက်သို့','戻る','Back')}</button><b style="font-size:16px">🇯🇵 ${T('ဂျပန်・မြန်မာ','日本・ミャンマー','Japan・Myanmar')} 🇲🇲</b></div>`;
     h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" data-say="${esc({'ひらがな':'ひらがな','カタカナ':'カタカナ','ローマ字':'ローマじ','JLPT':'ジェイエルピーティー'}[j]||(TILE_JP[j]?(TILE_JP[j][1]||TILE_JP[j][0]):(k||j)))}" style="--i:${Math.min(n,14)};--r:${Math.min(Math.floor(n/3),6)};--c:${n%3};--tc:${t[1]};--ic:${ICC(S.tab,j)||t[1]}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='漢字'&&S.tab==='words'?' data-a="kall"':''}${j==='PDF'?' data-a="pdf"':''}${j==='過去問'?' data-a="kako"':''}${j==='助詞'?' data-a="joshi"':''}${j==='文法'&&S.tab==='words'?' data-a="gram"':''}${j==='ゲーム'?' data-a="kgame"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${FLI(S.tab,j)||i}</span><span class="jp"${j==='辞書'?' style="font-size:15px;white-space:nowrap;letter-spacing:-.2px"':''}${j!=='辞書'&&TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span>${BETA_T.has(j)?'<span class="mmt"><b class="betab">Beta</b></span>':`<span class="mmt mm">${tileSub(j,m)}</span>`}${S.tab==='practice'&&!PRO_OK&&!BETA_T.has(j)&&j!=='MYAING'&&j!=='Note'&&j!=='Study Room'&&j!=='JLPT Game'&&j!=='Star'?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
   }
   return h;
@@ -36727,7 +36727,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.364',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.366',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -37214,10 +37214,19 @@ function FR(j,sz){if(!S.rom)return '';const mk=xfMk(j);const pm=(j||'').match(/�
 function fzChips(){const ch=(a,on,t)=>`<button data-a="${a}" class="dlchip" style="border-color:${on?'var(--navy)':'#D5DCE8'};background:${on?'var(--navy)':'#fff'};color:${on?'#fff':'var(--navy)'}">${on?'✓ ':''}${t}</button>`;return `<div class="dlchips" style="margin:0 0 6px">${ch('furi',S.furi,'ふりがな')}${ch('rom',S.rom,'Romaji')}</div>`}
 let DLGF=null;
 function dlgFuriLoad(){if(DLGF!==null)return;DLGF=0;fetch('dlgfuri.txt').then(r=>r.ok?r.text():'').then(t=>{DLGF=t?t.split('\n'):[];if(DLGF.length&&S.dlg&&document.getElementById('dm')){const m=document.getElementById('dm'),y=m.scrollTop;renderDialog();const n=document.getElementById('dm');if(n)n.scrollTop=y;try{TFXT_KEY='';tfxMore()}catch(e){}}}).catch(()=>{DLGF=[]})}
-function dlgF(x){return DLGF&&DLGF[x.g]?DLGF[x.g]:''}
+function dlgF(x){if(x.f)return x.f;return DLGF&&DLGF[x.g]?DLGF[x.g]:''}
 /* v1.0.358: Dialog section titles follow the ふりがな / Romaji / မြန်မာ / English chips. dsecx.json = {jp:[furigana markup, mm, en]} */
-let DSX=null;function dsxLoad(){if(DSX!==null)return;DSX=0;fetch('dsecx.json').then(r=>r.ok?r.json():{}).then(j=>{DSX=j||{};if(S.dlg&&document.getElementById('dm')){const m=document.getElementById('dm'),y=m.scrollTop;renderDialog();const n=document.getElementById('dm');if(n)n.scrollTop=y;try{TFXT_KEY='';tfxMore()}catch(e){}}}).catch(()=>{DSX={}})}
-function dSecH(h){const x=DSX&&DSX[h];const j=`<span class="dsj">${S.furi&&x?dkRuby(x[0]):h}</span>`;const sub=[];if(x){if(S.rom)sub.push(`<i>${esc(dkRom(x[0]))}</i>`);if(dshOn('m'))sub.push(`<span class="mm">${x[1]}</span>`);if(dshOn('e'))sub.push(`<span>${esc(x[2])}</span>`)}return {j,s:sub.length?`<span class="dss">${sub.join('')}</span>`:''}}
+let DSX=null;
+/* v1.0.365 extra Dialog sets in dlg2.txt (daily-life conversation). Format: @name|reading|mm|en|icon · #section|mm|en|furi · line jp|mm|en|furi. Loaded after start; only this file needs re-uploading when sets are added. */
+const DSX2={};let DLG2N=0;const DGRP={},DGRPT={};
+function dlg2Load(){try{fetch('dlg2.txt',{cache:'no-cache'}).then(r=>r.ok?r.text():'').then(t=>{if(!t)return;let cur=null,add=0;
+  t.split('\n').forEach(l=>{if(!l.trim())return;if(l[0]==='@'){const [n,rd,mm,en,ic,gp]=l.slice(1).split('|');cur=n;DLG[n]=[];DLG_SEC[n]=[];if(gp){DGRP[n]=gp;const gn='Japan・Myanmar';if(!DGRPT[gn]){DGRPT[gn]=gp;if(!DATA.talk.some(x=>x[1]===gn)){DATA.talk.unshift(['🌏',gn,'にほん・みゃんまー','ဂျပန်・မြန်မာ']);add++}try{TILE_EN[gn]='Japan・Myanmar'}catch(e){}}}if(!DATA.talk.some(x=>x[1]===n)){DATA.talk.push([ic||n[0],n,rd||'',mm||n]);add++}try{TILE_EN[n]=en||n}catch(e){}return}
+   if(!cur)return;if(l[0]==='#'){const [h,mm,en,f]=l.slice(1).split('|');DLG_SEC[cur].push({at:DLG[cur].length,h});DSX2[h]=[f||h,mm||'',en||''];return}
+   const [j,m,e,f]=l.split('|');DLG[cur].push({j,m:m||'',e:e||'',g:'b'+(DLG2N++),f:f||''})});
+  if(add&&!S.view&&S.tab==='talk')render();if(S.view==='dlg'&&DLG[S.dlg]&&!document.querySelector('#dm .dl'))render()}).catch(()=>{})}catch(e){}}
+setTimeout(dlg2Load,1000);
+function dsxLoad(){if(DSX!==null)return;DSX=0;fetch('dsecx.json').then(r=>r.ok?r.json():{}).then(j=>{DSX=j||{};if(S.dlg&&document.getElementById('dm')){const m=document.getElementById('dm'),y=m.scrollTop;renderDialog();const n=document.getElementById('dm');if(n)n.scrollTop=y;try{TFXT_KEY='';tfxMore()}catch(e){}}}).catch(()=>{DSX={}})}
+function dSecH(h){const x=DSX2[h]||(DSX&&DSX[h]);const j=`<span class="dsj">${S.furi&&x?dkRuby(x[0]):h}</span>`;const sub=[];if(x){if(S.rom)sub.push(`<i>${esc(dkRom(x[0]))}</i>`);if(dshOn('m'))sub.push(`<span class="mm">${x[1]}</span>`);if(dshOn('e'))sub.push(`<span>${esc(x[2])}</span>`)}return {j,s:sub.length?`<span class="dss">${sub.join('')}</span>`:''}}
 S.rom=(()=>{try{return localStorage.getItem('myaing.rom')==='1'}catch(e){return false}})();
 function uiMode(){try{const u=localStorage.getItem('myaing.ui');if(u)return u;return localStorage.getItem('myaing.lux')==='0'?'classic':'web'}catch(e){return 'web'}}
 function luxOn(){return uiMode()==='glass'}
@@ -43360,7 +43369,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.jxplay&&S.jx){const it=S.jx.qs[S.jx.i];try{speechSynthesis.cancel()}catch(e){}let n=0;const nx=()=>{if(n<it.l.length)speakJa(it.l[n++][1],0.9,()=>setTimeout(nx,500))};nx();return}
   if(b.dataset.jhub!==undefined){let lv=5;try{lv=+(localStorage.getItem('myaing.jlv')||5)||5}catch(e){}S.jl=lv;S.jtab='';S.view='jlpt';S.kSay='';render();return}
   if(b.dataset.about){S.view='about';S.drawer=false;S.aboutSec=b.dataset.about;render();return}
-  if(b.dataset.t){S.tab=b.dataset.t;S.q='';S.drawer=false;S.view='main';render();if(b.dataset.t==='home')festFly();return}
+  if(b.dataset.t){S.dgrp='';S.tab=b.dataset.t;S.q='';S.drawer=false;S.view='main';render();if(b.dataset.t==='home')festFly();return}
   if(b.dataset.chat!==undefined){S.chat=+b.dataset.chat;CONTACTS[S.chat].unread=false;S.view='chat';render();return}
   if(b.dataset.cm){const c=CONTACTS[S.chat];c.cm[b.dataset.cm]=!c.cm[b.dataset.cm];render();return}
   if(b.dataset.cmc){cmSheet(b.dataset.cmc);return}
@@ -43394,7 +43403,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.g){SET[b.dataset.g]=!SET[b.dataset.g];saveSet();render();return}
   if(b.dataset.s){const k=b.dataset.s;if(k==='rnd'){S.rnd=S.words.map(w=>w.t).sort(()=>Math.random()-.5)}S.sort=k;S.sortOpen=false;render();return}
   if(b.dataset.r!==undefined){if(S.hide!=='none'){const r=+b.dataset.r;S.reveal[r]=!S.reveal[r];render()}return}
-  if(b.dataset.dlg){stopLines();S.dlq='';S.dRev={};S.dlg=b.dataset.dlg;S.view='dlg';S.kSay='';render();const m=document.getElementById('dm');if(m)m.scrollTop=0;return}
+  if(b.dataset.dgrp!==undefined){S.dgrp=b.dataset.dgrp;S.q='';render();window.scrollTo(0,0);return}if(b.dataset.dlg&&DGRPT[b.dataset.dlg]){S.dgrp=DGRPT[b.dataset.dlg];S.q='';render();window.scrollTo(0,0);return}if(b.dataset.dlg){stopLines();S.dlq='';S.dRev={};S.dlg=b.dataset.dlg;S.view='dlg';S.kSay='';render();const m=document.getElementById('dm');if(m)m.scrollTop=0;return}
   if(b.dataset.srl){try{localStorage.setItem('myaing.jlv',b.dataset.srl)}catch(e){}render();return}
   if(b.dataset.srhw!==undefined&&b.dataset.srhw!==''){let L=5;try{L=+(localStorage.getItem('myaing.jlv')||5)||5}catch(e){}const k=new Date().toDateString()+'|'+L;SRHW[k]=SRHW[k]||{};SRHW[k][b.dataset.srhw]=!SRHW[k][b.dataset.srhw];if(Object.values(SRHW[k]).filter(Boolean).length>=5)setTimeout(()=>starEarn('hw'),300);try{localStorage.setItem('myaing.srhw',JSON.stringify(SRHW))}catch(e){}render();return}
   if(b.dataset.nview){S.nView=S.nView===b.dataset.nview?'':b.dataset.nview;render();return}
