@@ -27447,6 +27447,7 @@ ${GA_ID?`<button class="row" data-g="noga"><svg width="22" height="22" viewBox="
 <button class="row" data-a="dshj"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">日</span><span class="lb">${T('ဂျပန်စာ ပြမယ် (Dialog)','日本語を表示（会話）','Show Japanese (Dialog)')}</span>${sw(dshOn('j'))}</button>
 <button class="row" data-a="dshm"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">မ</span><span class="lb">${T('မြန်မာ ပြမယ် (Dialog)','ミャンマー語を表示（会話）','Show Myanmar (Dialog)')}</span>${sw(dshOn('m'))}</button>
 <button class="row" data-a="dshe"><span style="width:22px;text-align:center;font-weight:800;color:#1F3A68">E</span><span class="lb">${T('English ပြမယ် (Dialog)','英語を表示（会話）','Show English (Dialog)')}</span>${sw(dshOn('e'))}</button>
+${bgRow()}
 </div>
 <div style="margin-top:12px">${tfxSettingsCard()}</div>`:sub==='noti'?`<button class="row" data-dsub="set" style="border-bottom:none;min-height:48px;padding:0 6px;background:transparent;font-weight:800;color:#1F3A68"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span class="lb" style="font-size:17px">${T('သတိပေးချက်','通知','Notifications')}</span></button>
 ${natBox()}<div class="box" style="${NAT()?'display:none':''}">
@@ -36700,7 +36701,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.358',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoJapanese',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.359',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -43085,7 +43086,31 @@ function accOpen(k){ACC[k]=1;accApply()}
 document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('[data-acc-h]');if(!h)return;if(e.target.closest('[data-sp],[data-dsec]')&&e.target.closest('[data-sp],[data-dsec]')!==h)return;const k=h.dataset.accH;ACC[k]=!ACC[k];accApply(null,true);if(ACC[k])setTimeout(()=>{try{h.scrollIntoView({behavior:'smooth',block:'start'})}catch(x){}},30)},true);
 /* v1.0.262 Romaji under kana word cards everywhere (when Romaji is on) */
 function romDecor(){if(!S.rom||['quiz','jexam','scr','match','game','dict','kako','kall'].includes(S.view))return;try{document.querySelectorAll('#app [data-sp]').forEach(b=>{if(b.dataset.rmd||b.closest('#dm')||b.querySelector('.dkrom,.fz,ruby'))return;const sp=(b.dataset.sp||'').trim();if(!sp||!/^[ぁ-ゖァ-ヺー・\s〜~]+$/.test(sp))return;if((b.textContent||'').replace(/\s/g,'').length<=sp.length+1)return;const r=dkRomaji(sp.replace(/[〜~]/g,''));if(!r)return;const e=document.createElement('span');e.className='dkrom';e.style.cssText='display:block;font-size:12px;color:#6B7486;font-style:italic;line-height:1.4;font-weight:400';e.textContent=r;b.appendChild(e);b.dataset.rmd=1})}catch(e){}}
-function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{wlPost()}catch(e){}try{dkFoot()}catch(e){}try{spinFabSync()}catch(e){}try{webDecor()}catch(e){}try{romDecor()}catch(e){}try{tfxApply();tfxDecor()}catch(e){}try{if(S.view!=='dlg')document.body.classList.remove('dsrch');accApply()}catch(e){}}
+
+/* v1.0.358: page background — none / Dokodemo logo / title picture / own photo (kept only on this phone), faded so text stays readable. localStorage myaing.bg, myaing.bgimg, myaing.bgdim */
+function bgMode(){try{return localStorage.getItem('myaing.bg')||'none'}catch(e){return 'none'}}
+function bgDim(){let v=82;try{v=+(localStorage.getItem('myaing.bgdim')||82)}catch(e){}return isFinite(v)?Math.min(95,Math.max(20,v)):82}
+let BG_LOGO=null;function bgLogo(){if(!BG_LOGO){const svg=DKLOGO.replace(/<svg[^>]*?viewBox/,'<svg xmlns="http://www.w3.org/2000/svg" viewBox');BG_LOGO='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}return BG_LOGO}
+function bgIcon(){try{if(!FLI_D)FLI_D=JSON.parse(document.getElementById('flicons').textContent);let n=null;if(S.view==='dlg')n=(FLI_D.m.talk||{})[S.dlg];else if(S.view==='topic')n=(FLI_D.m.words||{})[S.topic];else if(S.pro)n=(FLI_D.m.practice||{})[S.pro];return n&&FLI_D.i[n]?FLI_D.i[n]:null}catch(e){return null}}
+function bgApply(){const a=document.getElementById('app');if(!a)return;const m=bgMode();let url=null,fit='';
+  if(m==='photo'){try{url=localStorage.getItem('myaing.bgimg')}catch(e){}fit='center / cover'}
+  else if(m==='logo'){url=bgLogo();fit='center 52% / min(62vw,360px)'}
+  else if(m==='icon'){url=bgIcon()||bgLogo();fit='center 52% / min(62vw,360px)'}
+  if(!url||document.body.classList.contains('dark')){if(a.style.background)a.style.background='';return}
+  const d=bgDim()/100;a.style.background=`linear-gradient(rgba(243,245,249,${d}),rgba(243,245,249,${d})),url("${url}") ${fit} no-repeat,#F3F5F9`}
+function bgSet(k){try{localStorage.setItem('myaing.bg',k)}catch(e){}render()}
+function bgDimSet(v){try{localStorage.setItem('myaing.bgdim',String(v))}catch(e){}bgApply()}
+function bgPick(inp){const f=inp.files&&inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const save=(mx,q)=>{const k=Math.min(1,mx/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);localStorage.setItem('myaing.bgimg',c.toDataURL('image/jpeg',q))};
+    try{save(1280,.78)}catch(e){try{save(860,.68)}catch(e2){toast(T('ပုံ အရမ်းကြီးနေတယ် — တခြားပုံ ရွေးပါ','画像が大きすぎます','Image too large'));return}}
+    try{localStorage.setItem('myaing.bg','photo')}catch(e){}toast(T('✅ နောက်ခံပုံ ထည့်ပြီးပါပြီ','✅ 背景を設定しました','✅ Background set'));render()};im.src=r.result};r.readAsDataURL(f)}
+function bgRow(){const m=bgMode(),c=(k,l)=>`<button onclick="bgSet('${k}')" style="flex-shrink:0;min-height:36px;padding:0 12px;border-radius:18px;border:1.5px solid ${m===k?'var(--navy)':'#D5DCE8'};background:${m===k?'var(--navy)':'#fff'};color:${m===k?'#fff':'var(--navy)'};font-size:13px;font-weight:800">${m===k?'✓ ':''}${l}</button>`;
+  return `<div style="display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-top:1px solid var(--line)">
+<span style="display:flex;align-items:center;gap:10px"><span style="width:22px;text-align:center;font-size:18px">🖼️</span><span style="display:flex;flex-direction:column;gap:1px;font-weight:700"><span>${T('နောက်ခံပုံ','背景','Background')}</span><small style="color:#6B7486;font-size:11.5px;font-weight:500">${T('စာမျက်နှာတိုင်းရဲ့ နောက်ခံ · စာဖတ်ရလွယ်အောင် ဖျော့ဖျော့ ပြမယ်','全ページの背景 · 読みやすいように薄く表示','Behind every page · faded so text stays readable')}</small></span></span>
+<div style="display:flex;flex-wrap:wrap;gap:6px">${c('none',T('မထည့်','なし','None'))}${c('logo','Dokodemo logo')}${c('icon',T('ခေါင်းစဉ်နဲ့ ကိုက်တဲ့ပုံ','タイトルの絵','Title picture'))}${c('photo',T('ကိုယ့်ဓာတ်ပုံ','自分の写真','My photo'))}</div>
+${m==='photo'?`<label style="align-self:flex-start;min-height:38px;padding:0 14px;border-radius:19px;background:var(--red);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px">📷 ${T('ဓာတ်ပုံ ရွေးမယ်','写真を選ぶ','Choose a photo')}<input type="file" accept="image/*" onchange="bgPick(this)" style="display:none"></label><small style="color:#6B7486;font-size:11.5px">${T('ပုံကို ဒီဖုန်းထဲမှာပဲ သိမ်းတယ် · ဘယ်ကိုမှ မပို့ဘူး','写真はこの端末だけに保存されます','Saved only on this phone · never uploaded')}</small>`:''}
+${m!=='none'?`<label style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:#4A5468;font-weight:700">${T('ဖျော့','うすさ','Fade')}<input type="range" min="20" max="95" value="${bgDim()}" oninput="bgDimSet(this.value)" style="flex:1"></label>`:''}
+</div>`}
+function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{wlPost()}catch(e){}try{dkFoot()}catch(e){}try{spinFabSync()}catch(e){}try{webDecor()}catch(e){}try{romDecor()}catch(e){}try{tfxApply();tfxDecor()}catch(e){}try{if(S.view!=='dlg')document.body.classList.remove('dsrch');accApply()}catch(e){}try{bgApply()}catch(e){}}
 /* v1.0.349 Website gate: the browser version opens only for people who already use the Dokodemo app:
    ① My User ID (account used in the app) ② Login ③ Pro (bought; the free trial does not count).
    Off: config.json "wgate": false · iPhone/iPad are free unless "wgate_ios": true · admin always passes. */
