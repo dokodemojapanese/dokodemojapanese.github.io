@@ -1,5 +1,5 @@
 /* Dokodemo offline cache. Bump VERSION each time you upload a new index.html */
-const VERSION='myaing-v355';
+const VERSION='myaing-v358';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 const SWV=+VERSION.split('v').pop();
 /* v1.0.346: GitHub's CDN can hand out the OLD index.html for a few minutes after an upload. Always fetch with ?v= (bypasses the CDN copy)
@@ -17,6 +17,7 @@ self.addEventListener('fetch',e=>{
   const r=e.request;if(r.method!=='GET')return;
   if(r.url.indexOf('config.json')>-1)return; /* on/off switches: always fresh from network */
   if(r.url.indexOf('/popup')>-1)return; /* v318 daily popup (popup.json + image): always from network */
+  if(r.url.indexOf('topics2.json')>-1){e.respondWith(fetch(r).then(res=>{if(res&&res.ok){const c=res.clone();caches.open(VERSION).then(x=>x.put(r,c))}return res}).catch(()=>caches.match(r)));return} /* v357 new topics: network first, offline copy */
   if(/\/sw\.js\?/.test(r.url)){e.respondWith(fetch(r));return} /* update check: network only, never saved */
   const isPage=r.mode==='navigate'||r.url.endsWith('index.html');
   if(isPage){ /* v1.0.176: open instantly from the saved copy (like a native app), refresh the saved copy in the background.
