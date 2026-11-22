@@ -19,5 +19,27 @@
       "en": "🍂 It's getting colder — stay warm and take good care of yourself 🧣☕",
       "to": "2027-02-28"
     }
-  ]
+  ],
+  "devapk": {
+    "ver": "",
+    "url": "",
+    "size": "",
+    "notes": {
+      "mm": [
+        "🔔 Screen ပိတ်ထားလည်း Notification အသံ မြည်မယ်",
+        "🔊 ဂျပန်・မြန်မာ・English ၃ ဘာသာ အသံထွက်",
+        "✨ Notification ကတ် ဒီဇိုင်းအသစ်"
+      ],
+      "ja": [
+        "🔔 画面オフでも通知音が鳴ります",
+        "🔊 日本語・ミャンマー語・英語の3か国語で読み上げ",
+        "✨ 通知カードの新デザイン"
+      ],
+      "en": [
+        "🔔 Notification sound even with the screen off",
+        "🔊 Read aloud in Japanese, Myanmar and English",
+        "✨ New notification card design"
+      ]
+    }
+  }
 }
