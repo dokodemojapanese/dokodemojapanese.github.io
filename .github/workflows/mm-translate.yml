@@ -1,0 +1,42 @@
+name: Myanmar translate (Gemini)
+
+# v1.0.391 — fills Myanmar meanings for the new kanji (kmm.json) and the big dictionary (dictx/).
+# Upload this file as .github/workflows/mm-translate.yml and mmtrans.js to the repo root.
+# Needs the GitHub Secret GEMINI_API_KEY. It runs by itself every 3 hours until everything is done
+# (each run stops by itself when the daily free quota is used up). Progress is saved to the repo every 10 minutes.
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'kanji = new kanji meanings · dict = big dictionary · all = both'
+        type: choice
+        options: [all, kanji, dict]
+        default: all
+      model:
+        description: 'Gemini model (empty = newest Flash automatically)'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mm-translate
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node mmtrans.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TASK: ${{ github.event.inputs.task || 'all' }}
+          MODEL: ${{ github.event.inputs.model }}
+          MINUTES: '165'
