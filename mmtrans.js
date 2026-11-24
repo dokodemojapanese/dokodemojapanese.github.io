@@ -1,6 +1,7 @@
 /* Dokodemo — Myanmar translation pipeline (runs only in GitHub Actions).
    TASK=kanji : kanji.json entries without a Myanmar meaning  -> kmm.json   {"篆":"..."}
-   TASK=dict  : JMdict words that are not in dict.json         -> dictx/NNN.json + dictx/index.json
+   TASK=dict  : ALL JMdict words (~210,000) that are not in dict.json -> dictx/NNN.json + dictx/index.json
+                [word, reading, Myanmar, English, 0, 0, other spellings '取扱い・取り扱い']
    The app reads kmm.json / dictx/* by itself — no index.html upload needed when new data arrives.
    Needs the GitHub Secret GEMINI_API_KEY. Data: JMdict / KANJIDIC2 (EDRDG, CC BY-SA 4.0). */
 const fs = require('fs'), { execSync } = require('child_process');
@@ -21,8 +22,10 @@ async function pickModel() {
   if (j.error) { console.log('❌ Gemini key problem:', j.error.status || '', (j.error.message || '').slice(0, 200)); process.exit(1); }
   const ms = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent'))
     .map(m => m.name.replace('models/', ''))
-    .filter(n => /^gemini-[\d.]+-flash$/.test(n) || /^gemini-[\d.]+-flash-latest$/.test(n) || n === 'gemini-flash-latest');
-  ms.sort((a, b) => parseFloat(b.split('-')[1]) - parseFloat(a.split('-')[1]));
+    .filter(n => /^gemini-[\d.]+-flash(-\d+)?$/.test(n));
+  const ver = n => parseFloat(n.split('-')[1]) || 0;
+  ms.sort((a, b) => ver(b) - ver(a));
+  console.log('flash models:', ms.join(', ') || '(none)');
   MODEL = ms[0] || 'gemini-flash-latest';
   return MODEL;
 }
@@ -32,7 +35,7 @@ Rules: Myanmar Unicode only (never Zawgyi). Short dictionary style, 1–4 meanin
 Natural everyday Myanmar words. Do not add explanations, romanization or English.
 Call the language မြန်မာ (never ဗမာ). Return ONLY a JSON array of strings, same order and same length as the input.`;
 
-let quotaHits = 0;
+let quotaHits = 0, bad = 0; const tried = new Set();
 async function ask(items) {            // items: [{w, r, en}]  -> array of Myanmar strings (or null)
   const prompt = 'Translate each entry. Input JSON:\n' + JSON.stringify(items.map(x => [x.w, x.r || '', x.en]));
   for (let t = 0; t < 4; t++) {
@@ -42,8 +45,15 @@ async function ask(items) {            // items: [{w, r, en}]  -> array of Myanm
         generationConfig: { temperature: 0.2, responseMimeType: 'application/json' } })
     }).catch(e => ({ ok: false, status: 0, text: async () => String(e) }));
     if (res.status === 429) { quotaHits++; if (quotaHits >= 6) return 'QUOTA'; await sleep(65e3); continue; }
-    if (!res.ok) { console.log('HTTP', res.status, (await res.text()).slice(0, 200)); await sleep(15e3); continue; }
-    quotaHits = 0;
+    if (!res.ok) {
+      const t = await res.text(); console.log('HTTP', res.status, t.slice(0, 200));
+      if (res.status === 404 || res.status === 400) {               // model retired → switch to the model Google suggests
+        const m = /models\/(gemini-[\w.\-]+)/g; let x, nm = null; while ((x = m.exec(t))) if (x[1] !== MODEL) nm = x[1];
+        if (nm && !tried.has(nm)) { tried.add(nm); console.log('➡️ switching model to', nm); MODEL = nm; continue; }
+        if (++bad >= 3) { console.log('❌ model not usable — stopping'); process.exit(1); }
+      }
+      await sleep(15e3); continue; }
+    quotaHits = 0; bad = 0;
     try {
       const j = await res.json(); const txt = j.candidates[0].content.parts.map(p => p.text).join('');
       const a = JSON.parse(txt.slice(txt.indexOf('['), txt.lastIndexOf(']') + 1));
@@ -100,12 +110,14 @@ async function runDict() {
   const jm = JSON.parse(fs.readFileSync(jmdictFile(), 'utf8'));
   const list = [];
   for (const e of jm.words) {
-    const w = (e.kanji[0] || e.kana[0] || {}).text, r = (e.kana[0] || {}).text || '';
+    const uk = (e.sense[0] && (e.sense[0].misc || []).includes('uk')) || !e.kanji.length;   // usually written in kana
+    const r = (e.kana[0] || {}).text || '', w = uk ? r : (e.kanji[0] || {}).text;
     if (!w || have.has(w + '|' + r)) continue; have.add(w + '|' + r);
+    const alt = [...new Set(e.kanji.map(x => x.text).concat(e.kana.map(x => x.text)))].filter(x => x !== w && x !== r).slice(0, 6).join('・');
     const en = e.sense.slice(0, 3).map(s => s.gloss.slice(0, 3).map(g => g.text).join(', ')).join('; ').slice(0, 160);
     if (!en) continue;
     const common = (e.kanji.concat(e.kana)).some(x => x.common);
-    list.push({ w, r, en, c: common ? 0 : 1 });
+    list.push({ w, r, en, alt, c: common ? 0 : 1 });
   }
   list.sort((a, b) => a.c - b.c);                     // common words first
   console.log('dictionary words left:', list.length);
@@ -118,7 +130,7 @@ async function runDict() {
     const a = await ask(part); if (a === 'QUOTA') { console.log('daily quota reached'); break; }
     if (a) part.forEach((x, j) => {
       if (!a[j]) return; idx.count++;
-      cur.push([x.w, x.r, a[j], x.en, 0, 0]);
+      cur.push(x.alt ? [x.w, x.r, a[j], x.en, 0, 0, x.alt] : [x.w, x.r, a[j], x.en, 0, 0]);
       if (cur.length >= SHARD) { save(); cur = []; idx.n++; }
     });
     save();

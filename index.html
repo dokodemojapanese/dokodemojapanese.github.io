@@ -44644,7 +44644,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.392',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.393',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -48982,7 +48982,7 @@ function dictBuild(){if(DICT)return DICT;const seen=new Map();DICT=[];
   try{BIZ.forEach(sec=>{if(!sec.k)sec.items.forEach(x=>add(x[0],x[1],x[2],x[3]||'',0,'w'))})}catch(e){}
   try{['cal','dham'].forEach(x=>XP[x].forEach(s=>s.r.forEach(r=>{const m=r.j.match(/^([^（]+)（([^）]+)）$/);if(m&&/^[ぁ-ゖァ-ヶー・ ]+$/.test(m[2]))add(m[1],m[2],r.m,r.e,0,'w')})))}catch(e){}
   try{jlx().w.forEach(x=>add(x[0],x[1]||x[0],x[2],x[3],x[4],'w'))}catch(e){}
-  try{(DXX||[]).forEach(x=>add(x[0],x[1]||x[0],x[2],x[3],0,'x'))}catch(e){}
+  try{const ix=new Map(DICT.map(o=>[o.k+'|'+o.r,o]));(DXX||[]).forEach(x=>{add(x[0],x[1]||x[0],x[2],x[3],0,'x');if(x[6]){const o=ix.get(x[0]+'|'+(x[1]||x[0]))||DICT[DICT.length-1];if(o&&o.k===x[0])o.a=x[6].split('・')}})}catch(e){}
   return DICT}
 /* v1.0.392 Big dictionary: JMdict (EDRDG, CC BY-SA 4.0) words translated to Myanmar by GitHub Actions + Gemini → dictx/index.json {n,count} + dictx/000.json … ([k,r,mm,en,0,0]).
    Loaded only when ど Dictionary opens; results marked 🤖 and ranked after Dokodemo's own words. */
@@ -49019,7 +49019,7 @@ function searchLog(q,found){try{q=(q||'').trim().slice(0,40);if(!q||!isLive())re
 function dictSearch(q,lv){q=q.trim();if(!q)return[];if(dzWild(q))return dictWild(q,lv);const ql=q.toLowerCase();const terms=[ql,dHira(q)];
   if(/^[a-z' \-]+$/i.test(q)){const h=romaToKana(q);if(h)terms.push(h)}
   const kana=[...new Set(terms.filter(t=>/[ぁ-ゖ]/.test(t)))];const ks=kana.flatMap(t=>[t,dKata(t)]);
-  const out=[];dictBuild().forEach(w=>{if(lv&&w.lv!==lv)return;let s=9;const jf=[w.k,w.r,dHira(w.r)];
+  const out=[];dictBuild().forEach(w=>{if(lv&&w.lv!==lv)return;let s=9;const jf=w.a?[w.k,w.r,dHira(w.r),...w.a]:[w.k,w.r,dHira(w.r)];
     const tst=(f,t)=>f===t?0:f.startsWith(t)?1:f.includes(t)?3:9;
     for(const t of [q,...ks])for(const f of jf){s=Math.min(s,tst(f,t))}
     const en=w.en.toLowerCase().replace(/\(.*?\)/g,'').trim();if(/[a-z]/.test(ql)){const e2=en.split(/[^a-z']+/),ep=en.split(/\s*[\/,;]\s*/);s=Math.min(s,en===ql||ep.includes(ql)||ep.includes('to '+ql)?0:e2.includes(ql)?2:en.startsWith(ql)?2:en.includes(ql)?4:9)}
