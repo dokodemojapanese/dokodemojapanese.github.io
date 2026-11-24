@@ -16,8 +16,9 @@ const MY = /[က-႟]/;
 let MODEL = process.env.MODEL || '';
 async function pickModel() {
   if (MODEL) return MODEL;
-  const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key=' + KEY);
+  const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': KEY } });
   const j = await r.json();
+  if (j.error) { console.log('❌ Gemini key problem:', j.error.status || '', (j.error.message || '').slice(0, 200)); process.exit(1); }
   const ms = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent'))
     .map(m => m.name.replace('models/', ''))
     .filter(n => /^gemini-[\d.]+-flash$/.test(n) || /^gemini-[\d.]+-flash-latest$/.test(n) || n === 'gemini-flash-latest');
@@ -35,8 +36,8 @@ let quotaHits = 0;
 async function ask(items) {            // items: [{w, r, en}]  -> array of Myanmar strings (or null)
   const prompt = 'Translate each entry. Input JSON:\n' + JSON.stringify(items.map(x => [x.w, x.r || '', x.en]));
   for (let t = 0; t < 4; t++) {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': KEY },
       body: JSON.stringify({ systemInstruction: { parts: [{ text: SYS }] }, contents: [{ role: 'user', parts: [{ text: prompt }] }],
         generationConfig: { temperature: 0.2, responseMimeType: 'application/json' } })
     }).catch(e => ({ ok: false, status: 0, text: async () => String(e) }));
@@ -130,6 +131,7 @@ async function runDict() {
 
 (async () => {
   console.log('model:', await pickModel(), '· task:', TASK);
+  if (!/^gemini/.test(MODEL)) { console.log('❌ no Gemini model found — check the GEMINI_API_KEY'); process.exit(1); }
   execSync('git config user.name "Dokodemo Bot" && git config user.email "actions@users.noreply.github.com"', { shell: '/bin/bash' });
   if (TASK === 'kanji' || TASK === 'all') await runKanji();
   if ((TASK === 'dict' || TASK === 'all') && left() > 5 * 60e3) await runDict();
