@@ -44644,7 +44644,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.393',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.394',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -48982,11 +48982,15 @@ function dictBuild(){if(DICT)return DICT;const seen=new Map();DICT=[];
   try{BIZ.forEach(sec=>{if(!sec.k)sec.items.forEach(x=>add(x[0],x[1],x[2],x[3]||'',0,'w'))})}catch(e){}
   try{['cal','dham'].forEach(x=>XP[x].forEach(s=>s.r.forEach(r=>{const m=r.j.match(/^([^（]+)（([^）]+)）$/);if(m&&/^[ぁ-ゖァ-ヶー・ ]+$/.test(m[2]))add(m[1],m[2],r.m,r.e,0,'w')})))}catch(e){}
   try{jlx().w.forEach(x=>add(x[0],x[1]||x[0],x[2],x[3],x[4],'w'))}catch(e){}
+  try{(DXD||[]).forEach(x=>add(x[0],x[1]||x[0],x[2],x[3],+x[4]||0,'w'))}catch(e){}
   try{const ix=new Map(DICT.map(o=>[o.k+'|'+o.r,o]));(DXX||[]).forEach(x=>{add(x[0],x[1]||x[0],x[2],x[3],0,'x');if(x[6]){const o=ix.get(x[0]+'|'+(x[1]||x[0]))||DICT[DICT.length-1];if(o&&o.k===x[0])o.a=x[6].split('・')}})}catch(e){}
   return DICT}
 /* v1.0.392 Big dictionary: JMdict (EDRDG, CC BY-SA 4.0) words translated to Myanmar by GitHub Actions + Gemini → dictx/index.json {n,count} + dictx/000.json … ([k,r,mm,en,0,0]).
    Loaded only when ど Dictionary opens; results marked 🤖 and ranked after Dokodemo's own words. */
-let DXX=null,DXXP=null;function dxxLoad(){if(DXXP)return DXXP;DXXP=fetch('dictx/index.json?v='+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).catch(()=>null).then(ix=>{if(!ix||!ix.n)return [];const ps=[];for(let i=0;i<ix.n;i++)ps.push(fetch('dictx/'+String(i).padStart(3,'0')+'.json?c='+(i<ix.n-1?'f':ix.count)).then(r=>r.ok?r.json():[]).catch(()=>[]));return Promise.all(ps).then(a=>[].concat(...a))}).then(a=>{if(a&&a.length){DXX=a;DICT=null;try{WPI=null}catch(e){}if(S.view==='dict')try{renderDict()}catch(e){}}return DXX||[]});return DXXP}
+let DXX=null,DXXP=null,DXD=null;function dxxLoad(){if(DXXP)return DXXP;
+  /* v1.0.394: the whole dict.json (Dokodemo's own ~32,000 words) is searchable too */
+  fetch('dict.json',{cache:'force-cache'}).then(r=>r.ok?r.json():null).then(o=>{if(o&&o.d&&o.d.length){DXD=o.d;DICT=null;try{WPI=null}catch(e){}if(S.view==='dict')try{renderDict()}catch(e){}}}).catch(()=>{});
+  DXXP=fetch('dictx/index.json?v='+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).catch(()=>null).then(ix=>{if(!ix||!ix.n)return [];const ps=[];for(let i=0;i<ix.n;i++)ps.push(fetch('dictx/'+String(i).padStart(3,'0')+'.json?c='+(i<ix.n-1?'f':ix.count)).then(r=>r.ok?r.json():[]).catch(()=>[]));return Promise.all(ps).then(a=>[].concat(...a))}).then(a=>{if(a&&a.length){DXX=a;DICT=null;try{WPI=null}catch(e){}if(S.view==='dict')try{renderDict()}catch(e){}}return DXX||[]});return DXXP}
 let JLX=null;function jlx(){if(!JLX){try{JLX=JSON.parse(document.getElementById('jlx').textContent)}catch(e){JLX={w:[],s:[]}}}return JLX}
 const DKJ={};function dictKanji(c){if(DKJ[c]!==undefined)return DKJ[c];let r=null;try{KL5.forEach(l=>l.K.forEach(K=>{if(K.k===c)r={k:c,on:K.on.join('・'),kun:K.kun.join('・'),m:K.mm,lv:5}}));if(!r)[[KL4,4],[KL3,3],[KL2,2],[KL1,1]].forEach(([X,lv])=>X.forEach(l=>l.K.forEach(K=>{if(!r&&K.k===c)r={k:c,on:K.on.join('・'),kun:K.kun.join('・'),m:K.mm,lv}})));if(!r)Object.keys(JKD).forEach(L=>JKD[L].forEach(k=>{if(k.k===c)r={k:c,on:k.on,kun:k.kun,m:k.m,lv:+L}}))}catch(e){}return DKJ[c]=r}
 /* romaji → hiragana (for users without a Japanese keyboard) */
