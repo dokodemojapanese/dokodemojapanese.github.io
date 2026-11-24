@@ -37,7 +37,7 @@ Call the language မြန်မာ (never ဗမာ). Return ONLY a JSON array
 
 let quotaHits = 0, bad = 0, busy = 0; const tried = new Set();
 async function ask(items) {            // items: [{w, r, en}]  -> array of Myanmar strings (or null)
-  const prompt = 'Translate each entry. Input JSON:\n' + JSON.stringify(items.map(x => [x.w, x.r || '', x.en]));
+  const prompt = 'Translate each entry. Input JSON:\n' + JSON.stringify(items.map(x => [x.w, x.r || '', x.en])) + '\nOutput: a JSON array of ' + items.length + ' Myanmar strings only, e.g. ["နေ၊ နေ့","တစ်"]';
   for (let t = 0; t < 8; t++) {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': KEY },
@@ -61,7 +61,16 @@ async function ask(items) {            // items: [{w, r, en}]  -> array of Myanm
     try {
       const j = await res.json(); const txt = j.candidates[0].content.parts.map(p => p.text).join('');
       const a = JSON.parse(txt.slice(txt.indexOf('['), txt.lastIndexOf(']') + 1));
-      if (Array.isArray(a) && a.length === items.length) return a.map(s => (typeof s === 'string' && MY.test(s)) ? s.trim().replace(/\s*[,、]\s*/g, '၊ ') : null);
+      const pick = v => {                                   // accept "…", ["盧","ro","…"], {"mm":"…"} — whatever shape the model returns
+        if (typeof v === 'string') return v;
+        if (Array.isArray(v)) return [...v].reverse().find(x => typeof x === 'string' && MY.test(x)) || null;
+        if (v && typeof v === 'object') return Object.values(v).reverse().find(x => typeof x === 'string' && MY.test(x)) || null;
+        return null };
+      if (Array.isArray(a) && a.length === items.length) {
+        const out = a.map(v => { const s = pick(v); return (s && MY.test(s)) ? s.trim().replace(/\s*[,、]\s*/g, '၊ ') : null });
+        const ok = out.filter(Boolean).length; console.log(`✔ ${MODEL}: ${ok}/${items.length}`);
+        if (!ok) console.log('sample reply:', txt.slice(0, 300));
+        return out; }
       console.log('length mismatch', a && a.length, items.length);
     } catch (e) { console.log('parse error', e.message); }
     await sleep(5e3);
@@ -82,8 +91,8 @@ async function runKanji() {
   const todo = Object.keys(kj).filter(k => !kj[k][3] && !out[k] && kj[k][4]);
   console.log('kanji to translate:', todo.length);
   let n = 0, lastSave = Date.now();
-  for (let i = 0; i < todo.length && left() > 60e3; i += 120) {
-    const part = todo.slice(i, i + 120).map(k => ({ w: k, r: kj[k][1] || kj[k][2] || '', en: kj[k][4] }));
+  for (let i = 0; i < todo.length && left() > 60e3; i += 200) {
+    const part = todo.slice(i, i + 200).map(k => ({ w: k, r: kj[k][1] || kj[k][2] || '', en: kj[k][4] }));
     const a = await ask(part); if (a === 'QUOTA') { console.log('daily quota reached'); break; }
     if (a) part.forEach((x, j) => { if (a[j]) { out[x.w] = a[j]; n++ } });
     fs.writeFileSync('kmm.json', JSON.stringify(out));
@@ -129,8 +138,8 @@ async function runDict() {
   if (!idx.n || cur.length >= SHARD) { cur = []; idx.n++; }
   const save = () => { fs.writeFileSync(`dictx/${String(idx.n - 1).padStart(3, '0')}.json`, JSON.stringify(cur)); fs.writeFileSync(IDX, JSON.stringify(idx)); };
   let lastSave = Date.now();
-  for (let i = 0; i < list.length && left() > 60e3; i += 100) {
-    const part = list.slice(i, i + 100);
+  for (let i = 0; i < list.length && left() > 60e3; i += 150) {
+    const part = list.slice(i, i + 150);
     const a = await ask(part); if (a === 'QUOTA') { console.log('daily quota reached'); break; }
     if (a) part.forEach((x, j) => {
       if (!a[j]) return; idx.count++;
