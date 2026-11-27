@@ -1,1 +1,34 @@
-
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dokodemo Jisho – ဂျပန်-မြန်မာ အဘိဓာန် · どこでも辞書</title>
+<meta name="description" content="ဂျပန်-မြန်မာ-English အဘိဓာန် အခမဲ့ · စကားလုံး ၂ သိန်းကျော် · ခန်းဂျီး ၁၃,၀၀၀ ကျော် · ရေးနည်းအစဉ် · သဒ္ဒါ N5–N1 · Offline သုံးလို့ရ။ Free Japanese–Myanmar–English dictionary.">
+<meta name="theme-color" content="#1F3A68">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Dokodemo Jisho">
+<meta property="og:title" content="Dokodemo Jisho – ဂျပန်-မြန်မာ အဘိဓာန်">
+<meta property="og:description" content="ဂျပန်-မြန်မာ-English အဘိဓာန် · ခန်းဂျီး · သဒ္ဒါ — အခမဲ့၊ Offline သုံးလို့ရ">
+<meta property="og:image" content="https://dokodemojapanese.github.io/jisho/icon-512.png">
+<style>
+html,body{margin:0;height:100%;background:#1F3A68;overflow:hidden}
+iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff}
+#ld{position:fixed;inset:0;z-index:2;background:#1F3A68;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#fff;font:700 15px/1.6 system-ui,sans-serif;transition:opacity .3s}
+#ld img{width:96px;height:96px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+#ld small{opacity:.75;font-weight:600}
+</style>
+</head>
+<body>
+<div id="ld"><img src="icon-192.png" alt=""><div>Dokodemo Jisho</div><small>どこでも辞書 · ဖွင့်နေပါတယ်…</small></div>
+<iframe id="app" title="Dokodemo Jisho" src="../index.html?embed=1&amp;jisho=1" allow="clipboard-write; autoplay"></iframe>
+<script>
+document.getElementById('app').addEventListener('load',function(){var l=document.getElementById('ld');l.style.opacity='0';setTimeout(function(){l.remove()},300)});
+if('serviceWorker' in navigator){navigator.serviceWorker.register('../sw.js').catch(function(){})}
+</script>
+</body>
+</html>
