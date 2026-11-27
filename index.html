@@ -35209,14 +35209,14 @@ const LANGS=[['my','🇲🇲','မြန်မာ'],['ja','🇯🇵','日本語'
 function LC(){let l='my';try{l=SET.lang||'my'}catch(e){}return l==='ko'||l==='th'?'en':l}
 const _I18RX={};function trX(l,en){const d=I18N[l];if(!d||typeof en!=='string')return en;if(en in d)return d[en];const ps=I18P[l];if(!_I18RX[l])_I18RX[l]=ps.map(p=>new RegExp('^'+p[0].map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([\\s\\S]*?)')+'$'));for(let i=0;i<ps.length;i++){const m=_I18RX[l][i].exec(en);if(m){const t=ps[i][1];let o=t[0];for(let j=1;j<t.length;j++)o+=(m[j]!==undefined?m[j]:'')+t[j];return o}}return en}
 function T(my,ja,en){let l='my';try{l=SET.lang||'my'}catch(e){}return l==='ja'?ja:l==='en'?en:l==='ko'||l==='th'?trX(l,en):my}
-const TILE_EN={"文法": "Grammar N5–N1", "ゲーム": "Games (Kana · Kanji)", "助詞": "Particles N5–N1", "総まとめN1": "N1 Vocabulary (So-matome)", "Driving": "Driving license", "JLPT Tips": "JLPT Tips", "Star": "Stars & Spin", "年金": "Pension", "ヘアカラー": "Hair color", "かぜ薬": "Cold medicine", "Listening": "Listening", "JLPT Game": "Leaderboard", "Reading": "Reading", "Study Room": "Study Room", "Note": "Note", "Business Japanese": "Business Japanese", "Contract": "Work Contract", "Same Meaning": "Same Meaning", "Verbs": "Verbs", "Readings Vocabulary": "Readings Vocabulary", "漢字": "Kanji", "歌": "Songs", "PDF": "PDF lessons", "過去問": "Official past questions", "JLPT": "Study by level", "服": "Clothes", "買い物": "Shopping", "家": "Home", "駅・交通": "Station · Transport", "自然": "Nature", "旅行": "Travel", "ひらがな": "Hiragana", "カタカナ": "Katakana", "ローマ字": "Romaji", "五十音": "Alphabet", "活用": "Verb forms", "JLPT N5": "Level 5 · Beginner", "JLPT N4": "Level 4 · Elementary", "JLPT N3": "Level 3 · Intermediate", "JLPT N2": "Level 2 · Upper-int.", "JLPT N1": "Level 1 · Advanced", "家族": "Family", "名前": "Names", "誕生日": "2027 Birthday Luck", "給与明細": "Payslip words", "国": "Countries", "台所": "Kitchen", "果物": "Fruit", "野菜": "Vegetables", "病院": "Hospital", "薬": "Medicine", "花": "Flowers", "化粧品": "Cosmetics", "家具": "Furniture", "感情": "Emotions", "数字": "Numbers", "助数詞": "Counters", "スポーツ": "Sports", "銀行": "Bank", "法律": "Law", "車": "Cars", "色": "Colors", "味": "Tastes", "音楽": "Music", "家電": "Appliances", "動物": "Animals", "食べ物": "Food", "肉・魚": "Meat · Seafood", "学校の物": "School things", "職業": "Jobs", "工具": "Tools", "体": "Body", "天気": "Weather", "時間": "Time", "一般": "General", "緊急": "Emergency", "警察": "Police", "道案内": "Directions", "レストラン": "Restaurant", "料理": "Cooking", "ホテル": "Hotel", "交流": "Communication", "仕事": "Work", "面接": "Interview", "学校": "School", "運動": "Exercise", "買い物": "Shopping", "恋愛": "Romance", "けんか": "Arguments", "挨拶": "Greetings", "自己紹介": "Self-intro", "市役所": "City hall", "入管": "Immigration · Visa", "駅・電車": "Station · Train", "タクシー": "Taxi", "空港": "Airport", "電話": "Phone calls", "郵便局": "Post office", "不動産": "Renting a home", "コンビニ": "Convenience store", "薬局": "Pharmacy", "美容院": "Hair salon", "工場": "Factory", "介護": "Elderly care", "歯医者": "Dentist", "保育園": "Daycare · Kids", "車の運転": "Driving", "投票": "Polls", "Podcast": "Podcast", "文法": "Grammar", "漢字": "Kanji", "歌": "Songs", "Mirror": "Reverse talk", "反対語": "Antonyms", "若者言葉": "Slang", "Quiz JP": "Japanese quiz", "Quiz MM": "Myanmar quiz", "有名人": "Celebrities", "Matching": "Word matching", "Scramble": "Word scramble", "TextMe": "Chat practice", "Wow": "Fun facts", "書き取り": "Dictation", "宿題": "Homework", "物語": "Stories", "MYAING": "About the app", "ことわざ": "Proverbs", "Dark Side": "Rude words", "注意": "Cautions", "試験": "Exams", "JLPT模試": "Mock exam · N5–N1", "聴解": "Listening", "敬語": "Keigo (polite)", "オノマトペ": "Onomatopoeia", "辞書": "Japanese · Myanmar · English", "ミャンマー暦": "Myanmar calendar", "仏教": "Dhamma", "知識": "Knowledge", "ミャンマー": "About Myanmar"};
+const TILE_EN={"文法": "Grammar N5–N1", "ゲーム": "Games (Kana · Kanji)", "助詞": "Particles N5–N1", "総まとめN1": "N1 Vocabulary (So-matome)", "Driving": "Driving license", "JLPT Tips": "JLPT Tips", "Star": "Stars & Spin", "年金": "Pension", "ヘアカラー": "Hair color", "かぜ薬": "Cold medicine", "Listening": "Listening", "JLPT Game": "Leaderboard", "Reading": "Reading", "Study Room": "Study Room", "Note": "Note", "Business Japanese": "Business Japanese", "Contract": "Work Contract", "Same Meaning": "Same Meaning", "Verbs": "Verbs", "Readings Vocabulary": "Readings Vocabulary", "漢字": "Kanji", "歌": "Songs", "PDF": "PDF lessons", "過去問": "Official past questions", "JLPT": "Study by level", "服": "Clothes", "買い物": "Shopping", "家": "Home", "駅・交通": "Station · Transport", "自然": "Nature", "旅行": "Travel", "ひらがな": "Hiragana", "カタカナ": "Katakana", "ローマ字": "Romaji", "五十音": "Alphabet", "活用": "Verb forms", "JLPT N5": "Level 5 · Beginner", "JLPT N4": "Level 4 · Elementary", "JLPT N3": "Level 3 · Intermediate", "JLPT N2": "Level 2 · Upper-int.", "JLPT N1": "Level 1 · Advanced", "家族": "Family", "名前": "Names", "誕生日": "2027 Birthday Luck", "給与明細": "Payslip words", "わたし・あなた": "I · You · He/She", "言い方いろいろ": "Many ways to say it", "国": "Countries", "台所": "Kitchen", "果物": "Fruit", "野菜": "Vegetables", "病院": "Hospital", "薬": "Medicine", "花": "Flowers", "化粧品": "Cosmetics", "家具": "Furniture", "感情": "Emotions", "数字": "Numbers", "助数詞": "Counters", "スポーツ": "Sports", "銀行": "Bank", "法律": "Law", "車": "Cars", "色": "Colors", "味": "Tastes", "音楽": "Music", "家電": "Appliances", "動物": "Animals", "食べ物": "Food", "肉・魚": "Meat · Seafood", "学校の物": "School things", "職業": "Jobs", "工具": "Tools", "体": "Body", "天気": "Weather", "時間": "Time", "一般": "General", "緊急": "Emergency", "警察": "Police", "道案内": "Directions", "レストラン": "Restaurant", "料理": "Cooking", "ホテル": "Hotel", "交流": "Communication", "仕事": "Work", "面接": "Interview", "学校": "School", "運動": "Exercise", "買い物": "Shopping", "恋愛": "Romance", "けんか": "Arguments", "挨拶": "Greetings", "自己紹介": "Self-intro", "市役所": "City hall", "入管": "Immigration · Visa", "駅・電車": "Station · Train", "タクシー": "Taxi", "空港": "Airport", "電話": "Phone calls", "郵便局": "Post office", "不動産": "Renting a home", "コンビニ": "Convenience store", "薬局": "Pharmacy", "美容院": "Hair salon", "工場": "Factory", "介護": "Elderly care", "歯医者": "Dentist", "保育園": "Daycare · Kids", "車の運転": "Driving", "投票": "Polls", "Podcast": "Podcast", "文法": "Grammar", "漢字": "Kanji", "歌": "Songs", "Mirror": "Reverse talk", "反対語": "Antonyms", "若者言葉": "Slang", "Quiz JP": "Japanese quiz", "Quiz MM": "Myanmar quiz", "有名人": "Celebrities", "Matching": "Word matching", "Scramble": "Word scramble", "TextMe": "Chat practice", "Wow": "Fun facts", "書き取り": "Dictation", "宿題": "Homework", "物語": "Stories", "MYAING": "About the app", "ことわざ": "Proverbs", "Dark Side": "Rude words", "注意": "Cautions", "試験": "Exams", "JLPT模試": "Mock exam · N5–N1", "聴解": "Listening", "敬語": "Keigo (polite)", "オノマトペ": "Onomatopoeia", "辞書": "Japanese · Myanmar · English", "ミャンマー暦": "Myanmar calendar", "仏教": "Dhamma", "知識": "Knowledge", "ミャンマー": "About Myanmar"};
 const TILE_JP={'総まとめN1':['総まとめ N1','そうまとめ'],'Same Meaning':['類義語','るいぎご'],'Verbs':['動詞','どうし'],'Readings Vocabulary':['読み方','よみかた'],'辞書':['ど Dictionary','じしょ'],'Podcast':['ポッドキャスト',''],'Mirror':['逆さ言葉','さかさことば'],'Quiz JP':['日本語クイズ','にほんご'],'Quiz MM':['ミャンマークイズ',''],'Matching':['マッチング',''],'Scramble':['並べ替え','ならべかえ'],'TextMe':['メッセージ',''],'Wow':['豆知識','まめちしき'],'Dark Side':['裏側','うらがわ'],'JLPT模試':['JLPT Exam','もぎしけん'],'MYAING':[DKW,'どこでも'],'Note':['ノート','メモ'],'Business Japanese':['ビジネス日本語','ビジネスにほんご'],'Contract':['雇用契約書','こようけいやくしょ'],'Study Room':['自習室','じしゅうしつ'],'Star':['スター','スター'],'Reading':['読み物','よみもの'],'JLPT Game':['ランキング',''],'Listening':['リスニング',''],'JLPT Tips':['合格のコツ','ごうかくのコツ'],'Driving':['運転免許','うんてんめんきょ']};
 const BETA_T=new Set(['有名人','TextMe']);
 const tileSub=(j,m)=>T(m,'',TILE_EN[j]||m);
 const HOME=['ဗုဒ္ဓံ သရဏံ ဂစ္ဆာမိ','ဓမ္မံ သရဏံ ဂစ္ဆာမိ','သံဃံ သရဏံ ဂစ္ဆာမိ'];
 const HOME_TR=[['Buddhaṃ saraṇaṃ gacchāmi','仏（ブッダ）に帰依いたします','I go to the Buddha for refuge'],['Dhammaṃ saraṇaṃ gacchāmi','法（ダンマ）に帰依いたします','I go to the Dhamma for refuge'],['Saṅghaṃ saraṇaṃ gacchāmi','僧（サンガ）に帰依いたします','I go to the Sangha for refuge']];
 const DATA={
-words:[['あ', 'ひらがな', 'Hiragana', 'ဟီရာဂါနာ'], ['ア', 'カタカナ', 'Katakana', 'ခါတခါနာ'], ['A', 'ローマ字', 'Romaji', 'ရိုမာဂျိ'], ['活', '活用', 'かつよう', 'ကြိယာပုံစံ'], ['五', '五十音', 'ごじゅうおん', 'အက္ခရာ'], ['漢', '漢字', 'かんじ', 'ခန်းဂျီ'], ['辞', '辞書', 'じしょ', 'အဘိဓာန်'], ['暦', 'ミャンマー暦', 'ミャンマーごよみ', 'မြန်မာ ပြက္ခဒိန်'], ['🎂', '誕生日', 'たんじょうび', 'မွေးနေ့ကံ 2027'], ['💴', '給与明細', 'きゅうよめいさい', 'လစာစာရွက်'], ['仏', '仏教', 'ぶっきょう', 'ဓမ္မ'], ['知', '知識', 'ちしき', 'ဗဟုသုတ'], ['緬', 'ミャンマー', '', 'မြန်မာ့အကြောင်း'], ['🗾', '日本', 'にほん', 'ဂျပန်'], ['家', '家族', 'かぞく', 'မိသားစု'], ['名', '名前', 'なまえ', 'အမည်များ'], ['国', '国', 'くに', 'နိုင်ငံ'], ['台', '台所', 'だいどころ', 'မီးဖိုချောင်'], ['果', '果物', 'くだもの', 'သစ်သီး'], ['菜', '野菜', 'やさい', 'အသီးအရွက်'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['薬', '薬', 'くすり', 'ဆေး'], ['花', '花', 'はな', 'ပန်း'], ['粧', '化粧品', 'けしょうひん', 'အလှပြင်ပစ္စည်း'], ['具', '家具', 'かぐ', 'ပရိဘောဂ'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['数', '数字', 'すうじ', 'ကိန်းဂဏန်း'], ['個', '助数詞', 'じょすうし', 'အရေအတွက်'], ['球', 'スポーツ', '', 'အားကစား'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['法', '法律', 'ほうりつ', 'ဥပဒေ'], ['車', '車', 'くるま', 'ကား'], ['色', '色', 'いろ', 'အရောင်'], ['味', '味', 'あじ', 'အရသာ'], ['音', '音楽', 'おんがく', 'ဂီတ'], ['📄', 'PDF', 'ピーディーエフ', 'PDF သင်ခန်းစာ'], ['過', '過去問', 'かこもん', 'မေးခွန်းဟောင်း'], ['助', '助詞', 'じょし', 'ဝိဘတ် N5–N1'], ['遊', 'ゲーム', '', 'ဂိမ်း · かな・漢字'], ['電', '家電', 'かでん', 'လျှပ်စစ်ပစ္စည်း'], ['動', '動物', 'どうぶつ', 'တိရစ္ဆာန်'], ['食', '食べ物', 'たべもの', 'အစားအစာ'], ['肉', '肉・魚', 'にく・さかな', 'အသား・ငါး'], ['職', '職業', 'しょくぎょう', 'အလုပ်အကိုင်'], ['校', '学校の物', 'がっこうのもの', 'ကျောင်းသုံးပစ္စည်း'], ['工', '工具', 'こうぐ', 'ကိရိယာ'], ['体', '体', 'からだ', 'ခန္ဓာကိုယ်'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['時', '時間', 'じかん', 'အချိန်'], ['服', '服', 'ふく', 'အဝတ်အစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['宅', '家', 'いえ', 'အိမ်'], ['駅', '駅・交通', 'えき・こうつう', 'ဘူတာ・သွားလာရေး'], ['山', '自然', 'しぜん', 'သဘာဝ'], ['旅', '旅行', 'りょこう', 'ခရီးသွား'], ['年', '年金', 'ねんきん', 'ပင်စင်'], ['染', 'ヘアカラー', '', 'ဆံပင်ဆိုးဆေး'], ['風', 'かぜ薬', 'かぜぐすり', 'အအေးမိဆေး']],
+words:[['あ', 'ひらがな', 'Hiragana', 'ဟီရာဂါနာ'], ['ア', 'カタカナ', 'Katakana', 'ခါတခါနာ'], ['A', 'ローマ字', 'Romaji', 'ရိုမာဂျိ'], ['活', '活用', 'かつよう', 'ကြိယာပုံစံ'], ['五', '五十音', 'ごじゅうおん', 'အက္ခရာ'], ['漢', '漢字', 'かんじ', 'ခန်းဂျီ'], ['辞', '辞書', 'じしょ', 'အဘိဓာန်'], ['暦', 'ミャンマー暦', 'ミャンマーごよみ', 'မြန်မာ ပြက္ခဒိန်'], ['🎂', '誕生日', 'たんじょうび', 'မွေးနေ့ကံ 2027'], ['💴', '給与明細', 'きゅうよめいさい', 'လစာစာရွက်'], ['🙋', 'わたし・あなた', 'わたし・あなた', 'ငါ · မင်း · သူ ပြောပုံ'], ['🌈', '言い方いろいろ', 'いいかたいろいろ', 'ပြောပုံ အမျိုးမျိုး'], ['仏', '仏教', 'ぶっきょう', 'ဓမ္မ'], ['知', '知識', 'ちしき', 'ဗဟုသုတ'], ['緬', 'ミャンマー', '', 'မြန်မာ့အကြောင်း'], ['🗾', '日本', 'にほん', 'ဂျပန်'], ['家', '家族', 'かぞく', 'မိသားစု'], ['名', '名前', 'なまえ', 'အမည်များ'], ['国', '国', 'くに', 'နိုင်ငံ'], ['台', '台所', 'だいどころ', 'မီးဖိုချောင်'], ['果', '果物', 'くだもの', 'သစ်သီး'], ['菜', '野菜', 'やさい', 'အသီးအရွက်'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['薬', '薬', 'くすり', 'ဆေး'], ['花', '花', 'はな', 'ပန်း'], ['粧', '化粧品', 'けしょうひん', 'အလှပြင်ပစ္စည်း'], ['具', '家具', 'かぐ', 'ပရိဘောဂ'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['数', '数字', 'すうじ', 'ကိန်းဂဏန်း'], ['個', '助数詞', 'じょすうし', 'အရေအတွက်'], ['球', 'スポーツ', '', 'အားကစား'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['法', '法律', 'ほうりつ', 'ဥပဒေ'], ['車', '車', 'くるま', 'ကား'], ['色', '色', 'いろ', 'အရောင်'], ['味', '味', 'あじ', 'အရသာ'], ['音', '音楽', 'おんがく', 'ဂီတ'], ['📄', 'PDF', 'ピーディーエフ', 'PDF သင်ခန်းစာ'], ['過', '過去問', 'かこもん', 'မေးခွန်းဟောင်း'], ['助', '助詞', 'じょし', 'ဝိဘတ် N5–N1'], ['遊', 'ゲーム', '', 'ဂိမ်း · かな・漢字'], ['電', '家電', 'かでん', 'လျှပ်စစ်ပစ္စည်း'], ['動', '動物', 'どうぶつ', 'တိရစ္ဆာန်'], ['食', '食べ物', 'たべもの', 'အစားအစာ'], ['肉', '肉・魚', 'にく・さかな', 'အသား・ငါး'], ['職', '職業', 'しょくぎょう', 'အလုပ်အကိုင်'], ['校', '学校の物', 'がっこうのもの', 'ကျောင်းသုံးပစ္စည်း'], ['工', '工具', 'こうぐ', 'ကိရိယာ'], ['体', '体', 'からだ', 'ခန္ဓာကိုယ်'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['時', '時間', 'じかん', 'အချိန်'], ['服', '服', 'ふく', 'အဝတ်အစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['宅', '家', 'いえ', 'အိမ်'], ['駅', '駅・交通', 'えき・こうつう', 'ဘူတာ・သွားလာရေး'], ['山', '自然', 'しぜん', 'သဘာဝ'], ['旅', '旅行', 'りょこう', 'ခရီးသွား'], ['年', '年金', 'ねんきん', 'ပင်စင်'], ['染', 'ヘアカラー', '', 'ဆံပင်ဆိုးဆေး'], ['風', 'かぜ薬', 'かぜぐすり', 'အအေးမိဆေး']],
 talk:[['般', '一般', 'いっぱん', 'သာမန်သုံး'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['急', '緊急', 'きんきゅう', 'အရေးပေါ်'], ['警', '警察', 'けいさつ', 'ရဲစခန်း'], ['道', '道案内', 'みちあんない', 'လမ်းမေးခြင်း'], ['食', 'レストラン', '', 'စားသောက်ဆိုင်'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['料', '料理', 'りょうり', 'ချက်ပြုတ်ခြင်း'], ['宿', 'ホテル', '', 'ဟော်တယ်'], ['交', '交流', 'こうりゅう', 'ဆက်သွယ်ခြင်း'], ['働', '仕事', 'しごと', 'လုပ်ငန်းသုံး'], ['面', '面接', 'めんせつ', 'အင်တာဗျူး'], ['学', '学校', 'がっこう', 'ကျောင်း'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['運', '運動', 'うんどう', 'အားကစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['恋', '恋愛', 'れんあい', 'ချစ်ရေးချစ်ရာ'], ['喧', 'けんか', '', 'ရန်ဖြစ်ခြင်း'], ['挨', '挨拶', 'あいさつ', 'နှုတ်ဆက်ခြင်း'], ['紹', '自己紹介', 'じこしょうかい', 'ကိုယ်မိတ်ဆက်'], ['役', '市役所', 'しやくしょ', 'မြို့နယ်ရုံး'], ['入', '入管', 'にゅうかん', 'လဝက · ဗီဇာ'], ['駅', '駅・電車', 'えき・でんしゃ', 'ဘူတာ · ရထား'], ['車', 'タクシー', '', 'တက္ကစီ'], ['空', '空港', 'くうこう', 'လေဆိပ်'], ['電', '電話', 'でんわ', 'ဖုန်းပြော'], ['郵', '郵便局', 'ゆうびんきょく', 'စာတိုက်'], ['家', '不動産', 'ふどうさん', 'အိမ်ငှား'], ['店', 'コンビニ', '', 'ကွန်ဗီနီ'], ['薬', '薬局', 'やっきょく', 'ဆေးဆိုင်'], ['髪', '美容院', 'びよういん', 'ဆံပင်ညှပ်ဆိုင်'], ['工', '工場', 'こうじょう', 'စက်ရုံ'], ['介', '介護', 'かいご', 'သက်ကြီးစောင့်ရှောက်ရေး'], ['歯', '歯医者', 'はいしゃ', 'သွားဆေးခန်း'], ['保', '保育園', 'ほいくえん', 'မူကြို · ကလေးထိန်း'], ['転', '車の運転', 'くるまのうんてん', 'ကားမောင်းခြင်း'], ['店', 'Apple Store', 'アップルストア', 'iPhone · iPad ဝယ်ခြင်း']],
 practice:[['習', 'Study Room', 'じしゅうしつ', 'လေ့လာခန်း'], ['⭐', 'Star', 'スター', 'Star စု · Spin · Pro လဲ'], ['🏆', 'JLPT Game', 'ランキング', 'အဆင့်ပြိုင်ပွဲ'], ['試', 'JLPT', 'N5 – N1', 'အဆင့်လိုက် လေ့လာ'], ['模', 'JLPT模試', 'もし', 'JLPT စမ်းသပ်စာမေးပွဲ · N5–N1'], ['票', '投票', 'とうひょう', 'စစ်တမ်း'], ['声', 'Podcast', 'ポッドキャスト', 'အသံဖိုင်'], ['鏡', 'Mirror', 'ミラー', 'ပြောင်းပြန်စကား'], ['反', '反対語', 'はんたいご', 'ဆန့်ကျင်ဘက်'], ['類', 'Same Meaning', 'るいぎご', 'အဓိပ္ပာယ်တူ'], ['総', '総まとめN1', 'そうまとめ', 'N1 ဝေါဟာရ'], ['動', 'Verbs', 'どうし', 'ကြိယာ'], ['読', 'Readings Vocabulary', 'よみかた', 'ခန်းဂျိ ဖတ်နည်း ဝေါဟာရ'], ['若', '若者言葉', 'わかものことば', 'လူငယ်သုံးစကား'], ['問', 'Quiz JP', 'クイズ', 'ဂျပန် မေးခွန်း'], ['答', 'Quiz MM', 'クイズ', 'မြန်မာ မေးခွန်း'], ['星', '有名人', 'ゆうめいじん', 'ထင်ရှားသူများ'], ['合', 'Matching', 'マッチング', 'စကားလုံးတွဲမယ်'], ['並', 'Scramble', 'ならべかえ', 'စာလုံးစီမယ်'], ['信', 'TextMe', 'メッセージ', 'စာပို့မယ်'], ['豆', 'Wow', 'まめちしき', 'စိတ်ဝင်စားစရာ'], ['書', '書き取り', 'かきとり', 'ကြားရာရေး'], ['宿', '宿題', 'しゅくだい', 'အိမ်စာ'], ['物', '物語', 'ものがたり', 'ပုံပြင်များ'], ['章', 'Reading', 'よみもの', 'စာဖတ်'], ['聴', 'Listening', 'リスニング', 'နားထောင်'], ['技', 'JLPT Tips', 'ごうかくのコツ', 'JLPT အမှတ်ယူနည်း'], ['運', 'Driving', 'うんてんめんきょ', 'ကားလိုင်စင်'], ['ど', 'MYAING', 'どこでも', 'App အကြောင်း'], ['記', 'Note', 'メモ', 'မှတ်စု'], ['諺', 'ことわざ', '', 'စကားပုံများ'], ['裏', 'Dark Side', 'うらがわ', 'ရိုင်းစိုင်းစကား'], ['注', '注意', 'ちゅうい', 'သတိပြုရန်'], ['敬', '敬語', 'けいご', 'ယဉ်ကျေးစကား'], ['商', 'Business Japanese', 'ビジネス', 'လုပ်ငန်းသုံး'], ['契', 'Contract', 'けいやく', 'အလုပ်စာချုပ်'], ['音', 'オノマトペ', '', 'အသံစွဲစကား']]
 };
@@ -35351,13 +35351,13 @@ function body(){
   const bOn=betaOn();
   let h=`<label class="search${(S.tab==='home'&&!S.q)||bOn?' tm':''}"><span class="sv" style="display:flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14223D" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>${S.tab==='home'&&!S.q?`<span class="te" aria-hidden="true">${timeIcon()}</span>`:''}${bOn?'<span class="te" aria-hidden="true">🆕</span>':''}<input id="q" aria-label="Search" placeholder="${S.tab==='home'||bOn?'':PHF()[S.tab]}" value="${esc(S.q)}">${S.tab==='home'&&!S.q?`<span class="marq mm" aria-hidden="true">${(()=>{const hm=homeMarq();return `<span style="animation-duration:${Math.max(12,Math.round(hm.replace(/<[^>]*>/g,'').length*0.16))}s">${hm}</span>`})()}</span>`:''}${bOn?`<span class="marq mm" aria-hidden="true" style="right:46px;color:#1E6FD9;font-weight:700"><span style="animation-duration:${Math.max(16,Math.round(betaTxt().length*0.17))}s">${betaTxt()}</span></span><button type="button" class="bx" onpointerdown="event.preventDefault()" onclick="event.preventDefault();event.stopPropagation();betaHide()" aria-label="Hide notice" style="position:absolute;right:8px;top:50%;margin-top:-16px;width:32px;height:32px;border:none;border-radius:16px;background:#EEF1F6;color:#4A5468;font-size:14px;z-index:1">✕</button>`:''}</label>`;
   if(S.tab==='home'&&DODO()){
-    h+=`${q?'':fxCard()+bdCard()}<div class="list pray">${HOME.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}</div>`;
+    h+=`<div class="list pray">${HOME.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}</div>`;
   }else if(S.tab==='home'){
     const r=HOME.filter(t=>!q||t.includes(q));
-    h+=r.length?`${q?'':homeNews()+fxCard()+bdCard()}<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
+    h+=r.length?`${q?'':homeNews()}<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
   }else{
     const r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q)).filter(([,j])=>S.tab!=='talk'||q?!(q&&DGRPT[j]):(S.dgrp?DGRP[j]===S.dgrp:!DGRP[j]));if(S.tab==='talk'&&S.dgrp&&!q)h+=`<div style="display:flex;align-items:center;gap:8px;margin:2px 4px 10px"><button data-dgrp="" style="border:none;background:#EEF2FA;color:#1E5BD8;font-weight:800;border-radius:12px;padding:8px 14px;font-size:14px">← ${T('နောက်သို့','戻る','Back')}</button><b style="font-size:16px">🇯🇵 ${T('ဂျပန်・မြန်မာ','日本・ミャンマー','Japan・Myanmar')} 🇲🇲</b></div>`;
-    h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" data-say="${esc({'ひらがな':'ひらがな','カタカナ':'カタカナ','ローマ字':'ローマじ','JLPT':'ジェイエルピーティー'}[j]||(TILE_JP[j]?(TILE_JP[j][1]||TILE_JP[j][0]):(k||j)))}" style="--i:${Math.min(n,14)};--r:${Math.min(Math.floor(n/3),6)};--c:${n%3};--tc:${t[1]};--ic:${ICC(S.tab,j)||t[1]}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${j==='誕生日'?' data-a="bday"':''}${j==='給与明細'?' data-a="kyuyo"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='漢字'&&S.tab==='words'?' data-a="kall"':''}${j==='PDF'?' data-a="pdf"':''}${j==='過去問'?' data-a="kako"':''}${j==='助詞'?' data-a="joshi"':''}${j==='文法'&&S.tab==='words'?' data-a="gram"':''}${j==='ゲーム'?' data-a="kgame"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${FLI(S.tab,j)||i}</span><span class="jp"${j==='辞書'?' style="font-size:15px;white-space:nowrap;letter-spacing:-.2px"':''}${j!=='辞書'&&TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span>${BETA_T.has(j)?'<span class="mmt"><b class="betab">Beta</b></span>':`<span class="mmt mm">${tileSub(j,m)}</span>`}${S.tab==='practice'&&!PRO_OK&&!BETA_T.has(j)&&j!=='MYAING'&&j!=='Note'&&j!=='Study Room'&&j!=='JLPT Game'&&j!=='Star'?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
+    h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" data-say="${esc({'ひらがな':'ひらがな','カタカナ':'カタカナ','ローマ字':'ローマじ','JLPT':'ジェイエルピーティー'}[j]||(TILE_JP[j]?(TILE_JP[j][1]||TILE_JP[j][0]):(k||j)))}" style="--i:${Math.min(n,14)};--r:${Math.min(Math.floor(n/3),6)};--c:${n%3};--tc:${t[1]};--ic:${ICC(S.tab,j)||t[1]}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${j==='誕生日'?' data-a="bday"':''}${j==='給与明細'?' data-a="kyuyo"':''}${j==='わたし・あなた'?' data-a="nin"':''}${j==='言い方いろいろ'?' data-a="ik"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='漢字'&&S.tab==='words'?' data-a="kall"':''}${j==='PDF'?' data-a="pdf"':''}${j==='過去問'?' data-a="kako"':''}${j==='助詞'?' data-a="joshi"':''}${j==='文法'&&S.tab==='words'?' data-a="gram"':''}${j==='ゲーム'?' data-a="kgame"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${FLI(S.tab,j)||i}</span><span class="jp"${j==='辞書'?' style="font-size:15px;white-space:nowrap;letter-spacing:-.2px"':''}${j!=='辞書'&&TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span>${BETA_T.has(j)?'<span class="mmt"><b class="betab">Beta</b></span>':`<span class="mmt mm">${tileSub(j,m)}</span>`}${S.tab==='practice'&&!PRO_OK&&!BETA_T.has(j)&&j!=='MYAING'&&j!=='Note'&&j!=='Study Room'&&j!=='JLPT Game'&&j!=='Star'?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
   }
   return h;
 }
@@ -44645,7 +44645,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.408',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.411',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -45158,38 +45158,416 @@ ${sec('勤','勤怠','きんたい','အလုပ်ဆင်း မှတ်တ
 <div class="mm" style="font-size:11px;color:#8A93A5;text-align:center;margin:4px 6px 0;line-height:1.7">${T('စကားလုံးကို နှိပ်ရင် ဂျပန်အသံ ထွက်ပါတယ် 🔊 · ဂဏန်းတွေက ဥပမာ အကြမ်းဖျင်းပဲ ဖြစ်ပါတယ်။ ကုမ္ပဏီအလိုက် စာရွက်ပုံစံ နည်းနည်း ကွာနိုင်ပါတယ်။','ことばをタップで発音🔊 · 数字はおおよその例です。会社によって明細の形は少し違います。','Tap a word to hear it 🔊 · Numbers are rough examples. Layouts differ a little by company.')}</div>
 <div style="height:90px"></div></main>`}
 
+/* v1.0.410 わたし・あなた — every way to say I / you / he·she / we. Category: d daily · b polite/business · r rude · l dialect/slang · a old/anime.
+   Row = [kana, kanji, romaji, cat, English, Myanmar, example JP, example EN, example MM]. All text is original Dokodemo text. */
+const NIN=[
+{id:'i',ic:'🙋',t:['ကျွန်တော်/ကျွန်မ (I)','わたし（一人称）','I'],L:[
+['わたし','私','watashi','d','Anyone, any place. The safe choice.','ယောက်ျား မိန်းမ အားလုံး၊ ဘယ်နေရာမဆို သုံးလို့ရ။ အစိတ်ချရဆုံး။','わたしはミャンマーから来ました。','I came from Myanmar.','ကျွန်တော်/ကျွန်မ မြန်မာက လာတာပါ။'],
+['わたくし','私','watakushi','b','Very polite: interviews, speeches, business.','အရမ်း ယဉ်ကျေးတဲ့ ပုံစံ — Interview၊ မိန့်ခွန်း၊ အလုပ်ကိစ္စ။','わたくし、営業部の田中と申します。','I am Tanaka from the sales department.','ကျွန်တော် အရောင်းဌာနက တာနာကာ ဖြစ်ပါတယ်။'],
+['ぼく','僕','boku','d','Boys and men; soft and polite.','ယောက်ျားလေး/ယောက်ျား၊ နူးညံ့ ယဉ်ကျေးတဲ့ ပုံစံ။','ぼくはサッカーが好きです。','I like soccer.','ကျွန်တော် ဘောလုံး ကြိုက်တယ်။'],
+['おれ','俺','ore','d','Men with friends. Not to bosses or teachers.','ယောက်ျား၊ သူငယ်ချင်းကြား။ အထက်လူ၊ ဆရာကို မသုံးရ။','おれ、もう帰るよ。','I’m heading home now.','ငါ ပြန်တော့မယ်ကွာ။'],
+['あたし','','atashi','d','Women, casual.','မိန်းကလေး၊ ပေါ့ပေါ့ပါးပါး ပြောတဲ့အခါ။','あたし、甘いものが大好き！','I love sweets!','ငါ အချိုတွေ အရမ်းကြိုက်တယ်!'],
+['じぶん','自分','jibun','d','“Myself”; sporty or military style.','"ကိုယ်တိုင်" — အားကစားသမား၊ စစ်သား ပုံစံ။','自分がやります！','I’ll do it!','ကျွန်တော် လုပ်ပါ့မယ်!'],
+['うち','','uchi','l','Girls in Kansai (and young women).','Kansai ဘက်က မိန်းကလေးတွေ (လူငယ်တွေလည်း)။','うち、それ知ってるで。','I know that.','ငါ အဲဒါ သိတယ်။'],
+['こちら','','kochira','b','“This side” — on the phone, at a counter.','"ဒီဘက်က" — ဖုန်းထဲ၊ ကောင်တာမှာ။','こちらは山田です。','This is Yamada (speaking).','ဒီဘက်က ယာမာဒါ ပါ။'],
+['とうほう','当方','touhou','b','“Our side” — business emails.','"ကျွန်ုပ်တို့ဘက်" — Business Email။','当方で確認いたします。','We will check it on our side.','ကျွန်ုပ်တို့ဘက်က စစ်ဆေးပေးပါမယ်။'],
+['しょうせい','小生','shousei','b','Humble, men, in letters.','ယောက်ျား၊ စာထဲမှာ နှိမ့်ချ သုံးတာ။','','',''],
+['わたしめ','私め','watashime','b','Extra humble (servant style).','အရမ်း နှိမ့်ချတဲ့ ပုံစံ (အစေခံ ပုံစံ)။','','',''],
+['あたくし','','atakushi','b','Polite, a bit showy; older women.','ယဉ်ကျေးပေမဲ့ နည်းနည်း ဟန်ဆောင်တဲ့ ပုံစံ (အသက်ကြီးအမျိုးသမီး)။','','',''],
+['しょうしょく','小職','shoushoku','b','Humble, officials/company staff in writing.','အရာရှိ/ဝန်ထမ်း စာထဲမှာ နှိမ့်ချ သုံးတာ။','','',''],
+['ほんかん','本官','honkan','b','Police officers, officials.','ရဲ၊ အရာရှိတွေ။','','',''],
+['とうしょく','当職','toushoku','b','Lawyers and professionals in documents.','ရှေ့နေ စတဲ့ ပညာရှင်တွေ စာရွက်စာတမ်းထဲ။','','',''],
+['わし','儂','washi','l','Old men; western Japan.','အဘိုးကြီးတွေ၊ အနောက်ပိုင်း ဂျပန်။','わしはもう年じゃ。','I’m old now.','ငါ အသက်ကြီးပြီကွယ်။'],
+['わい','','wai','l','Kansai, rough and casual.','Kansai၊ ကြမ်းကြမ်း ပေါ့ပေါ့။','','',''],
+['わて','','wate','l','Old Kansai (Osaka merchants).','Kansai ခေတ်ဟောင်း (Osaka ကုန်သည်)။','','',''],
+['あて','','ate','l','Old Kyoto speech.','Kyoto ခေတ်ဟောင်း ပြောပုံ။','','',''],
+['おいどん','','oidon','l','Kagoshima (Satsuma) men.','Kagoshima ယောက်ျား။','','',''],
+['おら','','ora','l','Rural Tohoku; country boy style.','Tohoku တောရွာ ပုံစံ။','おら、腹へったぞ！','I’m starving!','ငါ ဗိုက်ဆာပြီဟေ့!'],
+['おいら','','oira','l','Casual, cheerful country style.','ပေါ့ပေါ့ ပျော်ပျော် တောပုံစံ။','','',''],
+['あーし','','aashi','l','Gyaru slang (young women).','Gyaru လူငယ် အမျိုးသမီး Slang။','','',''],
+['あっし','','asshi','a','Edo-period common men.','Edo ခေတ် သာမန် ယောက်ျား။','','',''],
+['あたい','','atai','a','Old slang, tough girls.','ခေတ်ဟောင်း Slang၊ ကြမ်းတမ်းတဲ့ မိန်းကလေး။','','',''],
+['あちき','','achiki','a','Edo-period courtesans.','Edo ခေတ် ပျော်ပါးရေးအိမ်က အမျိုးသမီး။','','',''],
+['おれさま','俺様','oresama','a','Arrogant “the great me”.','မာနကြီး "ငါ့ကြီး"။','おれさまに任せろ！','Leave it to the great me!','ငါ့ကြီးကို လွှဲထားလိုက်!'],
+['ぼくちゃん','僕ちゃん','bokuchan','a','Childish or teasing.','ကလေးဆန်ဆန် / စနောက်တဲ့ ပုံစံ။','','',''],
+['わがはい','吾輩','wagahai','a','Pompous old style (Soseki’s cat).','ကိုယ့်ကိုယ်ကို ကြီးကျယ်တဲ့ ပုံစံ (Soseki ရဲ့ ကြောင်)။','吾輩は猫である。','I am a cat.','ငါက ကြောင်ပဲ။'],
+['それがし','某','soregashi','a','Samurai.','ဆာမူရိုင်း။','','',''],
+['せっしゃ','拙者','sessha','a','Samurai, ninja (humble).','ဆာမူရိုင်း၊ နင်ဂျာ (နှိမ့်ချ)။','拙者は旅の者でござる。','I am but a traveler.','ကျွန်ုပ်က ခရီးသည် တစ်ယောက်ပါ။'],
+['みども','身共','midomo','a','Old samurai.','ခေတ်ဟောင်း ဆာမူရိုင်း။','','',''],
+['わらわ','妾','warawa','a','Princess, noble lady.','မင်းသမီး၊ မျိုးမြင့် အမျိုးသမီး။','','',''],
+['まろ','麻呂','maro','a','Court nobles (Heian).','နန်းတွင်း မှူးမတ် (Heian ခေတ်)။','','',''],
+['よ','余','yo','a','Lords and kings.','မင်း၊ ဘုရင်။','','',''],
+['ちん','朕','chin','a','Only the emperor (historical).','ဧကရာဇ် တစ်ပါးတည်း (သမိုင်း)။','','',''],
+['われ','我','ware','a','Old or very formal written style.','ခေတ်ဟောင်း / အရမ်း တရားဝင် စာပေ။','我思う、ゆえに我あり。','I think, therefore I am.','ငါ တွေးတယ်၊ ဒါကြောင့် ငါ ရှိတယ်။'],
+['おのれ','己','onore','a','“Oneself” (old). Also a rude “you”.','"ကိုယ့်ကိုယ်ကိုယ်" (ခေတ်ဟောင်း)။ "မင်း" လို့ ရိုင်းရိုင်းလည်း သုံး။','','',''],
+['てまえ','手前','temae','a','Humble merchant “I”. Also a rude “you”.','ကုန်သည်ရဲ့ နှိမ့်ချ "ကျွန်ုပ်"။ "မင်း" လို့ ရိုင်းရိုင်းလည်း သုံး။','','','']]},
+{id:'y',ic:'👉',t:['မင်း/ခင်ဗျား (You)','あなた（二人称）','You'],L:[
+['〇〇さん','','(name)-san','d','Best way: use the name + さん instead of “you”.','အကောင်းဆုံး — "မင်း" အစား နာမည် + さん နဲ့ ခေါ်ပါ။','田中さんは行きますか。','Are you going, Mr. Tanaka?','တာနာကာ စံ သွားမလား။'],
+['あなた','','anata','d','Polite but distant. Don’t use to bosses. Wives may use it for “dear”.','ယဉ်ကျေးပေမဲ့ ခပ်ဝေးဝေး။ အထက်လူကို မသုံးရ။ ဇနီးက ခင်ပွန်းကို "ရှင်" လို့လည်း ခေါ်။','あなたの名前は？','What’s your name?','ခင်ဗျား/ရှင့် နာမည် ဘာလဲ။'],
+['きみ','君','kimi','d','To juniors, close friends, lovers (songs).','ငယ်သား၊ ရင်းနှီးသူ၊ ချစ်သူ (သီချင်းထဲ)။','きみも来る？','Are you coming too?','မင်းလည်း လာမလား။'],
+['あんた','','anta','d','Casual; can sound rude.','ပေါ့ပေါ့၊ ရိုင်းသလို ထင်ရနိုင်။','あんた、何してるの？','What are you doing?','နင် ဘာလုပ်နေတာလဲ။'],
+['そちら','','sochira','b','“Your side” — polite, phone/business.','"ခင်ဗျားတို့ဘက်" — ယဉ်ကျေး၊ ဖုန်း/Business။','そちらはいかがですか。','How are things on your side?','ခင်ဗျားတို့ဘက်က ဘယ်လိုလဲ။'],
+['おたく','お宅','otaku','b','“Your house / your company”; a bit distant.','"ခင်ဗျားအိမ်/ကုမ္ပဏီ"၊ နည်းနည်း ခပ်ဝေးဝေး။','','',''],
+['あなたさま','あなた様','anatasama','b','Very polite (letters, service).','အရမ်း ယဉ်ကျေး (စာ၊ ဝန်ဆောင်မှု)။','','',''],
+['きでん','貴殿','kiden','b','Formal letters, to men.','တရားဝင် စာ (ယောက်ျားကို)။','','',''],
+['きけい','貴兄','kikei','b','Letters to a male friend/peer.','ယောက်ျား သူငယ်ချင်း/ရွယ်တူကို စာထဲ။','','',''],
+['おんしゃ','御社','onsha','b','“Your company” — when speaking (job interviews!).','"လူကြီးမင်းတို့ ကုမ္ပဏီ" — စကားပြော (Interview မှာ အရေးကြီး!)။','御社を志望しました。','I applied to your company.','လူကြီးမင်းတို့ ကုမ္ပဏီကို လျှောက်ခဲ့ပါတယ်။'],
+['きしゃ','貴社','kisha','b','“Your company” — in writing (CV, email).','"လူကြီးမင်းတို့ ကုမ္ပဏီ" — စာရေးတဲ့အခါ (CV၊ Email)။','','',''],
+['おまえ','お前','omae','r','Men to close friends or juniors; rude to others.','ယောက်ျား → ရင်းနှီးသူ/ငယ်သား။ တခြားသူကိုဆို ရိုင်း။','おまえ、遅いぞ。','You’re late.','မင်း နောက်ကျတယ်ကွ။'],
+['おめえ','','omee','r','Rough form of おまえ.','おまえ ရဲ့ ကြမ်းတမ်းတဲ့ ပုံစံ။','','',''],
+['てめえ','手前','temee','r','Very rude; picking a fight.','အရမ်း ရိုင်း၊ ရန်စတဲ့အခါ။','','',''],
+['きさま','貴様','kisama','r','Very rude in anime fights (polite long ago!).','Anime တိုက်ပွဲထဲ အရမ်း ရိုင်း (ရှေးက ယဉ်ကျေးတဲ့ စကား!)။','','',''],
+['おのれ','己','onore','r','Angry, cursing “you!”.','ဒေါသထွက်ပြီး "နင်!"။','','',''],
+['われ','我','ware','l','Kansai: rough “you” in a fight.','Kansai — ရန်ဖြစ်ရင် "မင်း"။','','',''],
+['じぶん','自分','jibun','l','Kansai: friendly “you”.','Kansai — ရင်းရင်းနှီးနှီး "မင်း"။','自分、どこから来たん？','Where are you from?','မင်း ဘယ်ကလာတာလဲ။'],
+['おぬし','お主','onushi','a','Samurai / old man in anime.','ဆာမူရိုင်း / Anime ထဲက အဘိုးကြီး။','','',''],
+['そなた','其方','sonata','a','Old, noble style.','ခေတ်ဟောင်း၊ မျိုးမြင့် ပုံစံ။','','',''],
+['そち','其方','sochi','a','Lord to a servant.','မင်းက အစေခံကို။','','',''],
+['なんじ','汝','nanji','a','“Thou” — very old, religious.','"သင်" — အရမ်း ခေတ်ဟောင်း၊ ဘာသာရေး။','汝の隣人を愛せよ。','Love thy neighbor.','သင့် အိမ်နီးချင်းကို ချစ်လော့။']]},
+{id:'h',ic:'👤',t:['သူ (He/She)','かれ・かのじょ（三人称）','He · She'],L:[
+['かれ','彼','kare','d','He. Also “boyfriend”.','သူ (ယောက်ျား)။ "ရည်းစား (ယောက်ျား)" လည်း ဖြစ်။','彼は先生です。','He is a teacher.','သူက ဆရာပါ။'],
+['かのじょ','彼女','kanojo','d','She. Also “girlfriend”.','သူမ။ "ရည်းစား (မိန်းမ)" လည်း ဖြစ်။','彼女は看護師です。','She is a nurse.','သူမက သူနာပြုပါ။'],
+['あのひと','あの人','ano hito','d','That person — most common.','ဟိုလူ — အသုံးအများဆုံး။','あの人はだれですか。','Who is that person?','ဟိုလူက ဘယ်သူလဲ။'],
+['あのかた','あの方','ano kata','b','That person — polite.','ဟို ပုဂ္ဂိုလ် — ယဉ်ကျေး။','あの方は社長です。','That person is the company president.','ဟို ပုဂ္ဂိုလ်က ကုမ္ပဏီ ဥက္ကဋ္ဌပါ။'],
+['こちらのかた','こちらの方','kochira no kata','b','This person — introducing someone politely.','ဒီ ပုဂ္ဂိုလ် — ယဉ်ကျေးစွာ မိတ်ဆက်တဲ့အခါ။','こちらの方は山田さんです。','This is Ms. Yamada.','ဒီ ပုဂ္ဂိုလ်က ယာမာဒါ စံပါ။'],
+['あちら','','achira','b','That person over there — polite.','ဟိုဘက်က ပုဂ္ဂိုလ် — ယဉ်ကျေး။','','',''],
+['せんぽう','先方','senpou','b','The other party (business).','တစ်ဖက်လူ/ကုမ္ပဏီ (Business)။','先方に連絡します。','I’ll contact the other party.','တစ်ဖက်ကို ဆက်သွယ်ပါမယ်။'],
+['あいつ','','aitsu','r','That guy — casual, can be rude.','ဟိုကောင် — ပေါ့ပေါ့၊ ရိုင်းနိုင်။','あいつ、また遅刻だ。','That guy is late again.','ဟိုကောင် နောက်ကျပြန်ပြီ။'],
+['こいつ','','koitsu','r','This guy.','ဒီကောင်။','','',''],
+['そいつ','','soitsu','r','That guy (near you).','အဲဒီကောင်။','','',''],
+['やつ','奴','yatsu','r','Guy/fellow — rough.','ကောင် — ကြမ်းကြမ်း။','','',''],
+['だれ','誰','dare','d','Who?','ဘယ်သူလဲ။','だれが来ましたか。','Who came?','ဘယ်သူ လာခဲ့လဲ။'],
+['どなた','','donata','b','Who? — polite.','ဘယ်သူလဲ — ယဉ်ကျေး။','どなたですか。','Who is it, please?','ဘယ်သူပါလဲ ခင်ဗျာ။'],
+['どちらさま','どちら様','dochira-sama','b','Who is calling/visiting? — very polite.','ဘယ်သူပါလဲ (ဖုန်း/ဧည့်သည်) — အရမ်း ယဉ်ကျေး။','失礼ですが、どちら様ですか。','Excuse me, may I ask who you are?','တောင်းပန်ပါတယ်၊ ဘယ်သူပါလဲ ခင်ဗျာ။'],
+['かのひと','彼の人','kano hito','a','That person — old, literary.','ထိုသူ — ခေတ်ဟောင်း စာပေ။','','','']]},
+{id:'w',ic:'👥',t:['ကျွန်တော်တို့ / မင်းတို့ (We · You all)','わたしたち・あなたたち','We · You all'],L:[
+['わたしたち','私たち','watashitachi','d','We — standard.','ကျွန်တော်တို့/ကျွန်မတို့ — စံ။','わたしたちは友だちです。','We are friends.','ကျွန်တော်တို့ သူငယ်ချင်းတွေပါ။'],
+['ぼくたち','僕たち','bokutachi','d','We — boys/men.','ကျွန်တော်တို့ — ယောက်ျားလေး။','','',''],
+['ぼくら','僕ら','bokura','d','We — boys/men, casual.','ကျွန်တော်တို့ — ယောက်ျားလေး၊ ပေါ့ပေါ့။','','',''],
+['おれたち','俺たち','oretachi','d','We — men, casual.','ငါတို့ — ယောက်ျား၊ ပေါ့ပေါ့။','おれたち、最強だな！','We’re the strongest!','ငါတို့ အပြင်းဆုံးပဲ!'],
+['おれら','俺ら','orera','d','We — men, very casual.','ငါတို့ — ယောက်ျား၊ အရမ်း ပေါ့ပေါ့။','','',''],
+['あたしたち','','atashitachi','d','We — women, casual.','ငါတို့ — မိန်းကလေး၊ ပေါ့ပေါ့။','','',''],
+['うちら','','uchira','l','We — girls (Kansai, young).','ငါတို့ — မိန်းကလေး (Kansai၊ လူငယ်)။','','',''],
+['わたしども','私ども','watashidomo','b','We — humble (shops, business).','ကျွန်ုပ်တို့ — နှိမ့်ချ (ဆိုင်၊ Business)။','私どもの店へようこそ。','Welcome to our shop.','ကျွန်ုပ်တို့ ဆိုင်ကို ကြိုဆိုပါတယ်။'],
+['われわれ','我々','wareware','b','We — formal, speeches.','ကျွန်ုပ်တို့ — တရားဝင်၊ မိန့်ခွန်း။','','',''],
+['へいしゃ','弊社','heisha','b','Our company — humble.','ကျွန်ုပ်တို့ ကုမ္ပဏီ — နှိမ့်ချ။','弊社の商品です。','This is our company’s product.','ကျွန်ုပ်တို့ ကုမ္ပဏီရဲ့ ထုတ်ကုန်ပါ။'],
+['とうしゃ','当社','tousha','b','Our company — neutral.','ကျွန်ုပ်တို့ ကုမ္ပဏီ — ပုံမှန်။','','',''],
+['しょうしゃ','小社','shousha','b','Our company — very humble (publishers).','ကျွန်ုပ်တို့ ကုမ္ပဏီ — အရမ်း နှိမ့်ချ (ထုတ်ဝေရေး)။','','',''],
+['みなさん','皆さん','minasan','d','Everyone / you all.','အားလုံး / ခင်ဗျားတို့ အားလုံး။','みなさん、おはようございます。','Good morning, everyone.','အားလုံး မင်္ဂလာနံနက်ခင်းပါ။'],
+['みなさま','皆様','minasama','b','Everyone — very polite.','အားလုံး — အရမ်း ယဉ်ကျေး။','','',''],
+['あなたがた','あなた方','anatagata','b','You all — polite.','ခင်ဗျားတို့ — ယဉ်ကျေး။','','',''],
+['あなたたち','','anatatachi','d','You all.','ခင်ဗျားတို့/ရှင်တို့။','','',''],
+['きみたち','君たち','kimitachi','d','You all — to juniors/students.','မင်းတို့ — ငယ်သား/ကျောင်းသားကို။','','',''],
+['おまえら','お前ら','omaera','r','You guys — rough.','မင်းတို့ — ကြမ်းကြမ်း။','','',''],
+['かれら','彼ら','karera','d','They.','သူတို့။','','',''],
+['かのじょたち','彼女たち','kanojotachi','d','They (women).','သူမတို့။','','','']]}];
+const NIN_C={d:['🟢','နေ့စဉ်','日常','Daily','#1D9E75'],b:['🟡','ယဉ်ကျေး/Business','丁寧・ビジネス','Polite · Business','#C98A00'],r:['🔴','ရိုင်း','乱暴','Rude','#E0464E'],l:['🗾','ဒေသ/Slang','方言・若者','Dialect · Slang','#2C7BB6'],a:['⚔️','ခေတ်ဟောင်း/Anime','昔・アニメ','Old · Anime','#7A3EB1']};
+function ninSay(t){try{speakJa(t)}catch(e){}}
+function renderNin(){const tab=NIN.find(x=>x.id===S.nint)||NIN[0],cf=S.ninc||'',L=tab.L.filter(x=>!cf||x[3]===cf);
+  const tot=NIN.reduce((a,x)=>a+x.L.length,0);
+  const tabB=x=>`<button onclick="S.nint='${x.id}';S.ninc='';render()" style="flex:1;min-width:0;border:none;border-radius:16px;padding:8px 2px;background:${x===tab?'#fff':'rgba(255,255,255,.12)'};color:${x===tab?'#14223D':'#fff'}"><div style="font-size:20px">${x.ic}</div><div style="font-size:12px;font-weight:900;white-space:nowrap">${x.t[2]}</div><div style="font-size:10.5px;opacity:.75">${x.L.length}</div></button>`;
+  const chip=(k)=>{const c=NIN_C[k],n=tab.L.filter(x=>!k||x[3]===k).length,on=cf===k;if(k&&!n)return '';const col=k?c[4]:'#14223D';
+    return `<button onclick="S.ninc='${k}';render()" class="mm" style="flex:none;height:34px;border-radius:17px;border:1.5px solid ${on?col:col+'44'};background:${on?col:'#fff'};color:${on?'#fff':col};font-size:12.5px;font-weight:800;padding:0 11px">${k?c[0]+' '+T(c[1],c[2],c[3]):T('အားလုံး','すべて','All')} <span style="opacity:.75">${n}</span></button>`};
+  const card=x=>{const c=NIN_C[x[3]],q=s=>s.replace(/'/g,'');return `<div style="background:#fff;border-radius:20px;padding:12px 14px;box-shadow:0 3px 12px rgba(20,34,61,.06);border-left:5px solid ${c[4]}">
+<div style="display:flex;align-items:flex-start;gap:10px"><button onclick="ninSay('${q(x[0].replace('〇〇','たなか'))}')" style="flex:1;min-width:0;border:none;background:none;padding:0;text-align:left"><b style="font-size:24px;color:#14223D;line-height:1.2">${x[0]}</b>${x[1]?` <span style="font-size:15px;color:#6B7486;font-weight:700">${x[1]}</span>`:''} <span style="font-size:14px;color:${c[4]}">🔊</span><div style="font-size:12px;color:#8A93A5;font-weight:700">${x[2]}</div></button>
+<span class="mm" style="flex:none;font-size:10.5px;font-weight:800;color:${c[4]};background:${c[4]}16;border-radius:8px;padding:3px 7px;white-space:nowrap">${c[0]} ${T(c[1],c[2],c[3])}</span></div>
+<div style="font-size:13.5px;color:#2C5596;line-height:1.5;margin-top:6px">${x[4]}</div><div class="mm" style="font-size:13.5px;color:#4A5468;line-height:1.7">${x[5]}</div>
+${x[6]?`<button onclick="ninSay('${q(x[6])}')" style="display:block;width:100%;text-align:left;border:none;background:#F6F7FB;border-radius:14px;padding:9px 11px;margin-top:8px"><b style="font-size:15.5px;color:#14223D">${x[6]} <span style="font-size:12px;color:${c[4]}">🔊</span></b><div style="font-size:12.5px;color:#2C5596;margin-top:2px">${x[7]}</div><div class="mm" style="font-size:12.5px;color:#6B7486">${x[8]}</div></button>`:''}</div>`};
+  document.getElementById('app').innerHTML=`${pageHead(T('ငါ · မင်း · သူ ပြောပုံ','わたし・あなた','I · You · He/She'),T(`${tot} မျိုး`,`${tot}語`,`${tot} words`))}
+<main id="ninm" style="gap:10px">
+<section style="position:relative;overflow:hidden;background:radial-gradient(120% 130% at 0% 0%,#2C5596 0%,#1F3A68 50%,#14223D 100%);border-radius:26px;padding:16px 12px 12px;color:#fff">
+<span style="position:absolute;right:-6px;top:-24px;font-size:110px;font-weight:900;opacity:.07">私</span>
+<div style="position:relative;padding:0 4px"><div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">わたし・あなた · ${tot}</div>
+<b class="mm" style="display:block;font-size:18px;margin-top:4px">🙋 ${T('ဂျပန်လို "ငါ · မင်း · သူ" ပြောပုံ အကုန်','日本語の「わたし・あなた」ぜんぶ','Every Japanese “I · You · He/She”')}</b></div>
+<div style="display:flex;gap:6px;margin-top:12px">${NIN.map(tabB).join('')}</div></section>
+${tab.id==='i'||tab.id==='y'?`<div style="background:#FFF6E0;border-radius:16px;padding:10px 12px;font-size:12.5px;line-height:1.6;color:#6B4200">💡 ${tab.id==='i'?'Japanese people often drop “I”: 学生です is more natural than わたしは学生です。':'To bosses and teachers, don’t say あなた — use the name or title: 田中さん・先生・部長。'}<div class="mm" style="margin-top:3px">${tab.id==='i'?'ဂျပန်လူတွေ "I" ကို ချန်ထားလေ့ရှိတယ်။ わたしは学生です ထက် 学生です က ပိုသဘာဝကျတယ်။':'အထက်လူ၊ ဆရာကို あなた မသုံးပါနဲ့ — နာမည် ဒါမှမဟုတ် ရာထူးနဲ့ ခေါ်ပါ: 田中さん・先生・部長။'}</div></div>`:''}
+<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px">${['','d','b','r','l','a'].map(chip).join('')}</div>
+${L.map(card).join('')}
+<button data-a="ik" class="mm" style="min-height:48px;border:none;border-radius:24px;background:#0F5C4A;color:#fff;font-size:14px;font-weight:800">🌈 ${T('ပြောပုံ အမျိုးမျိုး (ရေတွက်ပုံ・မိုး・敬語…)','言い方いろいろ（数え方・雨・敬語…）','Many ways to say it (counters, rain, keigo…)')}</button>
+<div class="mm" style="font-size:11px;color:#8A93A5;text-align:center;line-height:1.7;margin-top:4px">${T('🔊 နှိပ်ရင် ဂျပန်အသံ ထွက်ပါတယ်။ ⚔️ တွေက Anime၊ ဇာတ်လမ်း၊ သမိုင်းထဲမှာ တွေ့ရတာပါ — နေ့စဉ် မသုံးပါနဲ့။','🔊タップで発音。⚔️はアニメ・時代劇で使われる言葉です。','Tap 🔊 to hear it. ⚔️ words appear in anime and period dramas — not for daily use.')}</div>
+<div style="height:90px"></div></main>`}
+
+/* v1.0.411 言い方いろいろ — Japanese has many words for one idea. Tabs: counters, rain, keigo verbs, "to die", family, rice.
+   Row = [kana, kanji, romaji, tag, English, Myanmar, example JP, example EN, example MM]. Tag colors per tab (G). Original text. */
+const IK=[
+{id:'cnt',ic:'🔢',t:['ရေတွက်ပုံ','数え方','Counters'],
+ G:{d:['🟢','နေ့စဉ်','よく使う','Everyday','#1D9E75'],b:['🟡','တစ်ခါတလေ','ときどき','Sometimes','#C98A00'],a:['🟣','ရှားပါး','めずらしい','Rare','#7A3EB1']},
+ tip:['Count 1–3 to learn the sound changes: いっぽん・にほん・さんぼん. If unsure, ひとつ・ふたつ・みっつ works for most things (up to 10).','၁–၃ ကို အသံပြောင်းပုံ မှတ်ပါ: いっぽん・にほん・さんぼん။ မသေချာရင် ひとつ・ふたつ・みっつ နဲ့ ပစ္စည်း အများစုကို (၁၀ အထိ) ရေလို့ရတယ်။'],L:[
+['〜つ','','-tsu','d','General things (1–10)','ယေဘုယျ ပစ္စည်း (၁–၁၀)','ひとつ・ふたつ・みっつ','one, two, three','တစ်ခု၊ နှစ်ခု၊ သုံးခု'],
+['〜こ','個','-ko','d','Small round things','သေးသေး လုံးလုံး ပစ္စည်း','いっこ・にこ・さんこ','1, 2, 3 pieces','တစ်လုံး၊ နှစ်လုံး၊ သုံးလုံး'],
+['〜にん','人','-nin','d','People','လူ','ひとり・ふたり・さんにん','1, 2, 3 people','တစ်ယောက်၊ နှစ်ယောက်၊ သုံးယောက်'],
+['〜めい','名','-mei','b','People (polite: restaurants)','လူ (ယဉ်ကျေး — စားသောက်ဆိုင်)','なんめいさまですか。','How many in your party?','ဘယ်နှယောက်လဲ ခင်ဗျာ။'],
+['〜ほん','本','-hon','d','Long thin things: pens, bottles, trains','ရှည်ရှည် ပစ္စည်း — ဘောပင်၊ ပုလင်း၊ ရထား','いっぽん・にほん・さんぼん','1, 2, 3 (long things)','တစ်ချောင်း၊ နှစ်ချောင်း၊ သုံးချောင်း'],
+['〜まい','枚','-mai','d','Flat things: paper, shirts, tickets','ပြားပြား ပစ္စည်း — စာရွက်၊ ရှပ်အင်္ကျီ၊ လက်မှတ်','いちまい・にまい・さんまい','1, 2, 3 sheets','တစ်ရွက်၊ နှစ်ရွက်၊ သုံးရွက်'],
+['〜ひき','匹','-hiki','d','Small animals, fish, insects','တိရစ္ဆာန် သေး၊ ငါး၊ အင်းဆက်','いっぴき・にひき・さんびき','1, 2, 3 animals','တစ်ကောင်၊ နှစ်ကောင်၊ သုံးကောင်'],
+['〜とう','頭','-tou','b','Large animals: cows, horses, elephants','တိရစ္ဆာန် ကြီး — နွား၊ မြင်း၊ ဆင်','いっとう・にとう・さんとう','1, 2, 3 large animals','တစ်ကောင်၊ နှစ်ကောင်၊ သုံးကောင်'],
+['〜わ','羽','-wa','b','Birds (and rabbits)','ငှက် (ယုန်လည်း)','いちわ・にわ・さんば','1, 2, 3 birds','တစ်ကောင်၊ နှစ်ကောင်၊ သုံးကောင်'],
+['〜だい','台','-dai','d','Machines, cars, bikes','စက်၊ ကား၊ စက်ဘီး','いちだい・にだい・さんだい','1, 2, 3 machines','တစ်စီး၊ နှစ်စီး၊ သုံးစီး'],
+['〜さつ','冊','-satsu','d','Books, notebooks','စာအုပ်၊ မှတ်စုစာအုပ်','いっさつ・にさつ・さんさつ','1, 2, 3 books','တစ်အုပ်၊ နှစ်အုပ်၊ သုံးအုပ်'],
+['〜はい','杯','-hai','d','Cups, glasses, bowls (of drink/food)','ခွက်၊ ဖန်ခွက်၊ ပန်းကန်လုံး','いっぱい・にはい・さんばい','1, 2, 3 cups','တစ်ခွက်၊ နှစ်ခွက်၊ သုံးခွက်'],
+['〜かい','回','-kai','d','Times (how often)','အကြိမ်','いっかい・にかい・さんかい','once, twice, three times','တစ်ကြိမ်၊ နှစ်ကြိမ်၊ သုံးကြိမ်'],
+['〜かい','階','-kai','d','Floors of a building','အထပ်','いっかい・にかい・さんがい','1st, 2nd, 3rd floor','ပထမထပ်၊ ဒုတိယထပ်၊ တတိယထပ်'],
+['〜さい','歳','-sai','d','Age','အသက်','いっさい・にさい・はたち（20）','1, 2, 20 years old','၁ နှစ်၊ ၂ နှစ်၊ ၂၀ နှစ်'],
+['〜えん','円','-en','d','Yen','ယန်း','ひゃくえん・せんえん','100 yen, 1,000 yen','၁၀၀ ယန်း၊ ၁၀၀၀ ယန်း'],
+['〜ばん','番','-ban','d','Number, order','နံပါတ်၊ အစဉ်','いちばん・にばん','No. 1, No. 2','နံပါတ် ၁၊ နံပါတ် ၂'],
+['〜ちゃく','着','-chaku','b','Clothes (suits, dresses)','အဝတ်အစား (ဝတ်စုံ)','いっちゃく・にちゃく','1, 2 outfits','တစ်စုံ၊ နှစ်စုံ'],
+['〜そく','足','-soku','b','Pairs of shoes, socks','ဖိနပ်၊ ခြေအိတ် အစုံ','いっそく・にそく・さんぞく','1, 2, 3 pairs','တစ်ရန်၊ နှစ်ရန်၊ သုံးရန်'],
+['〜けん','軒','-ken','b','Houses, shops','အိမ်၊ ဆိုင်','いっけん・にけん・さんげん','1, 2, 3 houses','တစ်လုံး၊ နှစ်လုံး၊ သုံးလုံး'],
+['〜けん','件','-ken','d','Cases, matters, emails','ကိစ္စ၊ အကြောင်းအရာ၊ Email','メールがさんけんあります。','You have 3 emails.','Email ၃ စောင် ရှိတယ်။'],
+['〜つう','通','-tsuu','b','Letters, documents','စာ၊ စာရွက်စာတမ်း','いっつう・につう','1, 2 letters','တစ်စောင်၊ နှစ်စောင်'],
+['〜ぶ','部','-bu','b','Copies of documents, newspapers','စာတမ်း/သတင်းစာ မိတ္တူ','いちぶ・にぶ','1, 2 copies','တစ်စောင်၊ နှစ်စောင်'],
+['〜はく','泊','-haku','d','Nights (hotel stay)','ည (ဟိုတယ်တည်း)','いっぱく・にはく・さんぱく','1, 2, 3 nights','တစ်ည၊ နှစ်ည၊ သုံးည'],
+['〜ふん','分','-fun','d','Minutes','မိနစ်','いっぷん・にふん・さんぷん','1, 2, 3 minutes','၁ မိနစ်၊ ၂ မိနစ်၊ ၃ မိနစ်'],
+['〜じょう','錠','-jou','b','Tablets (medicine)','ဆေးပြား','いちじょう・にじょう','1, 2 tablets','တစ်ပြား၊ နှစ်ပြား'],
+['〜きれ','切れ','-kire','b','Slices (bread, cake, fish)','အချပ် (ပေါင်မုန့်၊ ကိတ်၊ ငါး)','ひときれ・ふたきれ','1, 2 slices','တစ်ချပ်၊ နှစ်ချပ်'],
+['〜こ・〜つぶ','粒','-tsubu','b','Grains, drops, small beads','အစေ့၊ အစက်','ひとつぶ・ふたつぶ','1, 2 grains','တစ်စေ့၊ နှစ်စေ့'],
+['〜はこ','箱','-hako','d','Boxes','သေတ္တာ/ဘူး','ひとはこ・ふたはこ','1, 2 boxes','တစ်ဘူး၊ နှစ်ဘူး'],
+['〜ふくろ','袋','-fukuro','d','Bags','အိတ်','ひとふくろ・ふたふくろ','1, 2 bags','တစ်အိတ်၊ နှစ်အိတ်'],
+['〜くみ','組','-kumi','b','Sets, pairs, couples','အစုံ၊ အတွဲ၊ စုံတွဲ','ひとくみ・ふたくみ','1, 2 sets','တစ်စုံ၊ နှစ်စုံ'],
+['〜たば','束','-taba','b','Bundles (flowers, papers)','အစည်း (ပန်း၊ စာရွက်)','ひとたば・ふたたば','1, 2 bundles','တစ်စည်း၊ နှစ်စည်း'],
+['〜りん','輪','-rin','b','Flowers (blooms), wheels','ပန်းပွင့်၊ ဘီး','いちりん・にりん','1, 2 blooms','တစ်ပွင့်၊ နှစ်ပွင့်'],
+['〜きょく','曲','-kyoku','b','Songs, pieces of music','သီချင်း','いっきょく・にきょく','1, 2 songs','တစ်ပုဒ်၊ နှစ်ပုဒ်'],
+['〜わ','話','-wa','b','Episodes, stories','အပိုင်း (ဇာတ်လမ်း)','だいいちわ','Episode 1','ပထမ အပိုင်း'],
+['〜もん','問','-mon','b','Questions (in a test)','မေးခွန်း (စာမေးပွဲ)','いちもん・にもん','1, 2 questions','တစ်ပုဒ်၊ နှစ်ပုဒ်'],
+['〜てん','点','-ten','b','Points, items (in a list)','အမှတ်၊ အချက်','ひゃくてん','100 points','အမှတ် ၁၀၀'],
+['〜い','位','-i','b','Rank, place','အဆင့်','いちい・にい','1st, 2nd place','ပထမ၊ ဒုတိယ'],
+['〜にんまえ','人前','-ninmae','b','Portions (food for N people)','လူဦးရေအလိုက် အစားအစာ ပမာဏ','さんにんまえ','3 servings','၃ ယောက်စာ'],
+['〜しな','品','-shina','b','Dishes, items','ဟင်းပွဲ၊ ပစ္စည်း','ひとしな・ふたしな','1, 2 dishes','တစ်ပွဲ၊ နှစ်ပွဲ'],
+['〜かん','貫','-kan','b','Pieces of sushi','ဆူရှီ အလုံး','いっかん・にかん','1, 2 pieces of sushi','တစ်လုံး၊ နှစ်လုံး'],
+['〜たま','玉','-tama','b','Balls: noodles, cabbages','အလုံး — ခေါက်ဆွဲ၊ ဂေါ်ဖီ','ひとたま・ふたたま','1, 2 balls','တစ်လုံး၊ နှစ်လုံး'],
+['〜きゃく','脚','-kyaku','a','Chairs, desks','ကုလားထိုင်၊ စားပွဲ','いっきゃく・にきゃく','1, 2 chairs','တစ်လုံး၊ နှစ်လုံး'],
+['〜ぜん','膳','-zen','a','Pairs of chopsticks; bowls of rice','တူ တစ်စုံ၊ ထမင်း တစ်ပန်းကန်','いちぜん・にぜん','1, 2 pairs of chopsticks','တစ်စုံ၊ နှစ်စုံ'],
+['〜き','機','-ki','a','Aircraft','လေယာဉ်','いっき・にき','1, 2 aircraft','တစ်စီး၊ နှစ်စီး'],
+['〜りょう','両','-ryou','a','Train cars','ရထား တွဲ','じゅうりょうへんせい','a 10-car train','၁၀ တွဲ ရထား'],
+['〜せき','隻','-seki','a','Large ships','သင်္ဘော ကြီး','いっせき・にせき','1, 2 ships','တစ်စင်း၊ နှစ်စင်း'],
+['〜そう','艘','-sou','a','Small boats','လှေ သေး','いっそう・にそう','1, 2 boats','တစ်စင်း၊ နှစ်စင်း'],
+['〜たい','体','-tai','a','Statues, dolls, bodies','ရုပ်တု၊ အရုပ်','いったい・にたい','1, 2 statues','တစ်ဆူ၊ နှစ်ဆူ'],
+['〜はしら','柱','-hashira','a','Gods, spirits','နတ်ဘုရား','ひとはしら・ふたはしら','1, 2 gods','တစ်ပါး၊ နှစ်ပါး'],
+['〜しゅ','首','-shu','a','Poems (tanka, haiku)','ကဗျာ (တန်ကာ၊ ဟိုက်ကူ)','いっしゅ・にしゅ','1, 2 poems','တစ်ပုဒ်၊ နှစ်ပုဒ်'],
+['〜じょう','畳','-jou','b','Tatami mats (room size)','တာတာမိ (အခန်း အကျယ်)','ろくじょうのへや','a 6-tatami room','တာတာမိ ၆ ချပ် အခန်း'],
+['〜かぶ','株','-kabu','a','Plants; shares of stock','အပင်၊ စတော့ရှယ်ယာ','ひとかぶ・ふたかぶ','1, 2 plants','တစ်ပင်၊ နှစ်ပင်'],
+['〜げん','限','-gen','b','Class periods','အတန်းချိန် (ဘယ်နှချိန်မြောက်)','いちげん・にげん','1st, 2nd period','ပထမ၊ ဒုတိယ အချိန်']]},
+{id:'rain',ic:'🌧️',t:['မိုး','雨','Rain'],
+ G:{d:['🟢','နေ့စဉ်','よく使う','Everyday','#1D9E75'],b:['🟡','သတင်း/မိုးလေဝသ','ニュース・天気予報','News · Weather','#C98A00'],o:['🔊','အသံစကား','オノマトペ','Sound words','#2C7BB6'],a:['🟣','စာပေ/ကဗျာ','文学・季語','Literary','#7A3EB1']},
+ tip:['Japan has 100+ words for rain! Many are season words (季語) used in haiku.','ဂျပန်မှာ မိုးအတွက် စကားလုံး ၁၀၀ ကျော် ရှိတယ်! အများစုက ဟိုက်ကူ ကဗျာထဲ သုံးတဲ့ ရာသီစကား (季語) ပါ။'],L:[
+['あめ','雨','ame','d','Rain','မိုး','あしたはあめです。','It will rain tomorrow.','မနက်ဖြန် မိုးရွာမယ်။'],
+['こさめ','小雨','kosame','d','Light rain','မိုးဖွဲဖွဲ','','',''],
+['おおあめ','大雨','ooame','d','Heavy rain','မိုးသည်းသည်း','','',''],
+['にわかあめ','にわか雨','niwaka-ame','d','Sudden shower','ရုတ်တရက် ရွာတဲ့မိုး','','',''],
+['とおりあめ','通り雨','toori-ame','d','Passing shower','ခဏရွာပြီး တိတ်သွားတဲ့မိုး','','',''],
+['ゆうだち','夕立','yuudachi','d','Summer evening shower','နွေရာသီ ညနေ မိုးသည်း','','',''],
+['つゆ','梅雨','tsuyu','d','Rainy season (June–July)','မိုးရာသီ (ဇွန်–ဇူလိုင်)','つゆに入りました。','The rainy season has started.','မိုးရာသီ ဝင်ပြီ။'],
+['きりさめ','霧雨','kirisame','d','Drizzle, misty rain','မိုးမှုန်','','',''],
+['どしゃぶり','土砂降り','doshaburi','d','Pouring rain','မိုးအရမ်း သည်းတာ','','',''],
+['ほんぶり','本降り','honburi','d','Rain that has really set in','မိုး တကယ် စရွာလာတာ','','',''],
+['こぶり','小降り','koburi','d','Rain letting up','မိုး စဲလာတာ','','',''],
+['あまやどり','雨宿り','amayadori','d','Sheltering from the rain','မိုးခိုတာ','','',''],
+['あめあがり','雨上がり','ameagari','d','Just after the rain','မိုးတိတ်ပြီးစ','','',''],
+['てんきあめ','天気雨','tenki-ame','d','Sunshower (rain while sunny)','နေပူရင်း မိုးရွာတာ','','',''],
+['ゲリラごうう','ゲリラ豪雨','gerira-gouu','d','Sudden local downpour','ရုတ်တရက် နေရာလိုက် မိုးသည်း','','',''],
+['ごうう','豪雨','gouu','b','Torrential rain (news)','မိုးကြီး (သတင်း)','','',''],
+['らいう','雷雨','raiu','b','Thunderstorm','မိုးကြိုးမုန်တိုင်း','','',''],
+['ながあめ','長雨','nagaame','b','Long spell of rain','မိုး ကြာကြာ ရွာတာ','','',''],
+['からつゆ','空梅雨','karatsuyu','b','Rainy season with little rain','မိုးနည်းတဲ့ မိုးရာသီ','','',''],
+['せんじょうこうすいたい','線状降水帯','senjou-kousuitai','b','Line-shaped rain band (danger alert)','တန်းလိုက် မိုးတိမ်ယံ (အန္တရာယ် သတိပေးချက်)','','',''],
+['めぐみのあめ','恵みの雨','megumi no ame','b','Welcome rain (after drought)','ခြောက်သွေ့ပြီးမှ ရလာတဲ့ ကျေးဇူးမိုး','','',''],
+['ぽつぽつ','','potsupotsu','o','Drip, drip — rain starting','တစ်စက်ချင်း စရွာတာ','','',''],
+['ぱらぱら','','parapara','o','Light sprinkles','ဖွဲဖွဲ ကျတာ','','',''],
+['しとしと','','shitoshito','o','Gentle steady rain','တိတ်တိတ် ဆက်တိုက် ရွာတာ','','',''],
+['ざあざあ','','zaazaa','o','Pouring heavily','ဝုန်းဝုန်း ရွာတာ','あめがざあざあふっている。','It’s pouring.','မိုး ဝုန်းဝုန်း ရွာနေတယ်။'],
+['はるさめ','春雨','harusame','a','Spring rain (also glass noodles!)','နွေဦး မိုး (ကြာဆံ လည်း ဖြစ်!)','','',''],
+['あきさめ','秋雨','akisame','a','Autumn rain','ဆောင်းဦး မိုး','','',''],
+['しぐれ','時雨','shigure','a','Passing showers in late autumn','ဆောင်းဦးနှောင်း ခဏခဏ ရွာတဲ့ မိုး','','',''],
+['さみだれ','五月雨','samidare','a','Early-summer rain (old name for tsuyu)','နွေဦး မိုး (梅雨 ရဲ့ ရှေးနာမည်)','','',''],
+['ひさめ','氷雨','hisame','a','Cold winter rain, hail','ဆောင်း မိုးအေး၊ မိုးသီး','','',''],
+['なたねづゆ','菜種梅雨','natane-zuyu','a','Spring rainy spell (rapeseed season)','နွေဦး မိုးကာလ (မုန်ညင်းပွင့်ချိန်)','','',''],
+['きつねのよめいり','狐の嫁入り','kitsune no yomeiri','a','“Fox’s wedding” — sunshower','"မြေခွေး မင်္ဂလာ" — နေပူရင်း မိုးရွာတာ','','',''],
+['じう','慈雨','jiu','a','Blessed rain','ကောင်းချီး မိုး','','','']]},
+{id:'kei',ic:'🙇',t:['ယဉ်ကျေးစကား (敬語)','敬語','Keigo verbs'],
+ G:{d:['🟢','ပုံမှန်','ふつう','Plain','#1D9E75'],b:['🟡','尊敬 (သူများ)','尊敬語','Respect (their action)','#C98A00'],h:['🔵','謙譲 (ကိုယ်)','謙譲語','Humble (my action)','#2C7BB6'],r:['🔴','ကြမ်း','乱暴','Rough','#E0464E']},
+ tip:['尊敬語 raises the other person’s action. 謙譲語 lowers your own action. Never use 尊敬語 for yourself!','尊敬語 = သူများ လုပ်တာကို မြှင့်ပြော။ 謙譲語 = ကိုယ်လုပ်တာကို နှိမ့်ပြော။ ကိုယ့်ကိုယ်ကို 尊敬語 လုံးဝ မသုံးရ!'],L:[
+['たべる・のむ','食べる・飲む','taberu / nomu','d','Eat / drink','စား / သောက်','','',''],
+['くう','食う','kuu','r','Eat (rough, men)','စား (ကြမ်း၊ ယောက်ျား)','','',''],
+['めしあがる','召し上がる','meshiagaru','b','Eat/drink (their action)','စား/သောက် (သူများ)','なにをめしあがりますか。','What would you like to eat?','ဘာ သုံးဆောင်မလဲ ခင်ဗျာ။'],
+['いただく','頂く','itadaku','h','Eat/drink, receive (my action)','စား/သောက်၊ လက်ခံ (ကိုယ်)','えんりょなくいただきます。','I’ll gladly have some.','အားမနာတမ်း စားပါ့မယ်။'],
+['いる','','iru','d','Be (people), stay','ရှိ (လူ)၊ နေ','','',''],
+['いらっしゃる','','irassharu','b','Be / go / come (their action)','ရှိ/သွား/လာ (သူများ)','せんせいはいらっしゃいますか。','Is the teacher in?','ဆရာ ရှိပါသလား။'],
+['おる','','oru','h','Be (my action)','ရှိ (ကိုယ်)','','',''],
+['いく','行く','iku','d','Go','သွား','','',''],
+['まいる','参る','mairu','h','Go / come (my action)','သွား/လာ (ကိုယ်)','すぐにまいります。','I’ll be right there.','ချက်ချင်း လာခဲ့ပါမယ်။'],
+['うかがう','伺う','ukagau','h','Visit / ask / hear (my action)','လာရောက်/မေး/ကြား (ကိုယ်)','あしたうかがいます。','I will visit tomorrow.','မနက်ဖြန် လာခဲ့ပါမယ်။'],
+['くる','来る','kuru','d','Come','လာ','','',''],
+['おこしになる','お越しになる','okoshi ni naru','b','Come (their action, very polite)','လာ (သူများ၊ အရမ်း ယဉ်ကျေး)','','',''],
+['おみえになる','お見えになる','omie ni naru','b','Come / arrive (their action)','ရောက်လာ (သူများ)','','',''],
+['いう','言う','iu','d','Say','ပြော','','',''],
+['おっしゃる','','ossharu','b','Say (their action)','ပြော (သူများ)','','',''],
+['もうす','申す','mousu','h','Say; my name is…','ပြော၊ ကျွန်တော့်နာမည်က…','ミンと申します。','My name is Min.','ကျွန်တော့် နာမည် မင်း ပါ။'],
+['もうしあげる','申し上げる','moushiageru','h','Say (to a superior, very humble)','ပြော (အထက်လူကို၊ အရမ်း နှိမ့်ချ)','','',''],
+['ぬかす','','nukasu','r','Say (very rude: “What did you say?!”)','ပြော (အရမ်း ရိုင်း)','','',''],
+['する','','suru','d','Do','လုပ်','','',''],
+['なさる','','nasaru','b','Do (their action)','လုပ် (သူများ)','','',''],
+['いたす','致す','itasu','h','Do (my action)','လုပ် (ကိုယ်)','わたしがいたします。','I will do it.','ကျွန်တော် လုပ်ပေးပါ့မယ်။'],
+['やる','','yaru','r','Do (casual); give to inferiors/plants','လုပ် (ပေါ့ပေါ့)၊ အောက်လူ/အပင်ကို ပေး','','',''],
+['みる','見る','miru','d','See, look','ကြည့်','','',''],
+['ごらんになる','ご覧になる','goran ni naru','b','See (their action)','ကြည့် (သူများ)','','',''],
+['はいけんする','拝見する','haiken suru','h','See (my action)','ကြည့် (ကိုယ်)','しりょうをはいけんしました。','I have looked at the documents.','စာရွက်တွေ ကြည့်ပြီးပါပြီ။'],
+['しる','知る','shiru','d','Know','သိ','','',''],
+['ごぞんじだ','ご存じだ','gozonji da','b','Know (their action)','သိ (သူများ)','ごぞんじですか。','Do you know (it)?','သိပါသလား။'],
+['ぞんじる','存じる','zonjiru','h','Know / think (my action)','သိ/ထင် (ကိုယ်)','','',''],
+['あう','会う','au','d','Meet','တွေ့','','',''],
+['おめにかかる','お目にかかる','ome ni kakaru','h','Meet (my action)','တွေ့ (ကိုယ်)','おめにかかれてうれしいです。','I’m glad to meet you.','တွေ့ရတာ ဝမ်းသာပါတယ်။'],
+['もらう','','morau','d','Receive','ရ/လက်ခံ','','',''],
+['あげる','','ageru','d','Give','ပေး','','',''],
+['さしあげる','差し上げる','sashiageru','h','Give (my action, to a superior)','ပေး (ကိုယ်က အထက်လူကို)','','',''],
+['くれる','','kureru','d','Give (to me)','ကိုယ့်ကို ပေး','','',''],
+['くださる','下さる','kudasaru','b','Give to me (their action)','ကိုယ့်ကို ပေး (သူများ)','','',''],
+['ねる','寝る','neru','d','Sleep','အိပ်','','',''],
+['おやすみになる','お休みになる','oyasumi ni naru','b','Sleep (their action)','အိပ် (သူများ)','','',''],
+['きる','着る','kiru','d','Wear','ဝတ်','','',''],
+['おめしになる','お召しになる','omeshi ni naru','b','Wear (their action)','ဝတ် (သူများ)','','',''],
+['きく','聞く','kiku','d','Listen / ask','နားထောင်/မေး','','',''],
+['はいちょうする','拝聴する','haichou suru','h','Listen (my action, formal)','နားထောင် (ကိုယ်၊ တရားဝင်)','','',''],
+['わかる','分かる','wakaru','d','Understand','နားလည်','','',''],
+['しょうちする','承知する','shouchi suru','h','Understand / agree (my action)','နားလည်/လက်ခံ (ကိုယ်)','しょうちしました。','Understood.','နားလည်ပါပြီ။'],
+['かしこまりました','','kashikomarimashita','h','Certainly (shop staff)','ဟုတ်ကဲ့ ခင်ဗျာ (ဆိုင်ဝန်ထမ်း)','','','']]},
+{id:'die',ic:'🕯️',t:['ဆုံးပါးခြင်း','死ぬ','To die'],
+ G:{d:['🟢','ပုံမှန်','ふつう','Plain','#1D9E75'],b:['🟡','ယဉ်ကျေး/သတင်း','丁寧・ニュース','Polite · News','#C98A00'],a:['🟣','ဘာသာရေး/စာပေ','宗教・文語','Religious · Literary','#7A3EB1'],r:['🔴','ရိုင်း','乱暴','Rude','#E0464E']},
+ tip:['When talking about someone’s family, always use 亡くなる, never 死ぬ.','သူများ မိသားစုအကြောင်း ပြောရင် 死ぬ မသုံးဘဲ 亡くなる ကို အမြဲ သုံးပါ။'],L:[
+['しぬ','死ぬ','shinu','d','Die (plain; animals, things, oneself)','သေ (ပုံမှန်၊ တိရစ္ဆာန်၊ ကိုယ့်ကိုယ်ကို)','','',''],
+['なくなる','亡くなる','nakunaru','b','Pass away (polite, the usual word for people)','ဆုံးပါး (ယဉ်ကျေး၊ လူအတွက် အသုံးအများဆုံး)','そふがきょねんなくなりました。','My grandfather passed away last year.','အဘိုး မနှစ်က ဆုံးသွားတယ်။'],
+['おなくなりになる','お亡くなりになる','onakunari ni naru','b','Pass away (very polite)','ကွယ်လွန် (အရမ်း ယဉ်ကျေး)','','',''],
+['たかいする','他界する','takai suru','b','Pass away (“leave this world”)','ကွယ်လွန် ("ဒီလောကက ထွက်ခွာ")','','',''],
+['えいみんする','永眠する','eimin suru','b','Eternal sleep (obituaries)','ထာဝရ အိပ်စက် (နာရေး ကြော်ငြာ)','','',''],
+['しきょする','死去する','shikyo suru','b','Death (news)','ကွယ်လွန် (သတင်း)','','',''],
+['せいきょする','逝去する','seikyo suru','b','Death (very respectful notices)','ကွယ်လွန် (အရမ်း လေးစားတဲ့ ကြေညာချက်)','','',''],
+['しぼう','死亡','shibou','b','Death (documents, accidents)','သေဆုံး (စာရွက်စာတမ်း၊ မတော်တဆ)','','',''],
+['いきをひきとる','息を引き取る','iki o hikitoru','b','Breathe one’s last','နောက်ဆုံး ထွက်သက် ရှူ','','',''],
+['だいおうじょう','大往生','daioujou','b','Peaceful death at a great age','အသက်ကြီးမှ ငြိမ်းချမ်းစွာ ကွယ်လွန်','','',''],
+['じゅんしょく','殉職','junshoku','b','Die on duty','တာဝန်ထမ်းရင်း ကျဆုံး','','',''],
+['たびだつ','旅立つ','tabidatsu','b','“Set off on a journey” (gentle)','"ခရီးထွက်သွား" (နူးညံ့)','','',''],
+['いく','逝く','iku','a','Pass on (literary)','ကွယ်လွန် (စာပေ)','','',''],
+['おうじょう','往生','oujou','a','Rebirth in paradise (Buddhist)','ကောင်းရာ သုဂတိ (ဗုဒ္ဓ)','','',''],
+['じょうぶつ','成仏','joubutsu','a','Attain peace / Buddhahood (Buddhist)','ငြိမ်းချမ်းရာ ရောက် (ဗုဒ္ဓ)','','',''],
+['ほうぎょ','崩御','hougyo','a','Death of an emperor','ဧကရာဇ် နတ်ရွာစံ','','',''],
+['くたばる','','kutabaru','r','Croak (very rude)','သေ (အရမ်း ရိုင်း)','','',''],
+['おだぶつ','お陀仏','odabutsu','r','Done for (slang)','ပြီးပြီ/သွားပြီ (Slang)','','','']]},
+{id:'fam',ic:'👪',t:['မိသားစု ခေါ်ပုံ','家族','Family'],
+ G:{m:['🏠','ကိုယ့်မိသားစု','自分の家族','My family','#1D9E75'],y:['🎁','သူများ မိသားစု','相手の家族','Their family','#C98A00'],c:['💬','အိမ်တွင်း ပေါ့ပေါ့','家での呼び方','At home (casual)','#2C7BB6']},
+ tip:['Talking to others about YOUR family: 母・父 (no さん). About THEIR family or calling your own at home: お母さん・お父さん.','သူများကို ကိုယ့်မိသားစုအကြောင်း ပြောရင် 母・父 (さん မပါ)။ သူများ မိသားစု ဒါမှမဟုတ် အိမ်မှာ ခေါ်ရင် お母さん・お父さん။'],L:[
+['ちち','父','chichi','m','My father','ကိုယ့် အဖေ','ちちはエンジニアです。','My father is an engineer.','ကျွန်တော့် အဖေက အင်ဂျင်နီယာပါ။'],
+['おとうさん','お父さん','otousan','y','(Your) father','(သူများ) အဖေ','おとうさんはお元気ですか。','How is your father?','အဖေ နေကောင်းလား။'],
+['はは','母','haha','m','My mother','ကိုယ့် အမေ','','',''],
+['おかあさん','お母さん','okaasan','y','(Your) mother','(သူများ) အမေ','','',''],
+['あに','兄','ani','m','My older brother','ကိုယ့် အစ်ကို','','',''],
+['おにいさん','お兄さん','oniisan','y','(Your) older brother','(သူများ) အစ်ကို','','',''],
+['あね','姉','ane','m','My older sister','ကိုယ့် အစ်မ','','',''],
+['おねえさん','お姉さん','oneesan','y','(Your) older sister','(သူများ) အစ်မ','','',''],
+['おとうと','弟','otouto','m','My younger brother','ကိုယ့် ညီ/မောင်','','',''],
+['おとうとさん','弟さん','otoutosan','y','(Your) younger brother','(သူများ) ညီ/မောင်','','',''],
+['いもうと','妹','imouto','m','My younger sister','ကိုယ့် ညီမ/နှမ','','',''],
+['いもうとさん','妹さん','imoutosan','y','(Your) younger sister','(သူများ) ညီမ/နှမ','','',''],
+['そふ','祖父','sofu','m','My grandfather','ကိုယ့် အဘိုး','','',''],
+['おじいさん','','ojiisan','y','(Your) grandfather; old man','(သူများ) အဘိုး၊ အဘိုးကြီး','','',''],
+['そぼ','祖母','sobo','m','My grandmother','ကိုယ့် အဘွား','','',''],
+['おばあさん','','obaasan','y','(Your) grandmother; old woman','(သူများ) အဘွား၊ အဘွားကြီး','','',''],
+['おっと','夫','otto','m','My husband','ကိုယ့် ခင်ပွန်း','','',''],
+['しゅじん','主人','shujin','m','My husband (traditional)','ကိုယ့် ခင်ပွန်း (ရိုးရာ)','','',''],
+['だんな','旦那','danna','m','My husband (casual)','ကိုယ့် ယောက်ျား (ပေါ့ပေါ့)','','',''],
+['ごしゅじん','ご主人','goshujin','y','(Your) husband','(သူများ) ခင်ပွန်း','','',''],
+['つま','妻','tsuma','m','My wife','ကိုယ့် ဇနီး','','',''],
+['かない','家内','kanai','m','My wife (traditional)','ကိုယ့် ဇနီး (ရိုးရာ)','','',''],
+['よめ','嫁','yome','m','My wife (Kansai, casual); daughter-in-law','ကိုယ့် မိန်းမ (Kansai)၊ ချွေးမ','','',''],
+['おくさん','奥さん','okusan','y','(Your) wife','(သူများ) ဇနီး','','',''],
+['むすこ','息子','musuko','m','My son','ကိုယ့် သား','','',''],
+['むすこさん','息子さん','musukosan','y','(Your) son','(သူများ) သား','','',''],
+['むすめ','娘','musume','m','My daughter','ကိုယ့် သမီး','','',''],
+['おじょうさん','お嬢さん','ojousan','y','(Your) daughter (polite)','(သူများ) သမီး (ယဉ်ကျေး)','','',''],
+['こども','子ども','kodomo','m','My child(ren)','ကိုယ့် ကလေး','','',''],
+['おこさん','お子さん','okosan','y','(Your) child(ren)','(သူများ) ကလေး','','',''],
+['りょうしん','両親','ryoushin','m','My parents','ကိုယ့် မိဘ','','',''],
+['ごりょうしん','ご両親','goryoushin','y','(Your) parents','(သူများ) မိဘ','','',''],
+['かぞく','家族','kazoku','m','My family','ကိုယ့် မိသားစု','','',''],
+['ごかぞく','ご家族','gokazoku','y','(Your) family','(သူများ) မိသားစု','','',''],
+['まご','孫','mago','m','My grandchild','ကိုယ့် မြေး','','',''],
+['おまごさん','お孫さん','omagosan','y','(Your) grandchild','(သူများ) မြေး','','',''],
+['おじ','伯父・叔父','oji','m','My uncle','ကိုယ့် ဦးလေး','','',''],
+['おじさん','','ojisan','y','(Your) uncle; middle-aged man','(သူများ) ဦးလေး၊ ဦးလေးကြီး','','',''],
+['おば','伯母・叔母','oba','m','My aunt','ကိုယ့် အဒေါ်','','',''],
+['おばさん','','obasan','y','(Your) aunt; middle-aged woman','(သူများ) အဒေါ်၊ အန်တီ','','',''],
+['パパ・ママ','','papa / mama','c','Dad / Mom (children)','ဖေဖေ / မေမေ (ကလေး)','','',''],
+['おやじ・おふくろ','親父・お袋','oyaji / ofukuro','c','My old man / my mom (men, casual)','အဖေကြီး / အမေကြီး (ယောက်ျား၊ ပေါ့ပေါ့)','','',''],
+['じいじ・ばあば','','jiiji / baaba','c','Grandpa / Grandma (children)','အဘိုးလေး / အဘွားလေး (ကလေး)','','','']]},
+{id:'rice',ic:'🍚',t:['ထမင်း/ဆန်','お米','Rice'],
+ G:{d:['🟢','နေ့စဉ်','よく使う','Everyday','#1D9E75'],r:['🔴','ကြမ်း','乱暴','Rough','#E0464E'],b:['🟡','အထူး','特別','Special','#C98A00']},
+ tip:['One Myanmar word “ထမင်း/ဆန်” = many Japanese words: the plant, the grain, cooked rice and the meal are all different.','မြန်မာ "ဆန်/ထမင်း" တစ်လုံးကို ဂျပန်လို အပင်၊ ဆန်စေ့၊ ချက်ပြီးထမင်း၊ ထမင်းနပ် ဆိုပြီး ခွဲပြောတယ်။'],L:[
+['いね','稲','ine','d','Rice plant','စပါးပင်','','',''],
+['もみ','籾','momi','b','Unhulled rice (paddy)','စပါး (အခွံပါ)','','',''],
+['こめ','米','kome','d','Uncooked rice','ဆန်','こめをかいました。','I bought rice.','ဆန် ဝယ်ခဲ့တယ်။'],
+['おこめ','お米','okome','d','Uncooked rice (polite)','ဆန် (ယဉ်ကျေး)','','',''],
+['ごはん','ご飯','gohan','d','Cooked rice; a meal','ထမင်း၊ ထမင်းနပ်','ごはんをたべましょう。','Let’s eat.','ထမင်းစားရအောင်။'],
+['めし','飯','meshi','r','Rice / meal (rough, men)','ထမင်း (ကြမ်း၊ ယောက်ျား)','めしくった？','Did you eat?','ထမင်းစားပြီးပြီလား။'],
+['ライス','','raisu','d','Rice on a plate (Western restaurants)','ပန်းကန်ပြားပေါ် ထမင်း (အနောက်တိုင်း ဆိုင်)','','',''],
+['はくまい','白米','hakumai','d','White rice','ဆန်ဖြူ','','',''],
+['げんまい','玄米','genmai','d','Brown rice','ဆန်လုံးညို','','',''],
+['しんまい','新米','shinmai','b','New-crop rice (also: a newbie!)','ဆန်သစ် ("အလုပ်သစ်သူ" လည်း ဖြစ်!)','','',''],
+['もちごめ','もち米','mochigome','d','Sticky rice','ကောက်ညှင်း','','',''],
+['おかゆ','お粥','okayu','d','Rice porridge','ဆန်ပြုတ်','','',''],
+['もち','餅','mochi','d','Rice cake','မုန့် (ကောက်ညှင်း)','','',''],
+['おにぎり','','onigiri','d','Rice ball','ထမင်းလုံး','','',''],
+['しゃり','舎利','shari','b','Sushi rice (sushi shops)','ဆူရှီ ထမင်း (ဆူရှီဆိုင်)','','','']]}];
+function ikSay(t){try{speakJa(t)}catch(e){}}
+function renderIk(){const tab=IK.find(x=>x.id===S.ikt)||IK[0],cf=S.ikc||'',L=tab.L.filter(x=>!cf||x[3]===cf),G=tab.G;
+  const tot=IK.reduce((a,x)=>a+x.L.length,0);
+  const tabB=x=>`<button onclick="S.ikt='${x.id}';S.ikc='';render()" style="flex:none;width:84px;border:none;border-radius:16px;padding:8px 2px;background:${x===tab?'#fff':'rgba(255,255,255,.12)'};color:${x===tab?'#14223D':'#fff'}"><div style="font-size:20px">${x.ic}</div><div style="font-size:12px;font-weight:900;white-space:nowrap">${x.t[1]}</div><div style="font-size:10.5px;opacity:.75">${x.L.length}</div></button>`;
+  const chip=k=>{const c=G[k],n=tab.L.filter(x=>!k||x[3]===k).length,on=cf===k;if(k&&!n)return '';const col=k?c[4]:'#14223D';
+    return `<button onclick="S.ikc='${k}';render()" class="mm" style="flex:none;height:34px;border-radius:17px;border:1.5px solid ${on?col:col+'44'};background:${on?col:'#fff'};color:${on?'#fff':col};font-size:12.5px;font-weight:800;padding:0 11px">${k?c[0]+' '+T(c[1],c[2],c[3]):T('အားလုံး','すべて','All')} <span style="opacity:.75">${n}</span></button>`};
+  const q=s=>s.replace(/'/g,'').replace(/〜/g,'');
+  const card=x=>{const c=G[x[3]];return `<div style="background:#fff;border-radius:20px;padding:12px 14px;box-shadow:0 3px 12px rgba(20,34,61,.06);border-left:5px solid ${c[4]}">
+<div style="display:flex;align-items:flex-start;gap:10px"><button onclick="ikSay('${q(x[0])}')" style="flex:1;min-width:0;border:none;background:none;padding:0;text-align:left"><b style="font-size:23px;color:#14223D;line-height:1.25">${x[0]}</b>${x[1]?` <span style="font-size:15px;color:#6B7486;font-weight:700">${x[1]}</span>`:''} <span style="font-size:14px;color:${c[4]}">🔊</span><div style="font-size:12px;color:#8A93A5;font-weight:700">${x[2]}</div></button>
+<span class="mm" style="flex:none;font-size:10.5px;font-weight:800;color:${c[4]};background:${c[4]}16;border-radius:8px;padding:3px 7px;white-space:nowrap">${c[0]} ${T(c[1],c[2],c[3])}</span></div>
+<div style="font-size:13.5px;color:#2C5596;line-height:1.5;margin-top:6px">${x[4]}</div><div class="mm" style="font-size:13.5px;color:#4A5468;line-height:1.7">${x[5]}</div>
+${x[6]?`<button onclick="ikSay('${q(x[6])}')" style="display:block;width:100%;text-align:left;border:none;background:#F6F7FB;border-radius:14px;padding:9px 11px;margin-top:8px"><b style="font-size:15.5px;color:#14223D">${x[6]} <span style="font-size:12px;color:${c[4]}">🔊</span></b><div style="font-size:12.5px;color:#2C5596;margin-top:2px">${x[7]}</div><div class="mm" style="font-size:12.5px;color:#6B7486">${x[8]}</div></button>`:''}</div>`};
+  document.getElementById('app').innerHTML=`${pageHead(T('ပြောပုံ အမျိုးမျိုး','言い方いろいろ','Many ways to say it'),T(`${tot} လုံး`,`${tot}語`,`${tot} words`))}
+<main id="ikm" style="gap:10px">
+<section style="position:relative;overflow:hidden;background:radial-gradient(120% 130% at 0% 0%,#0F8A6A 0%,#0F5C4A 50%,#0A2E2A 100%);border-radius:26px;padding:16px 12px 12px;color:#fff">
+<span style="position:absolute;right:-6px;top:-24px;font-size:110px;font-weight:900;opacity:.07">言</span>
+<div style="position:relative;padding:0 4px"><div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">言い方いろいろ · ${tot}</div>
+<b class="mm" style="display:block;font-size:18px;margin-top:4px">🌈 ${T('အဓိပ္ပာယ် တစ်ခု — ဂျပန်လို ပြောပုံ အများကြီး','ひとつの意味、たくさんの言い方','One meaning, many Japanese words')}</b></div>
+<div style="display:flex;gap:6px;margin-top:12px;overflow-x:auto;padding-bottom:2px">${IK.map(tabB).join('')}</div></section>
+<div style="background:#FFF6E0;border-radius:16px;padding:10px 12px;font-size:12.5px;line-height:1.6;color:#6B4200">💡 ${tab.tip[0]}<div class="mm" style="margin-top:3px">${tab.tip[1]}</div></div>
+<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px">${[''].concat(Object.keys(G)).map(chip).join('')}</div>
+${L.map(card).join('')}
+<button data-a="nin" class="mm" style="min-height:48px;border:none;border-radius:24px;background:#14223D;color:#fff;font-size:14px;font-weight:800">🙋 ${T('ငါ · မင်း · သူ ပြောပုံ ကြည့်မယ်','わたし・あなた も見る','See I · You · He/She too')}</button>
+<div style="height:90px"></div></main>`}
+
 /* Exchange ¥ ↔ Ks */
-function renderExch(){
-  if(!SET.rate){try{const m=fxMarket();if(m)SET.rate=String(m.r);else if(FXD&&FXD.r)SET.rate=String(+FXD.r.MMK.toFixed(2))}catch(e){}}
-  const r=parseFloat(SET.rate)||0;
-  const fmt=n=>isFinite(n)?Math.round(n).toLocaleString('en-US'):'';
-  const inp=(id,ph,val,unit)=>`<label style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:0 16px;height:60px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><b style="font-size:20px;width:34px;color:#1F3A68">${unit}</b><input id="${id}" inputmode="decimal" aria-label="${ph}" placeholder="${ph}" value="${val}" style="flex:1;min-width:0;border:none;outline:none;font-size:22px;font-weight:700;font-family:inherit;background:transparent"></label>`;
-  const quick=[1000,5000,10000,50000,100000];
-  document.getElementById('app').innerHTML=`${pageHead(T('ငွေလဲ','両替','Exchange'),'¥ ↔ Ks')}
+/* v1.0.409 Exchange: only $1 → ¥ and ¥1 → Ks. Source = Western Union rates in config.json "wu" {usd_jpy, jpy_mmk, time}.
+   If "wu" is empty or older than 3 days, a reference rate (open.er-api.com) is shown and labeled as such. */
+function fxWU(){try{const w=CFG().wu;if(!w)return null;const u=+w.usd_jpy||0,k=+w.jpy_mmk||0;if(!(u>0)&&!(k>0))return null;const t=w.time?new Date(String(w.time).replace(' ','T')+(/[+Z]/.test(w.time)?'':'+09:00')):null;
+  if(t&&isFinite(t)&&(Date.now()-t)/864e5>3)return null;return {u,k,t}}catch(e){return null}}
+function fxRates(){const w=fxWU(),o=FXD&&FXD.r;const ou=o&&o.USD?1/o.USD:0,ok=o&&o.MMK?o.MMK:0;
+  return {u:(w&&w.u)||ou,k:(w&&w.k)||ok,uw:!!(w&&w.u),kw:!!(w&&w.k),wt:w&&w.t,ot:FXD&&FXD.u}}
+function fxWhen(t){if(!t)return '';const d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+function renderExch(){fxLoad();const R=fxRates();
+  const fmt=(n,dp)=>isFinite(n)&&n?n.toLocaleString('en-US',{maximumFractionDigits:dp||0,minimumFractionDigits:dp||0}):'';
+  const src=(wu,t)=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;border-radius:8px;padding:2px 7px;background:${wu?'#FFD100':'rgba(255,255,255,.16)'};color:${wu?'#111':'#DCE6F7'}">${wu?'Western Union':T('ကိုးကားနှုန်း','参考レート','Reference')}${t?' · '+fxWhen(t):''}</span>`;
+  const tile=(fl,lb,v,dp,unit,wu,t)=>`<div style="flex:1;min-width:0;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:12px 12px 10px"><div style="font-size:13px;font-weight:800;color:#B5D4F4">${fl} ${lb}</div><b style="display:block;font-size:30px;line-height:1.15;color:#fff;margin:4px 0 6px;white-space:nowrap">${v?fmt(v,dp):'–'}<small style="font-size:14px;color:#B5D4F4;margin-left:4px">${unit}</small></b>${src(wu,t)}</div>`;
+  const inp=(id,unit,fl)=>`<label style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:0 16px;height:62px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><span style="font-size:20px">${fl}</span><input id="${id}" inputmode="decimal" placeholder="0" style="flex:1;min-width:0;border:none;outline:none;font-size:24px;font-weight:800;font-family:inherit;background:transparent;color:#14223D;text-align:right"><b style="font-size:17px;width:30px;color:#1F3A68">${unit}</b></label>`;
+  const quick=[1000,10000,50000,100000,200000];
+  document.getElementById('app').innerHTML=`${pageHead(T('ငွေလဲနှုန်း','為替レート','Exchange rate'),'$ · ¥ · Ks')}
 <main id="xm">
-<div style="background:#FFF1DE;color:#6B4200;border-radius:16px;padding:12px 14px;font-size:13px;line-height:1.8" class="mm">${T('အောက်က ပြင်ပဈေး / Official ကို နှိပ်ပြီး ရွေးပါ — ဒါမှမဟုတ် ကိုယ်သိတဲ့ နှုန်းကို ကိုယ်တိုင် ထည့်ပါ။ Official နှုန်းက ဘဏ်နှုန်းပါ (ပြင်ပဈေးနဲ့ မတူပါ)။','下の市場レート / 公式レートをタップするか、自分でレートを入力してください。公式レートは銀行レートです。','Tap Market / Official below, or type your own rate. The official rate is the bank rate (not the market rate).')}</div>
-${(()=>{fxLoad();const o=FXD&&FXD.r,m=fxMarket();const ch=(v,l,d,c)=>`<button data-fxr="${v}" style="flex:1;min-width:0;border:none;border-radius:16px;padding:9px 6px;background:#fff;box-shadow:0 3px 10px rgba(20,34,61,.06);text-align:center"><div class="mm" style="font-size:11px;font-weight:700;color:${c||'#6B7486'}">${l}</div><div style="font-size:17px;font-weight:800;color:#1F3A68">${v}</div><div style="font-size:10px;color:#9AA3B5">${d}</div></button>`;
-  const L=[];if(m&&m.b>0){L.push(ch(m.b,T('ပြင်ပ · ဝယ်','市場 · 買','Market · Buy'),fxMD(m.d),'#0F6E56'));if(m.s&&m.s!==m.b)L.push(ch(m.s,T('ပြင်ပ · ရောင်း','市場 · 売','Market · Sell'),fxMD(m.d),'#A32D2D'))}if(o)L.push(ch(+o.MMK.toFixed(2),'Official',fxMD(FXD.u)));
-  return L.length?`<div style="display:flex;gap:7px">${L.join('')}</div><div class="mm" style="font-size:11.5px;color:#6B7486;padding:0 4px">${T('¥1 = ? Ks · နှိပ်ရင် အဲဒီနှုန်းနဲ့ တွက်ပါမယ်','1円 = ? チャット · タップでそのレートを使用','¥1 = ? Ks · tap to use that rate')}</div>`:''})()}
-<b style="font-size:15px;padding:0 4px">${T('ငွေလဲနှုန်း — ¥1 = ? Ks','レート — 1円 = ? チャット','Rate — ¥1 = ? Ks')}</b>
-${inp('xr','e.g. 28',SET.rate||'','Ks')}
-<b style="font-size:15px;padding:6px 4px 0">${T('တွက်မယ်','計算','Convert')}</b>
-${inp('xy','¥','','¥')}
-<div style="text-align:center;font-size:22px;color:#6B7486">⇅</div>
-${inp('xk','Ks','','Ks')}
-<div id="xo" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px"></div>
-<div id="xt" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(20,34,61,.05)">${r?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b>¥${y.toLocaleString('en-US')}</b><span>${fmt(y*r)} Ks</span></div>`).join(''):`<div class="mm" style="padding:14px;text-align:center;color:#6B7486;font-size:13px">${T('နှုန်း ထည့်ပြီးရင် ဇယား ပေါ်ပါမယ်','レートを入力すると表が表示されます','Enter a rate to see the table')}</div>`}</div>
-</main>`;
-  const $=id=>document.getElementById(id);
-  const xr=$('xr'),xy=$('xy'),xk=$('xk');if(!xr||!xr.addEventListener)return;
-  const rate=()=>parseFloat(xr.value)||0;
-  xr.oninput=()=>{SET.rate=xr.value.trim();saveSet();if(xy.value)xk.value=fmt(parseFloat(xy.value.replace(/,/g,''))*rate());const t=$('xt');if(t)t.innerHTML=rate()?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b>¥${y.toLocaleString('en-US')}</b><span>${fmt(y*rate())} Ks</span></div>`).join(''):''};
-  const oth=()=>{const el=$('xo');if(!el)return;const o=FXD&&FXD.r,v=parseFloat((xy.value||'').replace(/,/g,''));if(!o||!isFinite(v)||!v){el.innerHTML='';return}
-    el.innerHTML=[['USD','$',2],['THB','฿',0],['CNY','元 ',0],['KRW','₩',0]].map(([c,sy,dp])=>`<div style="background:#fff;border-radius:14px;padding:9px 12px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><div style="font-size:11px;color:#6B7486">${c} · Official</div><b style="font-size:17px;color:#1F3A68">${sy}${fxN(v*o[c],dp)}</b></div>`).join('')};
-  document.querySelectorAll('[data-fxr]').forEach(b=>b.onclick=()=>{xr.value=b.dataset.fxr;xr.oninput()});
-  xy.oninput=()=>{const v=parseFloat(xy.value.replace(/,/g,''));xk.value=rate()&&isFinite(v)?fmt(v*rate()):'';oth()};
-  xk.oninput=()=>{const v=parseFloat(xk.value.replace(/,/g,''));xy.value=rate()&&isFinite(v)?fmt(v/rate()):''};
-}
+<section style="position:relative;overflow:hidden;background:linear-gradient(135deg,#2C5596,#1F3A68 55%,#14223D);border-radius:26px;padding:16px 14px 14px;color:#fff">
+<div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">💱 ${T('ယနေ့ ငွေလဲနှုန်း','本日のレート','TODAY’S RATE')}</div>
+<div style="display:flex;gap:8px;margin-top:10px">${tile('🇺🇸','$1 → ¥',R.u,2,'¥',R.uw,R.uw?R.wt:R.ot)}${tile('🇯🇵','¥1 → Ks',R.k,2,'Ks',R.kw,R.kw?R.wt:R.ot)}</div>
+<div class="mm" style="margin-top:10px;font-size:12px;line-height:1.7;color:#DCE6F7;background:rgba(0,0,0,.18);border-radius:12px;padding:7px 10px">⏱ ${T('အချိန်နဲ့အမျှ ငွေဈေး အပြောင်းအလဲ ရှိနိုင်ပါသည်။','レートは時間とともに変わることがあります。','Rates may change at any time.')}</div></section>
+<b class="mm" style="font-size:15px;padding:4px 4px 0">${T('တွက်ကြည့်မယ်','計算','Convert')}</b>
+${inp('xy','¥','🇯🇵')}${inp('xk','Ks','🇲🇲')}${inp('xu','$','🇺🇸')}
+<div id="xt" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(20,34,61,.05)">${R.k?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b>¥${y.toLocaleString('en-US')}</b><span>${fmt(y*R.k)} Ks</span></div>`).join(''):''}</div>
+<div style="height:90px"></div></main>`;
+  const $=id=>document.getElementById(id),xy=$('xy'),xk=$('xk'),xu=$('xu');if(!xy)return;
+  const num=el=>parseFloat((el.value||'').replace(/,/g,''));
+  const fill=(yen,skip)=>{const ok=isFinite(yen)&&yen>0;if(skip!=='y')xy.value=ok?fmt(yen):'';if(skip!=='k')xk.value=ok&&R.k?fmt(yen*R.k):'';if(skip!=='u')xu.value=ok&&R.u?fmt(yen/R.u,2):''};
+  xy.oninput=()=>fill(num(xy),'y');xk.oninput=()=>fill(R.k?num(xk)/R.k:NaN,'k');xu.oninput=()=>fill(R.u?num(xu)*R.u:NaN,'u')}
 
 /* Tips */
 const TIPS=[
@@ -45408,7 +45786,7 @@ setInterval(function(){try{if(document.visibilityState!=='visible')return;let au
   const ks=Object.keys(UH.d);if(ks.length>400){ks.sort().slice(0,ks.length-400).forEach(x=>{delete UH.d[x];delete UH.h[x]})}
   uhSave()}catch(e){}},UH_TICK*1000);
 const UH_CAT={dlg:['💬','#2563EB',['စကားပြော','会話','Dialog']],disc:['🧭','#0E9F6E',['ရှာဖွေ','発見','Discovery']],jlpt:['🎯','#E8463A',['JLPT','JLPT','JLPT']],kanji:['🈴','#7C3AED',['ကန်ဂျီ・ကာနာ','漢字・かな','Kanji & kana']],pro:['👑','#D97706',['Pro・လေ့ကျင့်','練習','Practice']],game:['🎮','#DB2777',['ဂိမ်း','ゲーム','Games']],dict:['📖','#0891B2',['အဘိဓာန်','辞書','Dictionary']],chat:['🗨️','#4F46E5',['ချက်','チャット','Chat']],home:['🏠','#64748B',['ပင်မ・အခြား','ホーム・他','Home & other']]};
-const UH_V={dict:['📖','dict',['ど အဘိဓာန်','どじしょ','ど Dictionary']],game:['🎮','game',['ဂိမ်း','ゲーム','Games']],kgame:['🎮','game',['ကန်ဂျီ ဂိမ်း','漢字ゲーム','Kanji game']],quiz:['❓','game',['ပဟေဠိ','クイズ','Quiz']],match:['🧩','game',['တွဲဆက်','マッチ','Match']],scr:['🔤','game',['စီကြည့်','並べ替え','Scramble']],ochat:['🗨️','chat',['ချက်','チャット','Chat']],chats:['🗨️','chat',['ချက်','チャット','Chats']],chat:['🗨️','chat',['ချက်','チャット','Chat']],kana:['あ','kanji',['ကာနာ','かな','Kana']],goju:['五','kanji',['ဂိုဂျူအွန်','五十音','Gojūon']],kall:['漢','kanji',['ကန်ဂျီ','漢字','Kanji']],gram:['📘','jlpt',['သဒ္ဒါ','文法','Grammar']],joshi:['🔗','jlpt',['ဝိဘတ်','助詞','Particles']],jexam:['📝','jlpt',['စာမေးပွဲ','模試','Mock exam']],review:['🔁','pro',['ပြန်လေ့ကျင့်','復習','Review']],study:['📚','pro',['လေ့လာရန်','学習','Study']],sroom:['📚','pro',['လေ့လာခန်း','自習室','Study Room']],fav:['♥','pro',['နှစ်သက်ရာ','お気に入り','Favorite']],star:['⭐','pro',['Star','スター','Star']],spin:['🎡','pro',['Spin','スピン','Spin']],names:['📛','disc',['နာမည်','名前','Names']],katsu:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],kako:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],uta:['🎵','disc',['သီချင်း','歌','Songs']],adult:['🌙','disc',['ရိုင်းစကား','Dark Side','Dark Side']],tips:['💡','pro',['အကြံ','ヒント','Tips']],exch:['💱','home',['ငွေလဲ','両替','Exchange']],bday:['🎂','home',['မွေးနေ့ကံ','誕生日','Birthday']],kyuyo:['💴','home',['လစာစာရွက်','給与明細','Payslip']],qs:['🔎','dict',['အမြန်ရှာ','クイック検索','Quick Search']],settings:['⚙️','home',['ဆက်တင်','設定','Settings']],about:['ℹ️','home',['အကြောင်း','について','About']],guide:['🧭','home',['လမ်းညွှန်','ガイド','Guide']],note:['📝','pro',['မှတ်စု','メモ','Note']],pdf:['📄','pro',['PDF','PDF','PDF']]};
+const UH_V={dict:['📖','dict',['ど အဘိဓာန်','どじしょ','ど Dictionary']],game:['🎮','game',['ဂိမ်း','ゲーム','Games']],kgame:['🎮','game',['ကန်ဂျီ ဂိမ်း','漢字ゲーム','Kanji game']],quiz:['❓','game',['ပဟေဠိ','クイズ','Quiz']],match:['🧩','game',['တွဲဆက်','マッチ','Match']],scr:['🔤','game',['စီကြည့်','並べ替え','Scramble']],ochat:['🗨️','chat',['ချက်','チャット','Chat']],chats:['🗨️','chat',['ချက်','チャット','Chats']],chat:['🗨️','chat',['ချက်','チャット','Chat']],kana:['あ','kanji',['ကာနာ','かな','Kana']],goju:['五','kanji',['ဂိုဂျူအွန်','五十音','Gojūon']],kall:['漢','kanji',['ကန်ဂျီ','漢字','Kanji']],gram:['📘','jlpt',['သဒ္ဒါ','文法','Grammar']],joshi:['🔗','jlpt',['ဝိဘတ်','助詞','Particles']],jexam:['📝','jlpt',['စာမေးပွဲ','模試','Mock exam']],review:['🔁','pro',['ပြန်လေ့ကျင့်','復習','Review']],study:['📚','pro',['လေ့လာရန်','学習','Study']],sroom:['📚','pro',['လေ့လာခန်း','自習室','Study Room']],fav:['♥','pro',['နှစ်သက်ရာ','お気に入り','Favorite']],star:['⭐','pro',['Star','スター','Star']],spin:['🎡','pro',['Spin','スピン','Spin']],names:['📛','disc',['နာမည်','名前','Names']],katsu:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],kako:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],uta:['🎵','disc',['သီချင်း','歌','Songs']],adult:['🌙','disc',['ရိုင်းစကား','Dark Side','Dark Side']],tips:['💡','pro',['အကြံ','ヒント','Tips']],exch:['💱','home',['ငွေလဲ','両替','Exchange']],bday:['🎂','home',['မွေးနေ့ကံ','誕生日','Birthday']],nin:['🙋','disc',['ငါ·မင်း·သူ','わたし・あなた','I · You']],ik:['🌈','disc',['ပြောပုံ အမျိုးမျိုး','言い方いろいろ','Many ways']],kyuyo:['💴','home',['လစာစာရွက်','給与明細','Payslip']],qs:['🔎','dict',['အမြန်ရှာ','クイック検索','Quick Search']],settings:['⚙️','home',['ဆက်တင်','設定','Settings']],about:['ℹ️','home',['အကြောင်း','について','About']],guide:['🧭','home',['လမ်းညွှန်','ガイド','Guide']],note:['📝','pro',['မှတ်စု','メモ','Note']],pdf:['📄','pro',['PDF','PDF','PDF']]};
 function uhTile(tab,name){const r=(DATA[tab]||[]).find(d=>d[1]===name);let ic='';try{if(!FLI_D)FLI_D=JSON.parse(document.getElementById('flicons').textContent);const n=(FLI_D.m[tab]||{})[name];if(n&&FLI_D.i[n])ic=`<img alt="" src="${FLI_D.i[n]}">`}catch(e){}let en='';try{const v=TILE_EN[name];en=Array.isArray(v)?v[0]:(v||'')}catch(e){}return {ic:ic||(r&&r[0])||'•',mm:(r&&r[3])||name,en:en||(r&&/^[\x20-\x7e]+$/.test(r[2])?r[2]:'')||name}}
 function uhInfo(p){const a=p.split('/').filter(Boolean),v=a[0]||'home',x=decodeURIComponent(a.slice(1).join('/'));let o;
   const mk=(ic,cat,jp,mm,en,go)=>({ic,cat,jp,sub:T(mm,jp===mm?'':mm,en),go});
@@ -49281,7 +49659,7 @@ function uidQR(){const id=proUID(),QI=uidInfo(),m=QI.m;if(!m)return;const n=m.le
 /* v1.0.398 💱 Today's exchange rates. Official: open.er-api.com (free, daily, cached 6 h). Market ¥→Ks: config.json "fx":{"jpy_mmk":27.5,"date":"2026-11-26"} (shown only if ≤3 days old). */
 let FXD=null,FXP=null;try{FXD=JSON.parse(localStorage.getItem('myaing.fx')||'null')}catch(e){}
 function fxLoad(){if(FXP)return FXP;if(FXD&&Date.now()-FXD.t<6*36e5)return FXP=Promise.resolve(FXD);
-  FXP=fetch('https://open.er-api.com/v6/latest/JPY').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.rates&&j.rates.MMK){FXD={t:Date.now(),u:j.time_last_update_unix*1000||Date.now(),r:j.rates};try{localStorage.setItem('myaing.fx',JSON.stringify(FXD))}catch(e){}if(document.getElementById('fxc')||S.view==='exch')try{render()}catch(e){}}return FXD}).catch(()=>FXD);return FXP}
+  FXP=fetch('https://open.er-api.com/v6/latest/JPY').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.rates&&j.rates.MMK){FXD={t:Date.now(),u:j.time_last_update_unix*1000||Date.now(),r:j.rates};try{localStorage.setItem('myaing.fx',JSON.stringify(FXD))}catch(e){}if(S.view==='exch')try{render()}catch(e){}}return FXD}).catch(()=>FXD);return FXP}
 function fxMarket(){try{const f=CFG().fx;if(!f)return null;const d=f.date?new Date(f.date+'T00:00:00'):null;if(d&&(Date.now()-d)/864e5>3.5)return null;
   const b=+f.jpy_mmk_buy||+f.jpy_mmk||0,sl=+f.jpy_mmk_sell||+f.jpy_mmk||0,ub=+f.usd_jpy_buy||0,us=+f.usd_jpy_sell||0;if(!(b>0)&&!(ub>0))return null;
   return {b,s:sl,ub,us,r:b,d:f.date||''}}catch(e){return null}}
@@ -51802,6 +52180,8 @@ if(S.view==='quiz'){renderQuiz();return}
   if(S.view==='qs'){renderQS();return}
   if(S.view==='exch'){renderExch();return}
   if(S.view==='bday'){renderBday();return}
+  if(S.view==='nin'){renderNin();return}
+  if(S.view==='ik'){renderIk();return}
   if(S.view==='kyuyo'){renderKyuyo();return}
   if(S.view==='chit'){renderChit();return}
   if(S.view==='review'){renderReview();return}
@@ -51983,7 +52363,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     mtagain:()=>startMatch(),
     scundo:()=>{S.sc.pick.pop();S.sc.ok=null}, schint:()=>{speakJa(S.sc.w.r,0.8);return 'skip'}, scnext:()=>startScr(),
     dccheck:()=>{const e=document.getElementById('dcin');const v=(e&&e.value||'').trim().replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));const a=S.dc.w.r.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));S.dc.res=v===a||v===S.dc.w.k;S.dc.n++;if(S.dc.res)S.dc.ok++}, dcnext:()=>{const d=S.dc;S.dc={w:shuf(n5Pool().filter(x=>/^[ぁ-んァ-ヶー]{2,6}$/.test(x.r)))[0],res:null,n:d.n,ok:d.ok}},
-    fav:()=>{S.view='fav';S.drawer=false;S.kSay=''}, qs:()=>{S.view='qs';S.qsq='';S.kSay=''}, exch:()=>{S.view='exch';S.drawer=false}, bday:()=>{S.view='bday';S.drawer=false}, kyuyo:()=>{S.view='kyuyo';S.drawer=false;S.kyE=false}, chit:()=>{S.view='chit';S.drawer=false;try{const b=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('[data-chg]');if(b)S.chp=+b.dataset.chg}catch(e){}}, tips:()=>{S.view='tips';S.drawer=false},
+    fav:()=>{S.view='fav';S.drawer=false;S.kSay=''}, qs:()=>{S.view='qs';S.qsq='';S.kSay=''}, exch:()=>{S.view='exch';S.drawer=false}, bday:()=>{S.view='bday';S.drawer=false}, nin:()=>{S.view='nin';S.drawer=false}, ik:()=>{S.view='ik';S.drawer=false;try{window.scrollTo(0,0)}catch(e){}}, kyuyo:()=>{S.view='kyuyo';S.drawer=false;S.kyE=false}, chit:()=>{S.view='chit';S.drawer=false;try{const b=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('[data-chg]');if(b)S.chp=+b.dataset.chg}catch(e){}}, tips:()=>{S.view='tips';S.drawer=false},
     addw:()=>{S.addOpen=!S.addOpen},addone:()=>{S.addMode='one'},addbulk:()=>{S.addMode='bulk'},
     savew:()=>{const g=id=>{const e=document.getElementById(id);return e&&e.value?e.value.trim():''};const k=g('aw_k'),r=g('aw_r')||k,mm=g('aw_mm'),en=g('aw_en');if(!k||!mm){toast(T('ဂျပန် နဲ့ မြန်မာ အဓိပ္ပာယ် ဖြည့်ပါ','日本語と意味を入力してください','Enter the Japanese word and its meaning'));return}MYW.unshift({k,r,mm,en,lv:S.jl});saveMyw();toast(T('သိမ်းပြီးပါပြီ','保存しました','Saved'))},
     bulkw:()=>{const e=document.getElementById('aw_bulk');const ws=parseBulk(e&&e.value||'',S.jl);if(!ws.length){toast(T('ထည့်စရာ မတွေ့ပါ — ပုံစံကို စစ်ပါ','追加できる行がありません','No valid lines found'));return}MYW.unshift(...ws);saveMyw();toast(T(`${ws.length} လုံး ထည့်ပြီးပါပြီ`,`${ws.length}語 追加しました`,`Added ${ws.length} words`))},
