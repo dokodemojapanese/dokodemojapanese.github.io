@@ -44645,7 +44645,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.411',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.415',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -45541,33 +45541,47 @@ ${L.map(card).join('')}
 <div style="height:90px"></div></main>`}
 
 /* Exchange ¥ ↔ Ks */
-/* v1.0.409 Exchange: only $1 → ¥ and ¥1 → Ks. Source = Western Union rates in config.json "wu" {usd_jpy, jpy_mmk, time}.
-   If "wu" is empty or older than 3 days, a reference rate (open.er-api.com) is shown and labeled as such. */
-function fxWU(){try{const w=CFG().wu;if(!w)return null;const u=+w.usd_jpy||0,k=+w.jpy_mmk||0;if(!(u>0)&&!(k>0))return null;const t=w.time?new Date(String(w.time).replace(' ','T')+(/[+Z]/.test(w.time)?'':'+09:00')):null;
-  if(t&&isFinite(t)&&(Date.now()-t)/864e5>3)return null;return {u,k,t}}catch(e){return null}}
-function fxRates(){const w=fxWU(),o=FXD&&FXD.r;const ou=o&&o.USD?1/o.USD:0,ok=o&&o.MMK?o.MMK:0;
-  return {u:(w&&w.u)||ou,k:(w&&w.k)||ok,uw:!!(w&&w.u),kw:!!(w&&w.k),wt:w&&w.t,ot:FXD&&FXD.u}}
+/* v1.0.412 Exchange: remittance-company rates (¥1 → Ks) typed into config.json "rates", + $1 → ¥.
+   rates = {usd_jpy, usd_time, sbi:{time,bank,cash}, kyodai:{time,wallet,bank,cash}, wu:{time,bank,cash}}. 0 = hidden. Older than 3 days = marked old.
+   No official MMK fallback (the bank rate is far from the real remittance rate). */
+const FX_P=[['sbi','SBI Remit','#0B5CAD'],['kyodai','Kyodai · Ria','#F26B1D'],['wu','Western Union','#111111']];
+const FX_TY={wallet:['📱','E-Wallet','E-Wallet','E-Wallet'],bank:['🏦','ဘဏ်ထဲ တိုက်ရိုက်','銀行振込','Bank deposit'],cash:['💵','ငွေသား ထုတ်','現金受取','Cash pickup']};
+/* v1.0.414 currency by language: en $1 · ¥1 · 1 Ks | ja 1ドル · 1円 · 1チャット | mm 1 ဒေါ်လာ · 1 ယန်း · 1 ကျပ် */
+function fxC(c,n){const L=LC();if(L==='ja')return n+({d:'ドル',y:'円',k:'チャット'})[c];if(L==='en')return c==='k'?n+' Ks':({d:'$',y:'¥'})[c]+n;return n+' '+({d:'ဒေါ်လာ',y:'ယန်း',k:'ကျပ်'})[c]}
+function fxU(c){const L=LC();return L==='ja'?({d:'ドル',y:'円',k:'チャット'})[c]:L==='en'?({d:'$',y:'¥',k:'Ks'})[c]:({d:'ဒေါ်လာ',y:'ယန်း',k:'ကျပ်'})[c]}
+function fxTime(s){if(!s)return null;const t=new Date(String(s).replace(' ','T')+(/[+Z]/.test(s)?'':'+09:00'));return isFinite(t)?t:null}
 function fxWhen(t){if(!t)return '';const d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
-function renderExch(){fxLoad();const R=fxRates();
+function fxList(){let R={};try{R=CFG().rates||{}}catch(e){}const out=[];
+  FX_P.forEach(([k,n,c])=>{const p=R[k];if(!p)return;const t=fxTime(p.time),old=!t||(Date.now()-t)/864e5>3;
+    Object.keys(FX_TY).forEach(ty=>{const r=+p[ty]||0;if(r>0)out.push({k,n,c,ty,r,t,old})})});return out}
+function fxUsd(){let R={};try{R=CFG().rates||{}}catch(e){}const u=+R.usd_jpy||0,t=fxTime(R.usd_time);if(u>0&&t&&(Date.now()-t)/864e5<=3)return {u,t,own:1,src:R.usd_src||''};
+  const o=FXD&&FXD.r;return o&&o.USD?{u:1/o.USD,t:FXD.u,own:0}:null}
+function renderExch(){fxLoad();const L=fxList(),fresh=L.filter(x=>!x.old),best=(fresh.length?fresh:L).reduce((a,x)=>!a||x.r>a.r?x:a,null),U=fxUsd();
+  const sel=L.find(x=>x.k+x.ty===S.fxsel)||best,rate=sel?sel.r:0;
   const fmt=(n,dp)=>isFinite(n)&&n?n.toLocaleString('en-US',{maximumFractionDigits:dp||0,minimumFractionDigits:dp||0}):'';
-  const src=(wu,t)=>`<span style="display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;border-radius:8px;padding:2px 7px;background:${wu?'#FFD100':'rgba(255,255,255,.16)'};color:${wu?'#111':'#DCE6F7'}">${wu?'Western Union':T('ကိုးကားနှုန်း','参考レート','Reference')}${t?' · '+fxWhen(t):''}</span>`;
-  const tile=(fl,lb,v,dp,unit,wu,t)=>`<div style="flex:1;min-width:0;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:12px 12px 10px"><div style="font-size:13px;font-weight:800;color:#B5D4F4">${fl} ${lb}</div><b style="display:block;font-size:30px;line-height:1.15;color:#fff;margin:4px 0 6px;white-space:nowrap">${v?fmt(v,dp):'–'}<small style="font-size:14px;color:#B5D4F4;margin-left:4px">${unit}</small></b>${src(wu,t)}</div>`;
-  const inp=(id,unit,fl)=>`<label style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:0 16px;height:62px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><span style="font-size:20px">${fl}</span><input id="${id}" inputmode="decimal" placeholder="0" style="flex:1;min-width:0;border:none;outline:none;font-size:24px;font-weight:800;font-family:inherit;background:transparent;color:#14223D;text-align:right"><b style="font-size:17px;width:30px;color:#1F3A68">${unit}</b></label>`;
-  const quick=[1000,10000,50000,100000,200000];
-  document.getElementById('app').innerHTML=`${pageHead(T('ငွေလဲနှုန်း','為替レート','Exchange rate'),'$ · ¥ · Ks')}
+  const card=([k,n,c])=>{const rows=L.filter(x=>x.k===k);if(!rows.length)return '';const t=rows[0].t,old=rows[0].old;
+    return `<section style="background:#fff;border-radius:22px;padding:12px 14px;box-shadow:0 3px 12px rgba(20,34,61,.06);opacity:${old?.6:1}">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><b style="font-size:16px;color:#fff;background:${c};border-radius:10px;padding:4px 10px">${n}</b><span style="flex:1"></span><span class="mm" style="font-size:11.5px;color:${old?'#C0343C':'#6B7486'};font-weight:700">${old?'⚠️ '+T('ဟောင်းနေပြီ','古いレート','Old')+' · ':'🕘 '}${t?fxWhen(t):''}</span></div>
+${rows.map(x=>{const on=sel&&x.k+x.ty===sel.k+sel.ty,isB=best&&x.r===best.r&&x.old===best.old,ty=FX_TY[x.ty];return `<button onclick="S.fxsel='${x.k+x.ty}';render()" style="display:flex;align-items:center;gap:8px;width:100%;border:none;border-top:1px solid #EEF1F6;background:${on?'#EAF2FF':'none'};border-radius:${on?'12px':'0'};padding:10px 6px;text-align:left"><span style="font-size:18px">${ty[0]}</span><span class="mm" style="flex:1;font-size:13.5px;color:#4A5468;font-weight:700">${T(ty[1],ty[2],ty[3])}${isB?' <span style="color:#C98A00">🏆</span>':''}</span><b style="font-size:19px;color:#14223D">${fmt(x.r,3)}</b><span class="mm" style="font-size:12px;color:#6B7486">${fxU('k')}</span></button>`}).join('')}</section>`};
+  const inp=(id,unit,fl)=>`<label style="display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:0 16px;height:60px;box-shadow:0 3px 10px rgba(20,34,61,.05)"><span style="font-size:20px">${fl}</span><input id="${id}" inputmode="decimal" placeholder="0" style="flex:1;min-width:0;border:none;outline:none;font-size:23px;font-weight:800;font-family:inherit;background:transparent;color:#14223D;text-align:right"><b class="mm" style="font-size:15px;min-width:30px;color:#1F3A68;white-space:nowrap">${unit}</b></label>`;
+  const quick=[10000,50000,100000,200000,300000];
+  document.getElementById('app').innerHTML=`${pageHead(T('ငွေလဲနှုန်း','為替レート','Exchange rate'),T('ယန်း → ကျပ် · ဒေါ်လာ → ယန်း','円 → チャット · ドル → 円','¥ → Ks · $ → ¥'))}
 <main id="xm">
 <section style="position:relative;overflow:hidden;background:linear-gradient(135deg,#2C5596,#1F3A68 55%,#14223D);border-radius:26px;padding:16px 14px 14px;color:#fff">
-<div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">💱 ${T('ယနေ့ ငွေလဲနှုန်း','本日のレート','TODAY’S RATE')}</div>
-<div style="display:flex;gap:8px;margin-top:10px">${tile('🇺🇸','$1 → ¥',R.u,2,'¥',R.uw,R.uw?R.wt:R.ot)}${tile('🇯🇵','¥1 → Ks',R.k,2,'Ks',R.kw,R.kw?R.wt:R.ot)}</div>
-<div class="mm" style="margin-top:10px;font-size:12px;line-height:1.7;color:#DCE6F7;background:rgba(0,0,0,.18);border-radius:12px;padding:7px 10px">⏱ ${T('အချိန်နဲ့အမျှ ငွေဈေး အပြောင်းအလဲ ရှိနိုင်ပါသည်။','レートは時間とともに変わることがあります。','Rates may change at any time.')}</div></section>
-<b class="mm" style="font-size:15px;padding:4px 4px 0">${T('တွက်ကြည့်မယ်','計算','Convert')}</b>
-${inp('xy','¥','🇯🇵')}${inp('xk','Ks','🇲🇲')}${inp('xu','$','🇺🇸')}
-<div id="xt" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(20,34,61,.05)">${R.k?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b>¥${y.toLocaleString('en-US')}</b><span>${fmt(y*R.k)} Ks</span></div>`).join(''):''}</div>
+<div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">💱 ${T('ယနေ့ ငွေလွှဲနှုန်း','本日の送金レート','TODAY’S REMITTANCE RATE')}</div>
+${best?`<div style="margin-top:8px;font-size:13px;color:#B5D4F4;font-weight:800">🏆 ${T('အကောင်းဆုံး','いちばん良いレート','Best rate')} · ${best.n} · ${T(...FX_TY[best.ty].slice(1))}</div>
+<b class="mm" style="display:block;font-size:${LC()==='en'?40:32}px;line-height:1.25;margin:2px 0">${fxC('y',1)} = ${fxC('k',fmt(best.r,3))}</b>
+<div class="mm" style="font-size:13px;color:#DCE6F7">${fxC('y','100,000')} → <b style="color:#FFD36B">${fxC('k',fmt(best.r*100000))}</b></div>`:`<div class="mm" style="margin-top:10px;font-size:14px;color:#DCE6F7">${T('ဒီနေ့ နှုန်း မထည့်ရသေးပါ','本日のレートはまだありません','No rates yet today')}</div>`}
+<div style="display:flex;align-items:center;gap:8px;margin-top:10px;background:rgba(255,255,255,.09);border-radius:14px;padding:8px 12px"><span class="mm" style="font-size:13px;color:#B5D4F4;font-weight:800">🇺🇸 ${fxC('d',1)} →</span><b class="mm" style="font-size:20px;flex:1;text-align:right">${U?fxC('y',fmt(U.u,2)):'–'}</b><span style="font-size:10.5px;color:#B5D4F4">${U?(U.own?(U.src?esc(U.src)+' · ':''):T('ကိုးကား','参考','ref.')+' · ')+fxWhen(U.t):''}</span></div>
+<div class="mm" style="margin-top:8px;font-size:12px;line-height:1.7;color:#DCE6F7">⏱ ${T('ငွေဈေးသည် အချိန်နှင့်အမျှ အပြောင်းအလဲ ရှိနိုင်ပါသည်။','レートは予告なく変わることがあります。','Rates may change at any time.')}</div></section>
+${FX_P.map(card).join('')}
+<b class="mm" style="font-size:15px;padding:4px 4px 0">🧮 ${T('တွက်ကြည့်မယ်','計算','Convert')} ${sel?`<span style="font-size:12px;color:#6B7486;font-weight:700">· ${sel.n} ${T(...FX_TY[sel.ty].slice(1))} (${fmt(sel.r,3)})</span>`:''}</b>
+${inp('xy',fxU('y'),'🇯🇵')}${inp('xk',fxU('k'),'🇲🇲')}
+<div id="xt" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(20,34,61,.05)">${rate?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b class="mm">${fxC('y',y.toLocaleString('en-US'))}</b><span class="mm">${fxC('k',fmt(y*rate))}</span></div>`).join(''):''}</div>
+<div class="mm" style="font-size:11px;color:#8A93A5;text-align:center;line-height:1.7">${T('နှုန်းတွေက ကုမ္ပဏီတွေ ကြေညာထားတဲ့ နှုန်းပါ။ ပို့ခ (Fee) မပါပါ။ ပို့ခါနီး App ထဲမှာ ပြန်စစ်ပါ။','各社の公表レートです（手数料別）。送金前にアプリで確認してください。','Rates as published by each company (fees not included). Check in their app before sending.')}</div>
 <div style="height:90px"></div></main>`;
-  const $=id=>document.getElementById(id),xy=$('xy'),xk=$('xk'),xu=$('xu');if(!xy)return;
-  const num=el=>parseFloat((el.value||'').replace(/,/g,''));
-  const fill=(yen,skip)=>{const ok=isFinite(yen)&&yen>0;if(skip!=='y')xy.value=ok?fmt(yen):'';if(skip!=='k')xk.value=ok&&R.k?fmt(yen*R.k):'';if(skip!=='u')xu.value=ok&&R.u?fmt(yen/R.u,2):''};
-  xy.oninput=()=>fill(num(xy),'y');xk.oninput=()=>fill(R.k?num(xk)/R.k:NaN,'k');xu.oninput=()=>fill(R.u?num(xu)*R.u:NaN,'u')}
+  const $=id=>document.getElementById(id),xy=$('xy'),xk=$('xk');if(!xy)return;const num=el=>parseFloat((el.value||'').replace(/,/g,''));
+  xy.oninput=()=>{const v=num(xy);xk.value=rate&&v>0?fmt(v*rate):''};xk.oninput=()=>{const v=num(xk);xy.value=rate&&v>0?fmt(v/rate):''}}
 
 /* Tips */
 const TIPS=[
@@ -50386,7 +50400,7 @@ function tpShare(){const t=tpMsg();try{if(navigator.share){navigator.share({titl
 function tpCopy(){const t=tpMsg();try{navigator.clipboard.writeText(t).then(()=>toast(T('📋 ကူးပြီးပါပြီ · Telegram/Messenger မှာ Paste လုပ်ပါ','📋 コピーしました','📋 Copied')))}catch(e){toast(t)}}
 function tpOpen(u){try{window.open(u,'_blank','noopener')}catch(e){location.href=u}}
 function tpClose(never){const ov=document.getElementById('tpov');if(never){try{localStorage.setItem('myaing.tpx','1')}catch(e){}}if(!ov)return;const c=ov.firstElementChild;ov.style.opacity='0';if(c)c.style.transform='scale(.92) translateY(20px)';setTimeout(()=>{ov.remove();try{dlrAuto()}catch(e){}},260)}
-function tpShow(force){if(typeof NAT==='function'&&NAT())return;if(document.getElementById('tpov'))return;const m=tpMode(),cfg=CFG(),n=Math.max(0,Math.min(99,+cfg.testers||0));
+function tpShow(force){if(window.JISHO)return;if(typeof NAT==='function'&&NAT())return;if(document.getElementById('tpov'))return;const m=tpMode(),cfg=CFG(),n=Math.max(0,Math.min(99,+cfg.testers||0));
   const ov=document.createElement('div');ov.id='tpov';ov.style.cssText='position:fixed;inset:0;z-index:1003;background:rgba(5,10,20,.62);display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;transition:opacity .25s';
   ov.addEventListener('click',e=>{if(e.target===ov)tpClose()});
   const step=(no,ic,title,sub,btn,act,col)=>`<div style="display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:12px;box-shadow:0 4px 14px rgba(20,34,61,.08);animation:tpIn .45s ${.15+no*.1}s both"><span style="flex:none;width:44px;height:44px;border-radius:14px;background:${col}1A;color:${col};display:flex;align-items:center;justify-content:center;font-size:22px;position:relative">${ic}<b style="position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:10px;background:${col};color:#fff;font-size:11.5px;display:flex;align-items:center;justify-content:center">${no}</b></span><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><b class="mm" style="font-size:14px;color:#14223D;line-height:1.5">${title}</b><span class="mm" style="font-size:11.5px;color:#6B7486;line-height:1.6">${sub}</span></span>${btn?`<button onclick="${act}" style="flex:none;min-height:38px;padding:0 12px;border-radius:19px;border:none;background:${col};color:#fff;font-size:12.5px;font-weight:800">${btn}</button>`:''}</div>`;
@@ -51287,7 +51301,7 @@ async function ntcFetch(){if(!isLive())return NTC_L||[];let all=[],mine=[];
   NTC_L=all.concat(mine).sort((a,b)=>Date.parse(b.ts||0)-Date.parse(a.ts||0));NTC_T=Date.now();return NTC_L}
 function ntcUnread(){return (NTC_L||[]).filter(n=>!ntcIsRead(n)).length}
 function ntcDate(ts){try{return new Date(ts).toLocaleString([], {year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return ''}}
-async function ntcCheck(force){try{if(NTC_BUSY||!isLive())return;if(!force&&Date.now()-NTC_T<10*60e3)return;if(document.visibilityState==='hidden')return;
+async function ntcCheck(force){try{if(window.JISHO)return;if(NTC_BUSY||!isLive())return;if(!force&&Date.now()-NTC_T<10*60e3)return;if(document.visibilityState==='hidden')return;
   if(['welcome','auth','tgate'].indexOf(S.view)>-1||document.getElementById('splash'))return;NTC_BUSY=true;await ntcFetch();NTC_BUSY=false;
   try{const r=document.getElementById('ntcCnt');if(r){const n=ntcUnread();r.textContent=n?String(n):'';r.style.display=n?'':'none'}}catch(e){}
   if(document.querySelector('body > [id$="ov"]'))return;const un=(NTC_L||[]).filter(n=>!ntcIsRead(n));if(un.length)ntcShow(un[un.length-1],true)}catch(e){NTC_BUSY=false}}
@@ -52123,7 +52137,13 @@ function rpDraw(){let ov=document.getElementById('rpov');if(!ov){ov=document.cre
 <div class="rpres">${RP_SEL.length?(res.length?res.slice(0,300).map(k=>`<button onclick="document.getElementById('rpov').remove();kdOpenK('${k}')">${k}</button>`).join('')+(res.length>300?`<span style="padding:8px;color:#8A93A5">+${res.length-300}</span>`:''):`<span style="padding:10px;color:#8A93A5">${T('မတွေ့ပါ','見つかりません','No kanji')}</span>`):`<span class="mm" style="padding:10px;color:#6B7486;font-size:13px">${T('အောက်က အစိတ်အပိုင်းတွေကို ရွေးပါ — ရွေးတာ အကုန်ပါတဲ့ ခန်းဂျိတွေ ပေါ်မယ်','部品を選ぶと、それを全部含む漢字が出ます','Pick parts below — kanji containing all of them appear here')}</span>`}</div>
 <div class="rpgrid">${Object.entries(G).map(([n,cs])=>`<div class="rpn">${n==='99'?'…':n}</div>`+[...cs].map(c=>`<button class="${RP_SEL.includes(c)?'on':''}" onclick="RP_SEL.includes('${c}')?RP_SEL=RP_SEL.filter(x=>x!=='${c}'):RP_SEL.push('${c}');rpDraw()">${c}</button>`).join('')).join('')}</div></div>`}
 function kdPartsFill(k,n){kpartsLoad().then(()=>{const e=document.getElementById('kdparts');const p=KPARTS&&KPARTS.k[k];if(!e){if((n||0)<15)setTimeout(()=>kdPartsFill(k,(n||0)+1),150);return}if(p&&!e.children.length){e.innerHTML=[...p].map(c=>`<span>${c}</span>`).join('')}})}
-function render(){if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{wlPost()}catch(e){}try{dkFoot()}catch(e){}try{spinFabSync()}catch(e){}try{webDecor()}catch(e){}try{romDecor()}catch(e){}try{tfxApply();tfxDecor();tfxMore()}catch(e){}try{if(S.view!=='dlg')document.body.classList.remove('dsrch');accApply()}catch(e){}try{bgApply()}catch(e){}}
+/* v1.0.415 Dokodemo Jisho (/jisho/): the app in dictionary-only mode — ?embed=1&jisho=1. Bottom bar: 辞書 · 漢字 · 文法 · open the full app. */
+function jbar(){if(!window.JISHO)return;if(!document.getElementById('jbcss')){const c=document.createElement('style');c.id='jbcss';c.textContent='html.jisho nav,html.jisho #spinfab,html.jisho [id$=fab]{display:none!important}html.jisho main{padding-bottom:96px!important}#jbar{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;display:flex;gap:4px;background:rgba(20,34,61,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:26px;padding:6px;box-shadow:0 10px 28px rgba(20,34,61,.35);width:min(420px,calc(100% - 24px))}#jbar button{flex:1;border:none;background:none;color:#B5C3DD;border-radius:20px;padding:7px 2px;display:flex;flex-direction:column;align-items:center;gap:1px;font-weight:800;font-size:11px;font-family:inherit}#jbar button b{font-size:19px;line-height:1.1}#jbar button.on{background:#fff;color:#14223D}#jbar button.app{color:#FFD36B}';document.head.appendChild(c)}
+  let b=document.getElementById('jbar');if(!b){b=document.createElement('div');b.id='jbar';document.body.appendChild(b)}
+  const v=S.view==='xp'&&S.xp==='dict'?'d':S.view==='kall'?'k':(S.view==='gram'||S.view==='joshi'||S.view==='chit')?'g':'';
+  const it=(k,ic,lb,go)=>`<button class="${v===k?'on':''}" onclick="${go}"><b>${ic}</b>${lb}</button>`;
+  b.innerHTML=it('d','ど',T('စကားလုံး','ことば','Words'),"S.tab='words';S.view='xp';S.xp='dict';render();window.scrollTo(0,0)")+it('k','漢',T('ခန်းဂျီး','漢字','Kanji'),"S.tab='words';S.view='kall';render();window.scrollTo(0,0)")+it('g','文',T('သဒ္ဒါ','文法','Grammar'),"S.tab='words';S.view='gram';render();window.scrollTo(0,0)")+`<button class="app" onclick="try{window.top.location.href='/index.html'}catch(e){location.href='/index.html'}"><b>📚</b>${T('App အပြည့်','アプリ','Full app')}</button>`}
+function render(){if(window.JISHO){S.drawer=false;if(!S.view||['main','welcome','tgate','home'].indexOf(S.view)>-1){S.tab='words';S.view='xp';S.xp='dict'}setTimeout(jbar,0)}if(S.tab!=='home'||S.view)S.mcm=0;setTimeout(gaView,0);_render();try{wlPost()}catch(e){}try{dkFoot()}catch(e){}try{spinFabSync()}catch(e){}try{webDecor()}catch(e){}try{romDecor()}catch(e){}try{tfxApply();tfxDecor();tfxMore()}catch(e){}try{if(S.view!=='dlg')document.body.classList.remove('dsrch');accApply()}catch(e){}try{bgApply()}catch(e){}}
 /* v1.0.349 Website gate: the browser version opens only for people who already use the Dokodemo app:
    ① My User ID (account used in the app) ② Login ③ Pro (bought; the free trial does not count).
    Off: config.json "wgate": false · iPhone/iPad are free unless "wgate_ios": true · admin always passes. */
@@ -52388,7 +52408,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
 (function(){let upd=false,sc=false;try{upd=!!sessionStorage.getItem('myaing.updr');sc=/[?&]tab=/.test(location.search)}catch(e){}
   if(tgateOn())S.view='tgate';else if(!welcomed()||(!ACCT()&&isLive()&&!upd&&!sc))S.view='welcome'})();
 /* v1.0.348 dokodemonihongo.com opens the app inside its own page: ?embed=1&tab=words&jl=5 / &v=gram */
-(function(){try{const q=location.search;if(!/[?&](embed=1|from=home)/.test(q))return;if(/[?&]embed=1/.test(q))document.documentElement.classList.add('embed');
+(function(){try{const q=location.search;if(!/[?&](embed=1|from=home)/.test(q))return;if(/[?&]embed=1/.test(q))document.documentElement.classList.add('embed');if(/[?&]jisho=1/.test(q)){window.JISHO=1;document.documentElement.classList.add('jisho')}
   try{if(!welcomed())localStorage.setItem('myaing.welcomed',String(Date.now()))}catch(e){}if(S.view==='welcome'||S.view==='tgate')S.view='main';
   const jl=+((q.match(/[?&]jl=([1-5])/)||[])[1]||0),v=(q.match(/[?&]v=(\w+)/)||[])[1];
   if(jl){S.tab='words';S.view='jlpt';S.jl=jl;S.jtab=''}else if(v==='gram'){S.tab='words';S.view='gram'}else if(v==='dict'){S.tab='words';S.view='xp';S.xp='dict';S.dq=''}}catch(e){}})();
