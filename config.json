@@ -46,22 +46,8 @@
   "usd_jpy": 159.34,
   "usd_time": "2026-11-27 17:00",
   "usd_src": "日本銀行",
-  "sbi": {
-   "time": "2026-11-27 10:45",
-   "bank": 28.703,
-   "cash": 28.811
-  },
-  "kyodai": {
-   "time": "2026-11-27 11:15",
-   "wallet": 28.811,
-   "bank": 28.711,
-   "cash": 28.661
-  },
-  "wu": {
-   "time": "",
-   "bank": 0,
-   "cash": 0
-  },
-  "_note": "¥1 → Ks for each company. time = JST. 0 = hidden. Older than 3 days = shown as old. usd_jpy 0 = reference rate."
+  "jpy_mmk": 28.811,
+  "jpy_time": "2026-11-27 10:45",
+  "_note": "usd_jpy = ¥ for 1 $ · jpy_mmk = Ks for 1 ¥ · time = Japan time. Older than 3 days = marked old / reference rate."
  }
 }
