@@ -48,6 +48,10 @@ main{flex:1;overflow-y:auto;padding:14px 14px 100px;display:flex;flex-direction:
 .list button:last-child{border-bottom:none}
 .dko{display:inline-block!important;width:.58em;height:.58em;border-radius:50%;background:#E8463A;margin:0 .02em;vertical-align:-.01em;color:transparent!important;font-size:0!important;line-height:0;overflow:hidden;flex-shrink:0}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sech{display:flex;align-items:center;gap:8px;margin:16px 4px 8px}.sech:first-of-type{margin-top:4px}.sech span{font-size:18px}.sech b{font-size:16px;color:#14223D}.sech small{margin-left:auto;font-size:12px;font-weight:800;color:#8A93A5;background:#EEF1F7;border-radius:10px;padding:2px 8px}
+.grid.srow{display:flex!important;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;margin:0 -2px;scrollbar-width:none}.grid.srow::-webkit-scrollbar{display:none}.grid.srow>.tile{flex:0 0 calc((100% - 20px)/3.25);scroll-snap-align:start}
+.grid.srow.top{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.grid.srow.top>.tile{flex:none}
+@media (min-width:640px){.grid.srow{gap:20px}.grid.srow>.tile{flex-basis:calc((100% - 40px)/3.25)}}
 
 .grid.anim .tile{animation:tileIn .32s cubic-bezier(.2,.8,.25,1) both;animation-delay:calc(var(--r,0)*55ms + var(--c,0)*18ms + 40ms)}
 .grid.anim .tile .ic{animation:icPop .34s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--r,0)*55ms + var(--c,0)*18ms + 90ms)}
@@ -35209,16 +35213,16 @@ const LANGS=[['my','🇲🇲','မြန်မာ'],['ja','🇯🇵','日本語'
 function LC(){let l='my';try{l=SET.lang||'my'}catch(e){}return l==='ko'||l==='th'?'en':l}
 const _I18RX={};function trX(l,en){const d=I18N[l];if(!d||typeof en!=='string')return en;if(en in d)return d[en];const ps=I18P[l];if(!_I18RX[l])_I18RX[l]=ps.map(p=>new RegExp('^'+p[0].map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('([\\s\\S]*?)')+'$'));for(let i=0;i<ps.length;i++){const m=_I18RX[l][i].exec(en);if(m){const t=ps[i][1];let o=t[0];for(let j=1;j<t.length;j++)o+=(m[j]!==undefined?m[j]:'')+t[j];return o}}return en}
 function T(my,ja,en){let l='my';try{l=SET.lang||'my'}catch(e){}return l==='ja'?ja:l==='en'?en:l==='ko'||l==='th'?trX(l,en):my}
-const TILE_EN={"文法": "Grammar N5–N1", "ゲーム": "Games (Kana · Kanji)", "助詞": "Particles N5–N1", "総まとめN1": "N1 Vocabulary (So-matome)", "Driving": "Driving license", "JLPT Tips": "JLPT Tips", "Star": "Stars & Spin", "年金": "Pension", "ヘアカラー": "Hair color", "かぜ薬": "Cold medicine", "Listening": "Listening", "JLPT Game": "Leaderboard", "Reading": "Reading", "Study Room": "Study Room", "Note": "Note", "Business Japanese": "Business Japanese", "Contract": "Work Contract", "Same Meaning": "Same Meaning", "Verbs": "Verbs", "Readings Vocabulary": "Readings Vocabulary", "漢字": "Kanji", "歌": "Songs", "PDF": "PDF lessons", "過去問": "Official past questions", "JLPT": "Study by level", "服": "Clothes", "買い物": "Shopping", "家": "Home", "駅・交通": "Station · Transport", "自然": "Nature", "旅行": "Travel", "ひらがな": "Hiragana", "カタカナ": "Katakana", "ローマ字": "Romaji", "五十音": "Alphabet", "活用": "Verb forms", "JLPT N5": "Level 5 · Beginner", "JLPT N4": "Level 4 · Elementary", "JLPT N3": "Level 3 · Intermediate", "JLPT N2": "Level 2 · Upper-int.", "JLPT N1": "Level 1 · Advanced", "家族": "Family", "名前": "Names", "誕生日": "2027 Birthday Luck", "給与明細": "Payslip words", "わたし・あなた": "I · You · He/She", "言い方いろいろ": "Many ways to say it", "国": "Countries", "台所": "Kitchen", "果物": "Fruit", "野菜": "Vegetables", "病院": "Hospital", "薬": "Medicine", "花": "Flowers", "化粧品": "Cosmetics", "家具": "Furniture", "感情": "Emotions", "数字": "Numbers", "助数詞": "Counters", "スポーツ": "Sports", "銀行": "Bank", "法律": "Law", "車": "Cars", "色": "Colors", "味": "Tastes", "音楽": "Music", "家電": "Appliances", "動物": "Animals", "食べ物": "Food", "肉・魚": "Meat · Seafood", "学校の物": "School things", "職業": "Jobs", "工具": "Tools", "体": "Body", "天気": "Weather", "時間": "Time", "一般": "General", "緊急": "Emergency", "警察": "Police", "道案内": "Directions", "レストラン": "Restaurant", "料理": "Cooking", "ホテル": "Hotel", "交流": "Communication", "仕事": "Work", "面接": "Interview", "学校": "School", "運動": "Exercise", "買い物": "Shopping", "恋愛": "Romance", "けんか": "Arguments", "挨拶": "Greetings", "自己紹介": "Self-intro", "市役所": "City hall", "入管": "Immigration · Visa", "駅・電車": "Station · Train", "タクシー": "Taxi", "空港": "Airport", "電話": "Phone calls", "郵便局": "Post office", "不動産": "Renting a home", "コンビニ": "Convenience store", "薬局": "Pharmacy", "美容院": "Hair salon", "工場": "Factory", "介護": "Elderly care", "歯医者": "Dentist", "保育園": "Daycare · Kids", "車の運転": "Driving", "投票": "Polls", "Podcast": "Podcast", "文法": "Grammar", "漢字": "Kanji", "歌": "Songs", "Mirror": "Reverse talk", "反対語": "Antonyms", "若者言葉": "Slang", "Quiz JP": "Japanese quiz", "Quiz MM": "Myanmar quiz", "有名人": "Celebrities", "Matching": "Word matching", "Scramble": "Word scramble", "TextMe": "Chat practice", "Wow": "Fun facts", "書き取り": "Dictation", "宿題": "Homework", "物語": "Stories", "MYAING": "About the app", "ことわざ": "Proverbs", "Dark Side": "Rude words", "注意": "Cautions", "試験": "Exams", "JLPT模試": "Mock exam · N5–N1", "聴解": "Listening", "敬語": "Keigo (polite)", "オノマトペ": "Onomatopoeia", "辞書": "Japanese · Myanmar · English", "ミャンマー暦": "Myanmar calendar", "仏教": "Dhamma", "知識": "Knowledge", "ミャンマー": "About Myanmar"};
+const TILE_EN={"文法": "Grammar N5–N1", "ゲーム": "Games (Kana · Kanji)", "助詞": "Particles N5–N1", "総まとめN1": "N1 Vocabulary (So-matome)", "Driving": "Driving license", "JLPT Tips": "JLPT Tips", "Star": "Stars & Spin", "年金": "Pension", "ヘアカラー": "Hair color", "かぜ薬": "Cold medicine", "Listening": "Listening", "JLPT Game": "Leaderboard", "Reading": "Reading", "Study Room": "Study Room", "Note": "Note", "Business Japanese": "Business Japanese", "Contract": "Work Contract", "Same Meaning": "Same Meaning", "Verbs": "Verbs", "Readings Vocabulary": "Readings Vocabulary", "漢字": "Kanji", "歌": "Songs", "PDF": "PDF lessons", "過去問": "Official past questions", "JLPT": "Study by level", "服": "Clothes", "買い物": "Shopping", "家": "Home", "駅・交通": "Station · Transport", "自然": "Nature", "旅行": "Travel", "ひらがな": "Hiragana", "カタカナ": "Katakana", "ローマ字": "Romaji", "五十音": "Alphabet", "活用": "Verb forms", "JLPT N5": "Level 5 · Beginner", "JLPT N4": "Level 4 · Elementary", "JLPT N3": "Level 3 · Intermediate", "JLPT N2": "Level 2 · Upper-int.", "JLPT N1": "Level 1 · Advanced", "家族": "Family", "名前": "Names", "誕生日": "2027 Birthday Luck", "給与明細": "Payslip words", "わたし・あなた": "I · You · He/She", "言い方いろいろ": "Many ways to say it", "スマホ設定": "Phone settings", "国": "Countries", "台所": "Kitchen", "果物": "Fruit", "野菜": "Vegetables", "病院": "Hospital", "薬": "Medicine", "花": "Flowers", "化粧品": "Cosmetics", "家具": "Furniture", "感情": "Emotions", "数字": "Numbers", "助数詞": "Counters", "スポーツ": "Sports", "銀行": "Bank", "法律": "Law", "車": "Cars", "色": "Colors", "味": "Tastes", "音楽": "Music", "家電": "Appliances", "動物": "Animals", "食べ物": "Food", "肉・魚": "Meat · Seafood", "学校の物": "School things", "職業": "Jobs", "工具": "Tools", "体": "Body", "天気": "Weather", "時間": "Time", "一般": "General", "緊急": "Emergency", "警察": "Police", "道案内": "Directions", "レストラン": "Restaurant", "料理": "Cooking", "ホテル": "Hotel", "交流": "Communication", "仕事": "Work", "面接": "Interview", "学校": "School", "運動": "Exercise", "買い物": "Shopping", "恋愛": "Romance", "けんか": "Arguments", "挨拶": "Greetings", "自己紹介": "Self-intro", "市役所": "City hall", "入管": "Immigration · Visa", "駅・電車": "Station · Train", "タクシー": "Taxi", "空港": "Airport", "電話": "Phone calls", "郵便局": "Post office", "不動産": "Renting a home", "コンビニ": "Convenience store", "薬局": "Pharmacy", "美容院": "Hair salon", "工場": "Factory", "介護": "Elderly care", "歯医者": "Dentist", "保育園": "Daycare · Kids", "車の運転": "Driving", "投票": "Polls", "Podcast": "Podcast", "文法": "Grammar", "漢字": "Kanji", "歌": "Songs", "Mirror": "Reverse talk", "反対語": "Antonyms", "若者言葉": "Slang", "Quiz JP": "Japanese quiz", "Quiz MM": "Myanmar quiz", "有名人": "Celebrities", "Matching": "Word matching", "Scramble": "Word scramble", "TextMe": "Chat practice", "Wow": "Fun facts", "書き取り": "Dictation", "宿題": "Homework", "物語": "Stories", "MYAING": "About the app", "ことわざ": "Proverbs", "Dark Side": "Rude words", "注意": "Cautions", "試験": "Exams", "JLPT模試": "Mock exam · N5–N1", "聴解": "Listening", "敬語": "Keigo (polite)", "オノマトペ": "Onomatopoeia", "辞書": "Japanese · Myanmar · English", "ミャンマー暦": "Myanmar calendar", "仏教": "Dhamma", "知識": "Knowledge", "ミャンマー": "About Myanmar"};
 const TILE_JP={'総まとめN1':['総まとめ N1','そうまとめ'],'Same Meaning':['類義語','るいぎご'],'Verbs':['動詞','どうし'],'Readings Vocabulary':['読み方','よみかた'],'辞書':['ど Dictionary','じしょ'],'Podcast':['ポッドキャスト',''],'Mirror':['逆さ言葉','さかさことば'],'Quiz JP':['日本語クイズ','にほんご'],'Quiz MM':['ミャンマークイズ',''],'Matching':['マッチング',''],'Scramble':['並べ替え','ならべかえ'],'TextMe':['メッセージ',''],'Wow':['豆知識','まめちしき'],'Dark Side':['裏側','うらがわ'],'JLPT模試':['JLPT Exam','もぎしけん'],'MYAING':[DKW,'どこでも'],'Note':['ノート','メモ'],'Business Japanese':['ビジネス日本語','ビジネスにほんご'],'Contract':['雇用契約書','こようけいやくしょ'],'Study Room':['自習室','じしゅうしつ'],'Star':['スター','スター'],'Reading':['読み物','よみもの'],'JLPT Game':['ランキング',''],'Listening':['リスニング',''],'JLPT Tips':['合格のコツ','ごうかくのコツ'],'Driving':['運転免許','うんてんめんきょ']};
 const BETA_T=new Set(['有名人','TextMe']);
 const tileSub=(j,m)=>T(m,'',TILE_EN[j]||m);
 const HOME=['ဗုဒ္ဓံ သရဏံ ဂစ္ဆာမိ','ဓမ္မံ သရဏံ ဂစ္ဆာမိ','သံဃံ သရဏံ ဂစ္ဆာမိ'];
 const HOME_TR=[['Buddhaṃ saraṇaṃ gacchāmi','仏（ブッダ）に帰依いたします','I go to the Buddha for refuge'],['Dhammaṃ saraṇaṃ gacchāmi','法（ダンマ）に帰依いたします','I go to the Dhamma for refuge'],['Saṅghaṃ saraṇaṃ gacchāmi','僧（サンガ）に帰依いたします','I go to the Sangha for refuge']];
 const DATA={
-words:[['あ', 'ひらがな', 'Hiragana', 'ဟီရာဂါနာ'], ['ア', 'カタカナ', 'Katakana', 'ခါတခါနာ'], ['A', 'ローマ字', 'Romaji', 'ရိုမာဂျိ'], ['活', '活用', 'かつよう', 'ကြိယာပုံစံ'], ['五', '五十音', 'ごじゅうおん', 'အက္ခရာ'], ['漢', '漢字', 'かんじ', 'ခန်းဂျီ'], ['辞', '辞書', 'じしょ', 'အဘိဓာန်'], ['暦', 'ミャンマー暦', 'ミャンマーごよみ', 'မြန်မာ ပြက္ခဒိန်'], ['🎂', '誕生日', 'たんじょうび', 'မွေးနေ့ကံ 2027'], ['💴', '給与明細', 'きゅうよめいさい', 'လစာစာရွက်'], ['🙋', 'わたし・あなた', 'わたし・あなた', 'ငါ · မင်း · သူ ပြောပုံ'], ['🌈', '言い方いろいろ', 'いいかたいろいろ', 'ပြောပုံ အမျိုးမျိုး'], ['仏', '仏教', 'ぶっきょう', 'ဓမ္မ'], ['知', '知識', 'ちしき', 'ဗဟုသုတ'], ['緬', 'ミャンマー', '', 'မြန်မာ့အကြောင်း'], ['🗾', '日本', 'にほん', 'ဂျပန်'], ['家', '家族', 'かぞく', 'မိသားစု'], ['名', '名前', 'なまえ', 'အမည်များ'], ['国', '国', 'くに', 'နိုင်ငံ'], ['台', '台所', 'だいどころ', 'မီးဖိုချောင်'], ['果', '果物', 'くだもの', 'သစ်သီး'], ['菜', '野菜', 'やさい', 'အသီးအရွက်'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['薬', '薬', 'くすり', 'ဆေး'], ['花', '花', 'はな', 'ပန်း'], ['粧', '化粧品', 'けしょうひん', 'အလှပြင်ပစ္စည်း'], ['具', '家具', 'かぐ', 'ပရိဘောဂ'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['数', '数字', 'すうじ', 'ကိန်းဂဏန်း'], ['個', '助数詞', 'じょすうし', 'အရေအတွက်'], ['球', 'スポーツ', '', 'အားကစား'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['法', '法律', 'ほうりつ', 'ဥပဒေ'], ['車', '車', 'くるま', 'ကား'], ['色', '色', 'いろ', 'အရောင်'], ['味', '味', 'あじ', 'အရသာ'], ['音', '音楽', 'おんがく', 'ဂီတ'], ['📄', 'PDF', 'ピーディーエフ', 'PDF သင်ခန်းစာ'], ['過', '過去問', 'かこもん', 'မေးခွန်းဟောင်း'], ['助', '助詞', 'じょし', 'ဝိဘတ် N5–N1'], ['遊', 'ゲーム', '', 'ဂိမ်း · かな・漢字'], ['電', '家電', 'かでん', 'လျှပ်စစ်ပစ္စည်း'], ['動', '動物', 'どうぶつ', 'တိရစ္ဆာန်'], ['食', '食べ物', 'たべもの', 'အစားအစာ'], ['肉', '肉・魚', 'にく・さかな', 'အသား・ငါး'], ['職', '職業', 'しょくぎょう', 'အလုပ်အကိုင်'], ['校', '学校の物', 'がっこうのもの', 'ကျောင်းသုံးပစ္စည်း'], ['工', '工具', 'こうぐ', 'ကိရိယာ'], ['体', '体', 'からだ', 'ခန္ဓာကိုယ်'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['時', '時間', 'じかん', 'အချိန်'], ['服', '服', 'ふく', 'အဝတ်အစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['宅', '家', 'いえ', 'အိမ်'], ['駅', '駅・交通', 'えき・こうつう', 'ဘူတာ・သွားလာရေး'], ['山', '自然', 'しぜん', 'သဘာဝ'], ['旅', '旅行', 'りょこう', 'ခရီးသွား'], ['年', '年金', 'ねんきん', 'ပင်စင်'], ['染', 'ヘアカラー', '', 'ဆံပင်ဆိုးဆေး'], ['風', 'かぜ薬', 'かぜぐすり', 'အအေးမိဆေး']],
+words:[['あ', 'かな', 'かな', 'ကာနာ · ရိုမာဂျိ'], ['あ', 'ひらがな', 'Hiragana', 'ဟီရာဂါနာ'], ['ア', 'カタカナ', 'Katakana', 'ခါတခါနာ'], ['A', 'ローマ字', 'Romaji', 'ရိုမာဂျိ'], ['活', '活用', 'かつよう', 'ကြိယာပုံစံ'], ['五', '五十音', 'ごじゅうおん', 'အက္ခရာ'], ['漢', '漢字', 'かんじ', 'ခန်းဂျီ'], ['辞', '辞書', 'じしょ', 'အဘိဓာန်'], ['暦', 'ミャンマー暦', 'ミャンマーごよみ', 'မြန်မာ ပြက္ခဒိန်'], ['🎂', '誕生日', 'たんじょうび', 'မွေးနေ့ကံ 2027'], ['💴', '給与明細', 'きゅうよめいさい', 'လစာစာရွက်'], ['🙋', 'わたし・あなた', 'わたし・あなた', 'ငါ · မင်း · သူ ပြောပုံ'], ['🌈', '言い方いろいろ', 'いいかたいろいろ', 'ပြောပုံ အမျိုးမျိုး'], ['📱', 'スマホ設定', 'スマホせってい', 'ဖုန်း Settings'], ['仏', '仏教', 'ぶっきょう', 'ဓမ္မ'], ['知', '知識', 'ちしき', 'ဗဟုသုတ'], ['緬', 'ミャンマー', '', 'မြန်မာ့အကြောင်း'], ['🗾', '日本', 'にほん', 'ဂျပန်'], ['家', '家族', 'かぞく', 'မိသားစု'], ['名', '名前', 'なまえ', 'အမည်များ'], ['国', '国', 'くに', 'နိုင်ငံ'], ['台', '台所', 'だいどころ', 'မီးဖိုချောင်'], ['果', '果物', 'くだもの', 'သစ်သီး'], ['菜', '野菜', 'やさい', 'အသီးအရွက်'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['💊', 'くすり', 'くすり', 'ဆေး · အအေးမိဆေး'], ['薬', '薬', 'くすり', 'ဆေး'], ['花', '花', 'はな', 'ပန်း'], ['粧', '化粧品', 'けしょうひん', 'အလှပြင်ပစ္စည်း'], ['具', '家具', 'かぐ', 'ပရိဘောဂ'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['数', '数字', 'すうじ', 'ကိန်းဂဏန်း'], ['個', '助数詞', 'じょすうし', 'အရေအတွက်'], ['球', 'スポーツ', '', 'အားကစား'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['法', '法律', 'ほうりつ', 'ဥပဒေ'], ['車', '車', 'くるま', 'ကား'], ['色', '色', 'いろ', 'အရောင်'], ['味', '味', 'あじ', 'အရသာ'], ['音', '音楽', 'おんがく', 'ဂီတ'], ['📄', 'PDF', 'ピーディーエフ', 'PDF သင်ခန်းစာ'], ['過', '過去問', 'かこもん', 'မေးခွန်းဟောင်း'], ['助', '助詞', 'じょし', 'ဝိဘတ် N5–N1'], ['遊', 'ゲーム', '', 'ဂိမ်း · かな・漢字'], ['電', '家電', 'かでん', 'လျှပ်စစ်ပစ္စည်း'], ['動', '動物', 'どうぶつ', 'တိရစ္ဆာန်'], ['食', '食べ物', 'たべもの', 'အစားအစာ'], ['肉', '肉・魚', 'にく・さかな', 'အသား・ငါး'], ['職', '職業', 'しょくぎょう', 'အလုပ်အကိုင်'], ['校', '学校の物', 'がっこうのもの', 'ကျောင်းသုံးပစ္စည်း'], ['工', '工具', 'こうぐ', 'ကိရိယာ'], ['体', '体', 'からだ', 'ခန္ဓာကိုယ်'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['時', '時間', 'じかん', 'အချိန်'], ['服', '服', 'ふく', 'အဝတ်အစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['宅', '家', 'いえ', 'အိမ်'], ['駅', '駅・交通', 'えき・こうつう', 'ဘူတာ・သွားလာရေး'], ['山', '自然', 'しぜん', 'သဘာဝ'], ['旅', '旅行', 'りょこう', 'ခရီးသွား'], ['年', '年金', 'ねんきん', 'ပင်စင်'], ['運', 'Driving', 'うんてんめんきょ', 'ကားလိုင်စင်'], ['染', 'ヘアカラー', '', 'ဆံပင်ဆိုးဆေး'], ['風', 'かぜ薬', 'かぜぐすり', 'အအေးမိဆေး']],
 talk:[['般', '一般', 'いっぱん', 'သာမန်သုံး'], ['病', '病院', 'びょういん', 'ဆေးရုံ'], ['急', '緊急', 'きんきゅう', 'အရေးပေါ်'], ['警', '警察', 'けいさつ', 'ရဲစခန်း'], ['道', '道案内', 'みちあんない', 'လမ်းမေးခြင်း'], ['食', 'レストラン', '', 'စားသောက်ဆိုင်'], ['銀', '銀行', 'ぎんこう', 'ဘဏ်'], ['料', '料理', 'りょうり', 'ချက်ပြုတ်ခြင်း'], ['宿', 'ホテル', '', 'ဟော်တယ်'], ['交', '交流', 'こうりゅう', 'ဆက်သွယ်ခြင်း'], ['働', '仕事', 'しごと', 'လုပ်ငန်းသုံး'], ['面', '面接', 'めんせつ', 'အင်တာဗျူး'], ['学', '学校', 'がっこう', 'ကျောင်း'], ['情', '感情', 'かんじょう', 'စိတ်ခံစားမှု'], ['天', '天気', 'てんき', 'ရာသီဥတု'], ['運', '運動', 'うんどう', 'အားကစား'], ['買', '買い物', 'かいもの', 'ဈေးဝယ်'], ['恋', '恋愛', 'れんあい', 'ချစ်ရေးချစ်ရာ'], ['喧', 'けんか', '', 'ရန်ဖြစ်ခြင်း'], ['挨', '挨拶', 'あいさつ', 'နှုတ်ဆက်ခြင်း'], ['紹', '自己紹介', 'じこしょうかい', 'ကိုယ်မိတ်ဆက်'], ['役', '市役所', 'しやくしょ', 'မြို့နယ်ရုံး'], ['入', '入管', 'にゅうかん', 'လဝက · ဗီဇာ'], ['駅', '駅・電車', 'えき・でんしゃ', 'ဘူတာ · ရထား'], ['車', 'タクシー', '', 'တက္ကစီ'], ['空', '空港', 'くうこう', 'လေဆိပ်'], ['電', '電話', 'でんわ', 'ဖုန်းပြော'], ['郵', '郵便局', 'ゆうびんきょく', 'စာတိုက်'], ['家', '不動産', 'ふどうさん', 'အိမ်ငှား'], ['店', 'コンビニ', '', 'ကွန်ဗီနီ'], ['薬', '薬局', 'やっきょく', 'ဆေးဆိုင်'], ['髪', '美容院', 'びよういん', 'ဆံပင်ညှပ်ဆိုင်'], ['工', '工場', 'こうじょう', 'စက်ရုံ'], ['介', '介護', 'かいご', 'သက်ကြီးစောင့်ရှောက်ရေး'], ['歯', '歯医者', 'はいしゃ', 'သွားဆေးခန်း'], ['保', '保育園', 'ほいくえん', 'မူကြို · ကလေးထိန်း'], ['転', '車の運転', 'くるまのうんてん', 'ကားမောင်းခြင်း'], ['店', 'Apple Store', 'アップルストア', 'iPhone · iPad ဝယ်ခြင်း']],
-practice:[['習', 'Study Room', 'じしゅうしつ', 'လေ့လာခန်း'], ['⭐', 'Star', 'スター', 'Star စု · Spin · Pro လဲ'], ['🏆', 'JLPT Game', 'ランキング', 'အဆင့်ပြိုင်ပွဲ'], ['試', 'JLPT', 'N5 – N1', 'အဆင့်လိုက် လေ့လာ'], ['模', 'JLPT模試', 'もし', 'JLPT စမ်းသပ်စာမေးပွဲ · N5–N1'], ['票', '投票', 'とうひょう', 'စစ်တမ်း'], ['声', 'Podcast', 'ポッドキャスト', 'အသံဖိုင်'], ['鏡', 'Mirror', 'ミラー', 'ပြောင်းပြန်စကား'], ['反', '反対語', 'はんたいご', 'ဆန့်ကျင်ဘက်'], ['類', 'Same Meaning', 'るいぎご', 'အဓိပ္ပာယ်တူ'], ['総', '総まとめN1', 'そうまとめ', 'N1 ဝေါဟာရ'], ['動', 'Verbs', 'どうし', 'ကြိယာ'], ['読', 'Readings Vocabulary', 'よみかた', 'ခန်းဂျိ ဖတ်နည်း ဝေါဟာရ'], ['若', '若者言葉', 'わかものことば', 'လူငယ်သုံးစကား'], ['問', 'Quiz JP', 'クイズ', 'ဂျပန် မေးခွန်း'], ['答', 'Quiz MM', 'クイズ', 'မြန်မာ မေးခွန်း'], ['星', '有名人', 'ゆうめいじん', 'ထင်ရှားသူများ'], ['合', 'Matching', 'マッチング', 'စကားလုံးတွဲမယ်'], ['並', 'Scramble', 'ならべかえ', 'စာလုံးစီမယ်'], ['信', 'TextMe', 'メッセージ', 'စာပို့မယ်'], ['豆', 'Wow', 'まめちしき', 'စိတ်ဝင်စားစရာ'], ['書', '書き取り', 'かきとり', 'ကြားရာရေး'], ['宿', '宿題', 'しゅくだい', 'အိမ်စာ'], ['物', '物語', 'ものがたり', 'ပုံပြင်များ'], ['章', 'Reading', 'よみもの', 'စာဖတ်'], ['聴', 'Listening', 'リスニング', 'နားထောင်'], ['技', 'JLPT Tips', 'ごうかくのコツ', 'JLPT အမှတ်ယူနည်း'], ['運', 'Driving', 'うんてんめんきょ', 'ကားလိုင်စင်'], ['ど', 'MYAING', 'どこでも', 'App အကြောင်း'], ['記', 'Note', 'メモ', 'မှတ်စု'], ['諺', 'ことわざ', '', 'စကားပုံများ'], ['裏', 'Dark Side', 'うらがわ', 'ရိုင်းစိုင်းစကား'], ['注', '注意', 'ちゅうい', 'သတိပြုရန်'], ['敬', '敬語', 'けいご', 'ယဉ်ကျေးစကား'], ['商', 'Business Japanese', 'ビジネス', 'လုပ်ငန်းသုံး'], ['契', 'Contract', 'けいやく', 'အလုပ်စာချုပ်'], ['音', 'オノマトペ', '', 'အသံစွဲစကား']]
+practice:[['習', 'Study Room', 'じしゅうしつ', 'လေ့လာခန်း'], ['⭐', 'Star', 'スター', 'Star စု · Spin · Pro လဲ'], ['🏆', 'JLPT Game', 'ランキング', 'အဆင့်ပြိုင်ပွဲ'], ['試', 'JLPT', 'N5 – N1', 'အဆင့်လိုက် လေ့လာ'], ['模', 'JLPT模試', 'もし', 'JLPT စမ်းသပ်စာမေးပွဲ · N5–N1'], ['票', '投票', 'とうひょう', 'စစ်တမ်း'], ['声', 'Podcast', 'ポッドキャスト', 'အသံဖိုင်'], ['鏡', 'Mirror', 'ミラー', 'ပြောင်းပြန်စကား'], ['反', '反対語', 'はんたいご', 'ဆန့်ကျင်ဘက်'], ['類', 'Same Meaning', 'るいぎご', 'အဓိပ္ပာယ်တူ'], ['総', '総まとめN1', 'そうまとめ', 'N1 ဝေါဟာရ'], ['動', 'Verbs', 'どうし', 'ကြိယာ'], ['読', 'Readings Vocabulary', 'よみかた', 'ခန်းဂျိ ဖတ်နည်း ဝေါဟာရ'], ['若', '若者言葉', 'わかものことば', 'လူငယ်သုံးစကား'], ['❓', 'クイズ', 'クイズ', 'ဂျပန် · မြန်မာ Quiz'], ['問', 'Quiz JP', 'クイズ', 'ဂျပန် မေးခွန်း'], ['答', 'Quiz MM', 'クイズ', 'မြန်မာ မေးခွန်း'], ['星', '有名人', 'ゆうめいじん', 'ထင်ရှားသူများ'], ['合', 'Matching', 'マッチング', 'စကားလုံးတွဲမယ်'], ['並', 'Scramble', 'ならべかえ', 'စာလုံးစီမယ်'], ['信', 'TextMe', 'メッセージ', 'စာပို့မယ်'], ['豆', 'Wow', 'まめちしき', 'စိတ်ဝင်စားစရာ'], ['書', '書き取り', 'かきとり', 'ကြားရာရေး'], ['宿', '宿題', 'しゅくだい', 'အိမ်စာ'], ['物', '物語', 'ものがたり', 'ပုံပြင်များ'], ['章', 'Reading', 'よみもの', 'စာဖတ်'], ['聴', 'Listening', 'リスニング', 'နားထောင်'], ['技', 'JLPT Tips', 'ごうかくのコツ', 'JLPT အမှတ်ယူနည်း'], ['記', 'Note', 'メモ', 'မှတ်စု'], ['諺', 'ことわざ', '', 'စကားပုံများ'], ['裏', 'Dark Side', 'うらがわ', 'ရိုင်းစိုင်းစကား'], ['敬', '敬語', 'けいご', 'ယဉ်ကျေးစကား'], ['商', 'Business Japanese', 'ビジネス', 'လုပ်ငန်းသုံး'], ['契', 'Contract', 'けいやく', 'အလုပ်စာချုပ်'], ['音', 'オノマトペ', '', 'အသံစွဲစကား']]
 };
 /* v1.0.333 文法 tile (Dev app only for now) */
 try{{const a=DATA.words,i=a.findIndex(x=>x[1]==='助詞');a.splice(i<0?a.length:i,0,['文','文法','ぶんぽう','သဒ္ဒါ N5–N1'])}}catch(e){} /* v1.0.342: all apps */
@@ -35346,6 +35350,28 @@ const BETA_PAUSE=true;
 function betaOn(){if(BETA_PAUSE)return false;if(!['words','talk','practice'].includes(S.tab)||S.q)return false;try{if(Date.now()-(+localStorage.getItem('myaing.betax')||0)<3*864e5)return false}catch(e){}return true}
 function betaTxt(){return T('🆕 Update — App ကို အမြဲ အဆင့်မြှင့်၊ feature အသစ်တွေ ထပ်ထည့်နေပါတယ် (Study Room ၊ Note ၊ Business Japanese အသစ်!)။ တချို့ Label/Function က စမ်းသပ်ဆဲမို့ မပြည့်စုံသေးတာ ရှိနိုင်ပါတယ် — အဆင်မပြေတာ/အကြံပြုချက် ရှိရင် Telegram ကနေ ပြောပြပါ 🙏','🆕 アップデート — アプリは常に改良中で、新機能を追加しています（Study Room・Note・ビジネス日本語を追加！）。一部の項目・機能は試用中で未完成の場合があります。ご意見・不具合はTelegramまで 🙏','🆕 Update — the app keeps improving with new features added (Study Room, Note & Business Japanese just landed!). A few labels/features are still being tested and may be incomplete — tell us anything on Telegram 🙏')
    +(PLAY()?'':'　✦　'+T('Pro ကို ၁ လ စမ်းသုံးဖို့ Code ရယူချင်ရင် Telegram ကနေ Admin ကို ဆက်သွယ်ပါ 🙏','Proを1か月お試しできるコードは、TelegramでAdminにご連絡ください 🙏','For a 1-month Pro trial code, contact the Admin on Telegram 🙏'))}
+/* v1.0.420 Discovery & Pro in sections: header + side-scroll row (no hidden folders). Top row = most used. Unlisted tiles go to "More". */
+const HUBS={'かな':{t:'words',k:['ひらがな','カタカナ','ローマ字','五十音'],n:['かな・ローマ字','かな','Kana & romaji']},'クイズ':{t:'practice',k:['Quiz JP','Quiz MM'],n:['ဂျပန် · မြန်မာ Quiz','クイズ','Quiz']},'くすり':{t:'words',k:['薬','かぜ薬'],n:['ဆေး','くすり','Medicine']}};
+const HUBK={};Object.keys(HUBS).forEach(h=>HUBS[h].k.forEach(j=>HUBK[j]=h));
+const SECG={words:[
+['⭐',['အသုံးများ','よく使う','Most used'],['辞書','かな','漢字','助詞','活用','過去問']],
+['📘',['သဒ္ဒါ · ပြောပုံ','文法・言い方','Grammar & ways to say'],['ゲーム','わたし・あなた','言い方いろいろ','助数詞','PDF']],
+['🏠',['နေ့စဉ်ဘဝ','くらし','Daily life'],['給与明細','スマホ設定','銀行','年金','法律','Driving','病院','くすり']],
+['🇲🇲',['မြန်မာ · ဂျပန်','ミャンマー・日本','Myanmar & Japan'],['ミャンマー','ミャンマー暦','仏教','日本','知識','誕生日']],
+['👪',['လူ · ခန္ဓာ','人・からだ','People & body'],['家族','名前','体','感情','職業']],
+['🍱',['အစားအစာ','食べ物','Food'],['食べ物','肉・魚','果物','野菜','台所','味']],
+['🛋️',['အိမ် · ပစ္စည်း','家・もの','Home & things'],['家','家具','家電','工具','学校の物','服','化粧品','ヘアカラー']],
+['🚉',['မြို့ · ခရီး','街・旅行','Town & travel'],['駅・交通','車','旅行','買い物','国']],
+['🌿',['သဘာဝ · အခြေခံ','自然・基本','Nature & basics'],['自然','天気','動物','花','数字','時間','色','スポーツ','音楽']]],
+practice:[
+['⭐',['အသုံးများ','よく使う','Most used'],['JLPT','JLPT模試','Study Room','クイズ','Reading','Listening']],
+['🎯',['JLPT','JLPT','JLPT'],['JLPT Game','JLPT Tips','総まとめN1','Readings Vocabulary']],
+['📚',['လေ့လာခန်း','勉強部屋','Study'],['Note','宿題','Star']],
+['🎮',['ပဟေဠိ · ဂိမ်း','クイズ・ゲーム','Quiz & games'],['Matching','Scramble','Mirror']],
+['🎧',['ဖတ် · နားထောင်','読む・聞く','Read & listen'],['書き取り','物語','Podcast']],
+['💬',['စကားလုံး','ことば','Words'],['反対語','Same Meaning','Verbs','ことわざ','オノマトペ','若者言葉','Dark Side']],
+['💼',['အလုပ်','仕事','Work'],['Business Japanese','敬語','Contract']],
+['🎉',['ပျော်စရာ','楽しむ','Fun'],['Wow','有名人','TextMe','投票']]]};
 function body(){
   const q=S.q.trim().toLowerCase();const anim=S.tab!==LAST_ANIM_TAB&&!q;LAST_ANIM_TAB=S.tab;
   const bOn=betaOn();
@@ -35356,8 +35382,15 @@ function body(){
     const r=HOME.filter(t=>!q||t.includes(q));
     h+=r.length?`${q?'':homeNews()}<div class="list pray">${r.map(t=>{const x=HOME_TR[HOME.indexOf(t)];const fx=LC()==='ja'||LC()==='en';return fx&&x?`<button class="mm" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px 0"><span style="font-size:18px;letter-spacing:.3px">${x[0]}</span><small style="font-size:12.5px;font-weight:600;color:#9A7A3A">${T('',x[1],x[2])}</small></button>`:`<button class="mm">${t}</button>`}).join('')}${q?'':homeTop()}</div>`:`${owlEmpty()}`;
   }else{
-    const r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q)).filter(([,j])=>S.tab!=='talk'||q?!(q&&DGRPT[j]):(S.dgrp?DGRP[j]===S.dgrp:!DGRP[j]));if(S.tab==='talk'&&S.dgrp&&!q)h+=`<div style="display:flex;align-items:center;gap:8px;margin:2px 4px 10px"><button data-dgrp="" style="border:none;background:#EEF2FA;color:#1E5BD8;font-weight:800;border-radius:12px;padding:8px 14px;font-size:14px">← ${T('နောက်သို့','戻る','Back')}</button><b style="font-size:16px">🇯🇵 ${T('ဂျပန်・မြန်မာ','日本・ミャンマー','Japan・Myanmar')} 🇲🇲</b></div>`;
-    h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile" data-say="${esc({'ひらがな':'ひらがな','カタカナ':'カタカナ','ローマ字':'ローマじ','JLPT':'ジェイエルピーティー'}[j]||(TILE_JP[j]?(TILE_JP[j][1]||TILE_JP[j][0]):(k||j)))}" style="--i:${Math.min(n,14)};--r:${Math.min(Math.floor(n/3),6)};--c:${n%3};--tc:${t[1]};--ic:${ICC(S.tab,j)||t[1]}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${j==='誕生日'?' data-a="bday"':''}${j==='給与明細'?' data-a="kyuyo"':''}${j==='わたし・あなた'?' data-a="nin"':''}${j==='言い方いろいろ'?' data-a="ik"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='漢字'&&S.tab==='words'?' data-a="kall"':''}${j==='PDF'?' data-a="pdf"':''}${j==='過去問'?' data-a="kako"':''}${j==='助詞'?' data-a="joshi"':''}${j==='文法'&&S.tab==='words'?' data-a="gram"':''}${j==='ゲーム'?' data-a="kgame"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${FLI(S.tab,j)||i}</span><span class="jp"${j==='辞書'?' style="font-size:15px;white-space:nowrap;letter-spacing:-.2px"':''}${j!=='辞書'&&TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span>${BETA_T.has(j)?'<span class="mmt"><b class="betab">Beta</b></span>':`<span class="mmt mm">${tileSub(j,m)}</span>`}${S.tab==='practice'&&!PRO_OK&&!BETA_T.has(j)&&j!=='MYAING'&&j!=='Note'&&j!=='Study Room'&&j!=='JLPT Game'&&j!=='Star'?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`}).join('')}</div>`:`${owlEmpty()}`;
+    let r=DATA[S.tab].filter(([,j,k,m])=>!q||(j+k+m+(TILE_JP[j]||[]).join('')+(TILE_EN[j]||'')).toLowerCase().includes(q)).filter(([,j])=>S.tab!=='talk'||q?!(q&&DGRPT[j]):(S.dgrp?DGRP[j]===S.dgrp:!DGRP[j]));if(S.tab==='talk'&&S.dgrp&&!q)h+=`<div style="display:flex;align-items:center;gap:8px;margin:2px 4px 10px"><button data-dgrp="" style="border:none;background:#EEF2FA;color:#1E5BD8;font-weight:800;border-radius:12px;padding:8px 14px;font-size:14px">← ${T('နောက်သို့','戻る','Back')}</button><b style="font-size:16px">🇯🇵 ${T('ဂျပန်・မြန်မာ','日本・ミャンマー','Japan・Myanmar')} 🇲🇲</b></div>`;
+    const tileF=([i,j,k,m],n)=>{const t=TONES[n%6];const kk={'ひらがな':'hira','カタカナ':'kata','ローマ字':'roma'}[j];return `<button class="tile"${HUBS[j]?` data-hub="${j}"`:''}${j==='Driving'&&S.tab==='words'?' data-pro="Driving"':''} data-say="${esc({'ひらがな':'ひらがな','カタカナ':'カタカナ','ローマ字':'ローマじ','JLPT':'ジェイエルピーティー'}[j]||(TILE_JP[j]?(TILE_JP[j][1]||TILE_JP[j][0]):(k||j)))}" style="--i:${Math.min(n,14)};--r:${Math.min(Math.floor(n/3),6)};--c:${n%3};--tc:${t[1]};--ic:${ICC(S.tab,j)||t[1]}"${j==='TextMe'?' data-a="chats"':''}${j==='五十音'?' data-a="goju"':''}${j==='名前'?' data-a="names"':''}${j==='誕生日'?' data-a="bday"':''}${j==='給与明細'?' data-a="kyuyo"':''}${j==='わたし・あなた'?' data-a="nin"':''}${j==='言い方いろいろ'?' data-a="ik"':''}${j==='スマホ設定'?' data-a="sset"':''}${S.tab==='words'&&XPT[j]?` data-xp="${XPT[j]}"`:''}${j==='活用'?' data-a="katsu"':''}${j==='歌'?' data-a="uta"':''}${j==='漢字'&&S.tab==='words'?' data-a="kall"':''}${j==='PDF'?' data-a="pdf"':''}${j==='過去問'?' data-a="kako"':''}${j==='助詞'?' data-a="joshi"':''}${j==='文法'&&S.tab==='words'?' data-a="gram"':''}${j==='ゲーム'?' data-a="kgame"':''}${S.tab==='words'&&TOPICS[j]?` data-topic="${j}"`:''}${S.tab==='talk'?` data-dlg="${j}"`:''}${S.tab==='practice'?` data-pro="${j}"`:''}${j==='JLPT'?' data-jhub="1"':''}${j.startsWith('JLPT N')?` data-jl="${j.slice(-1)}"`:''}${kk?` data-k="${kk}"`:''}><span class="ic" style="background:${t[0]};color:${t[1]}">${FLI(S.tab,j)||i}</span><span class="jp"${j==='辞書'?' style="font-size:15px;white-space:nowrap;letter-spacing:-.2px"':''}${j!=='辞書'&&TILE_JP[j]&&TILE_JP[j][0].length>=7&&/[^\x00-\x7f]/.test(TILE_JP[j][0])?` style="font-size:${TILE_JP[j][0].length>=8?12:13.5}px;letter-spacing:-.4px;white-space:nowrap"`:''}>${TILE_JP[j]?TILE_JP[j][0]:j}</span><span class="kana">${S.furi?(TILE_JP[j]?TILE_JP[j][1]:k):''}</span>${BETA_T.has(j)?'<span class="mmt"><b class="betab">Beta</b></span>':`<span class="mmt mm">${tileSub(j,m)}</span>`}${(S.tab==='practice'||j==='Driving')&&!PRO_OK&&!BETA_T.has(j)&&j!=='MYAING'&&j!=='Note'&&j!=='Study Room'&&j!=='JLPT Game'&&j!=='Star'?'<span class="crown">👑</span>':''}${THD()?thTile():''}</button>`};
+    if(S.tab!=='talk'){const hb=S.hub&&HUBS[S.hub]&&HUBS[S.hub].t===S.tab&&!q?S.hub:'';
+      if(hb){const H=HUBS[hb],it=H.k.map(j=>DATA[S.tab].find(x=>x[1]===j)).filter(Boolean);
+        return h+`<div style="display:flex;align-items:center;gap:8px;margin:2px 4px 12px"><button data-hub="" style="border:none;background:#EEF2FA;color:#1E5BD8;font-weight:800;border-radius:12px;padding:8px 14px;font-size:14px">← ${T('နောက်သို့','戻る','Back')}</button><b style="font-size:17px">${T(H.n[0],H.n[1],H.n[2])}</b></div><div class="grid anim${THD()?' thd':''}">${it.map(tileF).join('')}</div>`}
+      r=r.filter(x=>q?!HUBS[x[1]]:!HUBK[x[1]])}
+    const SEC=!q&&!(S.tab==='talk')&&SECG[S.tab];
+    if(SEC){const used=new Set();h+=SEC.map(([ic,tt,L],si)=>{const it=L.map(j=>r.find(x=>x[1]===j)).filter(Boolean);it.forEach(x=>used.add(x[1]));return it.length?`<div class="sech"><span>${ic}</span><b>${T(tt[0],tt[1],tt[2])}</b><small>${it.length}</small></div><div class="grid srow${si?'':' top'}${THD()?' thd':''}">${it.map(tileF).join('')}</div>`:''}).join('');const rest=r.filter(x=>!used.has(x[1]));if(rest.length)h+=`<div class="sech"><span>✨</span><b>${T('အခြား','その他','More')}</b><small>${rest.length}</small></div><div class="grid srow">${rest.map(tileF).join('')}</div>`}
+    else h+=r.length?`<div class="grid${anim?' anim':''}${THD()?' thd':''}">${r.map(tileF).join('')}</div>`:`${owlEmpty()}`;
   }
   return h;
 }
@@ -35400,6 +35433,8 @@ ${natBox()}<div class="box" style="${NAT()?'display:none':''}">
 </div>
 <div class="mm" style="font-size:12px;color:#4A5468;line-height:1.85;background:#FFF8E6;border:1px solid #F1DFA8;border-radius:14px;padding:10px 12px;margin:6px 4px 0">🔈 ${T('ဖုန်းပိတ်ထားချိန် သတိပေးချက်ရဲ့ အသံကို ဖုန်း Settings က ထိန်းပါတယ်။ အသံ မမြည်ရင် —<br>• Android: Settings → Apps → Dokodemo (website သုံးရင် Chrome) → Notifications → Sound ကို ဖွင့်ပါ<br>• iPhone/iPad: Settings → Notifications → Dokodemo → Sounds ကို ဖွင့်ပါ<br>• ဖုန်း Silent / Do Not Disturb ပိတ်ထားပါ','アプリを閉じている時の通知音はスマホの設定で決まります。鳴らない時は —<br>• Android: 設定 → アプリ → Dokodemo（WebならChrome）→ 通知 → 音をオン<br>• iPhone/iPad: 設定 → 通知 → Dokodemo → サウンドをオン<br>• マナーモード・おやすみモードを解除','When the app is closed, the sound comes from your phone settings. If it is silent —<br>• Android: Settings → Apps → Dokodemo (Chrome for the website) → Notifications → Sound on<br>• iPhone/iPad: Settings → Notifications → Dokodemo → Sounds on<br>• Turn off Silent / Do Not Disturb')}</div>`:sub==='app'?`<button class="row" data-dsub="set" style="border-bottom:none;min-height:48px;padding:0 6px;background:transparent;font-weight:800;color:#1F3A68"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span class="lb" style="font-size:17px">${T('App အကြောင်း','アプリについて','About the app')}</span></button>
 <div class="box">
+<button class="row" data-pro="MYAING" onclick="S.drawer=false"><span style="width:22px;text-align:center;font-size:18px">📖</span><span class="lb">${T('App အကြောင်း / သုံးနည်း','どこでもについて','About Dokodemo')}</span>${CH}</button>
+<button class="row" data-pro="注意" onclick="S.drawer=false"><span style="width:22px;text-align:center;font-size:18px">⚠️</span><span class="lb">${T('သတိပြုရန်','注意','Cautions')}</span>${CH}</button>
 <button class="row" data-copy="${proUID()}"><span style="width:22px;text-align:center;font-size:12px;font-weight:900;color:#1F3A68;border:2px solid #1F3A68;border-radius:6px;line-height:16px;flex-shrink:0">ID</span><span class="lb" style="display:flex;flex-direction:column;gap:2px"><span>${T('ကျွန်ုပ်၏ ID','ユーザーID','My User ID')}</span><b style="letter-spacing:3px;color:var(--navy);font-size:17px">${proUID()}</b></span><span style="font-size:11.5px;font-weight:800;color:#2C5596;background:#EEF2FA;border-radius:8px;padding:4px 10px;white-space:nowrap">${T('ကူးမယ်','コピー','Copy')}</span></button>
 <button class="row" onclick="uidQR()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></svg><span class="lb">${T('ကျွန်ုပ်၏ ID — QR Code','ユーザーID — QRコード','My User ID — QR code')}</span>${CH}</button>
 <button class="row" data-about="ab-about"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F3A68" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span class="lb">${T(DKW+' အကြောင်း','このアプリについて','About')}</span>${CH}</button>
@@ -44645,7 +44680,7 @@ const JEX={};for(const [l,raw] of Object.entries(JEXTRA))JEX[l]=raw.split('\n').
 
 /* ---------- About / Contact / Privacy ---------- */
 // ▼ ဒီနေရာမှာ ကိုယ့်အချက်အလက် ဖြည့်ပါ (Email / Telegram username / Viber ဖုန်းနံပါတ်)
-const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.415',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
+const APP={tgch:'DokodemoNihongo',bot:'DokodemoNihongoBot',facebook:'DokodemoJapanese',youtube:'DokodemoNihongo',name:'Dokodemo',ver:'1.0.420',year:2026,email:'JapaneseDokodemo@gmail.com',telegram:'DokodemoOfficial',viber:'',site:'https://dokodemojapanese.github.io/'};
 function TGI(sz,bg,fg){sz=sz||18;fg=fg||'#fff';const pl=`<path d="M20.6 4.3 3.1 11.2c-.9.4-.9 1 .1 1.3l4.4 1.4 1.7 5.3c.2.6.6.7 1 .4l2.6-2.2 4.7 3.5c.7.4 1.3.2 1.5-.7l3-14.6c.2-1.1-.5-1.6-1.5-1.3z" fill="${fg}"/><path d="M9.4 19.3l.5-4.6 8-7.4-9.6 6.1z" fill="${bg||'#229ED9'}" opacity=".35"/>`;
   return bg?`<span style="display:inline-flex;align-items:center;justify-content:center;width:${sz}px;height:${sz}px;border-radius:50%;background:${bg};flex-shrink:0;vertical-align:middle"><svg width="${Math.round(sz*.62)}" height="${Math.round(sz*.62)}" viewBox="0 0 24 24" style="margin-left:-${Math.round(sz*.06)}px">${pl}</svg></span>`:`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" style="vertical-align:middle">${pl}</svg>`}
 function renderAbout(){
@@ -45540,6 +45575,247 @@ ${L.map(card).join('')}
 <button data-a="nin" class="mm" style="min-height:48px;border:none;border-radius:24px;background:#14223D;color:#fff;font-size:14px;font-weight:800">🙋 ${T('ငါ · မင်း · သူ ပြောပုံ ကြည့်မယ်','わたし・あなた も見る','See I · You · He/She too')}</button>
 <div style="height:90px"></div></main>`}
 
+/* v1.0.419 スマホ設定 — Android & iPhone settings words (as shown in Japanese phones). Row = [Japanese label, reading, English, Myanmar, device b both · i iPhone · a Android]. Original list. */
+const SSET=[
+{id:'net',ic:'📶',t:['ဆက်သွယ်ရေး','通信','Network'],L:[
+['設定','せってい','Settings','ဆက်တင်','b'],
+['機内モード','きないモード','Airplane mode','လေယာဉ်ပျံ မုဒ်','b'],
+['Wi-Fi','ワイファイ','Wi-Fi','ဝိုင်ဖိုင်','b'],
+['Bluetooth','ブルートゥース','Bluetooth','ဘလူးတုသ်','b'],
+['モバイル通信','モバイルつうしん','Cellular / Mobile data','မိုဘိုင်း ဒေတာ','i'],
+['モバイルネットワーク','','Mobile network','မိုဘိုင်း ကွန်ရက်','a'],
+['ネットワークとインターネット','','Network & internet','ကွန်ရက်နှင့် အင်တာနက်','a'],
+['インターネット共有','インターネットきょうゆう','Personal Hotspot','ဟော့စပေါ့ (အင်တာနက် မျှဝေ)','i'],
+['テザリング','','Tethering / Hotspot','ဟော့စပေါ့ (တီသာရင်း)','a'],
+['データローミング','','Data roaming','ဒေတာ ရိုမင်း (နိုင်ငံခြား)','b'],
+['データセーバー','','Data Saver','ဒေတာ ချွေတာ','a'],
+['低データモード','ていデータモード','Low Data Mode','ဒေတာ နည်းနည်းသုံး မုဒ်','i'],
+['モバイルデータ','','Mobile data','မိုဘိုင်း ဒေတာ','a'],
+['SIM','シム','SIM','ဆင်းကတ်','b'],
+['eSIMを追加','イーシムをついか','Add eSIM','eSIM ထည့်ရန်','b'],
+['キャリア','','Carrier','ဖုန်းလိုင်း ကုမ္ပဏီ','b'],
+['VPN','ブイピーエヌ','VPN','VPN','b'],
+['接続済みのデバイス','せつぞくずみのデバイス','Connected devices','ချိတ်ထားသော စက်များ','a'],
+['ペア設定','ペアせってい','Pair (new device)','စက်အသစ် တွဲချိတ်','a'],
+['接続','せつぞく','Connect / Connected','ချိတ်ဆက်','b'],
+['未接続','みせつぞく','Not connected','မချိတ်ရသေး','b'],
+['パスワード','','Password','စကားဝှက်','b'],
+['このネットワーク設定を削除','このネットワークせっていをさくじょ','Forget this network','ဒီ Wi-Fi ကို မေ့ပစ်ရန်','i'],
+['AirDrop','エアドロップ','AirDrop','AirDrop (ဖိုင် ပို့)','i'],
+['クイック共有','クイックきょうゆう','Quick Share','Quick Share (ဖိုင် ပို့)','a'],
+['NFC','エヌエフシー','NFC','NFC (ထိ၍ ငွေချေ)','a']]},
+{id:'scr',ic:'🔆',t:['မျက်နှာပြင် · အသံ','画面・音','Display & Sound'],L:[
+['画面表示と明るさ','がめんひょうじとあかるさ','Display & Brightness','မျက်နှာပြင်နှင့် အလင်း','i'],
+['ディスプレイ','','Display','မျက်နှာပြင်','a'],
+['明るさ','あかるさ','Brightness','အလင်းအမှောင်','b'],
+['明るさの自動調節','あかるさのじどうちょうせつ','Auto-brightness / Adaptive brightness','အလင်း အလိုအလျောက် ချိန်','b'],
+['ダークモード','','Dark mode','အမှောင် မုဒ်','b'],
+['ライト','','Light (mode)','အလင်း မုဒ်','i'],
+['ダーク','','Dark','အမှောင်','i'],
+['Night Shift','ナイトシフト','Night Shift','ညဘက် မျက်စိ အကာ','i'],
+['夜間モード','やかんモード','Night Light','ညဘက် မုဒ်','a'],
+['自動ロック','じどうロック','Auto-Lock','အလိုအလျောက် Lock ချ','i'],
+['画面消灯','がめんしょうとう','Screen timeout','မျက်နှာပြင် ပိတ်ချိန်','a'],
+['画面の自動回転','がめんのじどうかいてん','Auto-rotate screen','မျက်နှာပြင် အလိုအလျောက် လှည့်','a'],
+['画面縦向きのロック','がめんたてむきのロック','Portrait Orientation Lock','ဒေါင်လိုက်ပဲ ထားရန် Lock','i'],
+['文字サイズ','もじサイズ','Text size','စာလုံး အရွယ်','b'],
+['フォントサイズ','','Font size','ဖောင့် အရွယ်','a'],
+['文字を太くする','もじをふとくする','Bold text','စာလုံး ထူအောင်','i'],
+['壁紙','かべがみ','Wallpaper','နောက်ခံပုံ','b'],
+['壁紙とスタイル','かべがみとスタイル','Wallpaper & style','နောက်ခံပုံနှင့် စတိုင်','a'],
+['ホーム画面','ホームがめん','Home screen','ပင်မ မျက်နှာပြင်','b'],
+['ロック画面','ロックがめん','Lock screen','Lock မျက်နှာပြင်','b'],
+['常時表示','じょうじひょうじ','Always On Display','အမြဲ ပြထားရန်','b'],
+['サウンドと触覚','サウンドとしょっかく','Sounds & Haptics','အသံနှင့် တုန်ခါမှု','i'],
+['着信音とバイブレーション','ちゃくしんおんとバイブレーション','Sound & vibration','အသံနှင့် တုန်ခါမှု','a'],
+['着信音','ちゃくしんおん','Ringtone','ဖုန်းဝင် အသံ','b'],
+['通知音','つうちおん','Notification sound','အသိပေး အသံ','b'],
+['音量','おんりょう','Volume','အသံ အတိုးအကျယ်','b'],
+['バイブレーション','','Vibration','တုန်ခါမှု','b'],
+['消音モード','しょうおんモード','Silent mode','အသံပိတ် မုဒ်','i'],
+['マナーモード','','Silent / Manner mode','အသံပိတ် (ဂျပန်) မုဒ်','b'],
+['キーボードのクリック','','Keyboard clicks','ကီးဘုတ် နှိပ်သံ','i']]},
+{id:'ntf',ic:'🔔',t:['အသိပေး · အာရုံစူး','通知・集中','Notifications & Focus'],L:[
+['通知','つうち','Notifications','အသိပေးချက်','b'],
+['通知を許可','つうちをきょか','Allow notifications','အသိပေးချက် ခွင့်ပြု','b'],
+['バッジ','','Badges','အိုင်ကွန်ပေါ်က နံပါတ်','i'],
+['プレビューを表示','プレビューをひょうじ','Show previews','စာ အကြိုပြ','i'],
+['通知のスヌーズ','つうちのスヌーズ','Notification snooze','အသိပေးချက် ခဏဆိုင်း','a'],
+['通知履歴','つうちりれき','Notification history','အသိပေးချက် မှတ်တမ်း','a'],
+['集中モード','しゅうちゅうモード','Focus','အာရုံစူး မုဒ် (Focus)','i'],
+['おやすみモード','','Do Not Disturb','မနှောင့်ယှက်ရ မုဒ်','i'],
+['サイレントモード','','Do Not Disturb','မနှောင့်ယှက်ရ မုဒ်','a'],
+['睡眠','すいみん','Sleep','အိပ်ချိန်','i'],
+['おやすみ時間モード','おやすみじかんモード','Bedtime mode','အိပ်ချိန် မုဒ်','a'],
+['スクリーンタイム','','Screen Time','ဖုန်းသုံးချိန်','i'],
+['Digital Wellbeing と保護者による使用制限','デジタルウェルビーイングとほごしゃによるしようせいげん','Digital Wellbeing & parental controls','ဖုန်းသုံးချိန် + မိဘ ထိန်းချုပ်မှု','a'],
+['休止時間','きゅうしじかん','Downtime','ဖုန်းနားချိန်','i'],
+['App使用時間の制限','アップしようじかんのせいげん','App Limits','App သုံးချိန် ကန့်သတ်','i'],
+['コンテンツとプライバシーの制限','コンテンツとプライバシーのせいげん','Content & Privacy Restrictions','အကြောင်းအရာ ကန့်သတ်ချက်','i'],
+['緊急速報','きんきゅうそくほう','Emergency alerts','အရေးပေါ် သတိပေးချက်','b'],
+['緊急地震速報','きんきゅうじしんそくほう','Earthquake early warning','ငလျင် အရေးပေါ် သတိပေးချက်','b'],
+['緊急SOS','きんきゅうエスオーエス','Emergency SOS','အရေးပေါ် SOS','b'],
+['安全と緊急情報','あんぜんときんきゅうじょうほう','Safety & emergency','ဘေးကင်းရေးနှင့် အရေးပေါ်','a'],
+['メディカルID','','Medical ID','ကျန်းမာရေး ID','i']]},
+{id:'sec',ic:'🔒',t:['လုံခြုံရေး','ロック・安全','Security & Privacy'],L:[
+['Face IDとパスコード','フェイスアイディーとパスコード','Face ID & Passcode','မျက်နှာ ID နှင့် လျှို့ဝှက်နံပါတ်','i'],
+['パスコード','','Passcode','လျှို့ဝှက် နံပါတ်','i'],
+['パスコードを変更','パスコードをへんこう','Change Passcode','လျှို့ဝှက်နံပါတ် ပြောင်းရန်','i'],
+['画面ロック','がめんロック','Screen lock','မျက်နှာပြင် Lock','a'],
+['PIN','ピン','PIN','PIN နံပါတ်','a'],
+['パターン','','Pattern','ပုံဆွဲ Lock','a'],
+['指紋認証','しもんにんしょう','Fingerprint unlock','လက်ဗွေဖြင့် ဖွင့်','a'],
+['顔認証','かおにんしょう','Face unlock','မျက်နှာဖြင့် ဖွင့်','a'],
+['セキュリティとプライバシー','','Security & privacy','လုံခြုံရေးနှင့် ကိုယ်ရေး','a'],
+['プライバシーとセキュリティ','','Privacy & Security','ကိုယ်ရေးနှင့် လုံခြုံရေး','i'],
+['位置情報','いちじょうほう','Location','တည်နေရာ','b'],
+['位置情報サービス','いちじょうほうサービス','Location Services','တည်နေရာ ဝန်ဆောင်မှု','i'],
+['正確な位置情報','せいかくないちじょうほう','Precise location','တိကျသော တည်နေရာ','b'],
+['権限','けんげん','Permissions','ခွင့်ပြုချက်','a'],
+['アプリの権限','アプリのけんげん','App permissions','App ခွင့်ပြုချက်','a'],
+['カメラ','','Camera','ကင်မရာ','b'],
+['マイク','','Microphone','မိုက်','b'],
+['連絡先','れんらくさき','Contacts','အဆက်အသွယ်','b'],
+['写真','しゃしん','Photos','ဓာတ်ပုံ','b'],
+['トラッキング','','Tracking','ခြေရာခံခြင်း','i'],
+['パスワード','','Passwords','စကားဝှက်များ','i'],
+['パスワードとアカウント','','Passwords & accounts','စကားဝှက်နှင့် အကောင့်','a'],
+['2ファクタ認証','にファクタにんしょう','Two-factor authentication','နှစ်ဆင့် အတည်ပြု','b'],
+['iPhoneを探す','アイフォーンをさがす','Find My iPhone','iPhone ပျောက်ရင် ရှာ','i'],
+['デバイスを探す','デバイスをさがす','Find My Device','ဖုန်း ပျောက်ရင် ရှာ','a'],
+['盗難デバイスの保護','とうなんデバイスのほご','Stolen Device Protection','ဖုန်းခိုးခံရရင် ကာကွယ်','i']]},
+{id:'bat',ic:'🔋',t:['ဘက်ထရီ · သိုလှောင်မှု','バッテリー','Battery & Storage'],L:[
+['バッテリー','','Battery','ဘက်ထရီ','b'],
+['バッテリー残量','バッテリーざんりょう','Battery percentage','ဘက်ထရီ ကျန် %','b'],
+['低電力モード','ていでんりょくモード','Low Power Mode','ဘက်ထရီ ချွေတာ မုဒ်','i'],
+['バッテリーセーバー','','Battery Saver','ဘက်ထရီ ချွေတာ','a'],
+['自動調整バッテリー','じどうちょうせいバッテリー','Adaptive Battery','ဘက်ထရီ အလိုအလျောက် ချိန်','a'],
+['バッテリーの状態','バッテリーのじょうたい','Battery Health','ဘက်ထရီ အခြေအနေ','i'],
+['最大容量','さいだいようりょう','Maximum Capacity','အများဆုံး ပမာဏ','i'],
+['充電','じゅうでん','Charging','အားသွင်း','b'],
+['充電の最適化','じゅうでんのさいてきか','Optimized Charging','အားသွင်းမှု အကောင်းဆုံး','b'],
+['使用状況','しようじょうきょう','Usage','အသုံးပြုမှု','b'],
+['ストレージ','','Storage','သိုလှောင်မှု','a'],
+['iPhoneストレージ','アイフォーンストレージ','iPhone Storage','iPhone သိုလှောင်မှု','i'],
+['空き容量','あきようりょう','Free space','လွတ်နေသော နေရာ','b'],
+['使用済み','しようずみ','Used','သုံးပြီး','b'],
+['空き容量を増やす','あきようりょうをふやす','Free up space','နေရာ လွတ်အောင်','a'],
+['非使用のAppを取り除く','ひしようのアップをとりのぞく','Offload Unused Apps','မသုံးတဲ့ App ဖယ်','i'],
+['バックアップ','','Backup','အရန်သိမ်း','b'],
+['iCloud','アイクラウド','iCloud','iCloud','i'],
+['Google アカウント','グーグルアカウント','Google account','Google အကောင့်','a']]},
+{id:'app',ic:'📲',t:['App','アプリ','Apps'],L:[
+['アプリ','','Apps','App များ','a'],
+['App','アップ','App','App','i'],
+['すべてのアプリを表示','すべてのアプリをひょうじ','See all apps','App အားလုံး ပြ','a'],
+['デフォルトのアプリ','','Default apps','မူလ App','b'],
+['アンインストール','','Uninstall','ဖြုတ်ရန်','a'],
+['Appを削除','アップをさくじょ','Delete App','App ဖျက်ရန်','i'],
+['強制停止','きょうせいていし','Force stop','အတင်း ရပ်ရန်','a'],
+['キャッシュを削除','キャッシュをさくじょ','Clear cache','Cache ရှင်းရန်','a'],
+['ストレージを消去','ストレージをしょうきょ','Clear storage / data','ဒေတာ ရှင်းရန်','a'],
+['Appのバックグラウンド更新','アップのバックグラウンドこうしん','Background App Refresh','နောက်ကွယ်မှ App update','i'],
+['自動アップデート','じどうアップデート','Automatic updates','အလိုအလျောက် Update','b'],
+['App Store','アップストア','App Store','App Store','i'],
+['Play ストア','プレイストア','Play Store','Play Store','a'],
+['ホーム画面に追加','ホームがめんについか','Add to Home Screen','ပင်မ မျက်နှာပြင်သို့ ထည့်','b'],
+['Appライブラリ','アップライブラリ','App Library','App စာကြည့်တိုက်','i'],
+['ウォレットとApple Pay','ウォレットとアップルペイ','Wallet & Apple Pay','ပိုက်ဆံအိတ် + Apple Pay','i'],
+['ウォレット','','Wallet','ပိုက်ဆံအိတ် (Wallet)','a'],
+['Siri','シリ','Siri','Siri','i'],
+['アシスタント','','Assistant','အကူ (Assistant)','a']]},
+{id:'sys',ic:'⚙️',t:['အထွေထွေ · စနစ်','一般','General & System'],L:[
+['一般','いっぱん','General','အထွေထွေ','i'],
+['システム','','System','စနစ်','a'],
+['情報','じょうほう','About','အချက်အလက်','i'],
+['デバイス情報','デバイスじょうほう','About phone','ဖုန်း အချက်အလက်','a'],
+['ソフトウェアアップデート','','Software Update','Software Update','i'],
+['システムアップデート','','System update','စနစ် Update','a'],
+['言語と地域','げんごとちいき','Language & Region','ဘာသာစကားနှင့် ဒေသ','i'],
+['言語','げんご','Languages','ဘာသာစကား','b'],
+['日付と時刻','ひづけとじこく','Date & Time','ရက်စွဲနှင့် အချိန်','b'],
+['自動設定','じどうせってい','Set automatically','အလိုအလျောက် သတ်မှတ်','b'],
+['時間帯','じかんたい','Time zone','အချိန်ဇုန်','b'],
+['24時間表示','にじゅうよじかんひょうじ','24-hour time','၂၄ နာရီ ပုံစံ','b'],
+['キーボード','','Keyboard','ကီးဘုတ်','b'],
+['キーボードを追加','キーボードをついか','Add keyboard','ကီးဘုတ် ထည့်ရန်','b'],
+['ユーザ辞書','ユーザじしょ','Text Replacement / Personal dictionary','ကိုယ်ပိုင် အဘိဓာန်','b'],
+['アクセシビリティ','','Accessibility','အသုံးပြုရလွယ်ကူမှု','i'],
+['ユーザー補助','ユーザーほじょ','Accessibility','အသုံးပြုရလွယ်ကူမှု','a'],
+['拡大鏡','かくだいきょう','Magnifier','မှန်ဘီလူး','i'],
+['読み上げコンテンツ','よみあげコンテンツ','Spoken Content','စာ အသံထွက်ဖတ်','i'],
+['AssistiveTouch','アシスティブタッチ','AssistiveTouch','အကူ ခလုတ် (AssistiveTouch)','i'],
+['コントロールセンター','','Control Center','ထိန်းချုပ်ရေး စင်တာ','i'],
+['クイック設定','クイックせってい','Quick Settings','အမြန် ဆက်တင်','a'],
+['ジェスチャー','','Gestures','လက်ဟန် ထိန်းချုပ်','a'],
+['ナビゲーションモード','','Navigation mode','လမ်းညွှန် ခလုတ် ပုံစံ','a'],
+['開発者向けオプション','かいはつしゃむけオプション','Developer options','Developer ရွေးချယ်စရာ','a'],
+['VPNとデバイス管理','ブイピーエヌとデバイスかんり','VPN & Device Management','VPN နှင့် စက် စီမံ','i'],
+['転送またはiPhoneをリセット','てんそうまたはアイフォーンをリセット','Transfer or Reset iPhone','iPhone ပြောင်း / Reset','i'],
+['リセットオプション','','Reset options','Reset ရွေးချယ်စရာ','a'],
+['すべてのコンテンツと設定を消去','すべてのコンテンツとせっていをしょうきょ','Erase All Content and Settings','အားလုံး ဖျက်ပစ် (Factory reset)','i'],
+['すべてのデータを消去（出荷時リセット）','すべてのデータをしょうきょ（しゅっかじリセット）','Erase all data (factory reset)','ဒေတာ အားလုံး ဖျက် (Factory reset)','a'],
+['ネットワーク設定をリセット','ネットワークせっていをリセット','Reset Network Settings','ကွန်ရက် ဆက်တင် Reset','b'],
+['システム終了','システムしゅうりょう','Shut Down','ပိတ်ရန်','i'],
+['電源を切る','でんげんをきる','Power off','ဖုန်း ပိတ်ရန်','a'],
+['再起動','さいきどう','Restart','ပြန်ဖွင့်ရန်','a']]},
+{id:'act',ic:'👆',t:['ခလုတ် စကား','ボタン','Buttons & dialogs'],L:[
+['オン','','On','ဖွင့်','b'],
+['オフ','','Off','ပိတ်','b'],
+['許可','きょか','Allow','ခွင့်ပြု','b'],
+['許可しない','きょかしない','Don\'t Allow','ခွင့်မပြု','b'],
+['アプリの使用中のみ許可','アプリのしようちゅうのみきょか','Allow only while using the app','App သုံးနေချိန်သာ ခွင့်ပြု','b'],
+['1度だけ許可','いちどだけきょか','Allow once','တစ်ခါသာ ခွင့်ပြု','b'],
+['OK','オーケー','OK','OK','b'],
+['キャンセル','','Cancel','မလုပ်တော့ (Cancel)','b'],
+['完了','かんりょう','Done','ပြီးပြီ','b'],
+['保存','ほぞん','Save','သိမ်းရန်','b'],
+['削除','さくじょ','Delete','ဖျက်ရန်','b'],
+['編集','へんしゅう','Edit','ပြင်ရန်','b'],
+['追加','ついか','Add','ထည့်ရန်','b'],
+['戻る','もどる','Back','နောက်သို့','b'],
+['次へ','つぎへ','Next','ရှေ့သို့','b'],
+['スキップ','','Skip','ကျော်ရန်','b'],
+['続ける','つづける','Continue','ဆက်လုပ်ရန်','b'],
+['同意する','どういする','Agree','သဘောတူ','b'],
+['同意しない','どういしない','Disagree','သဘောမတူ','b'],
+['今すぐインストール','いますぐインストール','Install Now','ယခု Install လုပ်','b'],
+['あとで','','Later','နောက်မှ','b'],
+['ダウンロード','','Download','ဒေါင်းလုဒ်','b'],
+['検索','けんさく','Search','ရှာရန်','b'],
+['共有','きょうゆう','Share','မျှဝေရန်','b'],
+['コピー','','Copy','ကူးရန်','b'],
+['貼り付け','はりつけ','Paste','ကပ်ရန်','b'],
+['すべて選択','すべてせんたく','Select All','အားလုံး ရွေး','b'],
+['ログイン','','Sign in / Log in','ဝင်ရန်','b'],
+['サインアウト','','Sign out','ထွက်ရန်','b'],
+['確認コード','かくにんコード','Verification code','အတည်ပြု ကုဒ်','b'],
+['再試行','さいしこう','Retry','ထပ်ကြိုးစား','b'],
+['エラーが発生しました','エラーがはっせいしました','An error occurred','အမှား ဖြစ်သွားပါပြီ','b']]}
+];
+const SSET_D={b:['📱','နှစ်မျိုးလုံး','両方','Both','#1D9E75'],i:['','iPhone','iPhone','iPhone','#111827'],a:['🤖','Android','Android','Android','#3DDC84']};
+function renderSset(){const tab=SSET.find(x=>x.id===S.sst)||SSET[0],df=S.ssd||'',L=tab.L.filter(x=>!df||x[4]===df||x[4]==='b'&&df!=='b');
+  const tot=SSET.reduce((a,x)=>a+x.L.length,0);
+  const tabB=x=>`<button onclick="S.sst='${x.id}';render()" style="flex:none;width:84px;border:none;border-radius:16px;padding:8px 2px;background:${x===tab?'#fff':'rgba(255,255,255,.12)'};color:${x===tab?'#14223D':'#fff'}"><div style="font-size:20px">${x.ic}</div><div style="font-size:11.5px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 2px">${x.t[1]}</div><div style="font-size:10.5px;opacity:.75">${x.L.length}</div></button>`;
+  const chip=k=>{const c=SSET_D[k],on=df===k,col=k?(k==='a'?'#1A8F4E':c[4]):'#14223D';
+    return `<button onclick="S.ssd='${k}';render()" class="mm" style="flex:1;height:36px;border-radius:18px;border:1.5px solid ${on?col:col+'44'};background:${on?col:'#fff'};color:${on?'#fff':col};font-size:12.5px;font-weight:800;padding:0 8px;white-space:nowrap">${k?(k==='i'?'iPhone':k==='a'?'🤖 Android':T(c[1],c[2],c[3])):T('အားလုံး','すべて','All')}</button>`};
+  const q=s=>s.replace(/'/g,'').replace(/[（(].*?[)）]/g,'');
+  const card=x=>{const c=SSET_D[x[4]],col=x[4]==='a'?'#1A8F4E':c[4];return `<button onclick="ikSay('${q(x[1]||x[0])}')" style="display:block;width:100%;text-align:left;background:#fff;border:none;border-radius:18px;padding:11px 14px;box-shadow:0 3px 12px rgba(20,34,61,.06);border-left:5px solid ${col}">
+<div style="display:flex;align-items:flex-start;gap:8px"><div style="flex:1;min-width:0"><b style="font-size:18px;color:#14223D;line-height:1.35">${x[0]}</b> <span style="font-size:13px;color:${col}">🔊</span>${x[1]&&x[1]!==x[0]?`<div style="font-size:12px;color:#8A93A5;font-weight:700">${x[1]}</div>`:''}</div>
+<span style="flex:none;font-size:10.5px;font-weight:800;color:${col};background:${col}18;border-radius:8px;padding:3px 7px;white-space:nowrap">${x[4]==='b'?'iPhone · Android':x[4]==='i'?'iPhone':'Android'}</span></div>
+<div style="font-size:13.5px;color:#2C5596;margin-top:4px">${x[2]}</div><div class="mm" style="font-size:13.5px;color:#4A5468;line-height:1.7">${x[3]}</div></button>`};
+  document.getElementById('app').innerHTML=`${pageHead(T('ဖုန်း Settings','スマホ設定','Phone settings'),T(`${tot} လုံး`,`${tot}語`,`${tot} words`))}
+<main id="ssm" style="gap:10px">
+<section style="position:relative;overflow:hidden;background:radial-gradient(120% 130% at 0% 0%,#3B6FE0 0%,#1E3A8A 55%,#0E1B45 100%);border-radius:26px;padding:16px 12px 12px;color:#fff">
+<span style="position:absolute;right:-4px;top:-22px;font-size:110px;font-weight:900;opacity:.08">設</span>
+<div style="position:relative;padding:0 4px"><div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">スマホ設定 · iPhone · Android · ${tot}</div>
+<b class="mm" style="display:block;font-size:18px;margin-top:4px">📱 ${T('ဂျပန်ဖုန်းထဲက Settings စာလုံးတွေ','日本語のスマホ設定、ぜんぶわかる','Japanese phone settings, made easy')}</b></div>
+<div style="display:flex;gap:6px;margin-top:12px;overflow-x:auto;padding-bottom:2px">${SSET.map(tabB).join('')}</div></section>
+<div style="background:#FFF6E0;border-radius:16px;padding:10px 12px;font-size:12.5px;line-height:1.6;color:#6B4200">💡 Settings ⚙️ = 設定（せってい）. iPhone ↔ Android: same idea, different words.<div class="mm" style="margin-top:3px">ဖုန်းကို ဂျပန်လို ထားထားရင်လည်း ဒီစာလုံးတွေနဲ့ ရှာလို့ရပါတယ်။ iPhone နဲ့ Android စကားလုံး မတူတာ ရှိပါတယ်။</div></div>
+<div style="display:flex;gap:6px">${['','i','a'].map(chip).join('')}</div>
+${L.map(card).join('')}
+<div style="height:90px"></div></main>`}
+
 /* Exchange ¥ ↔ Ks */
 /* v1.0.412 Exchange: remittance-company rates (¥1 → Ks) typed into config.json "rates", + $1 → ¥.
    rates = {usd_jpy, usd_time, sbi:{time,bank,cash}, kyodai:{time,wallet,bank,cash}, wu:{time,bank,cash}}. 0 = hidden. Older than 3 days = marked old.
@@ -45547,11 +45823,11 @@ ${L.map(card).join('')}
 const FX_P=[['sbi','SBI Remit','#0B5CAD'],['kyodai','Kyodai · Ria','#F26B1D'],['wu','Western Union','#111111']];
 const FX_TY={wallet:['📱','E-Wallet','E-Wallet','E-Wallet'],bank:['🏦','ဘဏ်ထဲ တိုက်ရိုက်','銀行振込','Bank deposit'],cash:['💵','ငွေသား ထုတ်','現金受取','Cash pickup']};
 /* v1.0.414 currency by language: en $1 · ¥1 · 1 Ks | ja 1ドル · 1円 · 1チャット | mm 1 ဒေါ်လာ · 1 ယန်း · 1 ကျပ် */
-function fxC(c,n){const L=LC();if(L==='ja')return n+({d:'ドル',y:'円',k:'チャット'})[c];if(L==='en')return c==='k'?n+' Ks':({d:'$',y:'¥'})[c]+n;return n+' '+({d:'ဒေါ်လာ',y:'ယန်း',k:'ကျပ်'})[c]}
-function fxU(c){const L=LC();return L==='ja'?({d:'ドル',y:'円',k:'チャット'})[c]:L==='en'?({d:'$',y:'¥',k:'Ks'})[c]:({d:'ဒေါ်လာ',y:'ယန်း',k:'ကျပ်'})[c]}
+function fxC(c,n){return n+' '+({d:'$',y:'¥',k:'Ks'})[c]}
+function fxU(c){return ({d:'$',y:'¥',k:'Ks'})[c]}
 function fxTime(s){if(!s)return null;const t=new Date(String(s).replace(' ','T')+(/[+Z]/.test(s)?'':'+09:00'));return isFinite(t)?t:null}
 function fxWhen(t){if(!t)return '';const d=new Date(t);return (d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
-function fxList(){let R={};try{R=CFG().rates||{}}catch(e){}const out=[];
+function fxList(){let R={};try{R=CFG().rates||{}}catch(e){}const out=[];{const r=+R.jpy_mmk||0,t=fxTime(R.jpy_time);if(r>0)out.push({k:'x',n:'',c:'',ty:'bank',r,t,old:!t||(Date.now()-t)/864e5>3})}
   FX_P.forEach(([k,n,c])=>{const p=R[k];if(!p)return;const t=fxTime(p.time),old=!t||(Date.now()-t)/864e5>3;
     Object.keys(FX_TY).forEach(ty=>{const r=+p[ty]||0;if(r>0)out.push({k,n,c,ty,r,t,old})})});return out}
 function fxUsd(){let R={};try{R=CFG().rates||{}}catch(e){}const u=+R.usd_jpy||0,t=fxTime(R.usd_time);if(u>0&&t&&(Date.now()-t)/864e5<=3)return {u,t,own:1,src:R.usd_src||''};
@@ -45569,16 +45845,14 @@ ${rows.map(x=>{const on=sel&&x.k+x.ty===sel.k+sel.ty,isB=best&&x.r===best.r&&x.o
 <main id="xm">
 <section style="position:relative;overflow:hidden;background:linear-gradient(135deg,#2C5596,#1F3A68 55%,#14223D);border-radius:26px;padding:16px 14px 14px;color:#fff">
 <div style="font-size:12px;letter-spacing:3px;color:#FFD36B;font-weight:800">💱 ${T('ယနေ့ ငွေလွှဲနှုန်း','本日の送金レート','TODAY’S REMITTANCE RATE')}</div>
-${best?`<div style="margin-top:8px;font-size:13px;color:#B5D4F4;font-weight:800">🏆 ${T('အကောင်းဆုံး','いちばん良いレート','Best rate')} · ${best.n} · ${T(...FX_TY[best.ty].slice(1))}</div>
-<b class="mm" style="display:block;font-size:${LC()==='en'?40:32}px;line-height:1.25;margin:2px 0">${fxC('y',1)} = ${fxC('k',fmt(best.r,3))}</b>
-<div class="mm" style="font-size:13px;color:#DCE6F7">${fxC('y','100,000')} → <b style="color:#FFD36B">${fxC('k',fmt(best.r*100000))}</b></div>`:`<div class="mm" style="margin-top:10px;font-size:14px;color:#DCE6F7">${T('ဒီနေ့ နှုန်း မထည့်ရသေးပါ','本日のレートはまだありません','No rates yet today')}</div>`}
-<div style="display:flex;align-items:center;gap:8px;margin-top:10px;background:rgba(255,255,255,.09);border-radius:14px;padding:8px 12px"><span class="mm" style="font-size:13px;color:#B5D4F4;font-weight:800">🇺🇸 ${fxC('d',1)} →</span><b class="mm" style="font-size:20px;flex:1;text-align:right">${U?fxC('y',fmt(U.u,2)):'–'}</b><span style="font-size:10.5px;color:#B5D4F4">${U?(U.own?(U.src?esc(U.src)+' · ':''):T('ကိုးကား','参考','ref.')+' · ')+fxWhen(U.t):''}</span></div>
+${(()=>{const row=(fl,from,v,unit,when,src)=>`<div style="display:flex;align-items:center;gap:10px;margin-top:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:12px 14px"><span style="font-size:24px">${fl}</span><b style="font-size:22px;color:#B5D4F4;white-space:nowrap">${from}</b><span style="font-size:20px;color:#B5D4F4">=</span><b style="flex:1;text-align:right;font-size:30px;color:#fff;white-space:nowrap">${v} <small style="font-size:17px;color:#FFD36B">${unit}</small></b></div><div style="text-align:right;font-size:10.5px;color:#9FB3D4;margin-top:3px">${[src,when].filter(Boolean).join(' · ')}</div>`;
+  return (U?row('🇺🇸','1 $',fmt(U.u,2),'¥',fxWhen(U.t),U.own?esc(U.src||''):T('ကိုးကား','参考','ref.')):'')+(best?row('🇯🇵','1 ¥',fmt(best.r,3),'Ks',fxWhen(best.t),''):`<div class="mm" style="margin-top:10px;font-size:14px;color:#DCE6F7">${T('ဒီနေ့ နှုန်း မထည့်ရသေးပါ','本日のレートはまだありません','No rates yet today')}</div>`)+(best?`<div class="mm" style="margin-top:6px;font-size:13px;color:#DCE6F7">100,000 ¥ → <b style="color:#FFD36B">${fmt(best.r*100000)} Ks</b></div>`:'')})()}
 <div class="mm" style="margin-top:8px;font-size:12px;line-height:1.7;color:#DCE6F7">⏱ ${T('ငွေဈေးသည် အချိန်နှင့်အမျှ အပြောင်းအလဲ ရှိနိုင်ပါသည်။','レートは予告なく変わることがあります。','Rates may change at any time.')}</div></section>
-${FX_P.map(card).join('')}
-<b class="mm" style="font-size:15px;padding:4px 4px 0">🧮 ${T('တွက်ကြည့်မယ်','計算','Convert')} ${sel?`<span style="font-size:12px;color:#6B7486;font-weight:700">· ${sel.n} ${T(...FX_TY[sel.ty].slice(1))} (${fmt(sel.r,3)})</span>`:''}</b>
+
+<b class="mm" style="font-size:15px;padding:4px 4px 0">🧮 ${T('တွက်ကြည့်မယ်','計算','Convert')} </b>
 ${inp('xy',fxU('y'),'🇯🇵')}${inp('xk',fxU('k'),'🇲🇲')}
 <div id="xt" style="background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 10px rgba(20,34,61,.05)">${rate?quick.map(y=>`<div style="display:flex;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #EEF1F6;font-size:16px"><b class="mm">${fxC('y',y.toLocaleString('en-US'))}</b><span class="mm">${fxC('k',fmt(y*rate))}</span></div>`).join(''):''}</div>
-<div class="mm" style="font-size:11px;color:#8A93A5;text-align:center;line-height:1.7">${T('နှုန်းတွေက ကုမ္ပဏီတွေ ကြေညာထားတဲ့ နှုန်းပါ။ ပို့ခ (Fee) မပါပါ။ ပို့ခါနီး App ထဲမှာ ပြန်စစ်ပါ။','各社の公表レートです（手数料別）。送金前にアプリで確認してください。','Rates as published by each company (fees not included). Check in their app before sending.')}</div>
+<div class="mm" style="font-size:11px;color:#8A93A5;text-align:center;line-height:1.7">${T('ပို့ခ (Fee) မပါပါ။ ငွေမလွှဲခင် ပြန်စစ်ပါ။','手数料は含まれていません。送金前にご確認ください。','Fees not included. Please check before sending.')}</div>
 <div style="height:90px"></div></main>`;
   const $=id=>document.getElementById(id),xy=$('xy'),xk=$('xk');if(!xy)return;const num=el=>parseFloat((el.value||'').replace(/,/g,''));
   xy.oninput=()=>{const v=num(xy);xk.value=rate&&v>0?fmt(v*rate):''};xk.oninput=()=>{const v=num(xk);xy.value=rate&&v>0?fmt(v/rate):''}}
@@ -45800,7 +46074,7 @@ setInterval(function(){try{if(document.visibilityState!=='visible')return;let au
   const ks=Object.keys(UH.d);if(ks.length>400){ks.sort().slice(0,ks.length-400).forEach(x=>{delete UH.d[x];delete UH.h[x]})}
   uhSave()}catch(e){}},UH_TICK*1000);
 const UH_CAT={dlg:['💬','#2563EB',['စကားပြော','会話','Dialog']],disc:['🧭','#0E9F6E',['ရှာဖွေ','発見','Discovery']],jlpt:['🎯','#E8463A',['JLPT','JLPT','JLPT']],kanji:['🈴','#7C3AED',['ကန်ဂျီ・ကာနာ','漢字・かな','Kanji & kana']],pro:['👑','#D97706',['Pro・လေ့ကျင့်','練習','Practice']],game:['🎮','#DB2777',['ဂိမ်း','ゲーム','Games']],dict:['📖','#0891B2',['အဘိဓာန်','辞書','Dictionary']],chat:['🗨️','#4F46E5',['ချက်','チャット','Chat']],home:['🏠','#64748B',['ပင်မ・အခြား','ホーム・他','Home & other']]};
-const UH_V={dict:['📖','dict',['ど အဘိဓာန်','どじしょ','ど Dictionary']],game:['🎮','game',['ဂိမ်း','ゲーム','Games']],kgame:['🎮','game',['ကန်ဂျီ ဂိမ်း','漢字ゲーム','Kanji game']],quiz:['❓','game',['ပဟေဠိ','クイズ','Quiz']],match:['🧩','game',['တွဲဆက်','マッチ','Match']],scr:['🔤','game',['စီကြည့်','並べ替え','Scramble']],ochat:['🗨️','chat',['ချက်','チャット','Chat']],chats:['🗨️','chat',['ချက်','チャット','Chats']],chat:['🗨️','chat',['ချက်','チャット','Chat']],kana:['あ','kanji',['ကာနာ','かな','Kana']],goju:['五','kanji',['ဂိုဂျူအွန်','五十音','Gojūon']],kall:['漢','kanji',['ကန်ဂျီ','漢字','Kanji']],gram:['📘','jlpt',['သဒ္ဒါ','文法','Grammar']],joshi:['🔗','jlpt',['ဝိဘတ်','助詞','Particles']],jexam:['📝','jlpt',['စာမေးပွဲ','模試','Mock exam']],review:['🔁','pro',['ပြန်လေ့ကျင့်','復習','Review']],study:['📚','pro',['လေ့လာရန်','学習','Study']],sroom:['📚','pro',['လေ့လာခန်း','自習室','Study Room']],fav:['♥','pro',['နှစ်သက်ရာ','お気に入り','Favorite']],star:['⭐','pro',['Star','スター','Star']],spin:['🎡','pro',['Spin','スピン','Spin']],names:['📛','disc',['နာမည်','名前','Names']],katsu:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],kako:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],uta:['🎵','disc',['သီချင်း','歌','Songs']],adult:['🌙','disc',['ရိုင်းစကား','Dark Side','Dark Side']],tips:['💡','pro',['အကြံ','ヒント','Tips']],exch:['💱','home',['ငွေလဲ','両替','Exchange']],bday:['🎂','home',['မွေးနေ့ကံ','誕生日','Birthday']],nin:['🙋','disc',['ငါ·မင်း·သူ','わたし・あなた','I · You']],ik:['🌈','disc',['ပြောပုံ အမျိုးမျိုး','言い方いろいろ','Many ways']],kyuyo:['💴','home',['လစာစာရွက်','給与明細','Payslip']],qs:['🔎','dict',['အမြန်ရှာ','クイック検索','Quick Search']],settings:['⚙️','home',['ဆက်တင်','設定','Settings']],about:['ℹ️','home',['အကြောင်း','について','About']],guide:['🧭','home',['လမ်းညွှန်','ガイド','Guide']],note:['📝','pro',['မှတ်စု','メモ','Note']],pdf:['📄','pro',['PDF','PDF','PDF']]};
+const UH_V={dict:['📖','dict',['ど အဘိဓာန်','どじしょ','ど Dictionary']],game:['🎮','game',['ဂိမ်း','ゲーム','Games']],kgame:['🎮','game',['ကန်ဂျီ ဂိမ်း','漢字ゲーム','Kanji game']],quiz:['❓','game',['ပဟေဠိ','クイズ','Quiz']],match:['🧩','game',['တွဲဆက်','マッチ','Match']],scr:['🔤','game',['စီကြည့်','並べ替え','Scramble']],ochat:['🗨️','chat',['ချက်','チャット','Chat']],chats:['🗨️','chat',['ချက်','チャット','Chats']],chat:['🗨️','chat',['ချက်','チャット','Chat']],kana:['あ','kanji',['ကာနာ','かな','Kana']],goju:['五','kanji',['ဂိုဂျူအွန်','五十音','Gojūon']],kall:['漢','kanji',['ကန်ဂျီ','漢字','Kanji']],gram:['📘','jlpt',['သဒ္ဒါ','文法','Grammar']],joshi:['🔗','jlpt',['ဝိဘတ်','助詞','Particles']],jexam:['📝','jlpt',['စာမေးပွဲ','模試','Mock exam']],review:['🔁','pro',['ပြန်လေ့ကျင့်','復習','Review']],study:['📚','pro',['လေ့လာရန်','学習','Study']],sroom:['📚','pro',['လေ့လာခန်း','自習室','Study Room']],fav:['♥','pro',['နှစ်သက်ရာ','お気に入り','Favorite']],star:['⭐','pro',['Star','スター','Star']],spin:['🎡','pro',['Spin','スピン','Spin']],names:['📛','disc',['နာမည်','名前','Names']],katsu:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],kako:['活','kanji',['ကြိယာပုံစံ','活用','Conjugation']],uta:['🎵','disc',['သီချင်း','歌','Songs']],adult:['🌙','disc',['ရိုင်းစကား','Dark Side','Dark Side']],tips:['💡','pro',['အကြံ','ヒント','Tips']],exch:['💱','home',['ငွေလဲ','両替','Exchange']],bday:['🎂','home',['မွေးနေ့ကံ','誕生日','Birthday']],nin:['🙋','disc',['ငါ·မင်း·သူ','わたし・あなた','I · You']],ik:['🌈','disc',['ပြောပုံ အမျိုးမျိုး','言い方いろいろ','Many ways']],sset:['📱','disc',['ဖုန်း Settings','スマホ設定','Phone settings']],kyuyo:['💴','home',['လစာစာရွက်','給与明細','Payslip']],qs:['🔎','dict',['အမြန်ရှာ','クイック検索','Quick Search']],settings:['⚙️','home',['ဆက်တင်','設定','Settings']],about:['ℹ️','home',['အကြောင်း','について','About']],guide:['🧭','home',['လမ်းညွှန်','ガイド','Guide']],note:['📝','pro',['မှတ်စု','メモ','Note']],pdf:['📄','pro',['PDF','PDF','PDF']]};
 function uhTile(tab,name){const r=(DATA[tab]||[]).find(d=>d[1]===name);let ic='';try{if(!FLI_D)FLI_D=JSON.parse(document.getElementById('flicons').textContent);const n=(FLI_D.m[tab]||{})[name];if(n&&FLI_D.i[n])ic=`<img alt="" src="${FLI_D.i[n]}">`}catch(e){}let en='';try{const v=TILE_EN[name];en=Array.isArray(v)?v[0]:(v||'')}catch(e){}return {ic:ic||(r&&r[0])||'•',mm:(r&&r[3])||name,en:en||(r&&/^[\x20-\x7e]+$/.test(r[2])?r[2]:'')||name}}
 function uhInfo(p){const a=p.split('/').filter(Boolean),v=a[0]||'home',x=decodeURIComponent(a.slice(1).join('/'));let o;
   const mk=(ic,cat,jp,mm,en,go)=>({ic,cat,jp,sub:T(mm,jp===mm?'':mm,en),go});
@@ -52202,6 +52476,7 @@ if(S.view==='quiz'){renderQuiz();return}
   if(S.view==='bday'){renderBday();return}
   if(S.view==='nin'){renderNin();return}
   if(S.view==='ik'){renderIk();return}
+  if(S.view==='sset'){renderSset();return}
   if(S.view==='kyuyo'){renderKyuyo();return}
   if(S.view==='chit'){renderChit();return}
   if(S.view==='review'){renderReview();return}
@@ -52287,7 +52562,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.jxplay&&S.jx){const it=S.jx.qs[S.jx.i];try{speechSynthesis.cancel()}catch(e){}let n=0;const nx=()=>{if(n<it.l.length)speakJa(it.l[n++][1],0.9,()=>setTimeout(nx,500))};nx();return}
   if(b.dataset.jhub!==undefined){let lv=5;try{lv=+(localStorage.getItem('myaing.jlv')||5)||5}catch(e){}S.jl=lv;S.jtab='';S.view='jlpt';S.kSay='';render();return}
   if(b.dataset.about){S.view='about';S.drawer=false;S.aboutSec=b.dataset.about;render();return}
-  if(b.dataset.t){S.dgrp='';S.tab=b.dataset.t;S.q='';S.drawer=false;S.view='main';render();if(b.dataset.t==='home')festFly();return}
+  if(b.dataset.t){S.dgrp='';S.hub='';S.tab=b.dataset.t;S.q='';S.drawer=false;S.view='main';render();if(b.dataset.t==='home')festFly();return}
   if(b.dataset.chat!==undefined){S.chat=+b.dataset.chat;CONTACTS[S.chat].unread=false;S.view='chat';render();return}
   if(b.dataset.cm){const c=CONTACTS[S.chat];c.cm[b.dataset.cm]=!c.cm[b.dataset.cm];render();return}
   if(b.dataset.cmc){cmSheet(b.dataset.cmc);return}
@@ -52321,6 +52596,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
   if(b.dataset.g){SET[b.dataset.g]=!SET[b.dataset.g];saveSet();render();return}
   if(b.dataset.s){const k=b.dataset.s;if(k==='rnd'){S.rnd=S.words.map(w=>w.t).sort(()=>Math.random()-.5)}S.sort=k;S.sortOpen=false;render();return}
   if(b.dataset.r!==undefined){if(S.hide!=='none'){const r=+b.dataset.r;S.reveal[r]=!S.reveal[r];render()}return}
+  if(b.dataset.hub!==undefined){S.hub=b.dataset.hub;S.q='';render();window.scrollTo(0,0);return}
   if(b.dataset.dgrp!==undefined){S.dgrp=b.dataset.dgrp;S.q='';render();window.scrollTo(0,0);return}if(b.dataset.dlg&&DGRPT[b.dataset.dlg]){S.dgrp=DGRPT[b.dataset.dlg];S.q='';render();window.scrollTo(0,0);return}if(b.dataset.dlg){stopLines();S.dlq='';S.dRev={};S.dlg=b.dataset.dlg;S.view='dlg';S.kSay='';render();const m=document.getElementById('dm');if(m)m.scrollTop=0;return}
   if(b.dataset.srl){try{localStorage.setItem('myaing.jlv',b.dataset.srl)}catch(e){}render();return}
   if(b.dataset.srhw!==undefined&&b.dataset.srhw!==''){let L=5;try{L=+(localStorage.getItem('myaing.jlv')||5)||5}catch(e){}const k=new Date().toDateString()+'|'+L;SRHW[k]=SRHW[k]||{};SRHW[k][b.dataset.srhw]=!SRHW[k][b.dataset.srhw];if(Object.values(SRHW[k]).filter(Boolean).length>=5)setTimeout(()=>starEarn('hw'),300);try{localStorage.setItem('myaing.srhw',JSON.stringify(SRHW))}catch(e){}render();return}
@@ -52383,7 +52659,7 @@ if(b.dataset.jch!==undefined){S.jch=b.dataset.jch;const m0=document.querySelecto
     mtagain:()=>startMatch(),
     scundo:()=>{S.sc.pick.pop();S.sc.ok=null}, schint:()=>{speakJa(S.sc.w.r,0.8);return 'skip'}, scnext:()=>startScr(),
     dccheck:()=>{const e=document.getElementById('dcin');const v=(e&&e.value||'').trim().replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));const a=S.dc.w.r.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60));S.dc.res=v===a||v===S.dc.w.k;S.dc.n++;if(S.dc.res)S.dc.ok++}, dcnext:()=>{const d=S.dc;S.dc={w:shuf(n5Pool().filter(x=>/^[ぁ-んァ-ヶー]{2,6}$/.test(x.r)))[0],res:null,n:d.n,ok:d.ok}},
-    fav:()=>{S.view='fav';S.drawer=false;S.kSay=''}, qs:()=>{S.view='qs';S.qsq='';S.kSay=''}, exch:()=>{S.view='exch';S.drawer=false}, bday:()=>{S.view='bday';S.drawer=false}, nin:()=>{S.view='nin';S.drawer=false}, ik:()=>{S.view='ik';S.drawer=false;try{window.scrollTo(0,0)}catch(e){}}, kyuyo:()=>{S.view='kyuyo';S.drawer=false;S.kyE=false}, chit:()=>{S.view='chit';S.drawer=false;try{const b=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('[data-chg]');if(b)S.chp=+b.dataset.chg}catch(e){}}, tips:()=>{S.view='tips';S.drawer=false},
+    fav:()=>{S.view='fav';S.drawer=false;S.kSay=''}, qs:()=>{S.view='qs';S.qsq='';S.kSay=''}, exch:()=>{S.view='exch';S.drawer=false}, bday:()=>{S.view='bday';S.drawer=false}, nin:()=>{S.view='nin';S.drawer=false}, sset:()=>{S.view='sset';S.drawer=false;try{window.scrollTo(0,0)}catch(e){}}, ik:()=>{S.view='ik';S.drawer=false;try{window.scrollTo(0,0)}catch(e){}}, kyuyo:()=>{S.view='kyuyo';S.drawer=false;S.kyE=false}, chit:()=>{S.view='chit';S.drawer=false;try{const b=document.activeElement&&document.activeElement.closest&&document.activeElement.closest('[data-chg]');if(b)S.chp=+b.dataset.chg}catch(e){}}, tips:()=>{S.view='tips';S.drawer=false},
     addw:()=>{S.addOpen=!S.addOpen},addone:()=>{S.addMode='one'},addbulk:()=>{S.addMode='bulk'},
     savew:()=>{const g=id=>{const e=document.getElementById(id);return e&&e.value?e.value.trim():''};const k=g('aw_k'),r=g('aw_r')||k,mm=g('aw_mm'),en=g('aw_en');if(!k||!mm){toast(T('ဂျပန် နဲ့ မြန်မာ အဓိပ္ပာယ် ဖြည့်ပါ','日本語と意味を入力してください','Enter the Japanese word and its meaning'));return}MYW.unshift({k,r,mm,en,lv:S.jl});saveMyw();toast(T('သိမ်းပြီးပါပြီ','保存しました','Saved'))},
     bulkw:()=>{const e=document.getElementById('aw_bulk');const ws=parseBulk(e&&e.value||'',S.jl);if(!ws.length){toast(T('ထည့်စရာ မတွေ့ပါ — ပုံစံကို စစ်ပါ','追加できる行がありません','No valid lines found'));return}MYW.unshift(...ws);saveMyw();toast(T(`${ws.length} လုံး ထည့်ပြီးပါပြီ`,`${ws.length}語 追加しました`,`Added ${ws.length} words`))},
